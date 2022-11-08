@@ -30,6 +30,7 @@
         <TextView
             android:text="Coffee"
             android:textSize="32dp"
+            style="@style/textBold"
             android:textColor="@color/darkColor"
             android:gravity="center"
             android:layout_width="wrap_content"
