@@ -14,14 +14,14 @@
         android:theme="@style/Theme.Coffee"
         tools:targetApi="31">
         <activity
-            android:name=".TopUpActivity"
+            android:name=".screens.bottom.Profile.TopUpActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".PaymentActivity"
+            android:name=".screens.bottom.Product.PaymentActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -71,10 +71,12 @@
         </activity>
         <activity
             android:name=".screens.others.OnBoardActivity"
-            android:exported="false">
+            android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
+
+
         </activity>
         <activity
             android:name=".screens.others.FlashActivity"
@@ -82,12 +84,12 @@
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity
             android:name=".screens.auth.RegisterActivity"

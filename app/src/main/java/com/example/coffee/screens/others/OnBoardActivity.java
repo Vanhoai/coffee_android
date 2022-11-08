@@ -34,8 +34,8 @@ public class OnBoardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_on_board);
 
         AppCompatButton btnNext = findViewById(R.id.btnNext);
-        viewPager = findViewById(R.id.viewpager);
-        circleIndicator = findViewById(R.id.cricle);
+        viewPager = findViewById(R.id.viewpagerSlider);
+        circleIndicator = findViewById(R.id.circleSlider);
 
         listSL = getList();
         adapter = new SlideOnBoardAdapter(OnBoardActivity.this,listSL);

@@ -9,7 +9,7 @@
     tools:context=".screens.others.OnBoardActivity">
 
     <androidx.viewpager.widget.ViewPager
-        android:id="@+id/viewpager"
+        android:id="@+id/viewpagerSlider"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout_editor_absoluteX="0dp"
@@ -22,14 +22,15 @@
         android:layout_marginHorizontal="20dp"
         android:layout_marginVertical="20dp"
         android:background="@drawable/background_button"
-        android:text="NEXT"
+        android:text="Next"
+        style="@style/textWeight"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent" />
 
     <me.relex.circleindicator.CircleIndicator
-        android:id="@+id/cricle"
+        android:id="@+id/circleSlider"
         android:layout_width="70dp"
         android:layout_height="40dp"
         android:layout_gravity="center_horizontal"
@@ -38,7 +39,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tvSlider"
         style="@style/textMedium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -46,19 +47,18 @@
         android:text="Get ready to try the newest coffee variant with your friends"
         android:textColor="@color/white"
         android:textSize="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/cricle" />
+        app:layout_constraintBottom_toTopOf="@+id/circleSlider" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/tvSlider2"
         style="@style/textBold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
-        android:text="Get ready for
-                           the newest coffee"
+        android:text="Get ready for the newest coffee"
         android:textColor="@color/white"
         android:textSize="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintBottom_toTopOf="@+id/tvSlider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

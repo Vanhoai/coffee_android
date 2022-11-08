@@ -23,10 +23,15 @@ public class FlashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(FlashActivity.this, OnBoardActivity.class);
-                startActivity(intent);
-                finish();
+                next();
             }
         }, 2000);
+    }
+
+    public void next() {
+        // check if login then go to home screen
+        Intent intent = new Intent(FlashActivity.this, OnBoardActivity.class);
+        startActivity(intent);
+        finish();
     }
 }
