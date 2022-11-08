@@ -1,56 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearOnBroad"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".screens.others.OnBoardActivity"
-    android:padding="20dp"
     android:orientation="vertical"
-    android:background="#AF0F0F">
+    tools:context=".screens.others.OnBoardActivity">
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="16dp" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnNext"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="-70dp"
-            android:background="@drawable/background_button"
-            android:textSize="16dp"
-            android:textColor="@color/white"
-            android:textAllCaps="false"
-            android:text="NEXT"/>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnNext"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="20dp"
+        android:background="@drawable/background_button"
+        android:text="NEXT"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
     <me.relex.circleindicator.CircleIndicator
         android:id="@+id/cricle"
         android:layout_width="70dp"
         android:layout_height="40dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="-100dp" />
+        app:layout_constraintBottom_toTopOf="@+id/btnNext"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:paddingLeft="15dp"
-        android:textColor="@color/white"
+        android:id="@+id/textView"
         style="@style/textMedium"
-        android:textSize="24dp"
-        android:layout_marginTop="-130dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
         android:text="Get ready to try the newest coffee variant with your friends"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-    <TextView
         android:textColor="@color/white"
-        style="@style/textBold"
-        android:layout_marginLeft="15dp"
-        android:textSize="24dp"
-        android:layout_marginTop="-120dp"
-        android:text="Get ready for the
-                                    newest coffee"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/cricle" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/textView2"
+        style="@style/textBold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:text="Get ready for
+                           the newest coffee"
+        android:textColor="@color/white"
+        android:textSize="24dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

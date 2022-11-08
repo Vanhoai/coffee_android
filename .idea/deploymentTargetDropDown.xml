@@ -7,11 +7,11 @@
         <deviceKey>
           <Key>
             <type value="VIRTUAL_DEVICE_PATH" />
-            <value value="$USER_HOME$/.android/avd/AURORA_MOBILE.avd" />
+            <value value="C:\Users\MSI Prestige 15\.android\avd\Pixel_2_XL_API_29.avd" />
           </Key>
         </deviceKey>
       </Target>
     </targetSelectedWithDropDown>
-    <timeTargetWasSelectedWithDropDown value="2022-11-08T04:29:22.673614Z" />
+    <timeTargetWasSelectedWithDropDown value="2022-11-08T16:18:09.389635100Z" />
   </component>
 </project>
