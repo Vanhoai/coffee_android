@@ -5,20 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="20dp"
     >
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
         android:layout_marginTop="50dp"
         android:text="Login"
         android:textColor="#343434"
+        style="@style/textWeight"
         android:textSize="24dp"
         />
 
         <LinearLayout
-            android:layout_marginHorizontal="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -44,6 +44,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Enter text here"
+                    style="@style/textWeight"
                     android:background="@null"
                     android:textSize="14dp"/>
 
@@ -59,8 +60,8 @@
             </RelativeLayout>
 
         </LinearLayout>
+
     <LinearLayout
-        android:layout_marginHorizontal="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -86,6 +87,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="Enter text here"
+                style="@style/textWeight"
                 android:background="@null"
                 android:textSize="14dp"/>
 
@@ -105,15 +107,15 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp">
+        android:layout_height="wrap_content">
 
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:text="Remember me"
             android:textSize="14dp"
-            android:textColor="#D5D5D5"
+            style="@style/textWeight"
+            android:textColor="@color/textColor"
             android:textStyle="bold"
             />
 
@@ -124,7 +126,8 @@
             android:layout_height="50dp"
             android:text="Forgot Password ?"
             android:textSize="14dp"
-            android:textColor="#D5D5D5"
+            style="@style/textWeight"
+            android:textColor="@color/textColor"
             android:textStyle="bold"
             />
 
@@ -132,11 +135,13 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnCreateAccount"
-        android:layout_marginTop="60dp"
+        android:layout_marginBottom="24dp"
+        android:layout_marginTop="40dp"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:background="@drawable/background_input"
         android:textSize="16dp"
+        style="@style/textWeight"
         app:backgroundTint="@null"
         android:text="Create Account"
         android:textAllCaps="false"/>
@@ -146,9 +151,8 @@
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:background="@drawable/background_button"
-        android:text="Sign In"
-        android:textColor="@color/white"
         android:textSize="16dp"
+        style="@style/textWeight"
         android:textColor="@color/white"
         android:textAllCaps="false"
         android:text="Login"/>
