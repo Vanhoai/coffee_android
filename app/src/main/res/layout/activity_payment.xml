@@ -19,7 +19,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_width="15dp"
                 android:layout_height="24dp"
-                android:src="@drawable/vector"
+                android:src="@drawable/back_icon"
                 android:backgroundTint="#5F5F5F"/>
 
             <TextView

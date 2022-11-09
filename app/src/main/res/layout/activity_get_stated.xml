@@ -42,12 +42,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="After this you can explore our servives and"
-
-
             android:textColor="#5F5F5F"
             android:textSize="16dp"/>
-        <TextView
 
+        <TextView
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -55,8 +53,8 @@
             android:textColor="#5F5F5F"
             android:textSize="16dp"/>
     </LinearLayout>
-    <Button
 
+    <Button
         android:layout_marginTop="70dp"
         android:layout_marginHorizontal="20dp"
         android:layout_width="match_parent"
