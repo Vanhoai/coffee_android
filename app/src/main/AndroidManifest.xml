@@ -14,7 +14,21 @@
         android:theme="@style/Theme.Coffee"
         tools:targetApi="31">
         <activity
-            android:name=".AccountActivity"
+            android:name=".RewardDetailActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".RewardActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".MainActivitytest"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
