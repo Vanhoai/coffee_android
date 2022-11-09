@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- CUSTOM STYLE TEXT  -->
+    <style name="textLight">
+        <item name="fontFamily">@font/quicksand_light</item>
+        <item name="fontWeight">400</item>
+    </style>
+
     <style name="textMedium">
         <item name="android:fontFamily">@font/quicksand_medium</item>
         <item name="android:fontWeight">600</item>
