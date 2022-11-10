@@ -1,257 +1,264 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:padding="20dp">
 
     <RelativeLayout
-        app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
+
         <ImageView
             android:layout_width="14dp"
             android:layout_height="24dp"
-            android:src="@drawable/back_icon"
-            android:backgroundTint="@color/textColor"/>
+            android:backgroundTint="@color/textColor"
+            android:src="@drawable/back_icon" />
+
         <TextView
-            android:text="History"
-            android:gravity="center"
-            android:textColor="#000000"
-            android:textSize="16dp"
+            style="@style/textWeight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/textWeight"/>
+            android:gravity="center"
+            android:text="History"
+            android:textColor="#000000"
+            android:textSize="16dp" />
     </RelativeLayout>
 
-        <LinearLayout
-            android:orientation="vertical"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/textWeight"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="44dp"
+            android:text="Recent activity"
+            android:textColor="#000000"
+            android:textSize="18dp" />
 
-            <TextView
-                style="@style/textWeight"
-                android:layout_marginTop="44dp"
-                android:text="Recent activity"
-                android:textSize="18dp"
-                android:textColor="#000000"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="128dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/background_input"
+            android:paddingHorizontal="20dp">
 
-            <RelativeLayout
-                android:layout_marginTop="12dp"
-                android:background="@drawable/background_input"
-                android:paddingHorizontal="20dp"
-                android:layout_width="match_parent"
-                android:layout_height="128dp">
+            <ImageView
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="15dp"
+                android:src="@drawable/image_history" />
 
-                    <ImageView
-                        android:layout_width="56dp"
-                        android:layout_height="56dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_marginTop="8dp"
-                        android:src="@drawable/image_history"
-                        />
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginLeft="80dp"
-                    android:paddingTop="8dp">
-                    <TextView
-                        style="@style/textWeight"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="13dp"
-                        android:layout_marginBottom="4dp"
-                        android:text="Buy Coffee"
-                        android:textColor="#000000"
-                        android:textSize="16dp" />
-
-                    <TextView
-                        style="@style/textWeight"
-                        android:layout_marginLeft="54dp"
-                        android:layout_width="80dp"
-                        android:layout_height="18dp"
-                        android:text="-50.000VND"
-                        android:textColor="@color/hintText"
-                         />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginLeft="80dp"
-                    android:paddingTop="43dp">
-                    <TextView
-                        style="@style/textWeight"
-                        android:layout_marginStart="13dp"
-                        android:layout_marginBottom="4dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Congratulation, you have successfully made a coffee purchase"
-                        android:textSize="13dp"
-                        android:textColor="@color/hintText"/>
-
-                    <TextView
-                        style="@style/textWeight"
-                        android:layout_marginStart="13dp"
-                        android:layout_marginBottom="4dp"
-                        android:layout_marginTop="22dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="22 August 2022, 10:00 AM"
-                        android:textSize="13dp"
-                        android:textColor="@color/hintText"/>
-                </LinearLayout>
-            </RelativeLayout>
-            <TextView
-                style="@style/textWeight"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="38dp"
-                android:text="Last Week"
-                android:textSize="18dp"
-                android:textColor="#000000"/>
+                android:layout_marginLeft="80dp"
+                android:orientation="horizontal"
+                android:paddingTop="8dp">
 
-            <RelativeLayout
-                android:layout_marginTop="12dp"
-                android:background="@drawable/background_input"
-                android:paddingHorizontal="20dp"
+                <TextView
+                    style="@style/textWeight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="13dp"
+                    android:layout_marginBottom="4dp"
+                    android:text="Buy Coffee"
+                    android:textColor="#000000"
+                    android:textSize="16dp" />
+
+                <TextView
+                    style="@style/textWeight"
+                    android:layout_width="80dp"
+                    android:layout_height="18dp"
+                    android:layout_marginLeft="54dp"
+                    android:text="-50.000VND"
+                    android:textColor="@color/hintText" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="128dp">
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="80dp"
+                android:orientation="vertical"
+                android:paddingTop="43dp">
 
-                <ImageView
-                    android:layout_width="56dp"
-                    android:layout_height="56dp"
-                    android:layout_marginRight="15dp"
-                    android:layout_marginTop="8dp"
-                    android:src="@drawable/image_history"
-                    />
-                <LinearLayout
-
-                    android:layout_width="match_parent"
+                <TextView
+                    style="@style/textWeight"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginLeft="80dp"
-                    android:paddingTop="8dp">
-                    <TextView
-                        style="@style/textWeight"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="13dp"
-                        android:layout_marginBottom="4dp"
-                        android:text="Buy Coffee"
-                        android:textColor="#000000"
-                        android:textSize="16dp" />
+                    android:layout_marginStart="13dp"
+                    android:layout_marginBottom="4dp"
+                    android:text="Congratulation, you have successfully made a coffee purchase"
+                    android:textColor="@color/hintText"
+                    android:textSize="13dp" />
 
-                    <TextView
-                        style="@style/textWeight"
-                        android:layout_marginLeft="54dp"
-                        android:layout_width="80dp"
-                        android:layout_height="18dp"
-                        android:text="-50.000VND"
-                        android:textColor="@color/hintText"
-                        />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    style="@style/textWeight"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginLeft="80dp"
-                    android:paddingTop="43dp">
-                    <TextView
-                        style="@style/textWeight"
-                        android:layout_marginStart="13dp"
-                        android:layout_marginBottom="4dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Congratulation, you have successfully made a coffee purchase"
-                        android:textSize="13dp"
-                        android:textColor="@color/hintText"/>
+                    android:layout_marginStart="13dp"
+                    android:layout_marginTop="22dp"
+                    android:layout_marginBottom="4dp"
+                    android:text="22 August 2022, 10:00 AM"
+                    android:textColor="@color/hintText"
+                    android:textSize="13dp" />
+            </LinearLayout>
+        </RelativeLayout>
 
-                    <TextView
-                        style="@style/textWeight"
-                        android:layout_marginStart="13dp"
-                        android:layout_marginBottom="4dp"
-                        android:layout_marginTop="22dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="22 August 2022, 10:00 AM"
-                        android:textSize="13dp"
-                        android:textColor="@color/hintText"/>
-                </LinearLayout>
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_marginTop="12dp"
-                android:background="@drawable/background_input"
-                android:paddingHorizontal="20dp"
+        <TextView
+            style="@style/textWeight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="38dp"
+            android:text="Last Week"
+            android:textColor="#000000"
+            android:textSize="18dp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="128dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/background_input"
+            android:paddingHorizontal="20dp">
+
+            <ImageView
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="15dp"
+                android:src="@drawable/image_history" />
+
+            <LinearLayout
+
                 android:layout_width="match_parent"
-                android:layout_height="128dp">
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="80dp"
+                android:orientation="horizontal"
+                android:paddingTop="8dp">
 
-                <ImageView
-                    android:layout_width="56dp"
-                    android:layout_height="56dp"
-                    android:layout_marginRight="15dp"
-                    android:layout_marginTop="8dp"
-                    android:src="@drawable/image_history"
-                    />
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    style="@style/textWeight"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginLeft="80dp"
-                    android:paddingTop="8dp">
-                    <TextView
-                        style="@style/textWeight"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="13dp"
-                        android:layout_marginBottom="4dp"
-                        android:text="Buy Coffee"
-                        android:textColor="#000000"
-                        android:textSize="16dp" />
+                    android:layout_marginStart="13dp"
+                    android:layout_marginBottom="4dp"
+                    android:text="Buy Coffee"
+                    android:textColor="#000000"
+                    android:textSize="16dp" />
 
-                    <TextView
-                        style="@style/textWeight"
-                        android:layout_marginLeft="54dp"
-                        android:layout_width="80dp"
-                        android:layout_height="18dp"
-                        android:text="-50.000VND"
-                        android:textColor="@color/hintText"
-                        />
-                </LinearLayout>
+                <TextView
+                    style="@style/textWeight"
+                    android:layout_width="80dp"
+                    android:layout_height="18dp"
+                    android:layout_marginLeft="54dp"
+                    android:text="-50.000VND"
+                    android:textColor="@color/hintText" />
+            </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="80dp"
+                android:orientation="vertical"
+                android:paddingTop="43dp">
+
+                <TextView
+                    style="@style/textWeight"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginLeft="80dp"
-                    android:paddingTop="43dp">
-                    <TextView
-                        style="@style/textWeight"
-                        android:layout_marginStart="13dp"
-                        android:layout_marginBottom="4dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Congratulation, you have successfully made a coffee purchase"
-                        android:textSize="13dp"
-                        android:textColor="@color/hintText"/>
+                    android:layout_marginStart="13dp"
+                    android:layout_marginBottom="4dp"
+                    android:text="Congratulation, you have successfully made a coffee purchase"
+                    android:textColor="@color/hintText"
+                    android:textSize="13dp" />
 
-                    <TextView
-                        style="@style/textWeight"
-                        android:layout_marginStart="13dp"
-                        android:layout_marginBottom="4dp"
-                        android:layout_marginTop="22dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="22 August 2022, 10:00 AM"
-                        android:textSize="13dp"
-                        android:textColor="@color/hintText"/>
-                </LinearLayout>
-            </RelativeLayout>
+                <TextView
+                    style="@style/textWeight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="13dp"
+                    android:layout_marginTop="22dp"
+                    android:layout_marginBottom="4dp"
+                    android:text="22 August 2022, 10:00 AM"
+                    android:textColor="@color/hintText"
+                    android:textSize="13dp" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="128dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/background_input"
+            android:paddingHorizontal="20dp">
+
+            <ImageView
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="15dp"
+                android:src="@drawable/image_history" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="80dp"
+                android:orientation="horizontal"
+                android:paddingTop="8dp">
+
+                <TextView
+                    style="@style/textWeight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="13dp"
+                    android:layout_marginBottom="4dp"
+                    android:text="Buy Coffee"
+                    android:textColor="#000000"
+                    android:textSize="16dp" />
+
+                <TextView
+                    style="@style/textWeight"
+                    android:layout_width="80dp"
+                    android:layout_height="18dp"
+                    android:layout_marginLeft="54dp"
+                    android:text="-50.000VND"
+                    android:textColor="@color/hintText" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="80dp"
+                android:orientation="vertical"
+                android:paddingTop="43dp">
+
+                <TextView
+                    style="@style/textWeight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="13dp"
+                    android:layout_marginBottom="4dp"
+                    android:text="Congratulation, you have successfully made a coffee purchase"
+                    android:textColor="@color/hintText"
+                    android:textSize="13dp" />
+
+                <TextView
+                    style="@style/textWeight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="13dp"
+                    android:layout_marginTop="22dp"
+                    android:layout_marginBottom="4dp"
+                    android:text="22 August 2022, 10:00 AM"
+                    android:textColor="@color/hintText"
+                    android:textSize="13dp" />
+            </LinearLayout>
+        </RelativeLayout>
 
 
     </LinearLayout>
