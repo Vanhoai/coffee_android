@@ -17,8 +17,8 @@ import com.example.coffee.models.Others.SliderImage;
 import java.util.ArrayList;
 
 public class SlideOnBoardAdapter extends PagerAdapter {
-    private Context context;
-    private ArrayList<SliderImage> ListSlider_Image;
+    Context context;
+    ArrayList<SliderImage> ListSlider_Image;
 
     public SlideOnBoardAdapter(Context context, ArrayList<SliderImage> listSlider_Image) {
         this.context = context;
@@ -30,11 +30,11 @@ public class SlideOnBoardAdapter extends PagerAdapter {
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
         LayoutInflater layoutInflater = ((Activity) context).getLayoutInflater();
         View view = layoutInflater.inflate(R.layout.item_slider_image, container, false);
-        ImageView ivhinh = view.findViewById(R.id.ivislider);
+        ImageView ivSlider = view.findViewById(R.id.ivSlider);
 
         SliderImage slider = ListSlider_Image.get(position);
         if (slider != null) {
-            Glide.with(context).load(slider.getResoure_image()).into(ivhinh);
+            Glide.with(context).load(slider.getResoure_image()).into(ivSlider);
         }
 
         container.addView(view);

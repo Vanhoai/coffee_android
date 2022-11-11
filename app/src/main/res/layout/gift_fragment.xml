@@ -2,14 +2,191 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="20dp">
 
-    <TextView
+    <LinearLayout
+        android:id="@+id/linearTitle"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Gift Screen"
-        android:gravity="center"
-        android:textSize="24dp"/>
+        android:orientation="vertical">
+
+
+        <TextView
+            style="@style/textMedium"
+            android:textSize="24dp"
+            android:layout_weight="600"
+            android:textColor="@color/darkColor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Attractive gift for you"/>
+
+        <TextView
+            style="@style/textMedium"
+            android:textColor="@color/textColor"
+            android:textSize="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Carry out the mission and enjoy the rewards"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearExp"
+        app:layout_constraintTop_toBottomOf="@id/linearTitle"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/background_input"
+        android:padding="12dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/gift_reward"
+            android:layout_marginRight="12dp"/>
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/textMedium"
+                android:textSize="16dp"
+                android:textColor="@color/darkColor"
+                android:textStyle="bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="350 XP more to get rewards"/>
+
+            <RelativeLayout
+                android:layout_marginTop="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="12dp"
+                android:background="@drawable/custom_line">
+
+                <RelativeLayout
+                    android:layout_width="200dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/custom_line"
+                    android:backgroundTint="@color/secondaryColor"/>
+
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        app:layout_constraintTop_toBottomOf="@+id/linearExp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:orientation="vertical"
+            android:background="@drawable/background_input"
+            android:layout_marginRight="6dp">
+            
+            <TextView
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:textColor="@color/darkColor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/textMedium"
+                android:text="1"/>
+
+            <TextView
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:textColor="@color/darkColor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/textMedium"
+                android:text="Vouchers"/>
+
+            <RelativeLayout
+                android:layout_marginTop="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:layout_marginVertical="16dp"
+                android:background="@drawable/custom_line">
+
+                <RelativeLayout
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/custom_line"
+                    android:backgroundTint="@color/secondaryColor"/>
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/textMedium"
+                android:text="5 will expire"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:orientation="vertical"
+            android:background="@drawable/background_input"
+            android:layout_marginLeft="6dp">
+
+            <TextView
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:textColor="@color/darkColor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/textMedium"
+                android:text="17"/>
+
+            <TextView
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:textColor="@color/darkColor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/textMedium"
+                android:text="Missions"/>
+
+            <RelativeLayout
+                android:layout_marginTop="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:layout_marginVertical="16dp"
+                android:background="@drawable/custom_line">
+
+                <RelativeLayout
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/custom_line"
+                    android:backgroundTint="@color/secondaryColor"/>
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/textMedium"
+                android:text="3 in progress"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
