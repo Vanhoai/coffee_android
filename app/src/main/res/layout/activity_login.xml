@@ -171,22 +171,22 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            android:layout_marginHorizontal="28dp"
-            android:src="@drawable/google" />
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginHorizontal="16dp"
+            android:src="@drawable/google_icon" />
 
         <ImageView
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            android:layout_marginHorizontal="28dp"
-            android:src="@drawable/apple" />
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginHorizontal="16dp"
+            android:src="@drawable/apple_icon" />
 
         <ImageView
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            android:layout_marginHorizontal="28dp"
-            android:src="@drawable/facebook" />
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginHorizontal="16dp"
+            android:src="@drawable/facebook_icon" />
     </LinearLayout>
 
 </LinearLayout>
