@@ -249,8 +249,7 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:src="@drawable/reward_type_1"
-                    android:layout_marginRight="12dp"
-                    />
+                    android:layout_marginRight="12dp"/>
 
                 <LinearLayout
                     android:layout_weight="1"
