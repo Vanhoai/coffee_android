@@ -10,9 +10,11 @@
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <TextView
             android:text="NOTIFICATION"
-            android:textColor="#000000"
+            style="@style/textWeight"
+            android:textColor="@color/darkColor"
             android:textSize="16dp"
             android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
@@ -26,15 +28,16 @@
 
         <TextView
             android:text="Order Successfully"
+            style="@style/textWeight"
             android:layout_marginTop="24dp"
-            android:textColor="#000000"
+            android:textColor="@color/darkColor"
             android:textSize="16dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
         <androidx.appcompat.widget.AppCompatButton
             android:text="OK"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/white"
             android:layout_margin="20dp"
             android:layout_marginTop="24dp"
             android:layout_marginBottom="24dp"
