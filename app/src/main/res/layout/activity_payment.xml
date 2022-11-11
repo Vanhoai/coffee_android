@@ -29,7 +29,7 @@
                 android:text="Pay"
                 android:textSize="16dp"
                 style="@style/textWeight"
-                android:textColor="#343434"/>
+                android:textColor="@color/darkColor"/>
 
         </RelativeLayout>
 

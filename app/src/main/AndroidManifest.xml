@@ -14,14 +14,20 @@
         android:theme="@style/Theme.Coffee"
         tools:targetApi="31">
         <activity
-            android:name=".CheckOutActivity"
-            android:exported="false">
+            android:name=".screens.bottom.Product.CheckOutActivity"
+            android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
-            android:name=".DetailPlaceActivity"
+            android:name=".screens.bottom.Shop.DetailPlaceActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -96,12 +102,6 @@
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".screens.auth.RegisterActivity"
@@ -109,6 +109,7 @@
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
+
         </activity>
         <activity
             android:name=".screens.auth.LoginActivity"

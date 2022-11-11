@@ -14,13 +14,13 @@
         <ImageView
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/back_icon"
-            android:backgroundTint="#5F5F5F" />
+            android:src="@drawable/back_icon"/>
 
         <TextView
+            style="@style/textMedium"
             android:text="Check Out"
             android:gravity="center"
-            android:textColor="@color/textColor"
+            android:textColor="@color/darkColor"
             android:textSize="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
@@ -45,70 +45,62 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_marginTop="12dp"
                 android:background="@drawable/background_input"
-                android:paddingHorizontal="20dp"
                 android:layout_width="match_parent"
-                android:layout_height="80dp">
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:orientation="horizontal">
 
                 <ImageView
                     android:src="@drawable/image_location"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="4dp"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"/>
+                    android:layout_width="44dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="12dp"/>
 
                 <LinearLayout
+                    android:layout_weight="1"
                     android:orientation="vertical"
-                    android:gravity="center_horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content">
 
                     <LinearLayout
                         android:orientation="horizontal"
-                        android:layout_marginHorizontal="44dp"
-                        android:layout_marginTop="8dp"
+                        android:gravity="center_vertical"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="34dp">
+
                         <TextView
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="12dp"
-                            android:layout_marginBottom="4dp"
+                            android:layout_height="match_parent"
                             android:text="Home"
                             style="@style/textWeight"
-                            android:textColor="#000000"
+                            android:textColor="@color/darkColor"
                             android:textSize="18dp" />
 
                         <androidx.appcompat.widget.AppCompatButton
                             app:backgroundTint="@null"
                             android:text="Default"
-                            android:layout_marginHorizontal="12dp"
+                            android:textAllCaps="false"
+                            android:layout_marginLeft="8dp"
                             android:background="@drawable/background_button"
                             android:layout_width="80dp"
-                            android:layout_height="18dp"
+                            android:layout_height="32dp"
+                            android:backgroundTint="@color/hintText"
                             android:textColor="#FFFFFF"/>
 
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:gravity="center_horizontal"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginHorizontal="44dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="TTH20, 12 Ditrict, HCM city"
-                            style="@style/textWeight"
-                            android:textColor="#000000"
-                            android:textSize="18dp" />
-
-                    </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="TTH20, 12 Ditrict, HCM city"
+                        style="@style/textWeight"
+                        android:textColor="@color/textColor"
+                        android:textSize="16dp"
+                        android:layout_marginTop="4dp"/>
 
                 </LinearLayout>
 
@@ -117,209 +109,31 @@
                     android:layout_centerVertical="true"
                     android:src="@drawable/edit_icon"
                     android:layout_marginRight="4dp"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"/>
+                    android:layout_width="36dp"
+                    android:layout_height="match_parent"/>
 
-            </RelativeLayout>
+            </LinearLayout>
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="38dp"
-                android:text="Product List"
-                style="@style/textWeight"
-                android:textSize="18dp"
-                android:textColor="#000000"/>
+                android:orientation="vertical"
+                android:layout_marginTop="24dp">
 
-            <RelativeLayout
-                android:layout_marginTop="12dp"
-                android:background="@drawable/background_input"
-                android:paddingHorizontal="16dp"
-                android:layout_width="match_parent"
-                android:layout_height="108dp">
-
-                <LinearLayout
-                    android:orientation="horizontal"
+                <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content"
+                    android:text="Product List"
+                    style="@style/textWeight"
+                    android:textSize="18dp"
+                    android:textColor="#000000"/>
 
-                    <ImageView
-                        android:background="#BEBEC1"
-                        android:layout_centerVertical="true"
-                        android:layout_marginTop="28dp"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"/>
-
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_marginHorizontal="12dp"
-                        android:layout_marginTop="28dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="4dp"
-                            android:text="Vanilla Sweet"
-                            android:textColor="#076B5B"
-                            style="@style/textWeight"
-                            android:textSize="20dp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="4dp"
-                            android:text="25.000 VND"
-                            style="@style/textWeight"
-                            android:textColor="#5F5F5F"
-                            android:textSize="14dp" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <androidx.appcompat.widget.AppCompatButton
-                    app:backgroundTint="@null"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:backgroundTint="#0DB165"
-                    android:text="1"
-                    android:layout_marginRight="4dp"
-                    android:textColor="#FFFFFF"
-                    android:layout_width="40dp"
-                    android:layout_height="44dp"/>
-
-                <ImageView
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="4dp"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"/>
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_marginTop="14dp"
-                android:background="@drawable/background_input"
-                android:paddingHorizontal="16dp"
-                android:layout_width="match_parent"
-                android:layout_height="108dp">
-
-                <LinearLayout
-                    android:orientation="horizontal"
+                <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content"/>
 
-                    <ImageView
-                        android:background="#BEBEC1"
-                        android:layout_centerVertical="true"
-                        android:layout_marginTop="28dp"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"/>
+            </LinearLayout>
 
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_marginHorizontal="12dp"
-                        android:layout_marginTop="28dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="4dp"
-                            android:text="Vanilla Sweet"
-                            style="@style/textWeight"
-                            android:textColor="#076B5B"
-                            android:textSize="20dp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="4dp"
-                            android:text="25.000 VND"
-                            style="@style/textWeight"
-                            android:textColor="#5F5F5F"
-                            android:textSize="14dp" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <androidx.appcompat.widget.AppCompatButton
-                    app:backgroundTint="@null"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:backgroundTint="#0DB165"
-                    android:text="1"
-                    android:layout_marginRight="4dp"
-                    android:textColor="#FFFFFF"
-                    android:layout_width="40dp"
-                    android:layout_height="44dp"/>
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_marginTop="14dp"
-                android:background="@drawable/background_input"
-                android:paddingHorizontal="16dp"
-                android:layout_width="match_parent"
-                android:layout_height="108dp">
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <ImageView
-                        android:background="#BEBEC1"
-                        android:layout_centerVertical="true"
-                        android:layout_marginTop="28dp"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"/>
-
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_marginHorizontal="12dp"
-                        android:layout_marginTop="28dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="4dp"
-                            android:text="Vanilla Sweet"
-                            style="@style/textWeight"
-                            android:textColor="#076B5B"
-                            android:textSize="20dp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="4dp"
-                            android:text="25.000 VND"
-                            style="@style/textWeight"
-                            android:textColor="@color/textColor"
-                            android:textSize="14dp" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <androidx.appcompat.widget.AppCompatButton
-                    app:backgroundTint="@null"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:backgroundTint="#0DB165"
-                    android:text="1"
-                    android:layout_marginRight="4dp"
-                    android:textColor="@color/white"
-                    android:layout_width="40dp"
-                    android:layout_height="44dp"/>
-
-            </RelativeLayout>
 
             <LinearLayout
                 android:orientation="vertical"
@@ -332,7 +146,7 @@
                     android:layout_height="wrap_content"
                     android:text="Choose a delivery method"
                     style="@style/textWeight"
-                    android:textSize="20dp"
+                    android:textSize="18dp"
                     android:textColor="#000000"/>
 
                 <LinearLayout
@@ -344,22 +158,24 @@
                     <androidx.appcompat.widget.AppCompatButton
                         app:backgroundTint="@null"
                         android:text="Pick up"
+                        android:textAllCaps="false"
                         android:background="@drawable/background_button"
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
+                        android:layout_height="56dp"
                         android:layout_weight="1"
-                        android:layout_marginRight="12dp"
+                        android:layout_marginRight="6dp"
                         android:textColor="@color/white"/>
 
                     <androidx.appcompat.widget.AppCompatButton
                         app:backgroundTint="@null"
                         android:text="Ship"
-                        android:layout_marginLeft="12dp"
-                        android:background="@drawable/background_button"
+                        android:layout_marginLeft="6dp"
+                        android:background="@drawable/background_input"
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
+                        android:layout_height="56dp"
+                        android:textAllCaps="false"
                         android:layout_weight="1"
-                        android:textColor="@color/white"/>
+                        android:textColor="@color/textColor"/>
                 </LinearLayout>
 
             </LinearLayout>
@@ -545,11 +361,11 @@
                 app:backgroundTint="@null"
                 android:text="Continue Payment"
                 android:layout_marginTop="80dp"
-                android:layout_marginHorizontal="20dp"
                 android:background="@drawable/background_button"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:textColor="#FFFFFF"/>
+                android:textColor="#FFFFFF"
+                android:layout_marginBottom="12dp"/>
 
         </LinearLayout>
 
