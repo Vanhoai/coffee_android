@@ -22,11 +22,11 @@ import java.util.TimerTask;
 import me.relex.circleindicator.CircleIndicator;
 
 public class OnBoardActivity extends AppCompatActivity {
-    private ViewPager viewPager;
-    private CircleIndicator circleIndicator;
-    private SlideOnBoardAdapter adapter;
-    private ArrayList<SliderImage> listSL;
-    private Timer timer;
+    ViewPager viewPager;
+    CircleIndicator circleIndicator;
+    SlideOnBoardAdapter adapter;
+    ArrayList<SliderImage> listSL;
+    Timer timer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +43,6 @@ public class OnBoardActivity extends AppCompatActivity {
         circleIndicator.setViewPager(viewPager);
         adapter.registerDataSetObserver(circleIndicator.getDataSetObserver());
         autoSlider();
-
-
 
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,18 +74,18 @@ public class OnBoardActivity extends AppCompatActivity {
                 new Handler(Looper.getMainLooper()).post(new Runnable() {
                     @Override
                     public void run() {
-                        int curentItem = viewPager.getCurrentItem();
+                        int currentItem = viewPager.getCurrentItem();
                         int totalItem = listSL.size()-1;
-                        if (curentItem < totalItem){
-                            curentItem ++;
-                            viewPager.setCurrentItem(curentItem);
+                        if (currentItem < totalItem){
+                            currentItem ++;
+                            viewPager.setCurrentItem(currentItem);
                         }else {
                             viewPager.setCurrentItem(0);
                         }
                     }
                 });
             }
-        }, 1000, 2000);
+        }, 2000, 2000);
     }
 
     @Override

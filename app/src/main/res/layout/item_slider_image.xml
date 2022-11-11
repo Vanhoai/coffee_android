@@ -4,7 +4,7 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/ivislider"
+        android:id="@+id/ivSlider"
         android:src="@drawable/slider_img1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
