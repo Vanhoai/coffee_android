@@ -1,6 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_margin="20dp"
+    android:background="@drawable/background_input"
+    android:layout_height="364dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:text="NOTIFICATION"
+            style="@style/textWeight"
+            android:textColor="@color/darkColor"
+            android:textSize="16dp"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:src="@drawable/successfully"
+            android:layout_marginTop="24dp"
+            android:layout_width="147dp"
+            android:layout_height="147dp"/>
+
+        <TextView
+            android:text="Order Successfully"
+            style="@style/textWeight"
+            android:layout_marginTop="24dp"
+            android:textColor="@color/darkColor"
+            android:textSize="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:text="OK"
+            android:textColor="@color/white"
+            android:layout_margin="20dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/background_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
