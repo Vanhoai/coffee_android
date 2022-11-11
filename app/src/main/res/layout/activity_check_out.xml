@@ -14,24 +14,14 @@
         <ImageView
             android:layout_width="24dp"
             android:layout_height="24dp"
-<<<<<<< HEAD
             android:src="@drawable/back_icon"
-=======
-            android:src="@drawable/vector"
->>>>>>> 5c1b0bc616404641d568db29a97ef346d537ddfe
             android:backgroundTint="#5F5F5F" />
 
         <TextView
             android:text="Check Out"
             android:gravity="center"
-<<<<<<< HEAD
             android:textColor="@color/textColor"
             android:textSize="16dp"
-            style="@style/textWeight"
-=======
-            android:textColor="#000000"
-            android:textSize="16dp"
->>>>>>> 5c1b0bc616404641d568db29a97ef346d537ddfe
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
@@ -52,30 +42,18 @@
                 android:text="Shipping Address"
                 android:textSize="18dp"
                 android:textColor="#000000"
-<<<<<<< HEAD
-                style="@style/textWeight"
-=======
->>>>>>> 5c1b0bc616404641d568db29a97ef346d537ddfe
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
             <RelativeLayout
                 android:layout_marginTop="12dp"
-<<<<<<< HEAD
                 android:background="@drawable/background_input"
-=======
-                android:background="@drawable/bogoc"
->>>>>>> 5c1b0bc616404641d568db29a97ef346d537ddfe
                 android:paddingHorizontal="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="80dp">
 
                 <ImageView
-<<<<<<< HEAD
                     android:src="@drawable/image_location"
-=======
-                    android:src="@drawable/icon_home"
->>>>>>> 5c1b0bc616404641d568db29a97ef346d537ddfe
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="4dp"
                     android:layout_width="40dp"
@@ -96,30 +74,22 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="13dp"
+                            android:layout_marginStart="12dp"
                             android:layout_marginBottom="4dp"
                             android:text="Home"
-<<<<<<< HEAD
                             style="@style/textWeight"
                             android:textColor="#000000"
                             android:textSize="18dp" />
 
-=======
-                            android:textColor="#000000"
-                            android:textSize="18dp" />
->>>>>>> 5c1b0bc616404641d568db29a97ef346d537ddfe
                         <androidx.appcompat.widget.AppCompatButton
                             app:backgroundTint="@null"
                             android:text="Default"
                             android:layout_marginHorizontal="12dp"
-<<<<<<< HEAD
                             android:background="@drawable/background_button"
-=======
-                            android:background="@drawable/signin"
->>>>>>> 5c1b0bc616404641d568db29a97ef346d537ddfe
                             android:layout_width="80dp"
                             android:layout_height="18dp"
                             android:textColor="#FFFFFF"/>
+
                     </LinearLayout>
 
                     <LinearLayout
@@ -134,10 +104,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="TTH20, 12 Ditrict, HCM city"
-<<<<<<< HEAD
                             style="@style/textWeight"
-=======
->>>>>>> 5c1b0bc616404641d568db29a97ef346d537ddfe
                             android:textColor="#000000"
                             android:textSize="18dp" />
 
@@ -148,11 +115,7 @@
                 <ImageView
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-<<<<<<< HEAD
                     android:src="@drawable/edit_icon"
-=======
-                    android:src="@drawable/ic_edit"
->>>>>>> 5c1b0bc616404641d568db29a97ef346d537ddfe
                     android:layout_marginRight="4dp"
                     android:layout_width="30dp"
                     android:layout_height="30dp"/>
@@ -164,20 +127,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="38dp"
                 android:text="Product List"
-<<<<<<< HEAD
                 style="@style/textWeight"
-=======
->>>>>>> 5c1b0bc616404641d568db29a97ef346d537ddfe
                 android:textSize="18dp"
                 android:textColor="#000000"/>
 
             <RelativeLayout
                 android:layout_marginTop="12dp"
-<<<<<<< HEAD
                 android:background="@drawable/background_input"
-=======
-                android:background="@drawable/bogoc"
->>>>>>> 5c1b0bc616404641d568db29a97ef346d537ddfe
                 android:paddingHorizontal="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="108dp">
@@ -188,11 +144,7 @@
                     android:layout_height="match_parent">
 
                     <ImageView
-<<<<<<< HEAD
                         android:background="#BEBEC1"
-=======
-                        android:src="@drawable/icon_tron"
->>>>>>> 5c1b0bc616404641d568db29a97ef346d537ddfe
                         android:layout_centerVertical="true"
                         android:layout_marginTop="28dp"
                         android:layout_width="60dp"
@@ -202,11 +154,7 @@
                         android:orientation="vertical"
                         android:layout_marginHorizontal="12dp"
                         android:layout_marginTop="28dp"
-<<<<<<< HEAD
-                        android:layout_width="wrap_content"
-=======
                         android:layout_width="match_parent"
->>>>>>> 5c1b0bc616404641d568db29a97ef346d537ddfe
                         android:layout_height="wrap_content">
 
                         <TextView
@@ -215,10 +163,7 @@
                             android:layout_marginBottom="4dp"
                             android:text="Vanilla Sweet"
                             android:textColor="#076B5B"
-<<<<<<< HEAD
                             style="@style/textWeight"
-=======
->>>>>>> 5c1b0bc616404641d568db29a97ef346d537ddfe
                             android:textSize="20dp" />
 
                         <TextView
@@ -226,10 +171,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="4dp"
                             android:text="25.000 VND"
-<<<<<<< HEAD
                             style="@style/textWeight"
-=======
->>>>>>> 5c1b0bc616404641d568db29a97ef346d537ddfe
                             android:textColor="#5F5F5F"
                             android:textSize="14dp" />
 
@@ -237,7 +179,6 @@
 
                 </LinearLayout>
 
-<<<<<<< HEAD
                 <androidx.appcompat.widget.AppCompatButton
                     app:backgroundTint="@null"
                     android:layout_alignParentRight="true"
@@ -248,25 +189,19 @@
                     android:textColor="#FFFFFF"
                     android:layout_width="40dp"
                     android:layout_height="44dp"/>
-=======
+
                 <ImageView
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/icon_number"
                     android:layout_marginRight="4dp"
                     android:layout_width="30dp"
                     android:layout_height="30dp"/>
->>>>>>> 5c1b0bc616404641d568db29a97ef346d537ddfe
 
             </RelativeLayout>
 
             <RelativeLayout
                 android:layout_marginTop="14dp"
-<<<<<<< HEAD
                 android:background="@drawable/background_input"
-=======
-                android:background="@drawable/bogoc"
->>>>>>> 5c1b0bc616404641d568db29a97ef346d537ddfe
                 android:paddingHorizontal="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="108dp">
@@ -277,11 +212,7 @@
                     android:layout_height="match_parent">
 
                     <ImageView
-<<<<<<< HEAD
                         android:background="#BEBEC1"
-=======
-                        android:src="@drawable/icon_tron"
->>>>>>> 5c1b0bc616404641d568db29a97ef346d537ddfe
                         android:layout_centerVertical="true"
                         android:layout_marginTop="28dp"
                         android:layout_width="60dp"
@@ -291,11 +222,7 @@
                         android:orientation="vertical"
                         android:layout_marginHorizontal="12dp"
                         android:layout_marginTop="28dp"
-<<<<<<< HEAD
                         android:layout_width="wrap_content"
-=======
-                        android:layout_width="match_parent"
->>>>>>> 5c1b0bc616404641d568db29a97ef346d537ddfe
                         android:layout_height="wrap_content">
 
                         <TextView
@@ -303,10 +230,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="4dp"
                             android:text="Vanilla Sweet"
-<<<<<<< HEAD
                             style="@style/textWeight"
-=======
->>>>>>> 5c1b0bc616404641d568db29a97ef346d537ddfe
                             android:textColor="#076B5B"
                             android:textSize="20dp" />
 
@@ -315,10 +239,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="4dp"
                             android:text="25.000 VND"
-<<<<<<< HEAD
                             style="@style/textWeight"
-=======
->>>>>>> 5c1b0bc616404641d568db29a97ef346d537ddfe
                             android:textColor="#5F5F5F"
                             android:textSize="14dp" />
 
@@ -326,7 +247,6 @@
 
                 </LinearLayout>
 
-<<<<<<< HEAD
                 <androidx.appcompat.widget.AppCompatButton
                     app:backgroundTint="@null"
                     android:layout_alignParentRight="true"
@@ -337,25 +257,12 @@
                     android:textColor="#FFFFFF"
                     android:layout_width="40dp"
                     android:layout_height="44dp"/>
-=======
-                <ImageView
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/icon_number"
-                    android:layout_marginRight="4dp"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"/>
->>>>>>> 5c1b0bc616404641d568db29a97ef346d537ddfe
 
             </RelativeLayout>
 
             <RelativeLayout
                 android:layout_marginTop="14dp"
-<<<<<<< HEAD
                 android:background="@drawable/background_input"
-=======
-                android:background="@drawable/bogoc"
->>>>>>> 5c1b0bc616404641d568db29a97ef346d537ddfe
                 android:paddingHorizontal="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="108dp">
@@ -366,11 +273,7 @@
                     android:layout_height="match_parent">
 
                     <ImageView
-<<<<<<< HEAD
                         android:background="#BEBEC1"
-=======
-                        android:src="@drawable/icon_tron"
->>>>>>> 5c1b0bc616404641d568db29a97ef346d537ddfe
                         android:layout_centerVertical="true"
                         android:layout_marginTop="28dp"
                         android:layout_width="60dp"
@@ -380,11 +283,7 @@
                         android:orientation="vertical"
                         android:layout_marginHorizontal="12dp"
                         android:layout_marginTop="28dp"
-<<<<<<< HEAD
                         android:layout_width="wrap_content"
-=======
-                        android:layout_width="match_parent"
->>>>>>> 5c1b0bc616404641d568db29a97ef346d537ddfe
                         android:layout_height="wrap_content">
 
                         <TextView
@@ -392,10 +291,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="4dp"
                             android:text="Vanilla Sweet"
-<<<<<<< HEAD
                             style="@style/textWeight"
-=======
->>>>>>> 5c1b0bc616404641d568db29a97ef346d537ddfe
                             android:textColor="#076B5B"
                             android:textSize="20dp" />
 
@@ -404,19 +300,14 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="4dp"
                             android:text="25.000 VND"
-<<<<<<< HEAD
                             style="@style/textWeight"
                             android:textColor="@color/textColor"
-=======
-                            android:textColor="#5F5F5F"
->>>>>>> 5c1b0bc616404641d568db29a97ef346d537ddfe
                             android:textSize="14dp" />
 
                     </LinearLayout>
 
                 </LinearLayout>
 
-<<<<<<< HEAD
                 <androidx.appcompat.widget.AppCompatButton
                     app:backgroundTint="@null"
                     android:layout_alignParentRight="true"
@@ -427,15 +318,6 @@
                     android:textColor="@color/white"
                     android:layout_width="40dp"
                     android:layout_height="44dp"/>
-=======
-                <ImageView
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/icon_number"
-                    android:layout_marginRight="4dp"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"/>
->>>>>>> 5c1b0bc616404641d568db29a97ef346d537ddfe
 
             </RelativeLayout>
 
@@ -449,10 +331,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Choose a delivery method"
-<<<<<<< HEAD
                     style="@style/textWeight"
-=======
->>>>>>> 5c1b0bc616404641d568db29a97ef346d537ddfe
                     android:textSize="20dp"
                     android:textColor="#000000"/>
 
@@ -465,11 +344,7 @@
                     <androidx.appcompat.widget.AppCompatButton
                         app:backgroundTint="@null"
                         android:text="Pick up"
-<<<<<<< HEAD
                         android:background="@drawable/background_button"
-=======
-                        android:background="@drawable/signin"
->>>>>>> 5c1b0bc616404641d568db29a97ef346d537ddfe
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:layout_weight="1"
@@ -480,11 +355,7 @@
                         app:backgroundTint="@null"
                         android:text="Ship"
                         android:layout_marginLeft="12dp"
-<<<<<<< HEAD
                         android:background="@drawable/background_button"
-=======
-                        android:background="@drawable/signin"
->>>>>>> 5c1b0bc616404641d568db29a97ef346d537ddfe
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:layout_weight="1"
@@ -498,10 +369,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:text="Promo Code"
-<<<<<<< HEAD
                 style="@style/textWeight"
-=======
->>>>>>> 5c1b0bc616404641d568db29a97ef346d537ddfe
                 android:textSize="18dp"
                 android:textColor="#000000"/>
 
@@ -509,11 +377,7 @@
                 android:layout_marginTop="12dp"
                 android:layout_width="match_parent"
                 android:layout_height="64dp"
-<<<<<<< HEAD
                 android:background="@drawable/background_input">
-=======
-                android:background="@drawable/bogoc">
->>>>>>> 5c1b0bc616404641d568db29a97ef346d537ddfe
 
                 <LinearLayout
                     android:orientation="horizontal"
@@ -527,21 +391,14 @@
                         android:gravity="center_vertical"
                         android:layout_marginBottom="12dp"
                         android:text="mKTkApl"
-<<<<<<< HEAD
                         style="@style/textWeight"
-=======
->>>>>>> 5c1b0bc616404641d568db29a97ef346d537ddfe
                         android:layout_weight="1"
                         android:textSize="18dp"
                         android:textColor="#000000"/>
 
                     <ImageView
                         android:layout_marginTop="20dp"
-<<<<<<< HEAD
                         android:src="@drawable/arrow_bottom"
-=======
-                        android:src="@drawable/v_menu"
->>>>>>> 5c1b0bc616404641d568db29a97ef346d537ddfe
                         android:layout_marginRight="20dp"
                         android:layout_width="24dp"
                         android:layout_height="24dp"/>
@@ -554,11 +411,7 @@
                 android:layout_marginTop="32dp"
                 android:layout_width="match_parent"
                 android:layout_height="216dp"
-<<<<<<< HEAD
                 android:background="@drawable/background_input">
-=======
-                android:background="@drawable/bogoc">
->>>>>>> 5c1b0bc616404641d568db29a97ef346d537ddfe
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -577,12 +430,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Amount"
-<<<<<<< HEAD
                             style="@style/textWeight"
                             android:textColor="@color/textColor"
-=======
-                            android:textColor="#5F5F5F"
->>>>>>> 5c1b0bc616404641d568db29a97ef346d537ddfe
                             android:textSize="16dp" />
 
                         <TextView
@@ -592,12 +441,8 @@
                             android:layout_marginLeft="190dp"
                             android:layout_marginTop="20dp"
                             android:text="100.000"
-<<<<<<< HEAD
                             style="@style/textWeight"
                             android:textColor="@color/textColor"
-=======
-                            android:textColor="#5F5F5F"
->>>>>>> 5c1b0bc616404641d568db29a97ef346d537ddfe
                             android:textSize="16dp" />
 
                     </LinearLayout>
@@ -613,12 +458,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Promo"
-<<<<<<< HEAD
                             style="@style/textWeight"
                             android:textColor="@color/textColor"
-=======
-                            android:textColor="#5F5F5F"
->>>>>>> 5c1b0bc616404641d568db29a97ef346d537ddfe
                             android:textSize="16dp" />
 
                         <TextView
@@ -628,12 +469,8 @@
                             android:layout_marginLeft="250dp"
                             android:layout_marginTop="20dp"
                             android:text="-"
-<<<<<<< HEAD
                             style="@style/textWeight"
                             android:textColor="@color/textColor"
-=======
-                            android:textColor="#5F5F5F"
->>>>>>> 5c1b0bc616404641d568db29a97ef346d537ddfe
                             android:textSize="16dp" />
 
                     </LinearLayout>
@@ -649,12 +486,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Ship"
-<<<<<<< HEAD
                             style="@style/textWeight"
                             android:textColor="@color/textColor"
-=======
-                            android:textColor="#5F5F5F"
->>>>>>> 5c1b0bc616404641d568db29a97ef346d537ddfe
                             android:textSize="16dp" />
 
                         <TextView
@@ -664,12 +497,8 @@
                             android:layout_marginLeft="268dp"
                             android:layout_marginTop="20dp"
                             android:text="-"
-<<<<<<< HEAD
                             style="@style/textWeight"
                             android:textColor="@color/textColor"
-=======
-                            android:textColor="#5F5F5F"
->>>>>>> 5c1b0bc616404641d568db29a97ef346d537ddfe
                             android:textSize="16dp" />
 
                     </LinearLayout>
@@ -688,18 +517,11 @@
                         <TextView
                             android:layout_marginTop="24dp"
                             android:layout_weight="1"
-<<<<<<< HEAD
                             android:textColor="@color/textColor"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Total"
                             style="@style/textWeight"
-=======
-                            android:textColor="#5F5F5F"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Total"
->>>>>>> 5c1b0bc616404641d568db29a97ef346d537ddfe
                             android:textSize="16dp" />
 
                         <TextView
@@ -709,12 +531,8 @@
                             android:layout_marginLeft="215dp"
                             android:layout_marginTop="20dp"
                             android:text="100.000"
-<<<<<<< HEAD
                             style="@style/textWeight"
                             android:textColor="@color/textColor"
-=======
-                            android:textColor="#5F5F5F"
->>>>>>> 5c1b0bc616404641d568db29a97ef346d537ddfe
                             android:textSize="16dp" />
 
                     </LinearLayout>
