@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardProduct"
+    android:elevation="8dp"
+    app:cardCornerRadius="12dp"
+    android:layout_marginHorizontal="1dp"
+    android:layout_marginBottom="12dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:padding="20dp">
+
+        <ImageView
+            android:id="@+id/imageProduct"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/image_product"
+            android:layout_marginRight="12dp"/>
+
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvProductTitle"
+                android:layout_marginBottom="12dp"
+                style="@style/textMedium"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="The Coffee Storm"/>
+
+            <LinearLayout
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvProductPrice"
+                    style="@style/textMedium"
+                    android:textSize="16dp"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="25.000 VND"/>
+
+                <LinearLayout
+                    android:gravity="center_vertical"
+                    android:layout_width="140dp"
+                    android:layout_height="32dp">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnDecrease"
+                        style="@style/textBold"
+                        android:background="@drawable/border_left"
+                        android:layout_width="50dp"
+                        android:text="-"
+                        android:textSize="24dp"
+                        android:layout_height="match_parent"/>
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnCurrent"
+                        android:text="1"
+                        style="@style/textBold"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/background_border_small"
+                        android:backgroundTint="@color/primaryColor"/>
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnIncrease"
+                        android:textSize="24dp"
+                        android:text="+"
+                        android:background="@drawable/border_right"
+                        android:layout_width="50dp"
+                        android:layout_height="match_parent"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

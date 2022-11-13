@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_margin="20dp"
     android:background="@drawable/background_input"
-    android:layout_height="364dp">
+    android:layout_height="wrap_content">
 
     <LinearLayout
         android:orientation="vertical"
@@ -36,6 +36,7 @@
             android:layout_height="wrap_content"/>
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnOK"
             android:text="OK"
             android:textColor="@color/white"
             android:layout_margin="20dp"

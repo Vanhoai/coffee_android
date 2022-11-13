@@ -2,9 +2,10 @@ package com.example.coffee.models.Order;
 
 import com.example.coffee.models.Product.Product;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Order {
+public class Order implements Serializable {
     private int id;
     private int userId;
     private float total;
