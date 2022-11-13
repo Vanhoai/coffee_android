@@ -4,18 +4,21 @@ import static android.content.ContentValues.TAG;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.coffee.R;
 import com.example.coffee.callbacks.AuthCallback;
 import com.example.coffee.models.User.UserResponse;
 import com.example.coffee.screens.bottom.MainActivity;
 import com.example.coffee.services.AuthService;
+import com.example.coffee.utils.LayoutLoading;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -23,6 +26,8 @@ public class LoginActivity extends AppCompatActivity {
     EditText edtPassword;
     AppCompatButton btnLogin;
     AppCompatButton btnCreateAccount;
+    ConstraintLayout constraintLayout;
+    LayoutLoading layoutLoading;
     AuthService authService;
 
     @Override
@@ -35,6 +40,9 @@ public class LoginActivity extends AppCompatActivity {
         edtPassword = findViewById(R.id.edtPassword);
         btnLogin = findViewById(R.id.btnLogin);
         btnCreateAccount = findViewById(R.id.btnCreateAccount);
+        constraintLayout = findViewById(R.id.loading);
+        layoutLoading = new LayoutLoading(constraintLayout, LoginActivity.this);
+        LayoutLoading.setGone();
 
         // init service
         authService = new AuthService();
@@ -45,6 +53,7 @@ public class LoginActivity extends AppCompatActivity {
                 // get data
                 String email = edtEmail.getText().toString();
                 String password = edtPassword.getText().toString();
+                LayoutLoading.setLoading();
                 authService.login(email, password, authCallback);
             }
         });
@@ -62,9 +71,7 @@ public class LoginActivity extends AppCompatActivity {
     private final AuthCallback authCallback = new AuthCallback() {
         @Override
         public void onSuccess(Boolean value, UserResponse userResponse) {
-
-            Log.d(TAG, userResponse.toString());
-
+            LayoutLoading.setGone();
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
             finish();
@@ -72,7 +79,8 @@ public class LoginActivity extends AppCompatActivity {
 
         @Override
         public void onFailed(Boolean value) {
-
+            LayoutLoading.setGone();
+            Toast.makeText(LoginActivity.this, "LOGIN FAILED", Toast.LENGTH_SHORT).show();
         }
     };
 }
