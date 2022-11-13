@@ -38,7 +38,8 @@
             android:layout_marginBottom="24dp">
 
             <EditText
-                android:id="@+id/editText"
+                android:text="aurorastudyvn@gmail.com"
+                android:id="@+id/edtEmail"
                 style="@style/textWeight"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -79,7 +80,8 @@
             android:paddingHorizontal="20dp">
 
             <EditText
-                android:id="@+id/editTex"
+                android:text="admin"
+                android:id="@+id/edtPassword"
                 style="@style/textWeight"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -142,7 +144,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnlogin"
+        android:id="@+id/btnLogin"
         style="@style/textWeight"
         android:layout_width="match_parent"
         android:layout_height="56dp"

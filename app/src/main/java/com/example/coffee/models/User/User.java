@@ -1,33 +1,62 @@
 package com.example.coffee.models.User;
 
 import com.example.coffee.models.Shop.Shop;
+import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
 public class User implements Serializable {
+    @SerializedName("id")
     private int id;
+    
+    @SerializedName("username")
     private String username;
+    
+    @SerializedName("email")
     private String email;
-    private String image;
-    private int history;
-    private int role;
-    private int loginType;
+    
+    @SerializedName("role")
+    private String role;
+    
+    @SerializedName("typeAccount")
+    private String typeAccount;
+    
+    @SerializedName("balance")
     private float balance;
+    
+    @SerializedName("exp")
     private int exp;
+    
+    @SerializedName("image")
+    private String image;
+    
+    @SerializedName("history")
+    private int history;
+    
+    @SerializedName("favorite")
     private int favorite;
+    
+    @SerializedName("accessToken")
+    private String accessToken;
+    
+    @SerializedName("refreshToken")
+    private String refreshToken;
+    
 
-    public User(int id, String username, String email, String image, int history, int role, int loginType, float balance, int exp, int favorite) {
+    public User(int id, String username, String email, String role, String typeAccount, float balance, int exp, String image, int history, int favorite, String accessToken, String refreshToken) {
         this.id = id;
         this.username = username;
         this.email = email;
-        this.image = image;
-        this.history = history;
         this.role = role;
-        this.loginType = loginType;
+        this.typeAccount = typeAccount;
         this.balance = balance;
         this.exp = exp;
+        this.image = image;
+        this.history = history;
         this.favorite = favorite;
+        this.accessToken = accessToken;
+        this.refreshToken = refreshToken;
     }
 
     public int getId() {
@@ -54,36 +83,20 @@ public class User implements Serializable {
         this.email = email;
     }
 
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    public int getHistory() {
-        return history;
-    }
-
-    public void setHistory(int history) {
-        this.history = history;
-    }
-
-    public int getRole() {
+    public String getRole() {
         return role;
     }
 
-    public void setRole(int role) {
+    public void setRole(String role) {
         this.role = role;
     }
 
-    public int getLoginType() {
-        return loginType;
+    public String getTypeAccount() {
+        return typeAccount;
     }
 
-    public void setLoginType(int loginType) {
-        this.loginType = loginType;
+    public void setTypeAccount(String typeAccount) {
+        this.typeAccount = typeAccount;
     }
 
     public float getBalance() {
@@ -102,6 +115,22 @@ public class User implements Serializable {
         this.exp = exp;
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public int getHistory() {
+        return history;
+    }
+
+    public void setHistory(int history) {
+        this.history = history;
+    }
+
     public int getFavorite() {
         return favorite;
     }
@@ -110,19 +139,37 @@ public class User implements Serializable {
         this.favorite = favorite;
     }
 
+    public String getAccessToken() {
+        return accessToken;
+    }
+
+    public void setAccessToken(String accessToken) {
+        this.accessToken = accessToken;
+    }
+
+    public String getRefreshToken() {
+        return refreshToken;
+    }
+
+    public void setRefreshToken(String refreshToken) {
+        this.refreshToken = refreshToken;
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", email='" + email + '\'' +
-                ", image='" + image + '\'' +
-                ", history=" + history +
-                ", role=" + role +
-                ", loginType=" + loginType +
+                ", role='" + role + '\'' +
+                ", typeAccount='" + typeAccount + '\'' +
                 ", balance=" + balance +
                 ", exp=" + exp +
+                ", image='" + image + '\'' +
+                ", history=" + history +
                 ", favorite=" + favorite +
+                ", accessToken='" + accessToken + '\'' +
+                ", refreshToken='" + refreshToken + '\'' +
                 '}';
     }
 }
