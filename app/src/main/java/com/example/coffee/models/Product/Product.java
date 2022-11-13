@@ -1,14 +1,16 @@
 package com.example.coffee.models.Product;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Product {
+public class Product implements Serializable {
     private int id;
     private String name;
     private String image;
     private float price;
     private int explored;
     private int quantity;
+    private int current;
     private ArrayList<Comment> comments;
 
     public Product(int id, String name, String image, float price, int explored, int quantity, ArrayList<Comment> comments) {
@@ -18,6 +20,17 @@ public class Product {
         this.price = price;
         this.explored = explored;
         this.quantity = quantity;
+        this.comments = comments;
+    }
+
+    public Product(int id, String name, String image, float price, int explored, int quantity, int current, ArrayList<Comment> comments) {
+        this.id = id;
+        this.name = name;
+        this.image = image;
+        this.price = price;
+        this.explored = explored;
+        this.quantity = quantity;
+        this.current = current;
         this.comments = comments;
     }
 
@@ -75,5 +88,27 @@ public class Product {
 
     public void setComments(ArrayList<Comment> comments) {
         this.comments = comments;
+    }
+
+    public int getCurrent() {
+        return current;
+    }
+
+    public void setCurrent(int current) {
+        this.current = current;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", image='" + image + '\'' +
+                ", price=" + price +
+                ", explored=" + explored +
+                ", quantity=" + quantity +
+                ", current=" + current +
+                ", comments=" + comments +
+                '}';
     }
 }

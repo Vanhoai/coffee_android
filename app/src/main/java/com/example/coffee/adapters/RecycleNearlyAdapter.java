@@ -1,8 +1,13 @@
 package com.example.coffee.adapters;
 
+import static android.content.ContentValues.TAG;
+
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.text.Layout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.coffee.R;
 import com.example.coffee.models.Shop.Shop;
+import com.example.coffee.screens.bottom.Shop.DetailPlaceActivity;
 
 import org.w3c.dom.Text;
 
@@ -45,7 +51,11 @@ public class RecycleNearlyAdapter extends RecyclerView.Adapter<RecycleNearlyAdap
         holder.cardPlace.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(context, DetailPlaceActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("shop", shop);
+                intent.putExtras(bundle);
+                context.startActivity(intent);
             }
         });
     }

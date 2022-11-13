@@ -110,9 +110,10 @@
                     android:gravity="center_horizontal">
 
                     <ImageView
-                        android:layout_width="50dp"
+                        android:id="@+id/imageTopUp"
+                        android:layout_width="56dp"
                         android:layout_height="50dp"
-                        android:src="@drawable/block_icon"
+                        android:src="@drawable/topup_icon"
                         android:layout_gravity="center"/>
 
                     <TextView
@@ -133,9 +134,10 @@
                     android:gravity="center_horizontal">
 
                     <ImageView
-                        android:layout_width="50dp"
+                        android:id="@+id/imagePay"
+                        android:layout_width="46dp"
                         android:layout_height="50dp"
-                        android:src="@drawable/block_icon"
+                        android:src="@drawable/pay_icon"
                         android:layout_gravity="center"/>
 
                     <TextView
@@ -155,10 +157,12 @@
                     android:gravity="center_horizontal">
 
                     <ImageView
-                        android:layout_width="50dp"
+                        android:id="@+id/imagePromo"
+                        android:layout_width="46dp"
                         android:layout_height="50dp"
-                        android:src="@drawable/block_icon"
+                        android:src="@drawable/promo_icon"
                         android:layout_gravity="center"/>
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -176,7 +180,8 @@
                     android:gravity="center_horizontal">
 
                     <ImageView
-                        android:layout_width="50dp"
+                        android:id="@+id/imageHistory"
+                        android:layout_width="40dp"
                         android:layout_height="50dp"
                         android:src="@drawable/block_icon"
                         android:layout_gravity="center"/>
@@ -355,7 +360,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycleViewBestSeller"
                     android:layout_width="match_parent"
-                    android:layout_height="600dp"
+                    android:layout_height="900dp"
                     android:paddingVertical="8dp" />
 
                 <Space

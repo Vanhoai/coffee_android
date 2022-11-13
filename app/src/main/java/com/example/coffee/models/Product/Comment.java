@@ -2,9 +2,10 @@ package com.example.coffee.models.Product;
 
 import com.example.coffee.models.User.User;
 
+import java.io.Serializable;
 import java.math.BigInteger;
 
-public class Comment {
+public class Comment implements Serializable {
     private int id;
     private User user;
     private BigInteger createAt;
@@ -59,5 +60,16 @@ public class Comment {
 
     public void setRating(float rating) {
         this.rating = rating;
+    }
+
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "id=" + id +
+                ", user=" + user +
+                ", createAt=" + createAt +
+                ", description='" + description + '\'' +
+                ", rating=" + rating +
+                '}';
     }
 }

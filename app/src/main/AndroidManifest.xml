@@ -19,8 +19,6 @@
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-
-
         </activity>
         <activity
             android:name=".screens.bottom.Shop.DetailPlaceActivity"
@@ -28,8 +26,6 @@
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-
-
         </activity>
         <activity
             android:name=".screens.bottom.Profile.TopUpActivity"
@@ -52,8 +48,11 @@
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".screens.bottom.Profile.HistoryActivity"
@@ -68,8 +67,6 @@
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-
-
         </activity>
         <activity
             android:name=".screens.auth.GetStatedActivity"
@@ -105,12 +102,6 @@
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
         </activity>
         <activity
             android:name=".screens.auth.RegisterActivity"
@@ -118,7 +109,6 @@
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-
         </activity>
         <activity
             android:name=".screens.auth.LoginActivity"
@@ -127,7 +117,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <service
             android:name=".fcm.MyFirebaseMessagingService"
             android:exported="false">

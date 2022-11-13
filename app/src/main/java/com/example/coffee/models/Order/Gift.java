@@ -1,8 +1,9 @@
 package com.example.coffee.models.Order;
 
+import java.io.Serializable;
 import java.math.BigInteger;
 
-public class Gift {
+public class Gift implements Serializable {
     private int id;
     private int type;
     private String code;
