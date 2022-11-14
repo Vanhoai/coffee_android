@@ -1,6 +1,6 @@
 package com.example.coffee.interfaces;
 
-import com.example.coffee.models.User.User;
+
 import com.example.coffee.models.User.UserResponse;
 
 import retrofit2.Call;

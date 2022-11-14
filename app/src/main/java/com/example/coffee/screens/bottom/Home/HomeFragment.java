@@ -1,7 +1,6 @@
 package com.example.coffee.screens.bottom.Home;
 
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +10,6 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,12 +18,11 @@ import com.example.coffee.adapters.RecycleNearlyAdapter;
 import com.example.coffee.adapters.RecycleProductAdapter;
 import com.example.coffee.models.Product.Comment;
 import com.example.coffee.models.Product.Product;
-import com.example.coffee.models.Shop.Shop;
+import com.example.coffee.models.Product.Shop.Shop;
 import com.example.coffee.screens.bottom.Profile.HistoryActivity;
 import com.example.coffee.screens.bottom.Profile.TopUpActivity;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class HomeFragment extends Fragment {
 
