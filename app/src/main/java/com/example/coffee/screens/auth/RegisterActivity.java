@@ -16,8 +16,6 @@ import com.example.coffee.callbacks.AuthCallback;
 import com.example.coffee.models.User.UserResponse;
 import com.example.coffee.services.AuthService;
 
-
-
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener{
     ImageView backNavigation;
     EditText edtUsername;
@@ -40,16 +38,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         edtConfirmPassword = findViewById(R.id.edtConfirmPassword);
         btnCreateAccount = findViewById(R.id.btnCreateAccount);
 
-
         // init service
         authService = new AuthService();
-
-        // handle logic
-
-        // init Service
-        authService = new AuthService();
-
-
+    
         backNavigation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -84,9 +75,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 @Override
                 public void onSuccess(Boolean value, UserResponse userResponse) {
                     Log.d("User", userResponse.toString());
-                        Intent intent = new Intent(RegisterActivity.this, VerityActivity.class);
-                        startActivity(intent);
-                        finish();
+                    Intent intent = new Intent(RegisterActivity.this, VerityActivity.class);
+                    startActivity(intent);
+                    finish();
                 }
 
                 @Override

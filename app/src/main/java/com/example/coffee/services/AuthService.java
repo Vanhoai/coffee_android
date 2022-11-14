@@ -81,4 +81,19 @@ public class AuthService {
             exception.printStackTrace();
         }
     }
+    public void register(String username, String email, String password, AuthCallback callback){
+        getAPI().register(username, email, password).enqueue(new Callback<UserResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<UserResponse> call, @NonNull Response<UserResponse> response) {
+                callback.onSuccess(true, response.body());
+                Log.d("RESPONE", response.body().toString());
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<UserResponse> call, @NonNull Throwable t) {
+                Log.e("ERROR", t.toString());
+                callback.onFailed(false);
+            }
+        });
+    }
 }
