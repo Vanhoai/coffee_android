@@ -55,4 +55,10 @@ dependencies {
     implementation 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
     implementation 'com.ea.async:ea-async:1.2.3'
 
+    // json
+    implementation 'com.google.code.gson:gson:2.9.1'
+
+    // loading
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+    implementation 'com.github.ybq:Android-SpinKit:1.4.0'
 }

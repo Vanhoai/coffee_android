@@ -1,8 +1,11 @@
 package com.example.coffee.screens.bottom.Home;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,9 +24,14 @@ import com.example.coffee.adapters.RecycleProductAdapter;
 import com.example.coffee.models.Product.Comment;
 import com.example.coffee.models.Product.Product;
 import com.example.coffee.models.Shop.Shop;
+import com.example.coffee.models.User.User;
 import com.example.coffee.screens.bottom.Profile.HistoryActivity;
 import com.example.coffee.screens.bottom.Profile.TopUpActivity;
+import com.example.coffee.utils.Storage;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -73,6 +81,14 @@ public class HomeFragment extends Fragment {
 
         renderPlace(recycleViewNearbyPlace, shops);
         renderProduct(recycleViewBestSeller, products);
+
+
+        Storage storage = new Storage(getContext());
+        Gson gson = new Gson();
+        Type type = new TypeToken<User> () {}.getType();
+        String json = storage.getItem("USER", "user");
+        User user = gson.fromJson(json, type);
+        Log.d("USER", user.toString());
 
         return view;
     }
