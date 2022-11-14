@@ -43,6 +43,7 @@ public class AuthService {
                         callback.onSuccess(true, response.body());
                     } else {
                         Logger.log("ERROR", "ERROR");
+                        callback.onFailed(false);
                     }
                 }
 

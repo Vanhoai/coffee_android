@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.coffee.R;
 import com.example.coffee.callbacks.AuthCallback;
@@ -50,6 +51,7 @@ public class LoginActivity extends AppCompatActivity {
                 // get data
                 String email = edtEmail.getText().toString();
                 String password = edtPassword.getText().toString();
+                LayoutLoading.setLoading();
                 authService.login(email, password, authCallback);
             }
         });
@@ -84,7 +86,8 @@ public class LoginActivity extends AppCompatActivity {
 
         @Override
         public void onFailed(Boolean value) {
-
+            LayoutLoading.setGone();
+            Toast.makeText(LoginActivity.this, "LOGIN FAILED", Toast.LENGTH_SHORT).show();
         }
     };
     
