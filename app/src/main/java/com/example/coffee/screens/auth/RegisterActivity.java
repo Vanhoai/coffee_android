@@ -5,11 +5,17 @@ import androidx.appcompat.widget.AppCompatButton;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.coffee.R;
+import com.example.coffee.callbacks.AuthCallback;
+import com.example.coffee.models.User.UserResponse;
+import com.example.coffee.services.AuthService;
+import com.example.coffee.utils.Logger;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener{
     ImageView backNavigation;
@@ -18,6 +24,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     EditText edtPassword;
     EditText edtConfirmPassword;
     AppCompatButton btnCreateAccount;
+    AuthService authService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +39,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         edtConfirmPassword = findViewById(R.id.edtConfirmPassword);
         btnCreateAccount = findViewById(R.id.btnCreateAccount);
 
+        // init service
+        authService = new AuthService();
+
+        // handle logic
         backNavigation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -47,11 +58,34 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void onClick(View view) {
         // validate
+        String username = edtUsername.getText().toString().trim();
+        String email = edtEmail.getText().toString().trim();
+        String password = edtPassword.getText().toString().trim();
+        String confirmPassword = edtConfirmPassword.getText().toString().trim();
 
+        if (username.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
+            Toast.makeText(this, "PLEASE ENTER FULL FIELD", Toast.LENGTH_SHORT).show();
+        } else if (password.equals(confirmPassword)) {
+            register(username, email, password);
+        }
 
         // create account => verify phone number
         Intent intent = new Intent(RegisterActivity.this, VerityActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    public void register(String username, String email, String password) {
+        authService.register(username, email, password, new AuthCallback() {
+            @Override
+            public void onSuccess(Boolean value, UserResponse userResponse) {
+
+            }
+
+            @Override
+            public void onFailed(Boolean value) {
+
+            }
+        });
     }
 }
