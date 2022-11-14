@@ -11,11 +11,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.example.coffee.R;
-import com.example.coffee.models.Product.Product;
-import com.example.coffee.models.Shop.Shop;
 import com.example.coffee.screens.bottom.MainActivity;
-
-import java.util.ArrayList;
 
 public class PaymentActivity extends AppCompatActivity {
 
