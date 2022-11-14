@@ -1,10 +1,9 @@
 package com.example.coffee.models.User;
 
-import com.example.coffee.models.Shop.Shop;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 public class User implements Serializable {
     @SerializedName("id")
