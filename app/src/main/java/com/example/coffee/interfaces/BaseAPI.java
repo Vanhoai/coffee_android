@@ -2,6 +2,6 @@ package com.example.coffee.interfaces;
 
 public interface BaseAPI {
 
-    String BASE_URL = "https://633b-222-253-144-196.ap.ngrok.io/api/v1";
+    String BASE_URL = "https://1dea-113-22-115-4.ap.ngrok.io/api/v1";
 
 }
