@@ -4,6 +4,7 @@ import static android.content.ContentValues.TAG;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import com.example.coffee.callbacks.AuthCallback;
 import com.example.coffee.models.User.UserResponse;
 import com.example.coffee.screens.bottom.MainActivity;
 import com.example.coffee.services.AuthService;
+import com.example.coffee.utils.LayoutLoading;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -24,6 +26,7 @@ public class LoginActivity extends AppCompatActivity {
     AppCompatButton btnLogin;
     AppCompatButton btnCreateAccount;
     AuthService authService;
+    LayoutLoading layoutLoading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,12 +34,14 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         // mapping
+        ConstraintLayout constraintLayout = findViewById(R.id.loading);
         edtEmail = findViewById(R.id.edtEmail);
         edtPassword = findViewById(R.id.edtPassword);
         btnLogin = findViewById(R.id.btnLogin);
         btnCreateAccount = findViewById(R.id.btnCreateAccount);
 
-        // init service
+        // init
+        layoutLoading = new LayoutLoading(constraintLayout,LoginActivity.this);
         authService = new AuthService();
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
