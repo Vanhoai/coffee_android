@@ -128,8 +128,9 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+<!--        .screens.others.FlashActivity-->
         <activity
-            android:name=".screens.others.FlashActivity"
+            android:name=".screens.bottom.Home.PromoActivity"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
