@@ -71,8 +71,6 @@ public class LoginActivity extends AppCompatActivity {
     private final AuthCallback authCallback = new AuthCallback() {
         @Override
         public void onSuccess(Boolean value, UserResponse userResponse) {
-<<<<<<< HEAD
-=======
             // set gone loading
             LayoutLoading.setGone();
 
@@ -83,7 +81,6 @@ public class LoginActivity extends AppCompatActivity {
             } else {
                 Toast.makeText(LoginActivity.this, "SAVE USER FAILED", Toast.LENGTH_SHORT).show();
             }
->>>>>>> origin/dev
 
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
@@ -96,5 +93,9 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(LoginActivity.this, "LOGIN FAILED", Toast.LENGTH_SHORT).show();
         }
     };
+
+    public void saveUserToShareReference() {
+        
+    }
     
 }
