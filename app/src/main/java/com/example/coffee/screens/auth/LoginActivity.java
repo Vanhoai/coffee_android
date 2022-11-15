@@ -19,6 +19,7 @@ import com.example.coffee.models.User.UserResponse;
 import com.example.coffee.screens.bottom.MainActivity;
 import com.example.coffee.services.AuthService;
 import com.example.coffee.utils.LayoutLoading;
+import com.example.coffee.utils.Logger;
 
 public class LoginActivity extends AppCompatActivity {
 
