@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -54,6 +55,7 @@ public class HomeFragment extends Fragment {
         imagePay = view.findViewById(R.id.imagePay);
         imagePromo = view.findViewById(R.id.imagePromo);
         imageHistory = view.findViewById(R.id.imageHistory);
+        TextView tvBalance = view.findViewById(R.id.tvBalance);
 
 
         ArrayList<Product> products = new ArrayList<>();
