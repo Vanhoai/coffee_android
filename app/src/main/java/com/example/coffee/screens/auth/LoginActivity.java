@@ -74,7 +74,6 @@ public class LoginActivity extends AppCompatActivity {
     private final AuthCallback authCallback = new AuthCallback() {
         @Override
         public void onSuccess(Boolean value, UserResponse userResponse) {
-            // set gone loading
             LayoutLoading.setGone();
 
             // handle save user
