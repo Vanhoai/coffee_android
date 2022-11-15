@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.coffee.R;
 import com.example.coffee.callbacks.AuthCallback;
+import com.example.coffee.models.User.User;
 import com.example.coffee.models.User.UserResponse;
 import com.example.coffee.screens.bottom.MainActivity;
 import com.example.coffee.services.AuthService;
@@ -70,6 +71,9 @@ public class LoginActivity extends AppCompatActivity {
     private final AuthCallback authCallback = new AuthCallback() {
         @Override
         public void onSuccess(Boolean value, UserResponse userResponse) {
+<<<<<<< HEAD
+=======
+            // set gone loading
             LayoutLoading.setGone();
 
             // handle save user
@@ -79,6 +83,7 @@ public class LoginActivity extends AppCompatActivity {
             } else {
                 Toast.makeText(LoginActivity.this, "SAVE USER FAILED", Toast.LENGTH_SHORT).show();
             }
+>>>>>>> origin/dev
 
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
