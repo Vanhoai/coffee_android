@@ -21,6 +21,8 @@ import com.example.coffee.screens.bottom.MainActivity;
 import com.example.coffee.services.AuthService;
 import com.example.coffee.utils.LayoutLoading;
 import com.example.coffee.utils.Logger;
+import com.example.coffee.utils.Storage;
+import com.google.gson.Gson;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -94,8 +96,11 @@ public class LoginActivity extends AppCompatActivity {
         }
     };
 
-    public void saveUserToShareReference() {
-        
+    public boolean saveUserToShareReference(User user) {
+        Storage storage = new Storage(LoginActivity.this);
+        Gson gson = new Gson();
+        String json = gson.toJson(user);
+        return storage.setItem("USER", "user", json);
     }
     
 }
