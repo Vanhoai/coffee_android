@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.coffee.R;
 import com.example.coffee.callbacks.AuthCallback;
+import com.example.coffee.models.User.User;
 import com.example.coffee.models.User.UserResponse;
 import com.example.coffee.screens.bottom.MainActivity;
 import com.example.coffee.services.AuthService;
