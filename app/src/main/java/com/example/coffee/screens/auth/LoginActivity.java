@@ -75,6 +75,7 @@ public class LoginActivity extends AppCompatActivity {
         @Override
         public void onSuccess(Boolean value, UserResponse userResponse) {
             LayoutLoading.setGone();
+
             // handle save user
             User user = userResponse.getUser();
             if (saveUserToShareReference(user)) {
