@@ -21,6 +21,8 @@ import com.example.coffee.screens.bottom.MainActivity;
 import com.example.coffee.services.AuthService;
 import com.example.coffee.utils.LayoutLoading;
 import com.example.coffee.utils.Logger;
+import com.example.coffee.utils.Storage;
+import com.google.gson.Gson;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -71,6 +73,7 @@ public class LoginActivity extends AppCompatActivity {
     private final AuthCallback authCallback = new AuthCallback() {
         @Override
         public void onSuccess(Boolean value, UserResponse userResponse) {
+            // set gone loading
             LayoutLoading.setGone();
 
             // handle save user
@@ -92,5 +95,12 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(LoginActivity.this, "LOGIN FAILED", Toast.LENGTH_SHORT).show();
         }
     };
+
+    public boolean saveUserToShareReference(User user) {
+        Storage storage = new Storage(LoginActivity.this);
+        Gson gson = new Gson();
+        String json = gson.toJson(user);
+        return storage.setItem("USER", "user", json);
+    }
     
 }
