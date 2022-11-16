@@ -7,15 +7,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.example.coffee.R;
-import com.example.coffee.adapters.RecycleProductAdapter;
 import com.example.coffee.adapters.RecycleProductDetailAdapter;
 import com.example.coffee.models.Product.Product;
-import com.example.coffee.models.Shop.Shop;
+import com.example.coffee.models.Product.Shop.Shop;
 import com.example.coffee.screens.bottom.MainActivity;
 import com.example.coffee.screens.bottom.Product.CheckOutActivity;
 

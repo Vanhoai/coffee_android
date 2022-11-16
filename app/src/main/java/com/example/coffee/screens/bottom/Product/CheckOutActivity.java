@@ -13,7 +13,6 @@ import android.widget.ImageView;
 import com.example.coffee.R;
 import com.example.coffee.adapters.RecycleProductDetailAdapter;
 import com.example.coffee.models.Product.Product;
-import com.example.coffee.models.Shop.Shop;
 import com.example.coffee.screens.bottom.Shop.DetailPlaceActivity;
 
 import java.util.ArrayList;

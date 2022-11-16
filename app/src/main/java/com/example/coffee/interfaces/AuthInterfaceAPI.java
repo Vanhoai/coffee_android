@@ -1,11 +1,12 @@
 package com.example.coffee.interfaces;
 
-import com.example.coffee.models.User.User;
+
 import com.example.coffee.models.User.UserResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 public interface AuthInterfaceAPI extends BaseAPI{
@@ -26,4 +27,5 @@ public interface AuthInterfaceAPI extends BaseAPI{
             @Field("email") String email,
             @Field("password") String password
     );
+
 }

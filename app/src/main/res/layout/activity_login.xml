@@ -89,6 +89,7 @@
                     android:text="admin"
                     android:id="@+id/edtPassword"
                     style="@style/textWeight"
+                    android:inputType="textPassword"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@null"

@@ -20,6 +20,7 @@ import com.example.coffee.models.User.UserResponse;
 import com.example.coffee.screens.bottom.MainActivity;
 import com.example.coffee.services.AuthService;
 import com.example.coffee.utils.LayoutLoading;
+import com.example.coffee.utils.Logger;
 import com.example.coffee.utils.Storage;
 import com.google.gson.Gson;
 
@@ -29,9 +30,8 @@ public class LoginActivity extends AppCompatActivity {
     EditText edtPassword;
     AppCompatButton btnLogin;
     AppCompatButton btnCreateAccount;
-    ConstraintLayout constraintLayout;
-    LayoutLoading layoutLoading;
     AuthService authService;
+    LayoutLoading layoutLoading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,15 +39,14 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         // mapping
+        ConstraintLayout constraintLayout = findViewById(R.id.loading);
         edtEmail = findViewById(R.id.edtEmail);
         edtPassword = findViewById(R.id.edtPassword);
         btnLogin = findViewById(R.id.btnLogin);
         btnCreateAccount = findViewById(R.id.btnCreateAccount);
-        constraintLayout = findViewById(R.id.loading);
-        layoutLoading = new LayoutLoading(constraintLayout, LoginActivity.this);
-        LayoutLoading.setGone();
 
-        // init service
+        // init
+        layoutLoading = new LayoutLoading(constraintLayout,LoginActivity.this);
         authService = new AuthService();
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -74,7 +73,9 @@ public class LoginActivity extends AppCompatActivity {
     private final AuthCallback authCallback = new AuthCallback() {
         @Override
         public void onSuccess(Boolean value, UserResponse userResponse) {
+            // set gone loading
             LayoutLoading.setGone();
+
             // handle save user
             User user = userResponse.getUser();
             if (saveUserToShareReference(user)) {
@@ -101,4 +102,5 @@ public class LoginActivity extends AppCompatActivity {
         String json = gson.toJson(user);
         return storage.setItem("USER", "user", json);
     }
+    
 }

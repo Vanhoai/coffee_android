@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import com.example.coffee.callbacks.AuthCallback;
 import com.example.coffee.interfaces.AuthInterfaceAPI;
 import com.example.coffee.models.User.UserResponse;
+import com.example.coffee.utils.Logger;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -33,17 +34,51 @@ public class AuthService {
     }
 
     public void login(String email, String password, AuthCallback callback) {
-        getAPI().login(email, password).enqueue(new Callback<UserResponse>() {
-            @Override
-            public void onResponse(@NonNull Call<UserResponse> call, @NonNull Response<UserResponse> response) {
-                callback.onSuccess(true, response.body());
-            }
+        try {
+            getAPI().login(email, password).enqueue(new Callback<UserResponse>() {
+                @Override
+                public void onResponse(@NonNull Call<UserResponse> call, @NonNull Response<UserResponse> response) {
+                    Logger.log("RESPONSE", response);
+                    if (response.code() == 200) {
+                        callback.onSuccess(true, response.body());
+                    } else {
+                        Logger.log("ERROR", "ERROR");
+                        callback.onFailed(false);
+                    }
+                }
 
-            @Override
-            public void onFailure(@NonNull Call<UserResponse> call, @NonNull Throwable throwable) {
-                Log.e("ERROR", throwable.toString());
-                callback.onFailed(false);
-            }
-        });
+                @Override
+                public void onFailure(@NonNull Call<UserResponse> call, @NonNull Throwable throwable) {
+                    Log.e("ERROR", throwable.toString());
+                    callback.onFailed(false);
+                }
+            });
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+    }
+
+    public void register(String username, String email, String password, AuthCallback callback) {
+        try {
+            getAPI().register(username, email, password).enqueue(new Callback<UserResponse>() {
+                @Override
+                public void onResponse(@NonNull Call<UserResponse> call, @NonNull Response<UserResponse> response) {
+                    Logger.log("RESPONSE", response);
+                    if (response.code() == 200) {
+                        Logger.log("CODE", response.code());
+                        callback.onSuccess(true, response.body());
+                    } else {
+                        callback.onFailed(false);
+                    }
+                }
+
+                @Override
+                public void onFailure(@NonNull Call<UserResponse> call, @NonNull Throwable throwable) {
+                    callback.onFailed(false);
+                }
+            });
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
     }
 }
