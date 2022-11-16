@@ -48,18 +48,6 @@
                             android:src="@drawable/edit_icon"
                             />
 
-                        <!--                <androidx.cardview.widget.CardView-->
-                        <!--                    android:layout_width="120dp"-->
-                        <!--                    android:layout_height="120dp"-->
-                        <!--                    app:cardCornerRadius="120dp">-->
-
-                        <!--                    <ImageView-->
-                        <!--                        android:layout_width="120dp"-->
-                        <!--                        android:layout_height="120dp"-->
-                        <!--                        android:background="#ccc" />-->
-
-                        <!--                </androidx.cardview.widget.CardView>-->
-
                     </RelativeLayout>
 
                 </LinearLayout>

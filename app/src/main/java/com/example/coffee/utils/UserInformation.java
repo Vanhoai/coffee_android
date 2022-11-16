@@ -15,7 +15,6 @@ public class UserInformation {
         Gson gson = new Gson();
         Type type = new TypeToken<User>() {}.getType();
         String json = storage.getItem("USER", "user");
-        User user = gson.fromJson(json, type);
-        return user;
+        return gson.fromJson(json, type);
     }
 }
