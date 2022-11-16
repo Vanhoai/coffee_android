@@ -114,6 +114,23 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
+        <activity
+            android:name=".screens.bottom.Profile.RewardDetailActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <activity
+            android:name=".screens.bottom.Home.PromoActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
         <activity
             android:name=".screens.auth.ResetPasswordActivity"
             android:exported="false">
@@ -128,9 +145,9 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-<!--        .screens.others.FlashActivity-->
+
         <activity
-            android:name=".screens.bottom.Home.PromoActivity"
+            android:name=".screens.others.FlashActivity"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
