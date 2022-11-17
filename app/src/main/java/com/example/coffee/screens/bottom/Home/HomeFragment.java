@@ -1,6 +1,6 @@
 package com.example.coffee.screens.bottom.Home;
 
-import static android.content.ContentValues.TAG;
+
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -23,8 +23,12 @@ import com.example.coffee.adapters.RecycleNearlyAdapter;
 import com.example.coffee.adapters.RecycleProductAdapter;
 import com.example.coffee.models.Product.Comment;
 import com.example.coffee.models.Product.Product;
+
 import com.example.coffee.models.Product.Shop.Shop;
+
+
 import com.example.coffee.models.User.User;
+
 import com.example.coffee.screens.bottom.Profile.HistoryActivity;
 import com.example.coffee.screens.bottom.Profile.RewardDetailActivity;
 import com.example.coffee.screens.bottom.Profile.TopUpActivity;

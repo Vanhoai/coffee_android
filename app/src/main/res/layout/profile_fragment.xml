@@ -35,6 +35,7 @@
                     android:gravity="center_horizontal">
 
                     <RelativeLayout
+                        android:id="@+id/relativeImage"
                         android:layout_width="120dp"
                         android:layout_height="120dp"
                         android:background="@drawable/custom_circle">
@@ -44,9 +45,7 @@
                             android:layout_alignParentEnd="true"
                             android:layout_width="32dp"
                             android:layout_height="32dp"
-                            android:layout_marginTop="-30dp"
-                            android:src="@drawable/edit_icon"
-                            />
+                            android:src="@drawable/edit_icon" />
 
                     </RelativeLayout>
 
@@ -54,7 +53,7 @@
 
                 <TextView
                     android:gravity="center"
-                    android:id="@+id/user"
+                    android:id="@+id/tvUser"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/textWeight"
@@ -64,6 +63,7 @@
                     android:textSize="24dp" />
 
                 <TextView
+                    android:id="@+id/tvEmail"
                     android:gravity="center_horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -105,6 +105,7 @@
                     android:gravity="center_vertical">
 
                     <TextView
+                        android:id="@+id/tvAccount"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Account"
@@ -155,6 +156,7 @@
                     android:gravity="center_vertical">
 
                     <TextView
+                        android:id="@+id/tvHistory"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="History"
@@ -206,6 +208,7 @@
                     android:gravity="center_vertical">
 
                     <TextView
+                        android:id="@+id/tvPayment"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Payment"
@@ -256,6 +259,7 @@
                     android:gravity="center_vertical">
 
                     <TextView
+                        android:id="@+id/tvBookmark"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Bookmark"
@@ -355,6 +359,7 @@
                     android:gravity="center_vertical">
 
                     <TextView
+                        android:id="@+id/tvLogout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Logout"

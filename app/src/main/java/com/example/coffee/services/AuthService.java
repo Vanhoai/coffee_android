@@ -57,28 +57,20 @@ public class AuthService {
             exception.printStackTrace();
         }
     }
+    
+    public void register(String username, String email, String password, AuthCallback callback){
+        getAPI().register(username, email, password).enqueue(new Callback<UserResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<UserResponse> call, @NonNull Response<UserResponse> response) {
+                callback.onSuccess(true, response.body());
+                Log.d("RESPONE", response.body().toString());
+            }
 
-    public void register(String username, String email, String password, AuthCallback callback) {
-        try {
-            getAPI().register(username, email, password).enqueue(new Callback<UserResponse>() {
-                @Override
-                public void onResponse(@NonNull Call<UserResponse> call, @NonNull Response<UserResponse> response) {
-                    Logger.log("RESPONSE", response);
-                    if (response.code() == 200) {
-                        Logger.log("CODE", response.code());
-                        callback.onSuccess(true, response.body());
-                    } else {
-                        callback.onFailed(false);
-                    }
-                }
-
-                @Override
-                public void onFailure(@NonNull Call<UserResponse> call, @NonNull Throwable throwable) {
-                    callback.onFailed(false);
-                }
-            });
-        } catch (Exception exception) {
-            exception.printStackTrace();
-        }
+            @Override
+            public void onFailure(@NonNull Call<UserResponse> call, @NonNull Throwable t) {
+                Log.e("ERROR", t.toString());
+                callback.onFailed(false);
+            }
+        });
     }
 }
