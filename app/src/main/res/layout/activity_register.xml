@@ -11,11 +11,12 @@
         android:orientation="vertical">
 
         <ImageView
+            android:id="@+id/backNavigation"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:src="@drawable/back_icon"
             android:backgroundTint="@color/white"
-            />
+            android:layout_marginVertical="20dp"/>
 
         <TextView
             android:layout_marginTop="20dp"
@@ -46,20 +47,21 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="56dp"
                 android:background="@drawable/background_input"
                 android:paddingHorizontal="20dp">
 
                 <EditText
-                    android:id="@+id/editText"
+                    android:id="@+id/edtUsername"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Enter your username"
                     style="@style/textWeight"
                     android:background="@null"
-                    android:textSize="14dp"/>
+                    android:textSize="16dp"/>
 
                 <ImageView
+                    android:id="@+id/checkUsername"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_alignParentEnd="true"
@@ -90,19 +92,21 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="56dp"
                 android:background="@drawable/background_input"
                 android:paddingHorizontal="20dp">
 
                 <EditText
+                    android:id="@+id/edtEmail"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Enter your email"
                     style="@style/textWeight"
                     android:background="@null"
-                    android:textSize="14dp"/>
+                    android:textSize="16dp"/>
 
                 <ImageView
+                    android:id="@+id/checkEmail"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_alignParentEnd="true"
@@ -132,19 +136,22 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="56dp"
                 android:background="@drawable/background_input"
                 android:paddingHorizontal="20dp">
 
                 <EditText
+                    android:id="@+id/edtPassword"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Enter your password"
                     style="@style/textWeight"
                     android:background="@null"
-                    android:textSize="14dp"/>
+                    android:inputType="textPassword"
+                    android:textSize="16dp"/>
 
                 <ImageView
+                    android:id="@+id/checkPassword"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_alignParentEnd="true"
@@ -173,19 +180,22 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="56dp"
                 android:background="@drawable/background_input"
                 android:paddingHorizontal="20dp">
 
                 <EditText
+                    android:id="@+id/edtConfirmPassword"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Enter your password again"
                     style="@style/textWeight"
+                    android:inputType="textPassword"
                     android:background="@null"
-                    android:textSize="14dp"/>
+                    android:textSize="16dp"/>
 
                 <ImageView
+                    android:id="@+id/checkConfirmPassword"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_alignParentEnd="true"
@@ -201,8 +211,10 @@
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnCreateAccount"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_width="match_parent"
+        android:layout_marginBottom="12dp"
         android:layout_height="56dp"
         android:background="@drawable/background_button"
         android:text="Create Account"

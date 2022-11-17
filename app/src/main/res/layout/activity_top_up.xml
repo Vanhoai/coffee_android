@@ -12,10 +12,11 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:layout_width="15dp"
+            android:id="@+id/backNavigation"
+            android:layout_width="24dp"
             android:layout_height="24dp"
             android:src="@drawable/back_icon"
-            android:backgroundTint="#5F5F5F"/>
+            android:backgroundTint="@color/textColor"/>
 
         <TextView
             android:text="Top Up"
@@ -29,7 +30,8 @@
 
 
     <ScrollView
-        android:layout_marginTop="24dp"
+        android:scrollbars="none"
+        android:layout_marginTop="48dp"
         app:layout_constraintTop_toBottomOf="@+id/relativeTitle"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -42,11 +44,10 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
                 android:text="Choose Nomial Top Up"
                 android:textSize="20dp"
                 style="@style/textWeight"
-                android:textColor="@color/textColor"/>
+                android:textColor="@color/darkColor"/>
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -60,7 +61,7 @@
                     style="@style/textWeight"
                     android:background="@drawable/background_button"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="56dp"
                     android:layout_weight="1"
                     android:layout_marginRight="8dp"
                     android:textColor="@color/white"/>
@@ -72,7 +73,7 @@
                     style="@style/textWeight"
                     android:background="@drawable/background_button"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="56dp"
                     android:layout_weight="1"
                     android:textColor="@color/white"/>
             </LinearLayout>
@@ -89,7 +90,7 @@
                     style="@style/textWeight"
                     android:background="@drawable/background_button"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="56dp"
                     android:layout_weight="1"
                     android:layout_marginRight="8dp"
                     android:textColor="@color/white"/>
@@ -101,7 +102,7 @@
                     style="@style/textWeight"
                     android:background="@drawable/background_button"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="56dp"
                     android:layout_weight="1"
                     android:textColor="@color/white"/>
             </LinearLayout>
@@ -119,16 +120,16 @@
                     android:text="Or enter the top nominal here"
                     android:textSize="14dp"
                     style="@style/textWeight"
-                    android:textColor="@color/textColor"/>
+                    android:textColor="#000000"/>
 
                 <EditText
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
+                    android:layout_height="56dp"
                     android:background="@drawable/background_input"
                     android:hint="Minimum 10.000 VND"
                     android:textSize="14dp"
                     style="@style/textWeight"
-                    android:textColor="#5F5F5F"
+                    android:textColor="@color/textColor"
                     android:paddingHorizontal="16dp"/>
 
             </LinearLayout>
@@ -152,25 +153,25 @@
                 <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="56dp"
+                    android:gravity="center_vertical">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="56dp"
-                        android:layout_marginStart="12dp"
                         android:gravity="center_vertical"
-                        android:layout_marginBottom="12dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="12dp"
                         android:text="Credit Card"
                         style="@style/textWeight"
                         android:layout_weight="1"
                         android:textColor="@color/textColor"
                         android:textSize="14dp" />
 
-                    <Button
+                    <androidx.appcompat.widget.AppCompatButton
                         app:backgroundTint="@null"
                         android:text="Visa"
                         android:background="@drawable/background_button"
-                        android:layout_width="70dp"
+                        android:layout_width="100dp"
                         android:layout_height="38dp"
                         style="@style/textWeight"
                         android:textColor="@color/white"
@@ -179,16 +180,16 @@
                 </LinearLayout>
             </RelativeLayout>
             <RelativeLayout
-                android:layout_marginTop="21dp"
+                android:layout_marginVertical="24dp"
                 android:layout_width="match_parent"
-                android:layout_height="400dp"
+                android:layout_height="wrap_content"
                 android:background="@drawable/background_input">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_marginHorizontal="20dp">
+                    android:padding="20dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -196,7 +197,6 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:layout_marginTop="19dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Card Number"
@@ -206,14 +206,14 @@
 
                         <EditText
                             android:layout_width="match_parent"
-                            android:layout_height="48dp"
+                            android:layout_height="56dp"
                             style="@style/textWeight"
                             android:layout_marginTop="8dp"
                             android:background="@drawable/background_input"
                             android:hint="Card Number"
                             android:textSize="14dp"
                             android:textColor="@color/textColor"
-                            android:paddingHorizontal="13dp"/>
+                            android:paddingHorizontal="12dp"/>
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -221,7 +221,7 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:layout_marginTop="13dp"
+                            android:layout_marginTop="12dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             style="@style/textWeight"
@@ -231,14 +231,14 @@
 
                         <EditText
                             android:layout_width="match_parent"
-                            android:layout_height="48dp"
+                            android:layout_height="56dp"
                             android:layout_marginTop="8dp"
                             android:background="@drawable/background_input"
                             android:hint="Card Holder"
                             android:textSize="14dp"
                             style="@style/textWeight"
                             android:textColor="@color/textColor"
-                            android:paddingHorizontal="13dp"/>
+                            android:paddingHorizontal="12dp"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -247,7 +247,7 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:layout_marginTop="13dp"
+                            android:layout_marginTop="12dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Expration Date"
@@ -257,14 +257,14 @@
 
                         <EditText
                             android:layout_width="match_parent"
-                            android:layout_height="48dp"
+                            android:layout_height="56dp"
                             android:layout_marginTop="8dp"
                             android:background="@drawable/background_input"
                             android:hint="DD/MM/YY"
                             android:textSize="14dp"
                             style="@style/textWeight"
                             android:textColor="@color/textColor"
-                            android:paddingHorizontal="13dp"/>
+                            android:paddingHorizontal="12dp"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -273,7 +273,7 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:layout_marginTop="13dp"
+                            android:layout_marginTop="12dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="CVC"
@@ -283,10 +283,10 @@
 
                         <EditText
                             android:layout_width="match_parent"
-                            android:layout_height="48dp"
+                            android:layout_height="56dp"
                             android:layout_marginTop="8dp"
                             android:background="@drawable/background_input"
-                            android:hint="CVC"
+                            android:hint="DD/MM/YY"
                             android:textSize="14dp"
                             style="@style/textWeight"
                             android:textColor="@color/textColor"
@@ -297,14 +297,14 @@
 
             </RelativeLayout>
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 app:backgroundTint="@null"
                 android:text="Pay Now"
-                android:layout_marginVertical="20dp"
                 android:background="@drawable/background_button"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 style="@style/textWeight"
+                android:layout_marginBottom="12dp"
                 android:textColor="@color/white"/>
         </LinearLayout>
     </ScrollView>

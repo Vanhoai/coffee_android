@@ -16,11 +16,12 @@
             android:layout_height="wrap_content">
 
             <ImageView
+                android:id="@+id/backNavigation"
                 android:layout_alignParentStart="true"
-                android:layout_width="15dp"
+                android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/back_icon"
-                android:backgroundTint="#5F5F5F"/>
+                android:backgroundTint="@color/textColor"/>
 
             <TextView
                 android:gravity="center"
@@ -29,7 +30,7 @@
                 android:text="Pay"
                 android:textSize="16dp"
                 style="@style/textWeight"
-                android:textColor="#343434"/>
+                android:textColor="@color/darkColor"/>
 
         </RelativeLayout>
 
@@ -60,7 +61,8 @@
             </RadioGroup>
 
             <androidx.appcompat.widget.AppCompatButton
-                android:layout_width="79dp"
+                style="@style/textWeight"
+                android:layout_width="80dp"
                 android:layout_height="32dp"
                 android:layout_alignParentEnd="true"
                 android:layout_centerInParent="true"
@@ -68,9 +70,8 @@
                 android:background="@drawable/background_button"
                 android:text="Wallet"
                 android:textAllCaps="false"
-                style="@style/textWeight"
                 android:textColor="@color/white"
-                android:textSize="10dp"
+                android:textSize="12dp"
                 app:backgroundTint="@null" />
         </RelativeLayout>
 
@@ -91,7 +92,7 @@
             </RadioGroup>
 
             <androidx.appcompat.widget.AppCompatButton
-                android:layout_width="79dp"
+                android:layout_width="80dp"
                 android:layout_height="32dp"
                 android:layout_alignParentEnd="true"
                 android:layout_centerInParent="true"
@@ -101,18 +102,21 @@
                 style="@style/textWeight"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textSize="10dp"
+                android:textSize="12dp"
                 app:backgroundTint="@null" />
         </RelativeLayout>
 
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnPayNow"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_width="match_parent"
         android:layout_height="56dp"
+        android:textSize="16dp"
+        style="@style/textMedium"
         android:background="@drawable/background_button"
-        android:text="Create Account"
+        android:text="Pay Now"
         android:textColor="@color/white"
         android:textAllCaps="false"
         app:backgroundTint="@null" />
