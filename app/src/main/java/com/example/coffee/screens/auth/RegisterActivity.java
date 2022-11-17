@@ -23,7 +23,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     EditText edtPassword;
     EditText edtConfirmPassword;
     AppCompatButton btnCreateAccount;
-    private AuthService authService;
+    AuthService authService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,13 +60,11 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         String email = edtEmail.getText().toString().trim();
         String password = edtPassword.getText().toString().trim();
         String confirmPassword = edtConfirmPassword.getText().toString().trim();
-        if(username.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()){
-            Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
-        }else {
-            if (password.equals(confirmPassword)){
-                register(username, email, password);
-            }
 
+        if (username.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
+            Toast.makeText(this, "PLEASE ENTER FULL FIELD", Toast.LENGTH_SHORT).show();
+        } else if (password.equals(confirmPassword)) {
+            register(username, email, password);
         }
         // create account => verify phone number
 
@@ -76,10 +74,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             authService.register(username, email, password, new AuthCallback() {
                 @Override
                 public void onSuccess(Boolean value, UserResponse userResponse) {
-//                    Log.d("User", userResponse.toString());
-//                        Intent intent = new Intent(RegisterActivity.this, VerityActivity.class);
-//                        startActivity(intent);
-//                        finish();
+                    Log.d("User", userResponse.toString());
+                    Intent intent = new Intent(RegisterActivity.this, VerityActivity.class);
+                    startActivity(intent);
+                    finish();
                 }
 
                 @Override

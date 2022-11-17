@@ -2,6 +2,7 @@ package com.example.coffee.screens.bottom.Home;
 
 
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -30,6 +32,7 @@ import com.example.coffee.models.User.User;
 import com.example.coffee.screens.bottom.Profile.HistoryActivity;
 import com.example.coffee.screens.bottom.Profile.TopUpActivity;
 import com.example.coffee.utils.Storage;
+import com.example.coffee.utils.UserInformation;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -58,6 +61,7 @@ public class HomeFragment extends Fragment {
         imagePay = view.findViewById(R.id.imagePay);
         imagePromo = view.findViewById(R.id.imagePromo);
         imageHistory = view.findViewById(R.id.imageHistory);
+        TextView tvBalance = view.findViewById(R.id.tvBalance);
 
 
         ArrayList<Product> products = new ArrayList<>();
@@ -84,13 +88,9 @@ public class HomeFragment extends Fragment {
         renderProduct(recycleViewBestSeller, products);
 
 
-        Storage storage = new Storage(getContext());
-        Gson gson = new Gson();
-        Type type = new TypeToken<User> () {}.getType();
-        String json = storage.getItem("USER", "user");
-        User user = gson.fromJson(json, type);
-        Log.d("USER", user.toString());
-
+       User user = UserInformation.getUser(getContext());
+       @SuppressLint("DefaultLocale") String balance = String.format("%.0f VND",user.getBalance());
+       tvBalance.setText(balance);
         return view;
     }
 
