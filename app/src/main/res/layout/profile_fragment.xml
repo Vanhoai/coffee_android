@@ -35,18 +35,29 @@
                     android:gravity="center_horizontal">
 
                     <RelativeLayout
+                        android:id="@+id/relativeImage"
                         android:layout_width="120dp"
-                        android:layout_height="120dp"
-                        android:background="@drawable/custom_circle">
+                        android:layout_height="120dp">
 
                         <ImageView
+                            android:translationZ="10dp"
                             android:layout_alignParentBottom="true"
                             android:layout_alignParentEnd="true"
                             android:layout_width="32dp"
                             android:layout_height="32dp"
-                            android:layout_marginTop="-30dp"
-                            android:src="@drawable/edit_icon"
-                            />
+                            android:src="@drawable/edit_icon" />
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:cardCornerRadius="120dp">
+
+                            <ImageView
+                                android:id="@+id/imageAvatar"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"/>
+
+                        </androidx.cardview.widget.CardView>
 
                     </RelativeLayout>
 
@@ -54,27 +65,30 @@
 
                 <TextView
                     android:gravity="center"
-                    android:id="@+id/user"
+                    android:id="@+id/tvUsername"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/textWeight"
                     android:layout_marginTop="12dp"
-                    android:text="Brian Robinson"
-                    android:textColor="#000000"
+                    android:text="Aurora Study"
+                    android:textColor="@color/darkColor"
                     android:textSize="24dp" />
 
                 <TextView
+                    style="@style/textMedium"
+                    android:id="@+id/tvEmail"
                     android:gravity="center_horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:lineHeight="25dp"
-                    android:text="CEO at Amazone"
+                    android:text="aurorastudyvn@gmail.com"
                     android:textSize="20dp" />
 
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/linearAccount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -125,6 +139,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/linearHistory"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -175,6 +190,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/linearPayment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -226,6 +242,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/linearBookmark"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -256,6 +273,7 @@
                     android:gravity="center_vertical">
 
                     <TextView
+                        android:id="@+id/tvBookmark"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Bookmark"
@@ -326,6 +344,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/linearLogout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical">
@@ -355,6 +374,7 @@
                     android:gravity="center_vertical">
 
                     <TextView
+                        android:id="@+id/tvLogout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Logout"

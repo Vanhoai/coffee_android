@@ -1,6 +1,6 @@
 package com.example.coffee.screens.bottom.Home;
 
-import static android.content.ContentValues.TAG;
+
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -23,9 +23,14 @@ import com.example.coffee.adapters.RecycleNearlyAdapter;
 import com.example.coffee.adapters.RecycleProductAdapter;
 import com.example.coffee.models.Product.Comment;
 import com.example.coffee.models.Product.Product;
+
 import com.example.coffee.models.Product.Shop.Shop;
+
+
 import com.example.coffee.models.User.User;
+
 import com.example.coffee.screens.bottom.Profile.HistoryActivity;
+import com.example.coffee.screens.bottom.Profile.RewardDetailActivity;
 import com.example.coffee.screens.bottom.Profile.TopUpActivity;
 import com.example.coffee.utils.Storage;
 import com.example.coffee.utils.UserInformation;
@@ -36,7 +41,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
-
+    TextView tvView;
     RecyclerView recycleViewNearbyPlace;
     RecyclerView recycleViewBestSeller;
     ImageView imageTopUp;
@@ -58,7 +63,7 @@ public class HomeFragment extends Fragment {
         imagePromo = view.findViewById(R.id.imagePromo);
         imageHistory = view.findViewById(R.id.imageHistory);
         TextView tvBalance = view.findViewById(R.id.tvBalance);
-
+        tvView = view.findViewById(R.id.tvView);
 
         ArrayList<Product> products = new ArrayList<>();
         ArrayList<Comment> comments = new ArrayList<>();
@@ -114,7 +119,9 @@ public class HomeFragment extends Fragment {
         imagePromo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(getContext(), PromoActivity.class);
+                startActivity(intent);
+                requireActivity().finish();
             }
         });
 
@@ -126,6 +133,16 @@ public class HomeFragment extends Fragment {
                 requireActivity().finish();
             }
         });
+        tvView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), RewardDetailActivity.class);
+                startActivity(intent);
+                requireActivity().finish();
+            }
+        });
+
+
     }
 
     public void renderPlace(RecyclerView recyclerView, ArrayList<Shop> data) {

@@ -232,6 +232,7 @@
                     android:layout_height="match_parent"/>
 
                 <TextView
+                    android:id="@+id/tvView"
                     android:gravity="bottom"
                     android:layout_alignParentEnd="true"
                     android:text="View All"
