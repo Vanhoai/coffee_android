@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -13,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.Glide;
 import com.example.coffee.R;
 import com.example.coffee.models.User.User;
 import com.example.coffee.screens.auth.LoginActivity;
@@ -20,9 +23,11 @@ import com.example.coffee.screens.bottom.Product.PaymentActivity;
 import com.example.coffee.screens.bottom.Product.ProductListActivity;
 import com.example.coffee.utils.UserInformation;
 
+import java.util.Objects;
+
 public class ProfileFragment extends Fragment {
-    TextView tvAccount, tvHistory, tvPayment, tvBookmark, tvLogout, tvUser, tvEmail;
-    RelativeLayout relativeImage;
+
+    LinearLayout linearAccount, linearHistory, linearPayment, linearBookmark, linearLogout;
 
     @SuppressLint("MissingInflatedId")
     @Nullable
@@ -31,20 +36,23 @@ public class ProfileFragment extends Fragment {
         LayoutInflater layoutInflater = getLayoutInflater();
         View view =  layoutInflater.inflate(R.layout.profile_fragment, container, false);
 
-        tvAccount = view.findViewById(R.id.tvAccount);
-        tvHistory = view.findViewById(R.id.tvHistory);
-        tvPayment = view.findViewById(R.id.tvPayment);
-        tvBookmark = view.findViewById(R.id.tvBookmark);
-        tvLogout = view.findViewById(R.id.tvLogout);
-        tvUser = view.findViewById(R.id.tvUser);
-        tvEmail = view.findViewById(R.id.tvEmail);
-        relativeImage = view.findViewById(R.id.relativeImage);
+        TextView tvUsername = view.findViewById(R.id.tvUsername);
+        TextView tvEmail = view.findViewById(R.id.tvEmail);
+        ImageView imageAvatar = view.findViewById(R.id.imageAvatar);
 
+        linearAccount = view.findViewById(R.id.linearAccount);
+        linearHistory = view.findViewById(R.id.linearHistory);
+        linearPayment = view.findViewById(R.id.linearPayment);
+        linearBookmark = view.findViewById(R.id.linearBookmark);
+        linearLogout = view.findViewById(R.id.linearLogout);
+
+        // get data
         User user = UserInformation.getUser(getContext());
-        tvUser.setText(user.getUsername());
-        tvEmail.setText(user.getEmail());
-        user.getImage();
 
+        // set view
+        tvUsername.setText(user.getUsername());
+        tvEmail.setText(user.getEmail());
+        Glide.with(requireContext()).load(user.getImage()).into(imageAvatar);
 
         return view;
     }
@@ -53,7 +61,7 @@ public class ProfileFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        tvAccount.setOnClickListener(new View.OnClickListener() {
+        linearAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getContext(), AccountActivity.class));
@@ -61,7 +69,7 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        tvHistory.setOnClickListener(new View.OnClickListener() {
+        linearHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getContext(), HistoryActivity.class));
@@ -69,15 +77,15 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        tvPayment.setOnClickListener(new View.OnClickListener() {
+        linearPayment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getContext(), PaymentActivity.class));
-                requireActivity().finish();
+//                startActivity(new Intent(getContext(), PaymentActivity.class));
+//                requireActivity().finish();
             }
         });
 
-        tvBookmark.setOnClickListener(new View.OnClickListener() {
+        linearBookmark.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getContext(), ProductListActivity.class));
@@ -85,7 +93,7 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        tvLogout.setOnClickListener(new View.OnClickListener() {
+        linearLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getContext(), LoginActivity.class));

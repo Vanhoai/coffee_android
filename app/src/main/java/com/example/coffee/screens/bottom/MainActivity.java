@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -17,6 +18,8 @@ import com.example.coffee.screens.bottom.Shop.ShopFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
+import java.util.HashMap;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -28,7 +31,24 @@ public class MainActivity extends AppCompatActivity {
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigation);
         bottomNavigationView.setItemIconTintList(null);
-        replaceFragment(new HomeFragment());
+
+        HashMap<Integer, Object> hashMap = new HashMap<>();
+        hashMap.put(1, new HomeFragment());
+        hashMap.put(2, new ShopFragment());
+        hashMap.put(3, new GiftFragment());
+        hashMap.put(4, new ProfileFragment());
+
+        try {
+            Intent intent = getIntent();
+            Bundle bundle = intent.getExtras();
+            int index = bundle.getInt("index", 0);
+            replaceFragment((Fragment) hashMap.get(index));
+
+        } catch (Exception exception) {
+            replaceFragment(new HomeFragment());
+        }
+
+
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
