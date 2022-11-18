@@ -1,10 +1,4 @@
 package com.example.coffee.screens.bottom.Home;
-
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 770eb6e (update)
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
