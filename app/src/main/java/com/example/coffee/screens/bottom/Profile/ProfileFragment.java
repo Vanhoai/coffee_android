@@ -9,6 +9,10 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -19,7 +23,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import android.widget.RelativeLayout;
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
@@ -48,6 +52,7 @@ import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 
 public class ProfileFragment extends Fragment {
+    private Context context;
 
     private static final int REQUEST_CODE = 10;
     private static final String TAG = ProfileFragment.class.getName();
