@@ -149,6 +149,18 @@
                         android:src="@drawable/arrow_bottom"/>
 
                 </LinearLayout>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_marginTop="92dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:background="@drawable/background_button"
+                    android:text="Review"
+                    style="@style/textWeight"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="20dp"
+                    app:layout_constraintBottom_toBottomOf="parent" />
             </LinearLayout>
         </LinearLayout>
 

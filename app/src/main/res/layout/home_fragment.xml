@@ -81,6 +81,7 @@
                         style="@style/textWeight"/>
 
                     <TextView
+                        android:id="@+id/tvBalance"
                         android:layout_alignParentEnd="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -231,6 +232,11 @@
                     android:layout_height="match_parent"/>
 
                 <TextView
+<<<<<<< HEAD
+                    android:id="@+id/tvView"
+=======
+                    android:id="@+id/tvViewAll_MyReward"
+>>>>>>> 770eb6e (update)
                     android:gravity="bottom"
                     android:layout_alignParentEnd="true"
                     android:text="View All"
@@ -254,8 +260,7 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:src="@drawable/reward_type_1"
-                    android:layout_marginRight="12dp"
-                    />
+                    android:layout_marginRight="12dp"/>
 
                 <LinearLayout
                     android:layout_weight="1"
@@ -305,6 +310,7 @@
                         android:layout_height="match_parent"/>
 
                     <TextView
+                        android:id="@+id/tvViewAll_NearbyPlace"
                         android:gravity="bottom"
                         android:layout_alignParentEnd="true"
                         android:text="View All"
@@ -346,6 +352,7 @@
                         android:layout_height="match_parent"/>
 
                     <TextView
+                        android:id="@+id/tvViewAll_BestSeller"
                         android:gravity="bottom"
                         android:layout_alignParentEnd="true"
                         android:text="View All"

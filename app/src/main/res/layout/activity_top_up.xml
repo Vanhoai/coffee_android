@@ -167,15 +167,13 @@
                         android:textColor="@color/textColor"
                         android:textSize="14dp" />
 
-                    <androidx.appcompat.widget.AppCompatButton
-                        app:backgroundTint="@null"
-                        android:text="Visa"
-                        android:background="@drawable/background_button"
-                        android:layout_width="100dp"
-                        android:layout_height="38dp"
-                        style="@style/textWeight"
-                        android:textColor="@color/white"
-                        android:layout_marginRight="12dp"/>
+
+                 <ImageView
+                     android:src="@drawable/visa"
+                     android:layout_width="100dp"
+                     android:layout_height="50dp"
+                     android:paddingEnd="40dp"
+                     android:paddingTop="16dp"/>
 
                 </LinearLayout>
             </RelativeLayout>

@@ -15,7 +15,6 @@ import com.example.coffee.R;
 import com.example.coffee.callbacks.AuthCallback;
 import com.example.coffee.models.User.UserResponse;
 import com.example.coffee.services.AuthService;
-import com.example.coffee.utils.Logger;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener{
     ImageView backNavigation;
@@ -39,10 +38,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         edtConfirmPassword = findViewById(R.id.edtConfirmPassword);
         btnCreateAccount = findViewById(R.id.btnCreateAccount);
 
-        // init service
+        // init Service
         authService = new AuthService();
 
-        // handle logic
         backNavigation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -68,24 +66,27 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         } else if (password.equals(confirmPassword)) {
             register(username, email, password);
         }
-
         // create account => verify phone number
-        Intent intent = new Intent(RegisterActivity.this, VerityActivity.class);
-        startActivity(intent);
-        finish();
+
     }
+    public void register(String username, String email, String password){
+        try {
+            authService.register(username, email, password, new AuthCallback() {
+                @Override
+                public void onSuccess(Boolean value, UserResponse userResponse) {
+                    Log.d("User", userResponse.toString());
+                    Intent intent = new Intent(RegisterActivity.this, VerityActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
 
-    public void register(String username, String email, String password) {
-        authService.register(username, email, password, new AuthCallback() {
-            @Override
-            public void onSuccess(Boolean value, UserResponse userResponse) {
-
-            }
-
-            @Override
-            public void onFailed(Boolean value) {
-
-            }
-        });
+                @Override
+                public void onFailed(Boolean value) {
+                    Toast.makeText(RegisterActivity.this, "REGISTER FAILED", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }

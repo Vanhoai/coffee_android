@@ -3,6 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.coffee">
 
+    <uses-feature android:name="android.hardware.camera" android:required="true" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -16,35 +21,35 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".CardActivity"
+            android:name=".screens.bottom.Home.CardActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".ProductListActivity"
+            android:name=".screens.bottom.Product.ProductListActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".PlaceListActivity"
+            android:name=".screens.bottom.Shop.PlaceListActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".MissonActivity"
+            android:name=".screens.bottom.Gift.MissonActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".PromoActivity"
+            android:name=".screens.bottom.Home.PromoActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -108,7 +113,22 @@
                 android:value="" />
         </activity>
         <activity
+            android:name=".screens.bottom.Profile.AccountActivity"
+            android:exported="true">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".screens.auth.VerityActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <activity
+            android:name=".screens.bottom.Profile.RewardDetailActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -128,6 +148,7 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
         <activity
             android:name=".screens.others.FlashActivity"
             android:exported="true">
