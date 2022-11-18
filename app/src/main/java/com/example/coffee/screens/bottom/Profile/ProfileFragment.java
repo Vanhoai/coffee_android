@@ -1,7 +1,8 @@
 package com.example.coffee.screens.bottom.Profile;
 
 import static android.app.Activity.RESULT_OK;
-
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -9,6 +10,10 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -19,7 +24,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import android.widget.RelativeLayout;
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
@@ -48,6 +53,7 @@ import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 
 public class ProfileFragment extends Fragment {
+    private Context context;
 
     private static final int REQUEST_CODE = 10;
     private static final String TAG = ProfileFragment.class.getName();
@@ -90,6 +96,7 @@ public class ProfileFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
         LayoutInflater layoutInflater = getLayoutInflater();
         View view =  layoutInflater.inflate(R.layout.profile_fragment, container, false);
 
@@ -111,6 +118,7 @@ public class ProfileFragment extends Fragment {
         Glide.with(requireContext()).load(user.getImage()).into(imageAvatar);
 
         return view;
+
     }
 
     @Override
