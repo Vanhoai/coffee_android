@@ -202,7 +202,7 @@ public class ProfileFragment extends Fragment {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == REQUEST_CODE) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(requireContext(), "PERMISSION GRANTED", Toast.LENGTH_SHORT).show();
+                Logger.log("PERMISSION", "GRANTED");
             } else {
                 Toast.makeText(requireContext(), "NOT PERMISSION", Toast.LENGTH_SHORT).show();
             }
