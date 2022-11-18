@@ -4,39 +4,37 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".screens.bottom.Home.CardActivity">
+    tools:context=".screens.bottom.Home.CardActivity"
+    android:padding="20dp">
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/Linear_Balance"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:paddingHorizontal="20dp"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:gravity="center_vertical">
 
         <ImageView
             android:id="@+id/imageBack"
-            android:layout_width="wrap_content"
+            android:layout_width="24dp"
             android:layout_height="24dp"
             android:src="@drawable/back_icon" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
+            android:gravity="center_horizontal"
             android:text="Balance"
             style="@style/textBold"
-            android:textSize="24dp" />
+            android:textSize="16dp" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
     <LinearLayout
         android:id="@+id/Linear_CardBalance"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_margin="20dp"
-        android:layout_marginTop="60dp"
+        android:layout_height="240dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/background_card"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
@@ -101,8 +99,10 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:gravity="bottom"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:layout_marginBottom="20dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -151,7 +151,7 @@
                     android:layout_height="wrap_content"
                     android:paddingTop="8dp"
                     android:text="Top up"
-                    android:textColor="@color/darkColor"
+                    android:textColor="@color/white"
                     style="@style/textMedium"
                     android:textSize="16dp" />
 
@@ -166,7 +166,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
         android:orientation="vertical"
-        android:paddingHorizontal="20sp"
         app:layout_constraintTop_toBottomOf="@id/Linear_CardBalance">
 
         <TextView
@@ -174,20 +173,19 @@
             android:layout_height="wrap_content"
             android:text="Card creation time"
             style="@style/textWeight"
-            android:textSize="20sp" />
+            android:textSize="16dp" />
 
         <TextView
             android:id="@+id/tvDateCard"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_height="56dp"
+            android:layout_marginTop="8dp"
             android:background="@drawable/background_button"
             android:gravity="center"
-            android:padding="16dp"
             android:text="22 August 2022, 10:00 AM"
             android:textColor="@color/white"
             style="@style/textWeight"
-            android:textSize="24sp" />
+            android:textSize="16dp" />
 
     </LinearLayout>
 

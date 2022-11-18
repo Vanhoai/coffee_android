@@ -12,7 +12,7 @@
 
         <ImageView
             android:id="@+id/backNavigation"
-            android:layout_width="14dp"
+            android:layout_width="24dp"
             android:layout_height="24dp"
             android:backgroundTint="@color/textColor"
             android:src="@drawable/back_icon" />

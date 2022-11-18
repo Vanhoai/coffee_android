@@ -42,6 +42,9 @@ public class HomeFragment extends Fragment {
     ImageView imagePay;
     ImageView imagePromo;
     ImageView imageHistory;
+    TextView tvBalance;
+    ArrayList<Product> products;
+    ArrayList<Shop> shops;
 
     @Nullable
     @Override
@@ -49,44 +52,21 @@ public class HomeFragment extends Fragment {
         LayoutInflater layoutInflater = getLayoutInflater();
         View view = layoutInflater.inflate(R.layout.home_fragment, container, false);
 
-        // mapping
-        recycleViewNearbyPlace = view.findViewById(R.id.recycleViewNearbyPlace);
-        recycleViewBestSeller = view.findViewById(R.id.recycleViewBestSeller);
-        imageTopUp = view.findViewById(R.id.imageTopUp);
-        imagePay = view.findViewById(R.id.imagePay);
-        imagePromo = view.findViewById(R.id.imagePromo);
-        imageHistory = view.findViewById(R.id.imageHistory);
-        TextView tvBalance = view.findViewById(R.id.tvBalance);
-        tvView = view.findViewById(R.id.tvView);
+        // init
+        init(view);
 
+        // init data
+        shops = new ArrayList<>();
+        products = new ArrayList<>();
 
-        ArrayList<Product> products = new ArrayList<>();
-        ArrayList<Comment> comments = new ArrayList<>();
-        comments.add(new Comment());
-        comments.add(new Comment());
-        comments.add(new Comment());
-        comments.add(new Comment());
-
-        products.add(new Product(1, "The Coffee Storm", "", 25000, 100, 100, comments));
-        products.add(new Product(1, "The Coffee Storm", "", 25000, 100, 100, comments));
-        products.add(new Product(1, "The Coffee Storm", "", 25000, 100, 100, comments));
-        products.add(new Product(1, "The Coffee Storm", "", 25000, 100, 100, comments));
-        products.add(new Product(1, "The Coffee Storm", "", 25000, 100, 100, comments));
-
-        ArrayList<Shop> shops = new ArrayList<>();
-        shops.add(new Shop(1, "Tân Bình Ditrict", "", "", products, 1, 1));
-        shops.add(new Shop(1, "Tân Bình Ditrict", "", "", products, 1, 1));
-        shops.add(new Shop(1, "Tân Bình Ditrict", "", "", products, 1, 1));
-        shops.add(new Shop(1, "Tân Bình Ditrict", "", "", products, 1, 1));
-        shops.add(new Shop(1, "Tân Bình Ditrict", "", "", products, 1, 1));
-
+        // render
         renderPlace(recycleViewNearbyPlace, shops);
         renderProduct(recycleViewBestSeller, products);
 
-
-       User user = UserInformation.getUser(getContext());
-       @SuppressLint("DefaultLocale") String balance = String.format("%.0f VND",user.getBalance());
-       tvBalance.setText(balance);
+        // set view
+        User user = UserInformation.getUser(getContext());
+        @SuppressLint("DefaultLocale") String balance = String.format("%.0f VND",user.getBalance());
+        tvBalance.setText(balance);
         return view;
     }
 
@@ -94,7 +74,22 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        // handle onclick
+        handleOnClick();
+    }
 
+    public void init(View view) {
+        recycleViewNearbyPlace = view.findViewById(R.id.recycleViewNearbyPlace);
+        recycleViewBestSeller = view.findViewById(R.id.recycleViewBestSeller);
+        imageTopUp = view.findViewById(R.id.imageTopUp);
+        imagePay = view.findViewById(R.id.imagePay);
+        imagePromo = view.findViewById(R.id.imagePromo);
+        imageHistory = view.findViewById(R.id.imageHistory);
+        tvBalance = view.findViewById(R.id.tvBalance);
+        tvView = view.findViewById(R.id.tvView);
+    }
+
+    public void handleOnClick () {
         imageTopUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -107,7 +102,9 @@ public class HomeFragment extends Fragment {
         imagePay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(getContext(), CardActivity.class);
+                startActivity(intent);
+                requireActivity().finish();
             }
         });
 
@@ -136,8 +133,6 @@ public class HomeFragment extends Fragment {
                 requireActivity().finish();
             }
         });
-
-
     }
 
     public void renderPlace(RecyclerView recyclerView, ArrayList<Shop> data) {
