@@ -138,8 +138,7 @@
                 android:layout_height="40dp"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="30dp"
-                android:layout_marginRight="20dp"
-                android:background="@drawable/custom_topup_balance">
+                android:layout_marginRight="20dp">
 
                 <ImageView
                     android:layout_width="40dp"
