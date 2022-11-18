@@ -38,11 +38,7 @@
                     android:gravity="center_horizontal">
 
                     <RelativeLayout
-<<<<<<< HEAD
                         android:id="@+id/relativeImage"
-=======
-                        android:id="@+id/relativeIV"
->>>>>>> 770eb6e (update)
                         android:layout_width="120dp"
                         android:layout_height="120dp">
 
