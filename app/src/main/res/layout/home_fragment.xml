@@ -232,7 +232,11 @@
                     android:layout_height="match_parent"/>
 
                 <TextView
+<<<<<<< HEAD
                     android:id="@+id/tvView"
+=======
+                    android:id="@+id/tvViewAll_MyReward"
+>>>>>>> 770eb6e (update)
                     android:gravity="bottom"
                     android:layout_alignParentEnd="true"
                     android:text="View All"
@@ -306,6 +310,7 @@
                         android:layout_height="match_parent"/>
 
                     <TextView
+                        android:id="@+id/tvViewAll_NearbyPlace"
                         android:gravity="bottom"
                         android:layout_alignParentEnd="true"
                         android:text="View All"
@@ -347,6 +352,7 @@
                         android:layout_height="match_parent"/>
 
                     <TextView
+                        android:id="@+id/tvViewAll_BestSeller"
                         android:gravity="bottom"
                         android:layout_alignParentEnd="true"
                         android:text="View All"

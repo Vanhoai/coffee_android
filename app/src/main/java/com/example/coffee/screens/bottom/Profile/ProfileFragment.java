@@ -1,15 +1,24 @@
 package com.example.coffee.screens.bottom.Profile;
 
+<<<<<<< HEAD
 import android.annotation.SuppressLint;
 import android.content.Intent;
+=======
+import android.app.Activity;
+import android.content.Context;
+>>>>>>> 770eb6e (update)
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+<<<<<<< HEAD
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+=======
+import android.widget.RelativeLayout;
+>>>>>>> 770eb6e (update)
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,6 +35,7 @@ import com.example.coffee.utils.UserInformation;
 import java.util.Objects;
 
 public class ProfileFragment extends Fragment {
+    private Context context;
 
     LinearLayout linearAccount, linearHistory, linearPayment, linearBookmark, linearLogout;
 
@@ -33,6 +43,7 @@ public class ProfileFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+<<<<<<< HEAD
         LayoutInflater layoutInflater = getLayoutInflater();
         View view =  layoutInflater.inflate(R.layout.profile_fragment, container, false);
 
@@ -55,6 +66,13 @@ public class ProfileFragment extends Fragment {
         Glide.with(requireContext()).load(user.getImage()).into(imageAvatar);
 
         return view;
+=======
+        LayoutInflater layoutInflater = ((Activity)context).getLayoutInflater();
+        View view = layoutInflater.inflate(R.layout.profile_fragment, container, false);
+
+       return view;
+
+>>>>>>> 770eb6e (update)
     }
 
     @Override
