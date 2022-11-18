@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Pair;
 import android.view.MenuItem;
 
 import com.example.coffee.R;
@@ -19,6 +20,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,23 +34,20 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigation);
         bottomNavigationView.setItemIconTintList(null);
 
-        HashMap<Integer, Object> hashMap = new HashMap<>();
-        hashMap.put(1, new HomeFragment());
-        hashMap.put(2, new ShopFragment());
-        hashMap.put(3, new GiftFragment());
-        hashMap.put(4, new ProfileFragment());
+        HashMap<Integer, Pair<Object, Integer>> hashMap = new HashMap<>();
+        hashMap.put(1, new Pair<>(new HomeFragment(), R.drawable.home_active));
+        hashMap.put(2, new Pair<>(new ShopFragment(), R.drawable.shop_active));
+        hashMap.put(3, new Pair<>(new GiftFragment(), R.drawable.gift_active));
+        hashMap.put(4, new Pair<>(new ProfileFragment(), R.drawable.profile_active));
 
         try {
             Intent intent = getIntent();
             Bundle bundle = intent.getExtras();
             int index = bundle.getInt("index", 0);
-            replaceFragment((Fragment) hashMap.get(index));
-
+            replaceFragment((Fragment) Objects.requireNonNull(hashMap.get(index)).first);
         } catch (Exception exception) {
             replaceFragment(new HomeFragment());
         }
-
-
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
@@ -65,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.profile_icon:
                         replaceFragment(new ProfileFragment());
+
                         break;
                 }
                 return true;

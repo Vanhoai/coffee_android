@@ -40,6 +40,8 @@ import com.example.coffee.R;
 import com.example.coffee.callbacks.AuthCallback;
 import com.example.coffee.models.User.User;
 import com.example.coffee.models.User.UserResponse;
+import com.example.coffee.screens.auth.LoginActivity;
+import com.example.coffee.screens.bottom.Home.CardActivity;
 import com.example.coffee.services.UserService;
 import com.example.coffee.utils.LayoutLoading;
 import com.example.coffee.utils.Logger;
@@ -58,7 +60,7 @@ public class ProfileFragment extends Fragment {
     private static final int REQUEST_CODE = 10;
     private static final String TAG = ProfileFragment.class.getName();
 
-    LinearLayout linearAccount, linearHistory, linearPayment, linearBookmark, linearLogout;
+    LinearLayout linearAccount, linearHistory, linearPayment, linearBookmark, linearLogout, linearPrivacy;
     ImageView imageUploadAvatar;
     ImageView imageAvatar;
     TextView tvUsername;
@@ -135,6 +137,7 @@ public class ProfileFragment extends Fragment {
         linearAccount = view.findViewById(R.id.linearAccount);
         linearHistory = view.findViewById(R.id.linearHistory);
         linearPayment = view.findViewById(R.id.linearPayment);
+        linearPrivacy = view.findViewById(R.id.linearPrivacy);
         linearBookmark = view.findViewById(R.id.linearBookmark);
         linearLogout = view.findViewById(R.id.linearLogout);
         imageUploadAvatar = view.findViewById(R.id.imageUploadAvatar);
@@ -159,6 +162,58 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 uploadAvatar();
+            }
+        });
+
+        linearAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(requireContext(), AccountActivity.class);
+                requireContext().startActivity(intent);
+                requireActivity().finish();
+            }
+        });
+
+        linearHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(requireContext(), HistoryActivity.class);
+                requireContext().startActivity(intent);
+                requireActivity().finish();
+            }
+        });
+
+        linearPayment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(requireContext(), CardActivity.class);
+                requireContext().startActivity(intent);
+                requireActivity().finish();
+            }
+        });
+
+        linearBookmark.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        linearPrivacy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                Intent intent = new Intent(requireContext(), AccountActivity.class);
+//                requireContext().startActivity(intent);
+//                requireActivity().finish();
+            }
+        });
+
+        linearLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(requireContext(), LoginActivity.class);
+                requireContext().startActivity(intent);
+                requireActivity().finish();
             }
         });
     }
