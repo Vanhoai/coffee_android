@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:id="@+id/loading"
     android:padding="20dp">
 
     <TextView
+        app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="My Profile"
@@ -16,6 +18,7 @@
         android:textSize="24dp" />
 
     <ScrollView
+        android:layout_marginTop="30dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -40,6 +43,7 @@
                         android:layout_height="120dp">
 
                         <ImageView
+                            android:id="@+id/imageUploadAvatar"
                             android:translationZ="10dp"
                             android:layout_alignParentBottom="true"
                             android:layout_alignParentEnd="true"
@@ -47,17 +51,10 @@
                             android:layout_height="32dp"
                             android:src="@drawable/edit_icon" />
 
-                        <androidx.cardview.widget.CardView
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/imageAvatar"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            app:cardCornerRadius="120dp">
-
-                            <ImageView
-                                android:id="@+id/imageAvatar"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"/>
-
-                        </androidx.cardview.widget.CardView>
+                            android:layout_height="match_parent"/>
 
                     </RelativeLayout>
 
@@ -84,6 +81,18 @@
                     android:lineHeight="25dp"
                     android:text="aurorastudyvn@gmail.com"
                     android:textSize="20dp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnUpload"
+                    android:layout_marginTop="24dp"
+                    style="@style/textMedium"
+                    android:text="Change"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/background_button"/>
 
             </LinearLayout>
 
@@ -390,7 +399,7 @@
 
     </ScrollView>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 
 
 
