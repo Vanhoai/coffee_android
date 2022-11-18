@@ -34,22 +34,22 @@ public class ShopFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-      LayoutInflater layoutInflater = getLayoutInflater();
-      View view = layoutInflater.inflate(R.layout.shop_fragment, container, false);
-      recyclerViewNearbyPlace = view.findViewById(R.id.recycleViewNearbyPlace);
-      recyclerViewAllShop = view.findViewById(R.id.recycleViewAllShop);
+        LayoutInflater layoutInflater = getLayoutInflater();
+        View view = layoutInflater.inflate(R.layout.shop_fragment, container, false);
+        recyclerViewNearbyPlace = view.findViewById(R.id.recycleViewNearbyPlace);
+        recyclerViewAllShop = view.findViewById(R.id.recycleViewAllShop);
 
-      list = new ArrayList<>();
-      products = new ArrayList<>();
+        list = new ArrayList<>();
+        products = new ArrayList<>();
 
         //init data
-        list.add(new Shop(1,"Tân Bình District","Lorem Ipsum has been the industry standard dummy text ever since ...","",products, 1, 1));
-        list.add(new Shop(1,"Tân Bình District","Lorem Ipsum has been the industry standard dummy text ever since ...","",products, 1, 1));
-        list.add(new Shop(1,"Tân Bình District","Lorem Ipsum has been the industry standard dummy text ever since ...","",products, 1, 1));
-        list.add(new Shop(1,"Tân Bình District","Lorem Ipsum has been the industry standard dummy text ever since ...","",products, 1, 1));
-        list.add(new Shop(1,"Tân Bình District","Lorem Ipsum has been the industry standard dummy text ever since ...","",products, 1, 1));
-        list.add(new Shop(1,"Tân Bình District","Lorem Ipsum has been the industry standard dummy text ever since ...","",products, 1, 1));
-        list.add(new Shop(1,"Tân Bình District","Lorem Ipsum has been the industry standard dummy text ever since ...","",products, 1, 1));
+        list.add(new Shop(1, "Tân Bình District", "Lorem Ipsum has been the industry standard dummy text ever since ...", "", products, 1, 1));
+        list.add(new Shop(1, "Tân Bình District", "Lorem Ipsum has been the industry standard dummy text ever since ...", "", products, 1, 1));
+        list.add(new Shop(1, "Tân Bình District", "Lorem Ipsum has been the industry standard dummy text ever since ...", "", products, 1, 1));
+        list.add(new Shop(1, "Tân Bình District", "Lorem Ipsum has been the industry standard dummy text ever since ...", "", products, 1, 1));
+        list.add(new Shop(1, "Tân Bình District", "Lorem Ipsum has been the industry standard dummy text ever since ...", "", products, 1, 1));
+        list.add(new Shop(1, "Tân Bình District", "Lorem Ipsum has been the industry standard dummy text ever since ...", "", products, 1, 1));
+        list.add(new Shop(1, "Tân Bình District", "Lorem Ipsum has been the industry standard dummy text ever since ...", "", products, 1, 1));
 
         //render
         renderPlace(recyclerViewNearbyPlace, list);
