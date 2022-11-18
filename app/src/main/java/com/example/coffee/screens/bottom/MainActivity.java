@@ -64,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.profile_icon:
                         replaceFragment(new ProfileFragment());
-
                         break;
                 }
                 return true;

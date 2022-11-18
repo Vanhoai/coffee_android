@@ -60,7 +60,7 @@ public class ProfileFragment extends Fragment {
     private static final int REQUEST_CODE = 10;
     private static final String TAG = ProfileFragment.class.getName();
 
-    LinearLayout linearAccount, linearHistory, linearPayment, linearBookmark, linearLogout, linearPrivacy;
+    LinearLayout linearAccount, linearHistory, linearPayment, linearBookmark, linearLogout;
     ImageView imageUploadAvatar;
     ImageView imageAvatar;
     TextView tvUsername;
@@ -137,7 +137,6 @@ public class ProfileFragment extends Fragment {
         linearAccount = view.findViewById(R.id.linearAccount);
         linearHistory = view.findViewById(R.id.linearHistory);
         linearPayment = view.findViewById(R.id.linearPayment);
-        linearPrivacy = view.findViewById(R.id.linearPrivacy);
         linearBookmark = view.findViewById(R.id.linearBookmark);
         linearLogout = view.findViewById(R.id.linearLogout);
         imageUploadAvatar = view.findViewById(R.id.imageUploadAvatar);
@@ -196,15 +195,6 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-            }
-        });
-
-        linearPrivacy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                Intent intent = new Intent(requireContext(), AccountActivity.class);
-//                requireContext().startActivity(intent);
-//                requireActivity().finish();
             }
         });
 
