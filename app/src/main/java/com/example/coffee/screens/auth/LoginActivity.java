@@ -97,6 +97,7 @@ public class LoginActivity extends AppCompatActivity {
     };
 
     public boolean saveUserToShareReference(User user) {
+        Logger.log("USER", user);
         Storage storage = new Storage(LoginActivity.this);
         Gson gson = new Gson();
         String json = gson.toJson(user);
