@@ -32,6 +32,7 @@
     </RelativeLayout>
 
     <ScrollView
+        android:layout_marginTop="24dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="none">
@@ -49,7 +50,6 @@
                     style="@style/textWeight"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="36dp"
                     android:text="Hottest Promo"
                     android:textColor="@color/darkColor"
                     android:textSize="18dp" />
@@ -91,7 +91,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
-                            android:layout_marginRight="16dp"
                             android:text="8/10"
                             android:textSize="14dp" />
 
@@ -102,16 +101,15 @@
                             android:layout_marginTop="20dp"
                             android:text="Buy 10 Coffees and get 1 Coffee for free"
                             android:textColor="@color/textColor"
-                            android:textSize="12dp" />
+                            android:textSize="14dp" />
 
                         <LinearLayout
+                            android:gravity="center_vertical"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentBottom="true"
-                            android:layout_marginTop="70dp">
+                            android:layout_marginTop="50dp">
 
                             <ImageView
-
                                 android:layout_width="14dp"
                                 android:layout_height="14dp"
                                 android:src="@drawable/time" />
@@ -120,7 +118,7 @@
                                 style="@style/textMedium"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="20dp"
+                                android:layout_marginLeft="8dp"
                                 android:text="Ends in 12 hours"
                                 android:textColor="@color/redColor"
                                 android:textSize="12dp" />
@@ -161,7 +159,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
-                            android:layout_marginRight="16dp"
                             android:text="8/10"
                             android:textSize="14dp" />
 
@@ -172,16 +169,15 @@
                             android:layout_marginTop="20dp"
                             android:text="Buy 10 Coffees and get 1 Coffee for free"
                             android:textColor="@color/textColor"
-                            android:textSize="12dp" />
+                            android:textSize="14dp" />
 
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentBottom="true"
-                            android:layout_marginTop="70dp">
+                            android:gravity="center_vertical"
+                            android:layout_marginTop="50dp">
 
                             <ImageView
-
                                 android:layout_width="14dp"
                                 android:layout_height="14dp"
                                 android:src="@drawable/time" />
@@ -190,7 +186,7 @@
                                 style="@style/textMedium"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="20dp"
+                                android:layout_marginLeft="8dp"
                                 android:text="Ends in 12 hours"
                                 android:textColor="@color/redColor"
                                 android:textSize="12dp" />

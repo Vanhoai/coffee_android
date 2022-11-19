@@ -18,10 +18,8 @@ import com.example.coffee.screens.bottom.MainActivity;
 import java.util.ArrayList;
 
 public class HistoryActivity extends AppCompatActivity {
-    private RecyclerView recyclerView;
-    private RecycleViewHistoryAdapter adapter;
-    private ArrayList<History> list = new ArrayList<>();
-
+    RecyclerView recyclerView;
+    ArrayList<History> histories;
     ImageView backNavigation;
 
     @SuppressLint("MissingInflatedId")
@@ -32,22 +30,20 @@ public class HistoryActivity extends AppCompatActivity {
 
         // mapping
         backNavigation = findViewById(R.id.backNavigation);
-
         recyclerView = findViewById(R.id.RecycleViewHistory);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-        adapter = new RecycleViewHistoryAdapter(this, list);
-        list.add(new History("22 August 2022, 10:00 AM", "Congratulation, you have successfully made a coffee purchase", "Aurora Coffee", "-50.000VND"));
-        list.add(new History("22 August 2022, 10:00 AM", "Congratulation, you have successfully made a coffee purchase", "Aurora Coffee", "-50.000VND"));
-        list.add(new History("22 August 2022, 10:00 AM", "Congratulation, you have successfully made a coffee purchase", "Aurora Coffee", "-50.000VND"));
-        list.add(new History("22 August 2022, 10:00 AM", "Congratulation, you have successfully made a coffee purchase", "Aurora Coffee", "-50.000VND"));
-        list.add(new History("22 August 2022, 10:00 AM", "Congratulation, you have successfully made a coffee purchase", "Aurora Coffee", "-50.000VND"));
-        list.add(new History("22 August 2022, 10:00 AM", "Congratulation, you have successfully made a coffee purchase", "Aurora Coffee", "-50.000VND"));
-        list.add(new History("22 August 2022, 10:00 AM", "Congratulation, you have successfully made a coffee purchase", "Aurora Coffee", "-50.000VND"));
-        list.add(new History("22 August 2022, 10:00 AM", "Congratulation, you have successfully made a coffee purchase", "Aurora Coffee", "-50.000VND"));
-        list.add(new History("22 August 2022, 10:00 AM", "Congratulation, you have successfully made a coffee purchase", "Aurora Coffee", "-50.000VND"));
-        list.add(new History("22 August 2022, 10:00 AM", "Congratulation, you have successfully made a coffee purchase", "Aurora Coffee", "-50.000VND"));
-        recyclerView.setAdapter(adapter);
+
+        histories = new ArrayList<>();
+        histories.add(new History("22 August 2022, 10:00 AM", "Congratulation, you have successfully made a coffee purchase", "Aurora Coffee", "-50.000VND"));
+        histories.add(new History("22 August 2022, 10:00 AM", "Congratulation, you have successfully made a coffee purchase", "Aurora Coffee", "-50.000VND"));
+        histories.add(new History("22 August 2022, 10:00 AM", "Congratulation, you have successfully made a coffee purchase", "Aurora Coffee", "-50.000VND"));
+        histories.add(new History("22 August 2022, 10:00 AM", "Congratulation, you have successfully made a coffee purchase", "Aurora Coffee", "-50.000VND"));
+        histories.add(new History("22 August 2022, 10:00 AM", "Congratulation, you have successfully made a coffee purchase", "Aurora Coffee", "-50.000VND"));
+        histories.add(new History("22 August 2022, 10:00 AM", "Congratulation, you have successfully made a coffee purchase", "Aurora Coffee", "-50.000VND"));
+        histories.add(new History("22 August 2022, 10:00 AM", "Congratulation, you have successfully made a coffee purchase", "Aurora Coffee", "-50.000VND"));
+        histories.add(new History("22 August 2022, 10:00 AM", "Congratulation, you have successfully made a coffee purchase", "Aurora Coffee", "-50.000VND"));
+        histories.add(new History("22 August 2022, 10:00 AM", "Congratulation, you have successfully made a coffee purchase", "Aurora Coffee", "-50.000VND"));
+        histories.add(new History("22 August 2022, 10:00 AM", "Congratulation, you have successfully made a coffee purchase", "Aurora Coffee", "-50.000VND"));
+        render(recyclerView, histories);
 
         backNavigation.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,5 +53,12 @@ public class HistoryActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    public void render(RecyclerView recyclerView, ArrayList<History> data) {
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(HistoryActivity.this);
+        recyclerView.setLayoutManager(layoutManager);
+        RecycleViewHistoryAdapter adapter = new RecycleViewHistoryAdapter(this, data);
+        recyclerView.setAdapter(adapter);
     }
 }

@@ -10,14 +10,9 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.example.coffee.R;
-import com.example.coffee.adapters.RecycleProductAdapter;
 import com.example.coffee.adapters.RecyclePromoAdapter;
-import com.example.coffee.models.Product.Comment;
-import com.example.coffee.models.Product.Product;
-import com.example.coffee.models.Product.Shop.Shop;
 import com.example.coffee.models.Shop.Mission;
 import com.example.coffee.screens.bottom.MainActivity;
-import com.example.coffee.screens.bottom.Shop.PlaceListActivity;
 
 import java.util.ArrayList;
 
@@ -43,9 +38,29 @@ public class PromoActivity extends AppCompatActivity {
             }
         });
         ArrayList<Mission> missions = new ArrayList<>();
-        missions.add(new Mission(1,"",1,1,""));
-        missions.add(new Mission(2,"",1,1,""));
-        missions.add(new Mission(3,"",1,1,""));
+        missions.add(new Mission(1,"Buy 10 Coffees and get 1 Coffee for free",9,10,"Free a coffee"));
+        missions.add(new Mission(2,"Buy 10 Coffees and get 1 Coffee for free",0,8,"Free a coffee"));
+        missions.add(new Mission(3,"Buy 10 Coffees and get 1 Coffee for free",8,12,"Free a coffee"));
+        missions.add(new Mission(3,"Buy 10 Coffees and get 1 Coffee for free",8,12,"Free a coffee"));
+        missions.add(new Mission(3,"Buy 10 Coffees and get 1 Coffee for free",8,12,"Free a coffee"));
+        missions.add(new Mission(3,"Buy 10 Coffees and get 1 Coffee for free",8,12,"Free a coffee"));
+        missions.add(new Mission(3,"Buy 10 Coffees and get 1 Coffee for free",8,12,"Free a coffee"));
+        missions.add(new Mission(3,"Buy 10 Coffees and get 1 Coffee for free",8,12,"Free a coffee"));
+        missions.add(new Mission(3,"Buy 10 Coffees and get 1 Coffee for free",8,12,"Free a coffee"));
+        missions.add(new Mission(3,"Buy 10 Coffees and get 1 Coffee for free",8,12,"Free a coffee"));
+        missions.add(new Mission(3,"Buy 10 Coffees and get 1 Coffee for free",8,12,"Free a coffee"));
+        missions.add(new Mission(3,"Buy 10 Coffees and get 1 Coffee for free",8,12,"Free a coffee"));
+        missions.add(new Mission(3,"Buy 10 Coffees and get 1 Coffee for free",8,12,"Free a coffee"));
+        missions.add(new Mission(3,"Buy 10 Coffees and get 1 Coffee for free",8,12,"Free a coffee"));
+        missions.add(new Mission(3,"Buy 10 Coffees and get 1 Coffee for free",8,12,"Free a coffee"));
+        missions.add(new Mission(3,"Buy 10 Coffees and get 1 Coffee for free",8,12,"Free a coffee"));
+        missions.add(new Mission(3,"Buy 10 Coffees and get 1 Coffee for free",8,12,"Free a coffee"));
+        missions.add(new Mission(3,"Buy 10 Coffees and get 1 Coffee for free",8,12,"Free a coffee"));
+        missions.add(new Mission(3,"Buy 10 Coffees and get 1 Coffee for free",8,12,"Free a coffee"));
+
+
+
+
 
 
         renderPromo(recyclePromo,missions);

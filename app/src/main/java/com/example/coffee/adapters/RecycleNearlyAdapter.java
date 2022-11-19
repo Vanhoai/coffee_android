@@ -14,7 +14,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.coffee.R;
-import com.example.coffee.models.Product.Shop.Shop;
+import com.example.coffee.models.Shop.Shop;
 import com.example.coffee.screens.bottom.Shop.DetailPlaceActivity;
 
 import java.util.ArrayList;

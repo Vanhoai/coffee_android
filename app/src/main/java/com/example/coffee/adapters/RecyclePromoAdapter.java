@@ -40,8 +40,8 @@ public class RecyclePromoAdapter extends RecyclerView.Adapter<RecyclePromoAdapte
         Mission mission = missions.get(position);
         holder.imagePromo.setImageResource(R.drawable.promo1);
         holder.tvDescription.setText(mission.getDescription());
-        holder.tvExpired.setText(String.valueOf(mission.getExpired()));
-        holder.tvCount.setText(String.valueOf(mission.getCount()));
+        holder.tvExpired.setText(String.format("Ends in %d hours", mission.getExpired()));
+        holder.tvCount.setText(String.format("%d/10", mission.getCount()));
         holder.tvName.setText(mission.getName());
         holder.cardPromo.setOnClickListener(new View.OnClickListener() {
             @Override

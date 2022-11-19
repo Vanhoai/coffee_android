@@ -1,4 +1,4 @@
-package com.example.coffee.models.Product.Shop;
+package com.example.coffee.models.Shop;
 
 import com.example.coffee.models.Product.Product;
 

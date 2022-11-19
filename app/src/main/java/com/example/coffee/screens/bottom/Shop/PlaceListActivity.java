@@ -1,32 +1,21 @@
 package com.example.coffee.screens.bottom.Shop;
 
-import static java.security.AccessController.getContext;
-
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.example.coffee.R;
-import com.example.coffee.adapters.RecycleNearlyAdapter;
 import com.example.coffee.adapters.RecycleProductAdapter;
 import com.example.coffee.models.Product.Comment;
 import com.example.coffee.models.Product.Product;
-import com.example.coffee.models.Product.Shop.Shop;
-import com.example.coffee.models.User.User;
+import com.example.coffee.models.Shop.Shop;
 import com.example.coffee.screens.bottom.MainActivity;
-import com.example.coffee.screens.bottom.Profile.HistoryActivity;
-import com.example.coffee.utils.Storage;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class PlaceListActivity extends AppCompatActivity {

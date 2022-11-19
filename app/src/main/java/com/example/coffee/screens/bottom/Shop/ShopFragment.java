@@ -2,7 +2,6 @@ package com.example.coffee.screens.bottom.Shop;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,17 +9,14 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.coffee.R;
 import com.example.coffee.adapters.RecycleNearlyAdapter;
-import com.example.coffee.adapters.RecycleProductAdapter;
 import com.example.coffee.adapters.RecycleViewAllShopAdapter;
-import com.example.coffee.adapters.RecycleViewHistoryAdapter;
 import com.example.coffee.models.Product.Product;
-import com.example.coffee.models.Product.Shop.Shop;
+import com.example.coffee.models.Shop.Shop;
 
 import java.util.ArrayList;
 

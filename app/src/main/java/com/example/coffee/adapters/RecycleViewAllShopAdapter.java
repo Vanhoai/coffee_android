@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.coffee.R;
-import com.example.coffee.models.Product.Shop.Shop;
+import com.example.coffee.models.Shop.Shop;
 
 import java.util.ArrayList;
 
