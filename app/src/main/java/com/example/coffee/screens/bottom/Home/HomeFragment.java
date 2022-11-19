@@ -60,7 +60,7 @@ public class HomeFragment extends Fragment {
 
         // set view
         User user = UserInformation.getUser(getContext());
-        @SuppressLint("DefaultLocale") String balance = String.format("%.0f VND",user.getBalance());
+        @SuppressLint("DefaultLocale") String balance = String.format("%.0f VND",user.getBalance().getAmount());
         tvBalance.setText(balance);
         return view;
     }
