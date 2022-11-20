@@ -44,7 +44,7 @@ public class RecycleViewAllShopAdapter extends RecyclerView.Adapter<RecycleViewA
         return list_shop.size();
     }
 
-    public class AllShopViewHolder extends RecyclerView.ViewHolder {
+    public static class AllShopViewHolder extends RecyclerView.ViewHolder {
         TextView tvNameShop,tvDescriptionShop;
         public AllShopViewHolder(@NonNull View itemView) {
             super(itemView);
