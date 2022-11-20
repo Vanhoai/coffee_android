@@ -15,11 +15,11 @@ import com.example.coffee.models.User.History;
 
 import java.util.ArrayList;
 
-public class RecycleViewHistoryAdapter extends RecyclerView.Adapter<RecycleViewHistoryAdapter.HistoryViewHolder> {
+public class RecycleHistoryAdapter extends RecyclerView.Adapter<RecycleHistoryAdapter.HistoryViewHolder> {
     private Context context;
     private ArrayList<History> list_history;
 
-    public RecycleViewHistoryAdapter(Context context, ArrayList<History> list_history) {
+    public RecycleHistoryAdapter(Context context, ArrayList<History> list_history) {
         this.context = context;
         this.list_history = list_history;
     }
@@ -47,7 +47,7 @@ public class RecycleViewHistoryAdapter extends RecyclerView.Adapter<RecycleViewH
         return list_history.size();
     }
 
-    public class HistoryViewHolder extends RecyclerView.ViewHolder {
+    public static class HistoryViewHolder extends RecyclerView.ViewHolder {
         TextView tvNameHistory, tvPriceHistory, tvDerscriptionHistory, tvDateHistory;
         public HistoryViewHolder(@NonNull View itemView) {
             super(itemView);
