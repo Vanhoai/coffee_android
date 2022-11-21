@@ -233,7 +233,7 @@
                     android:layout_height="match_parent"/>
 
                 <TextView
-                    android:id="@+id/tvView"
+                    android:id="@+id/tvViewAll"
                     android:gravity="bottom"
                     android:layout_alignParentEnd="true"
                     android:text="View All"
@@ -246,6 +246,7 @@
             </RelativeLayout>
 
             <LinearLayout
+                android:id="@+id/linearMyReward"
                 android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -349,7 +350,7 @@
                         android:layout_height="match_parent"/>
 
                     <TextView
-                        android:id="@+id/tvViewAll_BestSeller"
+                        android:id="@+id/tvViewAllBestSeller"
                         android:gravity="bottom"
                         android:layout_alignParentEnd="true"
                         android:text="View All"

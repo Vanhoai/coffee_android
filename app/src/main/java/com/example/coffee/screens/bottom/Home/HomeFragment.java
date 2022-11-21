@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -29,6 +30,7 @@ import com.example.coffee.models.User.User;
 import com.example.coffee.screens.bottom.Profile.HistoryActivity;
 import com.example.coffee.screens.bottom.Profile.RewardDetailActivity;
 import com.example.coffee.screens.bottom.Profile.TopUpActivity;
+import com.example.coffee.screens.bottom.Shop.PlaceListActivity;
 import com.example.coffee.services.ProductService;
 import com.example.coffee.services.ShopService;
 import com.example.coffee.utils.Logger;
@@ -45,6 +47,7 @@ public class HomeFragment extends Fragment {
     ImageView imagePromo;
     ImageView imageHistory;
     TextView tvBalance;
+    TextView tvViewAllBestSeller;
     ShopService shopService;
     ProductService productService;
     ArrayList<Product> products;
@@ -123,7 +126,8 @@ public class HomeFragment extends Fragment {
         imagePromo = view.findViewById(R.id.imagePromo);
         imageHistory = view.findViewById(R.id.imageHistory);
         tvBalance = view.findViewById(R.id.tvBalance);
-        tvView = view.findViewById(R.id.tvView);
+        tvView = view.findViewById(R.id.tvViewAll);
+        tvViewAllBestSeller = view.findViewById(R.id.tvViewAllBestSeller);
     }
 
     public void handleOnClick () {
@@ -166,6 +170,14 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), RewardDetailActivity.class);
+                startActivity(intent);
+                requireActivity().finish();
+            }
+        });
+        tvViewAllBestSeller.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), PlaceListActivity.class);
                 startActivity(intent);
                 requireActivity().finish();
             }
