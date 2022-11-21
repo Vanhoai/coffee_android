@@ -14,16 +14,10 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.ea.async.shaded.org.objectweb.asm.Handle;
 import com.example.coffee.R;
 import com.example.coffee.adapters.RecycleNearlyAdapter;
 import com.example.coffee.adapters.RecycleAllShopAdapter;
-<<<<<<< HEAD
 import com.example.coffee.callbacks.ShopCallback;
-=======
->>>>>>> f502e4709d88377758c07595d06b704c6dde1d84
-import com.example.coffee.models.Product.Product;
 import com.example.coffee.models.Shop.Shop;
 import com.example.coffee.models.Shop.ShopResponse;
 import com.example.coffee.screens.bottom.Home.PromoActivity;
@@ -54,26 +48,17 @@ public class ShopFragment extends Fragment {
         //init view
         init(view);
 
-<<<<<<< HEAD
         // init data
         shopsNearby = new ArrayList<>();
         shopsAllShop = new ArrayList<>();
         shopService = new ShopService();
-=======
-        //init data
-//        list.add(new Shop(1, "Tân Bình District", "Lorem Ipsum has been the industry standard dummy text ever since ...", "", 1, 1));
-//        list.add(new Shop(1, "Tân Bình District", "Lorem Ipsum has been the industry standard dummy text ever since ...", "", 1, 1));
-//        list.add(new Shop(1, "Tân Bình District", "Lorem Ipsum has been the industry standard dummy text ever since ...", "", 1, 1));
-//        list.add(new Shop(1, "Tân Bình District", "Lorem Ipsum has been the industry standard dummy text ever since ...", "", 1, 1));
-//        list.add(new Shop(1, "Tân Bình District", "Lorem Ipsum has been the industry standard dummy text ever since ...", "", 1, 1));
-//        list.add(new Shop(1, "Tân Bình District", "Lorem Ipsum has been the industry standard dummy text ever since ...", "", 1, 1));
-//        list.add(new Shop(1, "Tân Bình District", "Lorem Ipsum has been the industry standard dummy text ever since ...", "", 1, 1));
->>>>>>> f502e4709d88377758c07595d06b704c6dde1d84
 
         initShop();
         initAllShop();
-        return view;
 
+        handleOnClick();
+
+        return view;
     }
 
     @Override
@@ -88,7 +73,7 @@ public class ShopFragment extends Fragment {
         tvViewAllShop = view.findViewById(R.id.tvViewAllShop);
         tvViewAllNearby = view.findViewById(R.id.tvViewAllNearby);
     }
-    public void HandleOnClick(){
+    public void handleOnClick(){
         tvViewAllShop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -133,7 +118,7 @@ public class ShopFragment extends Fragment {
         shopService.getAllShop(new ShopCallback() {
             @Override
             public void onSuccess(boolean value, ShopResponse shopResponse) {
-                Logger.log("ALLSHOPS", shopResponse);
+                Logger.log("ALL SHOPS", shopResponse);
                 shopsAllShop.addAll(shopResponse.getShops());
                 renderAllShop(recyclerViewAllShop, shopsAllShop);
             }
