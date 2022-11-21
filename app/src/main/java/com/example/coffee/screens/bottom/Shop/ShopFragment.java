@@ -1,10 +1,13 @@
 package com.example.coffee.screens.bottom.Shop;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,19 +15,34 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.ea.async.shaded.org.objectweb.asm.Handle;
 import com.example.coffee.R;
 import com.example.coffee.adapters.RecycleNearlyAdapter;
-import com.example.coffee.adapters.RecycleViewAllShopAdapter;
+import com.example.coffee.adapters.RecycleAllShopAdapter;
+<<<<<<< HEAD
+import com.example.coffee.callbacks.ShopCallback;
+=======
+>>>>>>> f502e4709d88377758c07595d06b704c6dde1d84
 import com.example.coffee.models.Product.Product;
 import com.example.coffee.models.Shop.Shop;
+import com.example.coffee.models.Shop.ShopResponse;
+import com.example.coffee.screens.bottom.Home.PromoActivity;
+import com.example.coffee.services.ShopService;
+import com.example.coffee.utils.Logger;
 
+import java.security.PublicKey;
 import java.util.ArrayList;
 
 public class ShopFragment extends Fragment {
-    private RecyclerView recyclerViewNearbyPlace;
-    private RecyclerView recyclerViewAllShop;
-    private ArrayList<Shop> list;
-    private ArrayList<Product> products;
+    RecyclerView recyclerViewNearbyPlace;
+    RecyclerView recyclerViewAllShop;
+    TextView tvViewAllHottest;
+    TextView tvViewAllShop;
+    TextView tvViewAllNearby;
+    ShopService shopService;
+    ArrayList<Shop> shopsNearby;
+    ArrayList<Shop> shopsAllShop;
+
 
     @SuppressLint("MissingInflatedId")
     @Nullable
@@ -32,24 +50,28 @@ public class ShopFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         LayoutInflater layoutInflater = getLayoutInflater();
         View view = layoutInflater.inflate(R.layout.shop_fragment, container, false);
-        recyclerViewNearbyPlace = view.findViewById(R.id.recycleViewNearbyPlace);
-        recyclerViewAllShop = view.findViewById(R.id.recycleViewAllShop);
 
-        list = new ArrayList<>();
-        products = new ArrayList<>();
+        //init view
+        init(view);
 
+<<<<<<< HEAD
+        // init data
+        shopsNearby = new ArrayList<>();
+        shopsAllShop = new ArrayList<>();
+        shopService = new ShopService();
+=======
         //init data
-        list.add(new Shop(1, "Tân Bình District", "Lorem Ipsum has been the industry standard dummy text ever since ...", "", 1, 1));
-        list.add(new Shop(1, "Tân Bình District", "Lorem Ipsum has been the industry standard dummy text ever since ...", "", 1, 1));
-        list.add(new Shop(1, "Tân Bình District", "Lorem Ipsum has been the industry standard dummy text ever since ...", "", 1, 1));
-        list.add(new Shop(1, "Tân Bình District", "Lorem Ipsum has been the industry standard dummy text ever since ...", "", 1, 1));
-        list.add(new Shop(1, "Tân Bình District", "Lorem Ipsum has been the industry standard dummy text ever since ...", "", 1, 1));
-        list.add(new Shop(1, "Tân Bình District", "Lorem Ipsum has been the industry standard dummy text ever since ...", "", 1, 1));
-        list.add(new Shop(1, "Tân Bình District", "Lorem Ipsum has been the industry standard dummy text ever since ...", "", 1, 1));
+//        list.add(new Shop(1, "Tân Bình District", "Lorem Ipsum has been the industry standard dummy text ever since ...", "", 1, 1));
+//        list.add(new Shop(1, "Tân Bình District", "Lorem Ipsum has been the industry standard dummy text ever since ...", "", 1, 1));
+//        list.add(new Shop(1, "Tân Bình District", "Lorem Ipsum has been the industry standard dummy text ever since ...", "", 1, 1));
+//        list.add(new Shop(1, "Tân Bình District", "Lorem Ipsum has been the industry standard dummy text ever since ...", "", 1, 1));
+//        list.add(new Shop(1, "Tân Bình District", "Lorem Ipsum has been the industry standard dummy text ever since ...", "", 1, 1));
+//        list.add(new Shop(1, "Tân Bình District", "Lorem Ipsum has been the industry standard dummy text ever since ...", "", 1, 1));
+//        list.add(new Shop(1, "Tân Bình District", "Lorem Ipsum has been the industry standard dummy text ever since ...", "", 1, 1));
+>>>>>>> f502e4709d88377758c07595d06b704c6dde1d84
 
-        //render
-        renderPlace(recyclerViewNearbyPlace, list);
-        renderAllShop(recyclerViewAllShop, list);
+        initShop();
+        initAllShop();
         return view;
 
     }
@@ -57,6 +79,70 @@ public class ShopFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+    }
+
+    public void init(View view){
+        recyclerViewNearbyPlace = view.findViewById(R.id.recycleViewNearbyPlace);
+        recyclerViewAllShop = view.findViewById(R.id.recycleViewAllShop);
+        tvViewAllHottest = view.findViewById(R.id.tvViewAllHottest);
+        tvViewAllShop = view.findViewById(R.id.tvViewAllShop);
+        tvViewAllNearby = view.findViewById(R.id.tvViewAllNearby);
+    }
+    public void HandleOnClick(){
+        tvViewAllShop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), PlaceListActivity.class);
+                startActivity(intent);
+            }
+        });
+        tvViewAllHottest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), PromoActivity.class);
+                startActivity(intent);
+            }
+        });
+        tvViewAllNearby.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), PlaceListActivity.class);
+                startActivity(intent);
+            }
+        });
+
+    }
+
+    public void initShop() {
+        shopService.getShops(5, 0, "ASC", "id", new ShopCallback() {
+            @Override
+            public void onSuccess(boolean value, ShopResponse shopResponse) {
+                Logger.log("SHOPS", shopResponse);
+                shopsNearby.addAll(shopResponse.getShops());
+                renderPlace(recyclerViewNearbyPlace, shopsNearby);
+            }
+
+            @Override
+            public void onFailed(boolean value) {
+                Logger.log("RESPONSE", "ERROR");
+            }
+        });
+    }
+
+    public void initAllShop(){
+        shopService.getAllShop(new ShopCallback() {
+            @Override
+            public void onSuccess(boolean value, ShopResponse shopResponse) {
+                Logger.log("ALLSHOPS", shopResponse);
+                shopsAllShop.addAll(shopResponse.getShops());
+                renderAllShop(recyclerViewAllShop, shopsAllShop);
+            }
+
+            @Override
+            public void onFailed(boolean value) {
+                Logger.log("RESPONSE", "ERROR");
+            }
+        });
     }
 
 
@@ -75,7 +161,7 @@ public class ShopFragment extends Fragment {
             }
         };
         recyclerViewAllShop.setLayoutManager(linearLayoutManager);
-        RecycleViewAllShopAdapter adapter = new RecycleViewAllShopAdapter(getContext(), data);
+        RecycleAllShopAdapter adapter = new RecycleAllShopAdapter(getContext(), data);
         recyclerViewAllShop.setAdapter(adapter);
     }
 }
