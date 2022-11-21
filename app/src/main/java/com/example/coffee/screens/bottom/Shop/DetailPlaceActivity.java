@@ -13,7 +13,7 @@ import android.widget.ImageView;
 import com.example.coffee.R;
 import com.example.coffee.adapters.RecycleProductDetailAdapter;
 import com.example.coffee.models.Product.Product;
-import com.example.coffee.models.Product.Shop.Shop;
+import com.example.coffee.models.Shop.Shop;
 import com.example.coffee.screens.bottom.MainActivity;
 import com.example.coffee.screens.bottom.Product.CheckOutActivity;
 
@@ -40,8 +40,6 @@ public class DetailPlaceActivity extends AppCompatActivity {
         // init shared data
         products = new ArrayList<>();
 
-        // get data
-        getData();
 
         // set view
         render(products);
@@ -67,17 +65,6 @@ public class DetailPlaceActivity extends AppCompatActivity {
                 finish();
             }
         });
-    }
-
-    public void getData() {
-        try {
-            Intent intent = getIntent();
-            Bundle bundle = intent.getExtras();
-            shop = (Shop) bundle.getSerializable("shop");
-            products.addAll(shop.getProducts());
-        } catch (Exception exception) {
-            exception.printStackTrace();
-        }
     }
 
     public void render(ArrayList<Product> data) {

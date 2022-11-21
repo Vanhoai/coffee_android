@@ -1,40 +1,18 @@
 package com.example.coffee.models.User;
 
+import com.example.coffee.utils.HttpResponse;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-public class UserResponse implements Serializable {
-
-    @SerializedName("message")
-    private String message;
-
-    @SerializedName("code")
-    private int code;
+public class UserResponse extends HttpResponse implements Serializable{
 
     @SerializedName("data")
     private User user;
 
     public UserResponse(String message, int code, User user) {
-        this.message = message;
-        this.code = code;
+        super(message, code);
         this.user = user;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
     }
 
     public User getUser() {
@@ -48,9 +26,7 @@ public class UserResponse implements Serializable {
     @Override
     public String toString() {
         return "UserResponse{" +
-                "message='" + message + '\'' +
-                ", code=" + code +
-                ", user=" + user +
+                "user=" + user +
                 '}';
     }
 }

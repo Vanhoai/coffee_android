@@ -363,7 +363,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycleViewBestSeller"
                     android:layout_width="match_parent"
-                    android:layout_height="900dp"
+                    android:layout_height="920dp"
                     android:paddingVertical="8dp" />
 
                 <Space

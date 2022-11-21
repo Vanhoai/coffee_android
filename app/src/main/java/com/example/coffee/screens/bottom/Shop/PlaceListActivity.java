@@ -1,32 +1,21 @@
 package com.example.coffee.screens.bottom.Shop;
 
-import static java.security.AccessController.getContext;
-
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.example.coffee.R;
-import com.example.coffee.adapters.RecycleNearlyAdapter;
 import com.example.coffee.adapters.RecycleProductAdapter;
 import com.example.coffee.models.Product.Comment;
 import com.example.coffee.models.Product.Product;
-import com.example.coffee.models.Product.Shop.Shop;
-import com.example.coffee.models.User.User;
+import com.example.coffee.models.Shop.Shop;
 import com.example.coffee.screens.bottom.MainActivity;
-import com.example.coffee.screens.bottom.Profile.HistoryActivity;
-import com.example.coffee.utils.Storage;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class PlaceListActivity extends AppCompatActivity {
@@ -53,30 +42,17 @@ public class PlaceListActivity extends AppCompatActivity {
             }
         });
 
-        ArrayList<Product> products = new ArrayList<>();
-        ArrayList<Comment> comments = new ArrayList<>();
-        comments.add(new Comment());
-        comments.add(new Comment());
-        comments.add(new Comment());
-        comments.add(new Comment());
-
-        products.add(new Product(1, "The Coffee Storm", "", 25000, 100, 100, comments));
-        products.add(new Product(1, "The Coffee Storm", "", 25000, 100, 100, comments));
-        products.add(new Product(1, "The Coffee Storm", "", 25000, 100, 100, comments));
-        products.add(new Product(1, "The Coffee Storm", "", 25000, 100, 100, comments));
-        products.add(new Product(1, "The Coffee Storm", "", 25000, 100, 100, comments));
-
         ArrayList<Shop> shops = new ArrayList<>();
-        shops.add(new Shop(1, "Tân Bình Ditrict", "", "", products, 1, 1));
-        shops.add(new Shop(1, "Tân Bình Ditrict", "", "", products, 1, 1));
-        shops.add(new Shop(1, "Tân Bình Ditrict", "", "", products, 1, 1));
-        shops.add(new Shop(1, "Tân Bình Ditrict", "", "", products, 1, 1));
-        shops.add(new Shop(1, "Tân Bình Ditrict", "", "", products, 1, 1));
 
+        shops.add(new Shop(1, "Tân Bình Ditrict", "", "", 1, 1));
+        shops.add(new Shop(1, "Tân Bình Ditrict", "", "", 1, 1));
+        shops.add(new Shop(1, "Tân Bình Ditrict", "", "", 1, 1));
+        shops.add(new Shop(1, "Tân Bình Ditrict", "", "", 1, 1));
+        shops.add(new Shop(1, "Tân Bình Ditrict", "", "", 1, 1));
+
+        ArrayList<Product> products = new ArrayList<>();
 
         renderProduct(recyclePlaceList, products);
-
-
     }
 
     public void renderProduct(RecyclerView recyclerView, ArrayList<Product> data) {
