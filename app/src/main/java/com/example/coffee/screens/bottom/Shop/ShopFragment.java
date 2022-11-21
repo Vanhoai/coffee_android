@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.coffee.R;
 import com.example.coffee.adapters.RecycleNearlyAdapter;
-import com.example.coffee.adapters.RecycleViewAllShopAdapter;
+import com.example.coffee.adapters.RecycleAllShopAdapter;
 import com.example.coffee.models.Product.Product;
 import com.example.coffee.models.Shop.Shop;
 
@@ -75,7 +75,7 @@ public class ShopFragment extends Fragment {
             }
         };
         recyclerViewAllShop.setLayoutManager(linearLayoutManager);
-        RecycleViewAllShopAdapter adapter = new RecycleViewAllShopAdapter(getContext(), data);
+        RecycleAllShopAdapter adapter = new RecycleAllShopAdapter(getContext(), data);
         recyclerViewAllShop.setAdapter(adapter);
     }
 }
