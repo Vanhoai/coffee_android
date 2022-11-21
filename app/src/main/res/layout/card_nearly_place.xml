@@ -19,6 +19,7 @@
             android:translationZ="1dp"/>
 
         <ImageView
+            android:id="@+id/imageShop"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/rectangle"
@@ -32,20 +33,11 @@
             android:orientation="vertical"
             android:translationZ="2dp">
 
-            <TextView
-                android:id="@+id/tvPlaceName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Aurora Coffee"
-                style="@style/textMedium"
-                android:layout_marginBottom="8dp"
-                android:textSize="20dp"
-                android:textColor="@color/white"/>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
 
                 <ImageView
                     android:layout_width="24dp"
@@ -54,15 +46,26 @@
                     android:layout_marginRight="12dp"/>
 
                 <TextView
+                    android:id="@+id/tvPlaceName"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
+                    android:text="Aurora Coffee"
+                    style="@style/textMedium"
+                    android:textSize="20dp"
+                    android:textColor="@color/white"/>
+
+            </LinearLayout>
+
+                <TextView
                     android:id="@+id/tvPlaceLocation"
                     android:layout_weight="1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Tân Bình Ditrict"
                     style="@style/textMedium"
+                    android:textSize="13dp"
                     android:textColor="@color/white"/>
-
-            </LinearLayout>
 
         </LinearLayout>
 
