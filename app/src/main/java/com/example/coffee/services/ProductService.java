@@ -18,7 +18,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ProductService {
 
-    private  ProductInterfaceAPI API;
+    private final ProductInterfaceAPI API;
 
     public synchronized ProductInterfaceAPI getAPI() {return API;}
 
@@ -32,7 +32,29 @@ public class ProductService {
 
     public void getAllProduct(ProductCallback callback) {
         try {
-            getAPI().getProduct(5, 0, "ASC").enqueue(new Callback<ProductResponse>() {
+            getAPI().getAllProduct().enqueue(new Callback<ProductResponse>() {
+                @Override
+                public void onResponse(@NonNull Call<ProductResponse> call, @NonNull Response<ProductResponse> response) {
+                    if (response.code() == 200) {
+                        callback.onSuccess(true, response.body());
+                    } else {
+                        callback.onFailed(false);
+                    }
+                }
+
+                @Override
+                public void onFailure(@NonNull Call<ProductResponse> call, @NonNull Throwable throwable) {
+                    callback.onFailed(false);
+                }
+            });
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+    }
+
+    public void getProducts(int limit, int skip, String sort, String field, ProductCallback callback) {
+        try {
+            getAPI().getProduct(limit, skip, sort, field).enqueue(new Callback<ProductResponse>() {
                 @Override
                 public void onResponse(@NonNull Call<ProductResponse> call, @NonNull Response<ProductResponse> response) {
                     if (response.code() == 200) {
