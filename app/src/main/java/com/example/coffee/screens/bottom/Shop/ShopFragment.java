@@ -39,13 +39,13 @@ public class ShopFragment extends Fragment {
         products = new ArrayList<>();
 
         //init data
-        list.add(new Shop(1, "Tân Bình District", "Lorem Ipsum has been the industry standard dummy text ever since ...", "", 1, 1));
-        list.add(new Shop(1, "Tân Bình District", "Lorem Ipsum has been the industry standard dummy text ever since ...", "", 1, 1));
-        list.add(new Shop(1, "Tân Bình District", "Lorem Ipsum has been the industry standard dummy text ever since ...", "", 1, 1));
-        list.add(new Shop(1, "Tân Bình District", "Lorem Ipsum has been the industry standard dummy text ever since ...", "", 1, 1));
-        list.add(new Shop(1, "Tân Bình District", "Lorem Ipsum has been the industry standard dummy text ever since ...", "", 1, 1));
-        list.add(new Shop(1, "Tân Bình District", "Lorem Ipsum has been the industry standard dummy text ever since ...", "", 1, 1));
-        list.add(new Shop(1, "Tân Bình District", "Lorem Ipsum has been the industry standard dummy text ever since ...", "", 1, 1));
+//        list.add(new Shop(1, "Tân Bình District", "Lorem Ipsum has been the industry standard dummy text ever since ...", "", 1, 1));
+//        list.add(new Shop(1, "Tân Bình District", "Lorem Ipsum has been the industry standard dummy text ever since ...", "", 1, 1));
+//        list.add(new Shop(1, "Tân Bình District", "Lorem Ipsum has been the industry standard dummy text ever since ...", "", 1, 1));
+//        list.add(new Shop(1, "Tân Bình District", "Lorem Ipsum has been the industry standard dummy text ever since ...", "", 1, 1));
+//        list.add(new Shop(1, "Tân Bình District", "Lorem Ipsum has been the industry standard dummy text ever since ...", "", 1, 1));
+//        list.add(new Shop(1, "Tân Bình District", "Lorem Ipsum has been the industry standard dummy text ever since ...", "", 1, 1));
+//        list.add(new Shop(1, "Tân Bình District", "Lorem Ipsum has been the industry standard dummy text ever since ...", "", 1, 1));
 
         //render
         renderPlace(recyclerViewNearbyPlace, list);
