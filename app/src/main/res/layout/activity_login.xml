@@ -44,7 +44,7 @@
                 android:layout_marginBottom="24dp">
 
                 <EditText
-                    android:text="aurorastudyvn@gmail.com"
+                    android:text="hoaitv@gmail.com"
                     android:id="@+id/edtEmail"
                     style="@style/textWeight"
                     android:layout_width="match_parent"
