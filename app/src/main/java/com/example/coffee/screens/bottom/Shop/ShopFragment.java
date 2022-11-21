@@ -19,7 +19,10 @@ import com.ea.async.shaded.org.objectweb.asm.Handle;
 import com.example.coffee.R;
 import com.example.coffee.adapters.RecycleNearlyAdapter;
 import com.example.coffee.adapters.RecycleAllShopAdapter;
+<<<<<<< HEAD
 import com.example.coffee.callbacks.ShopCallback;
+=======
+>>>>>>> f502e4709d88377758c07595d06b704c6dde1d84
 import com.example.coffee.models.Product.Product;
 import com.example.coffee.models.Shop.Shop;
 import com.example.coffee.models.Shop.ShopResponse;
@@ -51,10 +54,21 @@ public class ShopFragment extends Fragment {
         //init view
         init(view);
 
+<<<<<<< HEAD
         // init data
         shopsNearby = new ArrayList<>();
         shopsAllShop = new ArrayList<>();
         shopService = new ShopService();
+=======
+        //init data
+//        list.add(new Shop(1, "Tân Bình District", "Lorem Ipsum has been the industry standard dummy text ever since ...", "", 1, 1));
+//        list.add(new Shop(1, "Tân Bình District", "Lorem Ipsum has been the industry standard dummy text ever since ...", "", 1, 1));
+//        list.add(new Shop(1, "Tân Bình District", "Lorem Ipsum has been the industry standard dummy text ever since ...", "", 1, 1));
+//        list.add(new Shop(1, "Tân Bình District", "Lorem Ipsum has been the industry standard dummy text ever since ...", "", 1, 1));
+//        list.add(new Shop(1, "Tân Bình District", "Lorem Ipsum has been the industry standard dummy text ever since ...", "", 1, 1));
+//        list.add(new Shop(1, "Tân Bình District", "Lorem Ipsum has been the industry standard dummy text ever since ...", "", 1, 1));
+//        list.add(new Shop(1, "Tân Bình District", "Lorem Ipsum has been the industry standard dummy text ever since ...", "", 1, 1));
+>>>>>>> f502e4709d88377758c07595d06b704c6dde1d84
 
         initShop();
         initAllShop();
