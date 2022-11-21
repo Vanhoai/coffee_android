@@ -40,10 +40,10 @@ public class GiftFragment extends Fragment {
         missions.add(new Mission(1,"Buy 10 Coffees and get 1 Coffee for free",9,10,"Free a coffee"));
         missions.add(new Mission(1,"Buy 10 Coffees and get 1 Coffee for free",9,10,"Free a coffee"));
         missions.add(new Mission(1,"Buy 10 Coffees and get 1 Coffee for free",9,10,"Free a coffee"));
+        missions.add(new Mission(1,"Buy 10 Coffees and get 1 Coffee for free",9,10,"Free a coffee"));
+        missions.add(new Mission(1,"Buy 10 Coffees and get 1 Coffee for free",9,10,"Free a coffee"));
 
         renderPromo(recyclerMission, missions);
-
-
         return view;
     }
 

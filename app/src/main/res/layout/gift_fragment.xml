@@ -4,7 +4,8 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:padding="20dp"
+    android:paddingHorizontal="20dp"
+    android:paddingTop="20dp"
     android:orientation="vertical">
 
     <LinearLayout
@@ -94,7 +95,7 @@
                 android:id="@+id/linearLayout2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="12dp"
                 android:orientation="horizontal"
                 app:layout_constraintTop_toBottomOf="@+id/linearExp">
 
@@ -199,7 +200,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_marginTop="38dp"
+                android:layout_marginTop="12dp"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -225,66 +226,71 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_marginTop="18dp"
-                android:padding="15dp"
-                android:background="@drawable/background_input"
+                android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
-                android:layout_height="110dp">
+                android:layout_height="100dp"
+                android:background="@drawable/background_input"
+                android:orientation="horizontal"
+                android:padding="12dp">
 
                 <ImageView
-                    android:layout_marginTop="14dp"
+                    android:id="@+id/imagePromo"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:layout_marginRight="12dp"
-                    android:src="@drawable/reward_type_1"
-                    android:layout_width="56dp"
-                    android:layout_height="56dp"/>
+                    android:src="@drawable/promo1" />
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="25% discount for all menus"
-                        style="@style/textWeight"
-                        android:textColor="@color/darkColor"
-                        android:textSize="16dp"
-                        android:layout_marginTop="4dp"/>
-
-                    <TextView
-                        android:text="25% discount for all menus during..."
-                        android:textSize="12dp"
-                        android:textColor="@color/textColor"
-                        android:layout_marginTop="1dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-
-                    <LinearLayout
+                        android:id="@+id/tvNamePromo"
+                        style="@style/textMedium"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_marginTop="16dp">
+                        android:text="Free a coffee"
+                        android:textColor="@color/darkColor"
+                        android:textSize="16dp" />
+
+                    <TextView
+                        android:id="@+id/tvDescription"
+                        style="@style/textMedium"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="Buy 10 Coffees and get 1 Coffee for free"
+                        android:textColor="@color/textColor"
+                        android:textSize="14dp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:layout_marginTop="50dp">
 
                         <ImageView
-                            android:layout_gravity="center"
-                            android:src="@drawable/time"
                             android:layout_width="14dp"
-                            android:layout_height="14dp"/>
+                            android:layout_height="14dp"
+                            android:src="@drawable/time" />
 
                         <TextView
-                            android:layout_marginLeft="11dp"
-                            android:text="Ends in 1 days"
+                            android:id="@+id/tvExpired"
+                            style="@style/textMedium"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:text="Ends in 12 hours"
                             android:textColor="@color/redColor"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                            android:textSize="12dp" />
                     </LinearLayout>
-                </LinearLayout>
+
+                </RelativeLayout>
+
             </LinearLayout>
 
             <LinearLayout
-                android:layout_marginTop="33dp"
+                android:layout_marginTop="12dp"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -304,7 +310,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="View All"
-                    android:textColor="#3EBF84"
+                    android:textColor="@color/primaryColor"
                     android:textSize="14dp" />
 
             </LinearLayout>
@@ -312,8 +318,8 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerMission"
                 android:layout_width="match_parent"
-                android:layout_height="450dp"
-                android:layout_marginTop="18dp" />
+                android:layout_height="500dp"
+                android:layout_marginTop="8dp"/>
 
         </LinearLayout>
     </ScrollView>
