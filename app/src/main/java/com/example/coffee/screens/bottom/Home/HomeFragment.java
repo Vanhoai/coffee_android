@@ -76,7 +76,7 @@ public class HomeFragment extends Fragment {
     }
 
     public void initShop() {
-        shopService.getAllShop(new ShopCallback() {
+        shopService.getShops(5, 0, "ASC", "id", new ShopCallback() {
             @Override
             public void onSuccess(boolean value, ShopResponse shopResponse) {
                 Logger.log("SHOPS", shopResponse);
@@ -92,7 +92,7 @@ public class HomeFragment extends Fragment {
     }
 
     public void initProduct() {
-        productService.getAllProduct(new ProductCallback() {
+        productService.getProducts(5, 0, "ASC", "id", new ProductCallback() {
             @Override
             public void onSuccess(boolean value, ProductResponse productResponse) {
                 Logger.log("PRODUCT", productResponse);

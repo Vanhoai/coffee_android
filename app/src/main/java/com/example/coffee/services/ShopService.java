@@ -33,7 +33,29 @@ public class ShopService {
 
     public void getAllShop(ShopCallback callback) {
         try {
-            getAPI().getShops(5, 0, "ASC").enqueue(new Callback<ShopResponse>() {
+            getAPI().getAllShop().enqueue(new Callback<ShopResponse>() {
+                @Override
+                public void onResponse(@NonNull Call<ShopResponse> call, @NonNull Response<ShopResponse> response) {
+                    if (response.code() == 200) {
+                        callback.onSuccess(true, response.body());
+                    } else {
+                        callback.onFailed(false);
+                    }
+                }
+
+                @Override
+                public void onFailure(@NonNull Call<ShopResponse> call, @NonNull Throwable throwable) {
+                    callback.onFailed(false);
+                }
+            });
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+    }
+
+    public void getShops(int limit, int skip, String sort, String field, ShopCallback callback) {
+        try {
+            getAPI().getShops(limit, skip, sort, field).enqueue(new Callback<ShopResponse>() {
                 @Override
                 public void onResponse(@NonNull Call<ShopResponse> call, @NonNull Response<ShopResponse> response) {
                     if (response.code() == 200) {

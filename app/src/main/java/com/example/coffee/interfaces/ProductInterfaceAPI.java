@@ -19,6 +19,7 @@ public interface ProductInterfaceAPI {
     Call<ProductResponse> getProduct(
         @Query("limit") int limit,
         @Query("skip") int skip,
-        @Query("sort") String sort
+        @Query("sort") String sort,
+        @Query("field") String field
     );
 }

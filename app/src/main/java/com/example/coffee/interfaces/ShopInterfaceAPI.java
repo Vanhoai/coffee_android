@@ -19,6 +19,7 @@ public interface ShopInterfaceAPI {
     Call<ShopResponse> getShops(
         @Query("limit") int limit,
         @Query("skip") int skip,
-        @Query("sort") String sort
+        @Query("sort") String sort,
+        @Query("field") String field
     );
 }
