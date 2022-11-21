@@ -1,4 +1,4 @@
-package com.example.coffee.fcm;
+package com.example.coffee.utils.fcm;
 
 import android.util.Log;
 

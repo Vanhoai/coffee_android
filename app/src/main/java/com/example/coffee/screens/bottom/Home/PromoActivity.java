@@ -27,7 +27,7 @@ public class PromoActivity extends AppCompatActivity {
 
         backNavigation = findViewById(R.id.backNavigation);
 
-        recyclePromo =findViewById(R.id.recyclePromo);
+        recyclePromo = findViewById(R.id.recyclePromo);
 
         backNavigation.setOnClickListener(new View.OnClickListener() {
             @Override
