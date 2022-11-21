@@ -33,7 +33,7 @@ public class ShopService {
 
     public void getAllShop(ShopCallback callback) {
         try {
-            getAPI().getAllShop().enqueue(new Callback<ShopResponse>() {
+            getAPI().getShops(5, 0, "ASC").enqueue(new Callback<ShopResponse>() {
                 @Override
                 public void onResponse(@NonNull Call<ShopResponse> call, @NonNull Response<ShopResponse> response) {
                     if (response.code() == 200) {

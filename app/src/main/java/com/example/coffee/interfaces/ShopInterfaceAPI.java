@@ -6,6 +6,7 @@ import com.example.coffee.models.Shop.ShopResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Query;
 
 public interface ShopInterfaceAPI {
 
@@ -13,4 +14,11 @@ public interface ShopInterfaceAPI {
 
     @GET("all")
     Call<ShopResponse> getAllShop();
+
+    @GET("?")
+    Call<ShopResponse> getShops(
+        @Query("limit") int limit,
+        @Query("skip") int skip,
+        @Query("sort") String sort
+    );
 }
