@@ -43,7 +43,7 @@
                 style="@style/textMedium"
                 android:text="Shipping Address"
                 android:textSize="18dp"
-                android:textColor="#000000"
+                android:textColor="@color/darkColor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 

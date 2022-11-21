@@ -2,6 +2,7 @@ package com.example.coffee.adapters;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.coffee.R;
 import com.example.coffee.models.Shop.Mission;
+import com.example.coffee.screens.bottom.Profile.RewardDetailActivity;
 
 import java.util.ArrayList;
 
@@ -46,7 +48,8 @@ public class RecyclePromoAdapter extends RecyclerView.Adapter<RecyclePromoAdapte
         holder.cardPromo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(context, RewardDetailActivity.class);
+                context.startActivity(intent);
             }
         });
     }
