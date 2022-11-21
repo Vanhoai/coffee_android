@@ -6,6 +6,7 @@ import com.example.coffee.models.Product.ProductResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Query;
 
 public interface ProductInterfaceAPI {
 
@@ -14,4 +15,10 @@ public interface ProductInterfaceAPI {
     @GET("all")
     Call<ProductResponse> getAllProduct();
 
+    @GET("?")
+    Call<ProductResponse> getProduct(
+        @Query("limit") int limit,
+        @Query("skip") int skip,
+        @Query("sort") String sort
+    );
 }

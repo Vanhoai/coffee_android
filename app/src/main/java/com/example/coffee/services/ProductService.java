@@ -32,7 +32,7 @@ public class ProductService {
 
     public void getAllProduct(ProductCallback callback) {
         try {
-            getAPI().getAllProduct().enqueue(new Callback<ProductResponse>() {
+            getAPI().getProduct(5, 0, "ASC").enqueue(new Callback<ProductResponse>() {
                 @Override
                 public void onResponse(@NonNull Call<ProductResponse> call, @NonNull Response<ProductResponse> response) {
                     if (response.code() == 200) {
