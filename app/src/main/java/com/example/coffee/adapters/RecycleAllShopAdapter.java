@@ -15,11 +15,11 @@ import com.example.coffee.models.Shop.Shop;
 
 import java.util.ArrayList;
 
-public class RecycleViewAllShopAdapter extends RecyclerView.Adapter<RecycleViewAllShopAdapter.AllShopViewHolder> {
+public class RecycleAllShopAdapter extends RecyclerView.Adapter<RecycleAllShopAdapter.AllShopViewHolder> {
     private Context context;
     private ArrayList<Shop> list_shop;
 
-    public RecycleViewAllShopAdapter(Context context, ArrayList<Shop> list_shop) {
+    public RecycleAllShopAdapter(Context context, ArrayList<Shop> list_shop) {
         this.context = context;
         this.list_shop = list_shop;
     }
