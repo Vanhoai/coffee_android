@@ -12,6 +12,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
+            android:id="@+id/backNavigation"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:backgroundTint="@color/hintText"

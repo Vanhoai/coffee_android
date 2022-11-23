@@ -42,30 +42,17 @@ public class PlaceListActivity extends AppCompatActivity {
             }
         });
 
-        ArrayList<Product> products = new ArrayList<>();
-        ArrayList<Comment> comments = new ArrayList<>();
-        comments.add(new Comment());
-        comments.add(new Comment());
-        comments.add(new Comment());
-        comments.add(new Comment());
-
-        products.add(new Product(1, "The Coffee Storm", "", 25000, 100, 100, comments));
-        products.add(new Product(1, "The Coffee Storm", "", 25000, 100, 100, comments));
-        products.add(new Product(1, "The Coffee Storm", "", 25000, 100, 100, comments));
-        products.add(new Product(1, "The Coffee Storm", "", 25000, 100, 100, comments));
-        products.add(new Product(1, "The Coffee Storm", "", 25000, 100, 100, comments));
-
         ArrayList<Shop> shops = new ArrayList<>();
-        shops.add(new Shop(1, "Tân Bình Ditrict", "", "", products, 1, 1));
-        shops.add(new Shop(1, "Tân Bình Ditrict", "", "", products, 1, 1));
-        shops.add(new Shop(1, "Tân Bình Ditrict", "", "", products, 1, 1));
-        shops.add(new Shop(1, "Tân Bình Ditrict", "", "", products, 1, 1));
-        shops.add(new Shop(1, "Tân Bình Ditrict", "", "", products, 1, 1));
 
+        shops.add(new Shop(1, "Tân Bình Ditrict", "", "", 1, 1));
+        shops.add(new Shop(1, "Tân Bình Ditrict", "", "", 1, 1));
+        shops.add(new Shop(1, "Tân Bình Ditrict", "", "", 1, 1));
+        shops.add(new Shop(1, "Tân Bình Ditrict", "", "", 1, 1));
+        shops.add(new Shop(1, "Tân Bình Ditrict", "", "", 1, 1));
+
+        ArrayList<Product> products = new ArrayList<>();
 
         renderProduct(recyclePlaceList, products);
-
-
     }
 
     public void renderProduct(RecyclerView recyclerView, ArrayList<Product> data) {

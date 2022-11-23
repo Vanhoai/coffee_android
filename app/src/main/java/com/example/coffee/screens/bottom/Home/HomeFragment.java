@@ -15,16 +15,23 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.coffee.R;
 import com.example.coffee.adapters.RecycleNearlyAdapter;
 import com.example.coffee.adapters.RecycleProductAdapter;
+import com.example.coffee.callbacks.ProductCallback;
+import com.example.coffee.callbacks.ShopCallback;
 import com.example.coffee.models.Product.Product;
 
+import com.example.coffee.models.Product.ProductResponse;
 import com.example.coffee.models.Shop.Shop;
 
 
+import com.example.coffee.models.Shop.ShopResponse;
 import com.example.coffee.models.User.User;
 
 import com.example.coffee.screens.bottom.Profile.HistoryActivity;
 import com.example.coffee.screens.bottom.Profile.RewardDetailActivity;
 import com.example.coffee.screens.bottom.Profile.TopUpActivity;
+import com.example.coffee.services.ProductService;
+import com.example.coffee.services.ShopService;
+import com.example.coffee.utils.Logger;
 import com.example.coffee.utils.UserInformation;
 
 import java.util.ArrayList;
@@ -38,6 +45,8 @@ public class HomeFragment extends Fragment {
     ImageView imagePromo;
     ImageView imageHistory;
     TextView tvBalance;
+    ShopService shopService;
+    ProductService productService;
     ArrayList<Product> products;
     ArrayList<Shop> shops;
 
@@ -53,16 +62,49 @@ public class HomeFragment extends Fragment {
         // init data
         shops = new ArrayList<>();
         products = new ArrayList<>();
+        shopService = new ShopService();
+        productService = new ProductService();
 
-        // render
-        renderPlace(recycleViewNearbyPlace, shops);
-        renderProduct(recycleViewBestSeller, products);
+        initShop();
+        initProduct();
 
         // set view
         User user = UserInformation.getUser(getContext());
-        @SuppressLint("DefaultLocale") String balance = String.format("%.0f VND",user.getBalance());
+        @SuppressLint("DefaultLocale") String balance = String.format("%.0f VND",user.getBalance().getAmount());
         tvBalance.setText(balance);
         return view;
+    }
+
+    public void initShop() {
+        shopService.getShops(5, 0, "ASC", "id", new ShopCallback() {
+            @Override
+            public void onSuccess(boolean value, ShopResponse shopResponse) {
+                Logger.log("SHOPS", shopResponse);
+                shops.addAll(shopResponse.getShops());
+                renderPlace(recycleViewNearbyPlace, shops);
+            }
+
+            @Override
+            public void onFailed(boolean value) {
+                Logger.log("RESPONSE", "ERROR");
+            }
+        });
+    }
+
+    public void initProduct() {
+        productService.getProducts(5, 0, "ASC", "id", new ProductCallback() {
+            @Override
+            public void onSuccess(boolean value, ProductResponse productResponse) {
+                Logger.log("PRODUCT", productResponse);
+                products.addAll(productResponse.getProducts());
+                renderProduct(recycleViewBestSeller, products);
+            }
+
+            @Override
+            public void onFailed(boolean value) {
+                Logger.log("RESPONSE", "ERROR");
+            }
+        });
     }
 
     @Override

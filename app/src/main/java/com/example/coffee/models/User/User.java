@@ -22,7 +22,7 @@ public class User implements Serializable {
     private String typeAccount;
     
     @SerializedName("balance")
-    private float balance;
+    private Balance balance;
     
     @SerializedName("exp")
     private int exp;
@@ -41,9 +41,9 @@ public class User implements Serializable {
     
     @SerializedName("refreshToken")
     private String refreshToken;
-    
 
-    public User(int id, String username, String email, String role, String typeAccount, float balance, int exp, String image, int history, int favorite, String accessToken, String refreshToken) {
+
+    public User(int id, String username, String email, String role, String typeAccount, Balance balance, int exp, String image, int history, int favorite, String accessToken, String refreshToken) {
         this.id = id;
         this.username = username;
         this.email = email;
@@ -98,11 +98,11 @@ public class User implements Serializable {
         this.typeAccount = typeAccount;
     }
 
-    public float getBalance() {
+    public Balance getBalance() {
         return balance;
     }
 
-    public void setBalance(float balance) {
+    public void setBalance(Balance balance) {
         this.balance = balance;
     }
 

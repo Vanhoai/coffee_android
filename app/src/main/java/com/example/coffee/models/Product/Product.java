@@ -1,29 +1,39 @@
 package com.example.coffee.models.Product;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Product implements Serializable {
+
+    @SerializedName("id")
     private int id;
+
+    @SerializedName("name")
     private String name;
+
+    @SerializedName("image")
     private String image;
+
+    @SerializedName("price")
     private float price;
+
+    @SerializedName("explored")
     private int explored;
+
+    @SerializedName("quantity")
     private int quantity;
+
     private int current;
-    private ArrayList<Comment> comments;
 
-    public Product(int id, String name, String image, float price, int explored, int quantity, ArrayList<Comment> comments) {
-        this.id = id;
-        this.name = name;
-        this.image = image;
-        this.price = price;
-        this.explored = explored;
-        this.quantity = quantity;
-        this.comments = comments;
-    }
+    @SerializedName("rating")
+    private float rating;
 
-    public Product(int id, String name, String image, float price, int explored, int quantity, int current, ArrayList<Comment> comments) {
+    @SerializedName("description")
+    private String description;
+
+    public Product(int id, String name, String image, float price, int explored, int quantity, int current, float rating, String description) {
         this.id = id;
         this.name = name;
         this.image = image;
@@ -31,7 +41,8 @@ public class Product implements Serializable {
         this.explored = explored;
         this.quantity = quantity;
         this.current = current;
-        this.comments = comments;
+        this.rating = rating;
+        this.description = description;
     }
 
     public int getId() {
@@ -82,20 +93,28 @@ public class Product implements Serializable {
         this.quantity = quantity;
     }
 
-    public ArrayList<Comment> getComments() {
-        return comments;
-    }
-
-    public void setComments(ArrayList<Comment> comments) {
-        this.comments = comments;
-    }
-
     public int getCurrent() {
         return current;
     }
 
     public void setCurrent(int current) {
         this.current = current;
+    }
+
+    public float getRating() {
+        return rating;
+    }
+
+    public void setRating(float rating) {
+        this.rating = rating;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Override
@@ -108,7 +127,8 @@ public class Product implements Serializable {
                 ", explored=" + explored +
                 ", quantity=" + quantity +
                 ", current=" + current +
-                ", comments=" + comments +
+                ", rating=" + rating +
+                ", description='" + description + '\'' +
                 '}';
     }
 }
