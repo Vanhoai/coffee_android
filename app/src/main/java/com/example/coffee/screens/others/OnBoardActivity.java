@@ -11,7 +11,7 @@ import android.os.Looper;
 import android.view.View;
 
 import com.example.coffee.R;
-import com.example.coffee.adapters.SlideOnBoardAdapter;
+import com.example.coffee.app.adapters.SlideOnBoardAdapter;
 import com.example.coffee.models.Others.SliderImage;
 import com.example.coffee.screens.auth.LoginActivity;
 

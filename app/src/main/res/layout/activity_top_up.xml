@@ -56,6 +56,7 @@
                 android:layout_marginTop="20dp">
 
                 <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn50"
                     app:backgroundTint="@null"
                     android:text="50.000 VND"
                     style="@style/textWeight"
@@ -67,15 +68,16 @@
                     android:textColor="@color/white"/>
 
                 <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn100"
                     app:backgroundTint="@null"
                     android:text="100.000 VND"
                     android:layout_marginLeft="8dp"
                     style="@style/textWeight"
-                    android:background="@drawable/background_button"
+                    android:background="@drawable/background_input"
                     android:layout_width="match_parent"
                     android:layout_height="56dp"
                     android:layout_weight="1"
-                    android:textColor="@color/white"/>
+                    android:textColor="@color/black"/>
             </LinearLayout>
 
             <LinearLayout
@@ -85,26 +87,28 @@
                 android:layout_marginTop="20dp">
 
                 <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn200"
                     app:backgroundTint="@null"
                     android:text="200.000 VND"
                     style="@style/textWeight"
-                    android:background="@drawable/background_button"
+                    android:background="@drawable/background_input"
                     android:layout_width="match_parent"
                     android:layout_height="56dp"
                     android:layout_weight="1"
                     android:layout_marginRight="8dp"
-                    android:textColor="@color/white"/>
+                    android:textColor="@color/black"/>
 
                 <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn250"
                     app:backgroundTint="@null"
                     android:text="250.000 VND"
                     android:layout_marginLeft="8dp"
                     style="@style/textWeight"
-                    android:background="@drawable/background_button"
+                    android:background="@drawable/background_input"
                     android:layout_width="match_parent"
                     android:layout_height="56dp"
                     android:layout_weight="1"
-                    android:textColor="@color/white"/>
+                    android:textColor="@color/black"/>
             </LinearLayout>
 
             <LinearLayout
@@ -123,6 +127,7 @@
                     android:textColor="#000000"/>
 
                 <EditText
+                    android:id="@+id/edtNomial"
                     android:layout_width="match_parent"
                     android:layout_height="56dp"
                     android:background="@drawable/background_input"
@@ -203,6 +208,7 @@
                             android:textColor="@color/textColor"/>
 
                         <EditText
+                            android:id="@+id/edtCardNumber"
                             android:layout_width="match_parent"
                             android:layout_height="56dp"
                             style="@style/textWeight"
@@ -228,6 +234,7 @@
                             android:textColor="@color/textColor"/>
 
                         <EditText
+                            android:id="@+id/edtCardHolder"
                             android:layout_width="match_parent"
                             android:layout_height="56dp"
                             android:layout_marginTop="8dp"
@@ -254,6 +261,7 @@
                             android:textColor="@color/textColor"/>
 
                         <EditText
+                            android:id="@+id/edtDate"
                             android:layout_width="match_parent"
                             android:layout_height="56dp"
                             android:layout_marginTop="8dp"
@@ -280,6 +288,7 @@
                             android:textColor="@color/textColor"/>
 
                         <EditText
+                            android:id="@+id/edtCVC"
                             android:layout_width="match_parent"
                             android:layout_height="56dp"
                             android:layout_marginTop="8dp"
@@ -296,6 +305,7 @@
             </RelativeLayout>
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnPayNow"
                 app:backgroundTint="@null"
                 android:text="Pay Now"
                 android:background="@drawable/background_button"

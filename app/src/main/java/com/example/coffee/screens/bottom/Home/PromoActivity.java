@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.example.coffee.R;
-import com.example.coffee.adapters.RecyclePromoAdapter;
+import com.example.coffee.app.adapters.RecyclePromoAdapter;
 import com.example.coffee.models.Shop.Mission;
 import com.example.coffee.screens.bottom.MainActivity;
 
