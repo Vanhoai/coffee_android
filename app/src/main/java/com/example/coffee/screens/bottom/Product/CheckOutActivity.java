@@ -39,7 +39,7 @@ public class CheckOutActivity extends AppCompatActivity {
 
         // init shared data
         products = new ArrayList<>();
-        Logger.log("SHOPID", shopId);
+
 
 
         // get data
