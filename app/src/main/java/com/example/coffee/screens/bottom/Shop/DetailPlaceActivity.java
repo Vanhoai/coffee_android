@@ -40,7 +40,6 @@ public class DetailPlaceActivity extends AppCompatActivity {
         // init shared data
         products = new ArrayList<>();
 
-
         // set view
         render(products);
 
