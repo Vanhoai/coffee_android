@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.example.coffee.R;
-import com.example.coffee.app.adapters.RecycleViewHistoryAdapter;
+import com.example.coffee.adapters.RecycleHistoryAdapter;
 import com.example.coffee.models.User.History;
 import com.example.coffee.screens.bottom.MainActivity;
 
