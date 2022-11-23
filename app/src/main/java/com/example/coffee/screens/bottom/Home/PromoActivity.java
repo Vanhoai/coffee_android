@@ -26,7 +26,6 @@ public class PromoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_promo);
 
         backNavigation = findViewById(R.id.backNavigation);
-
         recyclePromo =findViewById(R.id.recyclePromo);
 
         backNavigation.setOnClickListener(new View.OnClickListener() {
