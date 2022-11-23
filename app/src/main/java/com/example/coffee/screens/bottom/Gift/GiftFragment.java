@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.coffee.R;
-import com.example.coffee.app.adapters.RecyclePromoAdapter;
+import com.example.coffee.adapters.RecyclePromoAdapter;
 import com.example.coffee.models.Product.Product;
 import com.example.coffee.models.Shop.Mission;
 

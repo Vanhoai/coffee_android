@@ -1,4 +1,4 @@
-package com.example.coffee.app.adapters;
+package com.example.coffee.adapters;
 
 import android.app.Activity;
 import android.content.Context;

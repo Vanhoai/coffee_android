@@ -1,10 +1,8 @@
-package com.example.coffee.app.adapters;
+package com.example.coffee.adapters;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.media.Image;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +17,6 @@ import com.bumptech.glide.Glide;
 import com.example.coffee.R;
 import com.example.coffee.models.Product.Product;
 import com.example.coffee.screens.bottom.Product.ProductDetailActivity;
-import com.example.coffee.services.ProductService;
 
 import java.util.ArrayList;
 

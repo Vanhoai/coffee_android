@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -24,7 +23,6 @@ import com.example.coffee.screens.bottom.Home.PromoActivity;
 import com.example.coffee.services.ShopService;
 import com.example.coffee.utils.Logger;
 
-import java.security.PublicKey;
 import java.util.ArrayList;
 
 public class ShopFragment extends Fragment {

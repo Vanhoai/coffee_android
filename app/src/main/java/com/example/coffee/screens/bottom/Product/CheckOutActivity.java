@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.example.coffee.R;
-import com.example.coffee.app.adapters.RecycleProductDetailAdapter;
+import com.example.coffee.adapters.RecycleProductDetailAdapter;
 import com.example.coffee.models.Product.Product;
 import com.example.coffee.screens.bottom.Shop.DetailPlaceActivity;
 
