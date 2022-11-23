@@ -1,10 +1,7 @@
-package com.example.coffee.adapters;
+package com.example.coffee.app.adapters;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.text.Layout;
-import android.view.ContentInfo;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.coffee.R;
 import com.example.coffee.models.Product.Product;
-import com.example.coffee.screens.bottom.Product.ProductDetailActivity;
 
 import java.util.ArrayList;
 
