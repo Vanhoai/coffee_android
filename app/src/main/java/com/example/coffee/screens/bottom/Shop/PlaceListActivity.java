@@ -31,6 +31,7 @@ public class PlaceListActivity extends AppCompatActivity {
         recyclePlaceList = findViewById(R.id.recyclePlaceList);
         backNavigation = findViewById(R.id.backNavigation);
 
+
         backNavigation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
