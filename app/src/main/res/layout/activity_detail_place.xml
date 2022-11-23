@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:src="@drawable/rectangle"
+                    android:id="@+id/imageDetailPlace"
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
                     android:scaleType="fitXY"/>
@@ -55,6 +55,7 @@
             </androidx.cardview.widget.CardView>
 
             <TextView
+                android:id="@+id/tvNameDetailPlace"
                 android:layout_marginTop="20dp"
                 android:text="Aurora Coffee"
                 style="@style/textMedium"
@@ -75,6 +76,7 @@
                     android:layout_height="22dp"/>
 
                 <TextView
+                    android:id="@+id/tvDistrict"
                     style="@style/textMedium"
                     android:text="Tân Bình Ditrict"
                     android:layout_marginLeft="4dp"
