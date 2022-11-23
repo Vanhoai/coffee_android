@@ -1,4 +1,4 @@
-package com.example.coffee.screens.bottom.Home;
+spackage com.example.coffee.screens.bottom.Home;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;

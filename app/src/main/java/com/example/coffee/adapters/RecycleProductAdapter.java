@@ -2,6 +2,7 @@ package com.example.coffee.adapters;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.media.Image;
 import android.text.Layout;
 import android.view.LayoutInflater;
@@ -17,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.coffee.R;
 import com.example.coffee.models.Product.Product;
+import com.example.coffee.screens.bottom.Product.ProductDetailActivity;
 import com.example.coffee.services.ProductService;
 
 import java.util.ArrayList;
@@ -25,6 +27,7 @@ public class RecycleProductAdapter extends RecyclerView.Adapter<RecycleProductAd
 
     Context context;
     ArrayList<Product> products;
+
 
     public RecycleProductAdapter(Context context, ArrayList<Product> products) {
         this.context = context;
@@ -58,6 +61,14 @@ public class RecycleProductAdapter extends RecyclerView.Adapter<RecycleProductAd
         }
         holder.tvRating.setText(String.valueOf(product.getRating()));
         Glide.with(context).load(product.getImage()).into(holder.imageProduct);
+
+        holder.cardProduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, ProductDetailActivity.class);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -82,5 +93,6 @@ public class RecycleProductAdapter extends RecyclerView.Adapter<RecycleProductAd
             tvRating = view.findViewById(R.id.tvRating);
         }
     }
+
 
 }

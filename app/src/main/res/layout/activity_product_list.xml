@@ -4,6 +4,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".screens.bottom.Product.ProductListActivity">
+    tools:context=".screens.bottom.Product.ProductListActivity"
+    android:padding="20dp">
 
+    <RelativeLayout
+        android:id="@+id/RelativePlaceList"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/backNavigation"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/back_icon"
+            android:backgroundTint="#5F5F5F" />
+
+        <TextView
+            android:text="Bookmark"
+            android:gravity="center"
+            style="@style/textMedium"
+            android:textColor="@color/darkColor"
+            android:textSize="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycleProductsList"
+            android:layout_marginTop="32dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
