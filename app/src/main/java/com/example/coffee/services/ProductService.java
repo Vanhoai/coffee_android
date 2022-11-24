@@ -11,6 +11,7 @@ import com.example.coffee.interfaces.ProductInterfaceAPI;
 import com.example.coffee.interfaces.ShopInterfaceAPI;
 import com.example.coffee.models.Product.ProductDetailResponse;
 import com.example.coffee.models.Product.ProductResponse;
+import com.example.coffee.utils.Logger;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -79,21 +80,18 @@ public class ProductService {
         getAPI().getProductDetail(id).enqueue(new Callback<ProductDetailResponse>() {
             @Override
             public void onResponse(@NonNull Call<ProductDetailResponse> call, @NonNull Response<ProductDetailResponse> response) {
-               try {
-                   if (response.code() == 200){
-                       callback.onSuccess(true, response.body());
-                   }else {
-                       callback.onFailed(false);
-                   }
-               }catch (Exception e){
-                   e.printStackTrace();
-               }
+                if (response.code() == 200){
+                    callback.onSuccess(true, response.body());
+                }else {
+                    callback.onFailed(false);
+                }
 
             }
 
             @Override
             public void onFailure(@NonNull Call<ProductDetailResponse> call, @NonNull Throwable t) {
                 callback.onFailed(false);
+                Logger.log("ERROR", t);
             }
         });
     }

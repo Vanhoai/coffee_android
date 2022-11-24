@@ -131,12 +131,12 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycleComment"
                     android:layout_width="match_parent"
-                    android:layout_height="500dp" />
+                    android:layout_height="680dp" />
 
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:layout_marginTop="92dp"
                     android:layout_width="match_parent"
+                    android:layout_marginTop="12dp"
                     android:layout_height="56dp"
                     android:background="@drawable/background_button"
                     android:text="Review"

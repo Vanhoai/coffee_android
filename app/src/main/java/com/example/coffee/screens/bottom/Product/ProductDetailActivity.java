@@ -109,6 +109,7 @@ public class ProductDetailActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailed(boolean value) {
+                    Logger.log("ERROR", "ERROR RESPONSE");
                     render(comments);
                 }
             });
@@ -119,12 +120,7 @@ public class ProductDetailActivity extends AppCompatActivity {
     }
 
     public void render(ArrayList<Comment> data) {
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(ProductDetailActivity.this) {
-            @Override
-            public boolean canScrollVertically() {
-                return false;
-            }
-        };
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(ProductDetailActivity.this);
         recyclerComment.setLayoutManager(linearLayoutManager);
         RecycleCommentAdapter adapter = new RecycleCommentAdapter(data, ProductDetailActivity.this);
         recyclerComment.setAdapter(adapter);

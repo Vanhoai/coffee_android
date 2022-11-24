@@ -24,7 +24,7 @@ public class ProductDetail implements Serializable {
     private int explored;
 
     @SerializedName("rating")
-    private int rating;
+    private float rating;
 
     @SerializedName("quantity")
     private int quantity;
@@ -35,7 +35,7 @@ public class ProductDetail implements Serializable {
     @SerializedName("comments")
     private ArrayList<Comment> comments;
 
-    public ProductDetail(int id, String name, String description, float price, int explored, int rating, int quantity, String image, ArrayList<Comment> comments) {
+    public ProductDetail(int id, String name, String description, float price, int explored, float rating, int quantity, String image, ArrayList<Comment> comments) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -87,11 +87,11 @@ public class ProductDetail implements Serializable {
         this.explored = explored;
     }
 
-    public int getRating() {
+    public float getRating() {
         return rating;
     }
 
-    public void setRating(int rating) {
+    public void setRating(float rating) {
         this.rating = rating;
     }
 
