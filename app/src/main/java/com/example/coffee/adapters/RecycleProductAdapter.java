@@ -3,6 +3,9 @@ package com.example.coffee.adapters;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.media.Image;
+import android.os.Bundle;
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,12 +14,16 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.coffee.R;
 import com.example.coffee.models.Product.Product;
+import com.example.coffee.models.Product.ProductDetail;
 import com.example.coffee.screens.bottom.Product.ProductDetailActivity;
+import com.example.coffee.screens.bottom.Shop.DetailPlaceActivity;
+import com.example.coffee.services.ProductService;
 
 import java.util.ArrayList;
 
@@ -58,12 +65,14 @@ public class RecycleProductAdapter extends RecyclerView.Adapter<RecycleProductAd
         }
         holder.tvRating.setText(String.valueOf(product.getRating()));
         Glide.with(context).load(product.getImage()).into(holder.imageProduct);
-
         holder.cardProduct.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, ProductDetailActivity.class);
-                context.startActivity(intent);
+            public void onClick(View view) {
+               Intent intent = new Intent(context, ProductDetailActivity.class);
+                Bundle bundle =new Bundle();
+                bundle.putInt("id", product.getId());
+                intent.putExtras(bundle);
+               context.startActivity(intent);
             }
         });
     }

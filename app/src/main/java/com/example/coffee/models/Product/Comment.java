@@ -1,25 +1,36 @@
 package com.example.coffee.models.Product;
 
 import com.example.coffee.models.User.User;
+import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.Date;
 
 public class Comment implements Serializable {
+
+    @SerializedName("id")
     private int id;
-    private User user;
-    private BigInteger createAt;
-    private String description;
+
+    @SerializedName("rating")
     private float rating;
 
-    public  Comment() {}
+    @SerializedName("content")
+    private String content;
 
-    public Comment(int id, User user, BigInteger createAt, String description, float rating) {
+    @SerializedName("user")
+    private User user;
+
+    @SerializedName("createdAt")
+    private Date createdAt;
+
+    public Comment(int id, float rating, String content, User user, Date createdAt) {
         this.id = id;
-        this.user = user;
-        this.createAt = createAt;
-        this.description = description;
         this.rating = rating;
+        this.content = content;
+        this.user = user;
+        this.createdAt = createdAt;
     }
 
     public int getId() {
@@ -30,30 +41,6 @@ public class Comment implements Serializable {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public BigInteger getCreateAt() {
-        return createAt;
-    }
-
-    public void setCreateAt(BigInteger createAt) {
-        this.createAt = createAt;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public float getRating() {
         return rating;
     }
@@ -62,14 +49,38 @@ public class Comment implements Serializable {
         this.rating = rating;
     }
 
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
     @Override
     public String toString() {
         return "Comment{" +
                 "id=" + id +
-                ", user=" + user +
-                ", createAt=" + createAt +
-                ", description='" + description + '\'' +
                 ", rating=" + rating +
+                ", content='" + content + '\'' +
+                ", user=" + user +
+                ", createdAt=" + createdAt +
                 '}';
     }
 }

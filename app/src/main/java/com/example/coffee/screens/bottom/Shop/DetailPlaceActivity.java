@@ -35,6 +35,7 @@ public class DetailPlaceActivity extends AppCompatActivity {
     AppCompatButton btnOrderNow;
     RecyclerView recycleProducts;
     ArrayList<Product> products;
+    Shop shop;
     int shopId;
     ShopService shopService;
 

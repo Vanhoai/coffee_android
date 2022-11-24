@@ -6,8 +6,10 @@ import static com.example.coffee.interfaces.ShopInterfaceAPI.SHOP_URL;
 import androidx.annotation.NonNull;
 
 import com.example.coffee.callbacks.ProductCallback;
+import com.example.coffee.callbacks.ProductDetailCallback;
 import com.example.coffee.interfaces.ProductInterfaceAPI;
 import com.example.coffee.interfaces.ShopInterfaceAPI;
+import com.example.coffee.models.Product.ProductDetailResponse;
 import com.example.coffee.models.Product.ProductResponse;
 
 import retrofit2.Call;
@@ -72,5 +74,27 @@ public class ProductService {
         } catch (Exception exception) {
             exception.printStackTrace();
         }
+    }
+    public  void getProductDetail(int id, ProductDetailCallback callback){
+        getAPI().getProductDetail(id).enqueue(new Callback<ProductDetailResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<ProductDetailResponse> call, @NonNull Response<ProductDetailResponse> response) {
+               try {
+                   if (response.code() == 200){
+                       callback.onSuccess(true, response.body());
+                   }else {
+                       callback.onFailed(false);
+                   }
+               }catch (Exception e){
+                   e.printStackTrace();
+               }
+
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ProductDetailResponse> call, @NonNull Throwable t) {
+                callback.onFailed(false);
+            }
+        });
     }
 }
