@@ -4,11 +4,12 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginBottom="16dp"
-    app:cardCornerRadius="12sp">
+    app:cardCornerRadius="12sp"
+    android:layout_marginHorizontal="1dp">
 
    <LinearLayout
        android:layout_width="match_parent"
-       android:layout_height="170dp"
+       android:layout_height="wrap_content"
        android:padding="20dp">
 
        <de.hdodenhof.circleimageview.CircleImageView
@@ -34,7 +35,8 @@
                    <TextView
                        android:id="@+id/tvNameUser"
                        android:layout_alignParentStart="true"
-                       android:textSize="20sp"
+                       android:textSize="16dp"
+                       style="@style/textMedium"
                        android:text="Aurora Coffee"
                        android:layout_width="match_parent"
                        android:layout_height="wrap_content"
@@ -52,12 +54,13 @@
 
                <RelativeLayout
                    android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:paddingVertical="8dp">
+                   android:layout_height="wrap_content">
+
                    <TextView
+                       style="@style/textMedium"
                        android:id="@+id/tvEmail"
                        android:layout_alignParentStart="true"
-                       android:textSize="16sp"
+                       android:textSize="14dp"
                        android:text="AuroraCoffee@gmail.com"
                        android:layout_width="match_parent"
                        android:layout_height="wrap_content"

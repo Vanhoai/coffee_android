@@ -25,16 +25,20 @@ import com.example.coffee.screens.bottom.Gift.GiftFragment;
 import com.example.coffee.screens.bottom.Product.ProductDetailActivity;
 import com.example.coffee.utils.Logger;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 public class RecycleProductDetailAdapter extends RecyclerView.Adapter<RecycleProductDetailAdapter.ViewHolder> {
 
     Context context;
     ArrayList<Product> products;
+    UpdateTotal updateTotal;
 
-    public RecycleProductDetailAdapter(Context context, ArrayList<Product> products) {
+    public RecycleProductDetailAdapter(Context context, ArrayList<Product> products, UpdateTotal updateTotal) {
         this.context = context;
         this.products = products;
+        this.updateTotal = updateTotal;
     }
 
     @NonNull
@@ -52,6 +56,10 @@ public class RecycleProductDetailAdapter extends RecyclerView.Adapter<RecyclePro
         holder.tvProductTitle.setText(product.getName());
         holder.tvProductPrice.setText(String.valueOf(product.getPrice()));
         Glide.with(context).load(product.getImage()).into(holder.imageProduct);
+        holder.tvProductPrice.setText(String.format("%.1f", product.getPrice() * product.getCurrent()));
+        holder.btnCurrent.setText(String.valueOf(product.getCurrent()));
+        updateTotal.update(products);
+
         holder.cardProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -62,15 +70,18 @@ public class RecycleProductDetailAdapter extends RecyclerView.Adapter<RecyclePro
                 context.startActivity(intent);
             }
         });
-        holder.btnCurrent.setText(String.valueOf(product.getCurrent()));
         holder.btnDecrease.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (product.getCurrent() ==0){
                     return;
                 }
+
+                // update current
                 product.setCurrent(product.getCurrent() - 1);
                 holder.btnCurrent.setText(String.valueOf(product.getCurrent()));
+                holder.tvProductPrice.setText(String.format("%.1f", product.getPrice() * product.getCurrent()));
+                updateTotal.update(products);
             }
         });
         holder.btnIncrease.setOnClickListener(new View.OnClickListener() {
@@ -78,9 +89,16 @@ public class RecycleProductDetailAdapter extends RecyclerView.Adapter<RecyclePro
             public void onClick(View view) {
                 product.setCurrent(product.getCurrent() + 1);
                 holder.btnCurrent.setText(String.valueOf(product.getCurrent()));
+                holder.tvProductPrice.setText(String.format("%.1f", product.getPrice() * product.getCurrent()));
+                updateTotal.update(products);
             }
         });
     }
+
+    public interface UpdateTotal {
+        public void update(ArrayList<Product> products);
+    }
+
 
     @Override
     public int getItemCount() {

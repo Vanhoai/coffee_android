@@ -31,11 +31,11 @@ public class DetailPlaceActivity extends AppCompatActivity {
     ImageView backNavigation;
     ImageView imageDetailPlace;
     TextView tvNameDetailPlace;
+    TextView tvTotal;
     TextView tvDistrict;
     AppCompatButton btnOrderNow;
     RecyclerView recycleProducts;
     ArrayList<Product> products;
-    Shop shop;
     int shopId;
     ShopService shopService;
 
@@ -44,25 +44,24 @@ public class DetailPlaceActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_place);
 
-        // mapping
-        btnOrderNow = findViewById(R.id.btnOrderNow);
-        recycleProducts = findViewById(R.id.recycleProducts);
-        backNavigation = findViewById(R.id.backNavigation);
-        imageDetailPlace =findViewById(R.id.imageDetailPlace);
-        tvNameDetailPlace = findViewById(R.id.tvNameDetailPlace);
-        tvDistrict = findViewById(R.id.tvDistrict);
+        // init view
+        initView();
 
         // init shared data
         products = new ArrayList<>();
         shopService = new ShopService();
 
-        detailPlace();
-
         // set view
         render(products);
 
+        // handle click
+        handleClick();
 
-        // handle logic
+        // set view
+        detailPlace();
+    }
+
+    public void handleClick() {
         btnOrderNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -92,33 +91,43 @@ public class DetailPlaceActivity extends AppCompatActivity {
         });
     }
 
+    public void initView() {
+        btnOrderNow = findViewById(R.id.btnOrderNow);
+        recycleProducts = findViewById(R.id.recycleProducts);
+        backNavigation = findViewById(R.id.backNavigation);
+        imageDetailPlace =findViewById(R.id.imageDetailPlace);
+        tvNameDetailPlace = findViewById(R.id.tvNameDetailPlace);
+        tvDistrict = findViewById(R.id.tvDistrict);
+        tvTotal = findViewById(R.id.tvTotal);
+    }
+
     public void detailPlace(){
         try {
             Intent intent = getIntent();
             Bundle bundle = intent.getExtras();
             shopId = bundle.getInt("id",-1);
+
+            shopService.getDetail(shopId, new ShopDetailCallback() {
+                @Override
+                public void onSuccess(boolean value, ShopDetailResponse shopDetailResponse) {
+                    Logger.log("RESPONSE", shopDetailResponse);
+                    tvNameDetailPlace.setText("Aurora Coffee");
+                    tvDistrict.setText(shopDetailResponse.getShopDetail().getLocation());
+                    Glide.with(DetailPlaceActivity.this).load(shopDetailResponse.getShopDetail().getImage()).into(imageDetailPlace);
+                    for (ProductDetail productDetail : shopDetailResponse.getShopDetail().getProducts()){
+                        products.add(productDetail.getProduct());
+                    }
+                    render(products);
+                }
+
+                @Override
+                public void onFailed(boolean value) {
+
+                }
+            });
         }catch (Exception e){
             e.printStackTrace();
         }
-        shopService.getDetail(shopId, new ShopDetailCallback() {
-            @Override
-            public void onSuccess(boolean value, ShopDetailResponse shopDetailResponse) {
-                Logger.log("RESPONSE", shopDetailResponse);
-                tvNameDetailPlace.setText("Aurora Coffee");
-                tvDistrict.setText(shopDetailResponse.getShopDetail().getLocation());
-                Glide.with(DetailPlaceActivity.this).load(shopDetailResponse.getShopDetail().getImage()).into(imageDetailPlace);
-                for (ProductDetail productDetail : shopDetailResponse.getShopDetail().getProducts()){
-                    products.add(productDetail.getProduct());
-                }
-                render(products);
-            }
-
-            @Override
-            public void onFailed(boolean value) {
-
-            }
-        });
-
     }
     public void render(ArrayList<Product> data) {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(DetailPlaceActivity.this) {
@@ -128,7 +137,17 @@ public class DetailPlaceActivity extends AppCompatActivity {
             }
         };
         recycleProducts.setLayoutManager(linearLayoutManager);
-        RecycleProductDetailAdapter adapter = new RecycleProductDetailAdapter(DetailPlaceActivity.this, data);
+        RecycleProductDetailAdapter adapter = new RecycleProductDetailAdapter(DetailPlaceActivity.this, data, new RecycleProductDetailAdapter.UpdateTotal() {
+            @Override
+            public void update(ArrayList<Product> products) {
+                float total = 0;
+                for (int i = 0; i < products.size(); i++) {
+                    total += products.get(i).getPrice() * products.get(i).getCurrent();
+                }
+
+                tvTotal.setText(String.format("%.1f VND", total));
+            }
+        });
         recycleProducts.setAdapter(adapter);
     }
 }

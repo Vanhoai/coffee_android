@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -21,6 +22,7 @@ import com.example.coffee.models.Product.Comment;
 import com.example.coffee.models.Product.Product;
 import com.example.coffee.models.Product.ProductDetail;
 import com.example.coffee.models.Product.ProductDetailResponse;
+import com.example.coffee.screens.bottom.MainActivity;
 import com.example.coffee.screens.bottom.Shop.DetailPlaceActivity;
 import com.example.coffee.services.ProductService;
 import com.example.coffee.utils.Logger;
@@ -38,6 +40,7 @@ public class ProductDetailActivity extends AppCompatActivity {
     Button btnTextProduct;
     int productId;
     ArrayList<Comment> comments;
+    ImageView backNavigation;
     ProductService productService;
 
 
@@ -47,24 +50,11 @@ public class ProductDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_detail);
 
-        //mapping
-        recyclerComment = findViewById(R.id.recycleComment);
-        imageProduct = findViewById(R.id.imageDetailProduct);
-        tvNameProduct = findViewById(R.id.tvNameProduct);
-        tvPriceProduct = findViewById(R.id.tvPriceProduct);
-        tvExploredProduct = findViewById(R.id.tvExplored);
-        tvDescription = findViewById(R.id.tvDescriptionProduct);
-        btnTextProduct = findViewById(R.id.btnTextProduct);
+        // init
+        initView();
 
-        backNavigation = findViewById(R.id.backNavigation);
-
-        backNavigation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ProductDetailActivity.this, MainActivity.class);
-                startActivity(intent);
-            }
-        });
+        // click
+        handleOnClick();
 
         // init shared data
         comments = new ArrayList<>();
@@ -73,35 +63,55 @@ public class ProductDetailActivity extends AppCompatActivity {
         detailProduct();
     }
 
+    public void initView() {
+        recyclerComment = findViewById(R.id.recycleComment);
+        imageProduct = findViewById(R.id.imageDetailProduct);
+        tvNameProduct = findViewById(R.id.tvNameProduct);
+        tvPriceProduct = findViewById(R.id.tvPriceProduct);
+        tvExploredProduct = findViewById(R.id.tvExplored);
+        tvDescription = findViewById(R.id.tvDescriptionProduct);
+        btnTextProduct = findViewById(R.id.btnTextProduct);
+        backNavigation = findViewById(R.id.backNavigation);
+    }
+
+    public void handleOnClick() {
+        backNavigation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProductDetailActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
     public void detailProduct() {
         try {
             Intent intent = getIntent();
             Bundle bundle = intent.getExtras();
             productId = bundle.getInt("id", -1);
 
+            productService.getProductDetail(productId, new ProductDetailCallback() {
+                @Override
+                public void onSuccess(boolean value, ProductDetailResponse productResponse) {
+                    Logger.log("PRODUCT RESPONSE", productResponse);
+                    tvNameProduct.setText(productResponse.getProductDetail().getName());
+                    tvPriceProduct.setText(String.format("%.2f VND", productResponse.getProductDetail().getPrice()));
+                    tvExploredProduct.setText(String.format("%d people have explored", productResponse.getProductDetail().getExplored()));
+                    tvDescription.setText(productResponse.getProductDetail().getDescription());
+                    Glide.with(ProductDetailActivity.this).load(productResponse.getProductDetail().getImage()).into(imageProduct);
+                    comments.addAll(productResponse.getProductDetail().getComments());
+                    render(comments);
+                }
+
+                @Override
+                public void onFailed(boolean value) {
+                    render(comments);
+                }
+            });
+
         } catch (Exception e) {
             e.printStackTrace();
         }
-        productService.getProductDetail(productId, new ProductDetailCallback() {
-            @Override
-            public void onSuccess(boolean value, ProductDetailResponse productResponse) {
-                Logger.log("PRODUCTID", productResponse);
-                tvNameProduct.setText(productResponse.getProductDetail().getName());
-                tvPriceProduct.setText(productResponse.getProductDetail().getPrice() + " VND");
-                tvExploredProduct.setText(productResponse.getProductDetail().getExplored() + " people have explore");
-                tvDescription.setText(productResponse.getProductDetail().getDescription());
-                Glide.with(ProductDetailActivity.this).load(productResponse.getProductDetail().getImage()).into(imageProduct);
-                comments.addAll(productResponse.getProductDetail().getComments());
-                render(comments);
-                Logger.log("RESPONSE", productResponse);
-            }
-
-            @Override
-            public void onFailed(boolean value) {
-
-            }
-        });
-
     }
 
     public void render(ArrayList<Comment> data) {

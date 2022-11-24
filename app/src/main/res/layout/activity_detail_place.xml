@@ -104,7 +104,7 @@
                     android:layout_marginTop="12dp"
                     android:id="@+id/recycleProducts"
                     android:layout_width="match_parent"
-                    android:layout_height="680dp"/>
+                    android:layout_height="760dp"/>
 
             </LinearLayout>
 
@@ -116,10 +116,11 @@
                 android:layout_marginBottom="12dp">
 
                 <TextView
+                    android:id="@+id/tvTotal"
                     android:layout_alignParentStart="true"
                     android:text="95.000 VND"
                     android:textColor="@color/primaryColor"
-                    android:textSize="24dp"
+                    android:textSize="16dp"
                     style="@style/textMedium"
                     android:textStyle="normal"
                     android:layout_gravity="bottom"

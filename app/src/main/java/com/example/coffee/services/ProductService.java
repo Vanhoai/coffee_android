@@ -75,7 +75,7 @@ public class ProductService {
             exception.printStackTrace();
         }
     }
-    public  void getProductDetail(int id, ProductDetailCallback callback){
+    public void getProductDetail(int id, ProductDetailCallback callback){
         getAPI().getProductDetail(id).enqueue(new Callback<ProductDetailResponse>() {
             @Override
             public void onResponse(@NonNull Call<ProductDetailResponse> call, @NonNull Response<ProductDetailResponse> response) {

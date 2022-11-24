@@ -19,8 +19,8 @@ import com.example.coffee.models.User.User;
 import java.util.ArrayList;
 
 public class RecycleCommentAdapter extends RecyclerView.Adapter<RecycleCommentAdapter.ViewHolder> {
-    private ArrayList<Comment> comments;
-    private Context context;
+    ArrayList<Comment> comments;
+    Context context;
 
     public RecycleCommentAdapter(ArrayList<Comment> comments, Context context) {
         this.comments = comments;
@@ -54,8 +54,8 @@ public class RecycleCommentAdapter extends RecyclerView.Adapter<RecycleCommentAd
         } else {
             holder.tvDescription.setText(comment.getContent());
         }
-        holder.tvDate.setText(String.valueOf(comment.getCreatedAt()));
-        holder.tvRating.setText(String.format("%.1f rating",comment.getRating()));
+//        holder.tvDate.setText(String.valueOf(comment.getCreatedAt()));
+        holder.tvRating.setText(String.valueOf(comment.getRating()));
         Glide.with(context).load(user.getImage()).into(holder.imageUser);
     }
 

@@ -69,10 +69,10 @@ public class RecycleProductAdapter extends RecyclerView.Adapter<RecycleProductAd
             @Override
             public void onClick(View view) {
                Intent intent = new Intent(context, ProductDetailActivity.class);
-                Bundle bundle =new Bundle();
+                Bundle bundle = new Bundle();
                 bundle.putInt("id", product.getId());
                 intent.putExtras(bundle);
-               context.startActivity(intent);
+                context.startActivity(intent);
             }
         });
     }
