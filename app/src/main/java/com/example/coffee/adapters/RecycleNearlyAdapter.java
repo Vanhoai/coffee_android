@@ -53,7 +53,7 @@ public class RecycleNearlyAdapter extends RecyclerView.Adapter<RecycleNearlyAdap
             public void onClick(View view) {
               Intent intent = new Intent(context, DetailPlaceActivity.class);
               Bundle bundle = new Bundle();
-              bundle.putInt("id",shop.getId() );
+              bundle.putInt("id",shop.getId());
               intent.putExtras(bundle);
               context.startActivity(intent);
             }

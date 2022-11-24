@@ -36,7 +36,6 @@ public class DetailPlaceActivity extends AppCompatActivity {
     RecyclerView recycleProducts;
     ArrayList<Product> products;
     Shop shop;
-    ShopDetailResponse shopDetailResponse;
     int shopId;
     ShopService shopService;
 
