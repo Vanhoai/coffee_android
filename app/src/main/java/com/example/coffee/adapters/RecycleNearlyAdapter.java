@@ -3,6 +3,7 @@ package com.example.coffee.adapters;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,7 +53,7 @@ public class RecycleNearlyAdapter extends RecyclerView.Adapter<RecycleNearlyAdap
             public void onClick(View view) {
               Intent intent = new Intent(context, DetailPlaceActivity.class);
               Bundle bundle = new Bundle();
-              bundle.putInt("id",shop.getId() );
+              bundle.putInt("id", shop.getId());
               intent.putExtras(bundle);
               context.startActivity(intent);
             }

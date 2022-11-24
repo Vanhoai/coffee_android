@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.example.coffee.R;
+import com.example.coffee.screens.bottom.MainActivity;
 
 public class ProductDetailActivity extends AppCompatActivity {
 
@@ -23,7 +24,7 @@ public class ProductDetailActivity extends AppCompatActivity {
         backNavigation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ProductDetailActivity.this,ProductListActivity.class);
+                Intent intent = new Intent(ProductDetailActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });

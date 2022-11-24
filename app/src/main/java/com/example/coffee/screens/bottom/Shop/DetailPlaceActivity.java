@@ -35,12 +35,8 @@ public class DetailPlaceActivity extends AppCompatActivity {
     AppCompatButton btnOrderNow;
     RecyclerView recycleProducts;
     ArrayList<Product> products;
-    Shop shop;
-    ShopDetailResponse shopDetailResponse;
     int shopId;
     ShopService shopService;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,8 +56,6 @@ public class DetailPlaceActivity extends AppCompatActivity {
         shopService = new ShopService();
 
         detailPlace();
-        Logger.log("SHOPID", shopId);
-
 
         // set view
         render(products);
@@ -80,7 +74,7 @@ public class DetailPlaceActivity extends AppCompatActivity {
                     }
                 }
                 bundle1.putSerializable("products", productCurrent);
-                bundle1.putInt("id", shop.getId());
+                bundle1.putInt("id", shopId);
                 intent.putExtras(bundle1);
                 startActivity(intent);
                 finish();
@@ -114,7 +108,6 @@ public class DetailPlaceActivity extends AppCompatActivity {
                 Glide.with(DetailPlaceActivity.this).load(shopDetailResponse.getShopDetail().getImage()).into(imageDetailPlace);
                 for (ProductDetail productDetail : shopDetailResponse.getShopDetail().getProducts()){
                     products.add(productDetail.getProduct());
-
                 }
                 render(products);
             }
