@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.coffee.R;
@@ -65,14 +66,18 @@ public class DetailPlaceActivity extends AppCompatActivity {
         btnOrderNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DetailPlaceActivity.this, CheckOutActivity.class);
-                Bundle bundle1 = new Bundle();
                 ArrayList<Product> productCurrent = new ArrayList<>();
                 for (Product product : products){
                     if (product.getCurrent() > 0){
                         productCurrent.add(product);
                     }
                 }
+                if (productCurrent.size() <= 0) {
+                    Toast.makeText(DetailPlaceActivity.this, "NO PRODUCT SELECTED", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                Intent intent = new Intent(DetailPlaceActivity.this, CheckOutActivity.class);
+                Bundle bundle1 = new Bundle();
                 bundle1.putSerializable("products", productCurrent);
                 bundle1.putInt("id", shopId);
                 intent.putExtras(bundle1);
