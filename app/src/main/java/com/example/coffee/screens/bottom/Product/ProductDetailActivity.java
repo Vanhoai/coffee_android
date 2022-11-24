@@ -1,6 +1,7 @@
 package com.example.coffee.screens.bottom.Product;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -98,7 +99,10 @@ public class ProductDetailActivity extends AppCompatActivity {
                     tvPriceProduct.setText(String.format("%.2f VND", productResponse.getProductDetail().getPrice()));
                     tvExploredProduct.setText(String.format("%d people have explored", productResponse.getProductDetail().getExplored()));
                     tvDescription.setText(productResponse.getProductDetail().getDescription());
+                    btnTextProduct.setText(String.valueOf(productResponse.getProductDetail().getComments().size()));
                     Glide.with(ProductDetailActivity.this).load(productResponse.getProductDetail().getImage()).into(imageProduct);
+
+
                     comments.addAll(productResponse.getProductDetail().getComments());
                     render(comments);
                 }

@@ -6,10 +6,12 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.util.Pair;
 import android.view.MenuItem;
 
+import com.bumptech.glide.util.Util;
 import com.example.coffee.R;
 import com.example.coffee.utils.fcm.FirebaseService;
 import com.example.coffee.screens.bottom.Gift.GiftFragment;
@@ -70,7 +72,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
 
     public void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
