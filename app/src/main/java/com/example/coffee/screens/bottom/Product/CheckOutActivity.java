@@ -13,7 +13,9 @@ import android.widget.ImageView;
 import com.example.coffee.R;
 import com.example.coffee.adapters.RecycleProductDetailAdapter;
 import com.example.coffee.models.Product.Product;
+import com.example.coffee.models.Shop.Shop;
 import com.example.coffee.screens.bottom.Shop.DetailPlaceActivity;
+import com.example.coffee.utils.Logger;
 
 import java.util.ArrayList;
 
@@ -23,7 +25,8 @@ public class CheckOutActivity extends AppCompatActivity {
     ImageView backNavigation;
     ArrayList<Product> products;
     RecyclerView recycleProducts;
-
+    Shop shop;
+    int shopId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +39,8 @@ public class CheckOutActivity extends AppCompatActivity {
 
         // init shared data
         products = new ArrayList<>();
+
+
 
         // get data
         getData();

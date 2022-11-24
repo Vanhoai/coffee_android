@@ -13,8 +13,11 @@ import androidx.appcompat.widget.AppCompatButton;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.coffee.R;
 import com.example.coffee.models.Product.Product;
+import com.example.coffee.screens.bottom.Gift.GiftFragment;
+import com.example.coffee.screens.bottom.Product.ProductDetailActivity;
 
 import java.util.ArrayList;
 
@@ -41,10 +44,29 @@ public class RecycleProductDetailAdapter extends RecyclerView.Adapter<RecyclePro
         Product product = products.get(position);
         holder.tvProductTitle.setText(product.getName());
         holder.tvProductPrice.setText(String.valueOf(product.getPrice()));
+        Glide.with(context).load(product.getImage()).into(holder.imageProduct);
         holder.cardProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
+            }
+        });
+        holder.btnCurrent.setText(String.valueOf(product.getCurrent()));
+        holder.btnDecrease.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (product.getCurrent() ==0){
+                    return;
+                }
+                product.setCurrent(product.getCurrent() - 1);
+                holder.btnCurrent.setText(String.valueOf(product.getCurrent()));
+            }
+        });
+        holder.btnIncrease.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                product.setCurrent(product.getCurrent() + 1);
+                holder.btnCurrent.setText(String.valueOf(product.getCurrent()));
             }
         });
     }
