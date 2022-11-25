@@ -62,7 +62,7 @@ public class RecycleProductAdapter extends RecyclerView.Adapter<RecycleProductAd
         } else {
             holder.tvDescription.setText(product.getDescription());
         }
-        holder.tvRating.setText(String.valueOf(product.getRating()));
+        holder.tvRating.setText(String.format("%.1f",product.getRating()));
         Glide.with(context).load(product.getImage()).into(holder.imageProduct);
         holder.cardProduct.setOnClickListener(new View.OnClickListener() {
             @Override
