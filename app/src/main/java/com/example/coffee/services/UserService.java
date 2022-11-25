@@ -8,8 +8,10 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 
 import com.example.coffee.callbacks.AuthCallback;
+import com.example.coffee.callbacks.BalanceCallback;
 import com.example.coffee.interfaces.AuthInterfaceAPI;
 import com.example.coffee.interfaces.UserInterfaceAPI;
+import com.example.coffee.models.User.BalanceResponse;
 import com.example.coffee.models.User.User;
 import com.example.coffee.models.User.UserResponse;
 import com.example.coffee.utils.Logger;
@@ -72,6 +74,31 @@ public class UserService {
                 callback.onFailed(false);
             }
         });
+    }
+    public  void  topUp(int id, String code, Float balance, BalanceCallback callback){
+        try {
+            getAPI().topUp(id, code, balance).enqueue(new Callback<BalanceResponse>() {
+                @Override
+                public void onResponse(@NonNull Call<BalanceResponse> call, @NonNull Response<BalanceResponse> response) {
+                    if (response.code() == 200){
+                        callback.onSuccess(true, response.body());
+                        Logger.log("RESPONSE", response);
+                    }
+                    else {
+                        callback.onFailed(false);
+                        Logger.log("ERROR", "REQUEST ERROR");
+                    }
+                }
+
+                @Override
+                public void onFailure(@NonNull Call<BalanceResponse> call, @NonNull Throwable t) {
+                    callback.onFailed(false);
+                    Logger.log("Error",t);
+                }
+            });
+        }catch (Exception exception){
+            exception.printStackTrace();
+        }
     }
 
 }

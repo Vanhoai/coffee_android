@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -14,14 +15,19 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.example.coffee.R;
+import com.example.coffee.callbacks.BalanceCallback;
+import com.example.coffee.models.User.BalanceResponse;
+import com.example.coffee.models.User.User;
 import com.example.coffee.screens.bottom.MainActivity;
+import com.example.coffee.services.UserService;
 import com.example.coffee.utils.Logger;
+import com.example.coffee.utils.UserInformation;
 
 public class TopUpActivity extends AppCompatActivity {
     ImageView backNavigation;
     AppCompatButton btn50, btn100, btn200, btn250, btnPayNow;
-    EditText edtCardNumber, edtCardHolder, edtDate, edtCVC, edtNomial;
-
+    EditText edtCardNumber, edtCardHolder, edtDate, edtCVC, edtNominal;
+    UserService userService;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,11 +47,11 @@ public class TopUpActivity extends AppCompatActivity {
         edtCardHolder = findViewById(R.id.edtCardHolder);
         edtDate = findViewById(R.id.edtDate);
         edtCVC = findViewById(R.id.edtCVC);
-        edtNomial = findViewById(R.id.edtNomial);
+        edtNominal = findViewById(R.id.edtNomial);
 
         // mapping
         backNavigation = findViewById(R.id.backNavigation);
-
+        userService = new UserService();
         backNavigation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -114,12 +120,19 @@ public class TopUpActivity extends AppCompatActivity {
                 String cardHolder = edtCardHolder.getText().toString().trim();
                 String date = edtDate.getText().toString().trim();
                 String cvc = edtCVC.getText().toString().trim();
-                String nomial = edtNomial.getText().toString().trim();
-                Logger.log("cardNumber", cardNumber);
-                Logger.log("cardHolder", cardHolder);
-                Logger.log("date", date);
-                Logger.log("cvc", cvc);
-                Logger.log("nomial", nomial);
+                String nominal = edtNominal.getText().toString().trim();
+                User user = UserInformation.getUser(TopUpActivity.this);
+                userService.topUp(user.getId(), cardNumber, Float.parseFloat(nominal), new BalanceCallback() {
+                    @Override
+                    public void onSuccess(Boolean value, BalanceResponse balanceResponse) {
+                        Logger.log("respoinese",balanceResponse);
+                    }
+
+                    @Override
+                    public void onFailed(Boolean value) {
+
+                    }
+                });
             }
         });
     }
