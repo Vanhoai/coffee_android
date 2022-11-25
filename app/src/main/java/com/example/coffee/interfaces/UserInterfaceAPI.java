@@ -22,5 +22,9 @@ public interface UserInterfaceAPI {
 
     @PUT("/{id}")
     @Multipart
-    Call<UserResponse> uploadAvatar(@HeaderMap Map<String, String> headers, @Path("id") int id, @Part MultipartBody.Part image);
+    Call<UserResponse> uploadAvatar(
+            @HeaderMap Map<String, String> headers,
+            @Path("id") int id,
+            @Part MultipartBody.Part image
+    );
 }
