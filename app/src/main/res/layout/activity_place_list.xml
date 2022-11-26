@@ -23,6 +23,7 @@
             android:backgroundTint="#5F5F5F" />
 
         <TextView
+            android:id="@+id/tvTitle"
             android:text="All Shop"
             android:gravity="center"
             style="@style/textMedium"
@@ -33,7 +34,8 @@
     </RelativeLayout>
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:scrollbars="none">
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclePlaceList"
         android:layout_marginTop="32dp"

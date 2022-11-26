@@ -56,6 +56,7 @@ public class RecycleAllShopAdapter extends RecyclerView.Adapter<RecycleAllShopAd
         } else {
             holder.tvDescriptionShop.setText(shop.getDescription());
         }
+        holder.tvAddress.setText(shop.getAddress());
         Glide.with(context).load(shop.getImage()).into(holder.imageAllShop);
         holder.cardViewAllShop.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,21 +75,8 @@ public class RecycleAllShopAdapter extends RecyclerView.Adapter<RecycleAllShopAd
         return shops.size();
     }
 
-    public static class AllShopViewHolder extends RecyclerView.ViewHolder {
-        CardView cardViewAllShop;
-        TextView tvNameShop,tvDescriptionShop;
-        ImageView imageAllShop;
-        public AllShopViewHolder(@NonNull View itemView) {
-            super(itemView);
-            cardViewAllShop = itemView.findViewById(R.id.cardViewAllShop);
-            tvNameShop = itemView.findViewById(R.id.tvNameShop);
-            tvDescriptionShop = itemView.findViewById(R.id.tvDescriptionShop);
-            imageAllShop = itemView.findViewById(R.id.imageAllShop);
-        }
-    }
-
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tvNameShop,tvDescriptionShop;
+        TextView tvNameShop,tvDescriptionShop, tvAddress;
         CardView cardViewAllShop;
         ImageView imageAllShop;
 
@@ -98,6 +86,7 @@ public class RecycleAllShopAdapter extends RecyclerView.Adapter<RecycleAllShopAd
             tvDescriptionShop = itemView.findViewById(R.id.tvDescriptionShop);
             cardViewAllShop = itemView.findViewById(R.id.cardViewAllShop);
             imageAllShop = itemView.findViewById(R.id.imageAllShop);
+            tvAddress = itemView.findViewById(R.id.tvPlaceLocation);
         }
     }
 }

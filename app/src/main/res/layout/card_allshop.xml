@@ -51,6 +51,15 @@
                 android:text="Lorem Ipsum has been the industry standard dummy text ever since ..."
                 android:textColor="@color/textColor" />
 
+                <TextView
+                    android:id="@+id/tvPlaceLocation"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tân Bình Ditrict"
+                    style="@style/textMedium"
+                    android:textSize="12dp"/>
+
         </LinearLayout>
 
     </LinearLayout>
