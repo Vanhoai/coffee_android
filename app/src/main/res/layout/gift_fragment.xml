@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="20dp">
+    android:paddingHorizontal="20dp"
+    android:paddingTop="20dp"
+    android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/linearTitle"
-        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
+        android:layout_height="wrap_content">
 
         <TextView
             style="@style/textMedium"
@@ -20,173 +20,317 @@
             android:textColor="@color/darkColor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Attractive gift for you"/>
+            android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            style="@style/textMedium"
-            android:textColor="@color/textColor"
-            android:textSize="16dp"
+
+            <TextView
+                style="@style/textMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="600"
+                android:text="Attractive gift for you"
+                android:textColor="@color/darkColor"
+                android:textSize="24dp" />
+
+            <TextView
+                style="@style/textMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Carry out the mission and enjoy the rewards"
+                android:textColor="@color/textColor"
+                android:textSize="16dp" />
+
+        </LinearLayout>
+
+    <ScrollView
+        android:scrollbars="none"
+        android:layout_marginTop="24dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Carry out the mission and enjoy the rewards"/>
+            android:layout_height="match_parent">
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearExp"
-        app:layout_constraintTop_toBottomOf="@id/linearTitle"
-        android:layout_width="match_parent"
-        android:layout_height="90dp"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/background_input"
-        android:padding="12dp"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/gift_reward"
-            android:layout_marginRight="12dp"/>
-
-        <LinearLayout
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                style="@style/textMedium"
-                android:textSize="16dp"
-                android:textColor="@color/darkColor"
-                android:textStyle="bold"
+            <LinearLayout
+                android:id="@+id/linearExp"
+                app:layout_constraintTop_toBottomOf="@id/linearTitle"
+                android:background="@drawable/background_input"
+                android:padding="12dp"
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="350 XP more to get rewards"/>
+                android:layout_height="78dp">
 
-            <RelativeLayout
-                android:layout_marginTop="8dp"
-                android:layout_width="match_parent"
-                android:layout_height="12dp"
-                android:background="@drawable/custom_line">
-
-                <RelativeLayout
-                    android:layout_width="200dp"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/custom_line"
-                    android:backgroundTint="@color/secondaryColor"/>
-
-            </RelativeLayout>
-        </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        app:layout_constraintTop_toBottomOf="@+id/linearExp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:orientation="vertical"
-            android:background="@drawable/background_input"
-            android:layout_marginRight="6dp">
-            
-            <TextView
-                android:textSize="16dp"
-                android:textStyle="bold"
-                android:textColor="@color/darkColor"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/textMedium"
-                android:text="11"/>
-
-            <TextView
-                android:textSize="16dp"
-                android:textStyle="bold"
-                android:textColor="@color/darkColor"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/textMedium"
-                android:text="Vouchers"/>
-
-            <RelativeLayout
-                android:layout_marginTop="8dp"
-                android:layout_width="match_parent"
-                android:layout_height="8dp"
-                android:layout_marginVertical="16dp"
-                android:background="@drawable/custom_line">
-
-                <RelativeLayout
+                <ImageView
                     android:layout_width="50dp"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/custom_line"
-                    android:backgroundTint="@color/secondaryColor"/>
+                    android:layout_height="50dp"
+                    android:src="@drawable/gift_reward"
+                    android:layout_marginRight="12dp"/>
 
-            </RelativeLayout>
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-            <TextView
+                    <TextView
+                        style="@style/textMedium"
+                        android:textSize="16dp"
+                        android:textColor="@color/darkColor"
+                        android:textStyle="bold"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="350 XP more to get rewards"/>
+
+                    <RelativeLayout
+                        android:layout_marginTop="8dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="12dp"
+                        android:background="@drawable/custom_line">
+
+                        <RelativeLayout
+                            android:layout_width="200dp"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/custom_line"
+                            android:backgroundTint="@color/secondaryColor"/>
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/textMedium"
-                android:text="5 will expire"/>
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/linearExp">
 
-        </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="6dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_input"
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
-        <LinearLayout
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:orientation="vertical"
-            android:background="@drawable/background_input"
-            android:layout_marginLeft="6dp">
+                    <TextView
+                        style="@style/textMedium"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="11"
+                        android:textColor="@color/darkColor"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
 
-            <TextView
-                android:textSize="16dp"
-                android:textStyle="bold"
-                android:textColor="@color/darkColor"
+                    <TextView
+                        style="@style/textMedium"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Vouchers"
+                        android:textColor="@color/darkColor"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="8dp"
+                        android:layout_marginVertical="16dp"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/custom_line">
+
+                        <RelativeLayout
+                            android:layout_width="50dp"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/custom_line"
+                            android:backgroundTint="@color/secondaryColor" />
+                    </RelativeLayout>
+
+                    <TextView
+                        style="@style/textMedium"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="5 will expire" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="6dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_input"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        style="@style/textMedium"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="17"
+                        android:textColor="@color/darkColor"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        style="@style/textMedium"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Missions"
+                        android:textColor="@color/darkColor"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="8dp"
+                        android:layout_marginVertical="16dp"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/custom_line">
+
+                        <RelativeLayout
+                            android:layout_width="50dp"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/custom_line"
+                            android:backgroundTint="@color/secondaryColor" />
+                    </RelativeLayout>
+
+                    <TextView
+                        style="@style/textMedium"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="3 in progress" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/textMedium"
-                android:text="17"/>
+                android:layout_height="wrap_content">
 
-            <TextView
-                android:textSize="16dp"
-                android:textStyle="bold"
-                android:textColor="@color/darkColor"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/textMedium"
-                android:text="Missions"/>
+                <TextView
+                    style="@style/textWeight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Gift for you"
+                    android:textColor="@color/darkColor"
+                    android:textSize="20dp" />
 
-            <RelativeLayout
+                <TextView
+                    style="@style/textWeight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="View All"
+                    android:textColor="#3EBF84"
+                    android:textSize="14dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
-                android:layout_height="8dp"
-                android:layout_marginVertical="16dp"
-                android:background="@drawable/custom_line">
+                android:layout_height="100dp"
+                android:background="@drawable/background_input"
+                android:orientation="horizontal"
+                android:padding="12dp">
+
+                <ImageView
+                    android:id="@+id/imagePromo"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginRight="12dp"
+                    android:src="@drawable/promo1" />
 
                 <RelativeLayout
-                    android:layout_width="50dp"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/custom_line"
-                    android:backgroundTint="@color/secondaryColor"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-            </RelativeLayout>
+                    <TextView
+                        android:id="@+id/tvNamePromo"
+                        style="@style/textMedium"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Free a coffee"
+                        android:textColor="@color/darkColor"
+                        android:textSize="16dp" />
 
-            <TextView
+                    <TextView
+                        android:id="@+id/tvDescription"
+                        style="@style/textMedium"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="Buy 10 Coffees and get 1 Coffee for free"
+                        android:textColor="@color/textColor"
+                        android:textSize="14dp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:layout_marginTop="50dp">
+
+                        <ImageView
+                            android:layout_width="14dp"
+                            android:layout_height="14dp"
+                            android:src="@drawable/time" />
+
+                        <TextView
+                            android:id="@+id/tvExpired"
+                            style="@style/textMedium"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:text="Ends in 12 hours"
+                            android:textColor="@color/redColor"
+                            android:textSize="12dp" />
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/textMedium"
-                android:text="3 in progress"/>
+                android:layout_height="wrap_content">
+
+                <TextView
+                    style="@style/textWeight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Mission for you"
+                    android:textColor="@color/darkColor"
+                    android:textSize="20dp" />
+
+                <TextView
+                    style="@style/textWeight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="View All"
+                    android:textColor="@color/primaryColor"
+                    android:textSize="14dp" />
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerMission"
+                android:layout_width="match_parent"
+                android:layout_height="500dp"
+                android:layout_marginTop="8dp"/>
 
         </LinearLayout>
-
-    </LinearLayout>
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</LinearLayout>

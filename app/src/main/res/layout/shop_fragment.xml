@@ -56,6 +56,7 @@
 
             <EditText
                 style="@style/textMedium"
+                android:textSize="14sp"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -87,6 +88,7 @@
                     android:textSize="16dp" />
 
                 <TextView
+                    android:id="@+id/tvViewShopNearby"
                     style="@style/textMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -127,6 +129,7 @@
                     android:textSize="16dp" />
 
                 <TextView
+                    android:id="@+id/tvViewAllHottest"
                     style="@style/textMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -139,6 +142,7 @@
             </RelativeLayout>
 
             <LinearLayout
+                android:id="@+id/linearHottest"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -237,7 +241,7 @@
                 android:textSize="16dp" />
 
             <TextView
-                android:id="@+id/tvViewAll_BestSeller"
+                android:id="@+id/tvViewShopAll"
                 style="@style/textMedium"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"

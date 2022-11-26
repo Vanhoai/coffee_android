@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.example.coffee.R;
-import com.example.coffee.adapters.RecycleViewHistoryAdapter;
+import com.example.coffee.adapters.RecycleHistoryAdapter;
 import com.example.coffee.models.User.History;
 import com.example.coffee.screens.bottom.MainActivity;
 
@@ -58,7 +58,7 @@ public class HistoryActivity extends AppCompatActivity {
     public void render(RecyclerView recyclerView, ArrayList<History> data) {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(HistoryActivity.this);
         recyclerView.setLayoutManager(layoutManager);
-        RecycleViewHistoryAdapter adapter = new RecycleViewHistoryAdapter(this, data);
+        RecycleHistoryAdapter adapter = new RecycleHistoryAdapter(this, data);
         recyclerView.setAdapter(adapter);
     }
 }

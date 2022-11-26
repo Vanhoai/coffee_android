@@ -26,8 +26,7 @@ public class PromoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_promo);
 
         backNavigation = findViewById(R.id.backNavigation);
-
-        recyclePromo =findViewById(R.id.recyclePromo);
+        recyclePromo = findViewById(R.id.recyclePromo);
 
         backNavigation.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,34 +36,9 @@ public class PromoActivity extends AppCompatActivity {
                 finish();
             }
         });
+
         ArrayList<Mission> missions = new ArrayList<>();
-        missions.add(new Mission(1,"Buy 10 Coffees and get 1 Coffee for free",9,10,"Free a coffee"));
-        missions.add(new Mission(2,"Buy 10 Coffees and get 1 Coffee for free",0,8,"Free a coffee"));
-        missions.add(new Mission(3,"Buy 10 Coffees and get 1 Coffee for free",8,12,"Free a coffee"));
-        missions.add(new Mission(3,"Buy 10 Coffees and get 1 Coffee for free",8,12,"Free a coffee"));
-        missions.add(new Mission(3,"Buy 10 Coffees and get 1 Coffee for free",8,12,"Free a coffee"));
-        missions.add(new Mission(3,"Buy 10 Coffees and get 1 Coffee for free",8,12,"Free a coffee"));
-        missions.add(new Mission(3,"Buy 10 Coffees and get 1 Coffee for free",8,12,"Free a coffee"));
-        missions.add(new Mission(3,"Buy 10 Coffees and get 1 Coffee for free",8,12,"Free a coffee"));
-        missions.add(new Mission(3,"Buy 10 Coffees and get 1 Coffee for free",8,12,"Free a coffee"));
-        missions.add(new Mission(3,"Buy 10 Coffees and get 1 Coffee for free",8,12,"Free a coffee"));
-        missions.add(new Mission(3,"Buy 10 Coffees and get 1 Coffee for free",8,12,"Free a coffee"));
-        missions.add(new Mission(3,"Buy 10 Coffees and get 1 Coffee for free",8,12,"Free a coffee"));
-        missions.add(new Mission(3,"Buy 10 Coffees and get 1 Coffee for free",8,12,"Free a coffee"));
-        missions.add(new Mission(3,"Buy 10 Coffees and get 1 Coffee for free",8,12,"Free a coffee"));
-        missions.add(new Mission(3,"Buy 10 Coffees and get 1 Coffee for free",8,12,"Free a coffee"));
-        missions.add(new Mission(3,"Buy 10 Coffees and get 1 Coffee for free",8,12,"Free a coffee"));
-        missions.add(new Mission(3,"Buy 10 Coffees and get 1 Coffee for free",8,12,"Free a coffee"));
-        missions.add(new Mission(3,"Buy 10 Coffees and get 1 Coffee for free",8,12,"Free a coffee"));
-        missions.add(new Mission(3,"Buy 10 Coffees and get 1 Coffee for free",8,12,"Free a coffee"));
-
-
-
-
-
-
         renderPromo(recyclePromo,missions);
-
     }
 
     public void renderPromo(RecyclerView recyclerView, ArrayList<Mission> data) {
@@ -77,6 +51,5 @@ public class PromoActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
         RecyclePromoAdapter adapter = new RecyclePromoAdapter(PromoActivity.this,data);
         recyclerView.setAdapter(adapter);
-//
     }
 }

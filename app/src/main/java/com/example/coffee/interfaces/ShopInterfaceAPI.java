@@ -2,10 +2,12 @@ package com.example.coffee.interfaces;
 
 import static com.example.coffee.interfaces.BaseAPI.BASE_URL;
 
+import com.example.coffee.models.Shop.ShopDetailResponse;
 import com.example.coffee.models.Shop.ShopResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface ShopInterfaceAPI {
@@ -19,6 +21,12 @@ public interface ShopInterfaceAPI {
     Call<ShopResponse> getShops(
         @Query("limit") int limit,
         @Query("skip") int skip,
-        @Query("sort") String sort
+        @Query("sort") String sort,
+        @Query("field") String field
+    );
+
+    @GET("{id}")
+    Call<ShopDetailResponse> getDetail(
+           @Path("id") int id
     );
 }

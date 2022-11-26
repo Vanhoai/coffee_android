@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.coffee.R;
 import com.example.coffee.models.Shop.Shop;
+import com.example.coffee.models.Shop.ShopDetailResponse;
 import com.example.coffee.screens.bottom.Shop.DetailPlaceActivity;
 import com.example.coffee.utils.Logger;
 
@@ -50,8 +51,11 @@ public class RecycleNearlyAdapter extends RecyclerView.Adapter<RecycleNearlyAdap
         holder.cardPlace.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, DetailPlaceActivity.class);
-                context.startActivity(intent);
+              Intent intent = new Intent(context, DetailPlaceActivity.class);
+              Bundle bundle = new Bundle();
+              bundle.putInt("id", shop.getId());
+              intent.putExtras(bundle);
+              context.startActivity(intent);
             }
         });
     }
