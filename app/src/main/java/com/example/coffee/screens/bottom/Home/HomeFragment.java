@@ -46,6 +46,7 @@ public class HomeFragment extends Fragment {
     ImageView imagePay;
     ImageView imagePromo;
     ImageView imageHistory;
+    ImageView imageNotify;
     TextView tvBalance;
     TextView tvViewAllBestSeller;
     TextView tvViewAllNearbyPlace;
@@ -126,6 +127,7 @@ public class HomeFragment extends Fragment {
         imagePay = view.findViewById(R.id.imagePay);
         imagePromo = view.findViewById(R.id.imagePromo);
         imageHistory = view.findViewById(R.id.imageHistory);
+        imageNotify = view.findViewById(R.id.imageNotify);
         tvBalance = view.findViewById(R.id.tvBalance);
         tvViewAllMyReward = view.findViewById(R.id.tvViewAllMyReward);
         tvViewAllBestSeller = view.findViewById(R.id.tvViewHomeBestSeller);
@@ -164,6 +166,14 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), HistoryActivity.class);
+                startActivity(intent);
+                requireActivity().finish();
+            }
+        });
+        imageNotify.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), NotifycationActivity.class);
                 startActivity(intent);
                 requireActivity().finish();
             }

@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".screens.bottom.Home.CardActivity"
-    android:padding="20dp">
+    android:padding="20dp"
+    tools:context=".screens.bottom.Home.CardActivity">
 
     <RelativeLayout
         android:id="@+id/Linear_Balance"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/imageBack"
@@ -21,11 +21,11 @@
             android:src="@drawable/back_icon" />
 
         <TextView
+            style="@style/textBold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:text="Balance"
-            style="@style/textBold"
             android:textSize="16dp" />
 
     </RelativeLayout>
@@ -53,56 +53,35 @@
 
                 <TextView
                     android:id="@+id/tvUserName"
+                    style="@style/textWeight"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingLeft="30dp"
                     android:paddingTop="36dp"
                     android:text="Brian Robinson"
-                    style="@style/textWeight"
                     android:textColor="@color/white"
                     android:textSize="24dp" />
 
                 <TextView
                     android:id="@+id/tvCode"
+                    style="@style/textMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingLeft="30dp"
                     android:text="1234 4567 9987 1234"
-                    style="@style/textMedium"
                     android:textColor="@color/white"
                     android:textSize="16sp" />
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:paddingTop="30dp"
-                android:paddingRight="20dp">
-
-                <ImageView
-                    android:layout_marginTop="16dp"
-                    android:paddingRight="4dp"
-                    android:layout_width="60dp"
-                    android:layout_height="50dp"
-                    android:src="@drawable/visa" />
-
-                <ImageView
-                    android:layout_marginTop="12dp"
-                    android:layout_width="40dp"
-                    android:layout_height="50dp"
-                    android:src="@drawable/icon_card" />
-
-            </LinearLayout>
 
         </RelativeLayout>
 
         <RelativeLayout
-            android:gravity="bottom"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="20dp">
+            android:layout_marginBottom="20dp"
+            android:gravity="bottom">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -111,22 +90,22 @@
                 android:orientation="vertical">
 
                 <TextView
+                    style="@style/textMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingLeft="30dp"
                     android:paddingTop="20dp"
                     android:text="Your Balance"
-                    style="@style/textMedium"
                     android:textColor="@color/white"
                     android:textSize="14dp" />
 
                 <TextView
                     android:id="@+id/tvBalance"
+                    style="@style/textWeight"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingHorizontal="30dp"
                     android:text="1.200.000 VND"
-                    style="@style/textWeight"
                     android:textColor="@color/white"
                     android:textSize="24dp" />
 
@@ -138,22 +117,21 @@
                 android:layout_height="40dp"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="30dp"
-                android:layout_marginRight="20dp"
-                android:background="@drawable/background_card_topup">
+                android:layout_marginRight="20dp">
 
                 <ImageView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:padding="10dp"
-                    android:src="@drawable/icon_topup_card"/>
+                    android:src="@drawable/icon_topup" />
 
                 <TextView
+                    style="@style/textMedium"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:paddingTop="8dp"
                     android:text="Top up"
-                    android:textColor="@color/darkColor"
-                    style="@style/textMedium"
+                    android:textColor="@color/white"
                     android:textSize="16dp" />
 
             </LinearLayout>
@@ -170,14 +148,15 @@
         app:layout_constraintTop_toBottomOf="@id/Linear_CardBalance">
 
         <TextView
+            style="@style/textWeight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Card creation time"
-            style="@style/textWeight"
             android:textSize="16dp" />
 
         <TextView
             android:id="@+id/tvDateCard"
+            style="@style/textWeight"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:layout_marginTop="8dp"
@@ -185,7 +164,6 @@
             android:gravity="center"
             android:text="22 August 2022, 10:00 AM"
             android:textColor="@color/white"
-            style="@style/textWeight"
             android:textSize="16dp" />
 
     </LinearLayout>
