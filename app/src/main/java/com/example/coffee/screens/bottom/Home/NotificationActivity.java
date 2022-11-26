@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import com.example.coffee.R;
 import com.example.coffee.screens.bottom.MainActivity;
 
-public class NotifycationActivity extends AppCompatActivity {
+public class NotificationActivity extends AppCompatActivity {
 
     ImageView backNavigation;
 
@@ -35,7 +35,7 @@ public class NotifycationActivity extends AppCompatActivity {
         backNavigation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(NotifycationActivity.this, MainActivity.class);
+                Intent intent = new Intent(NotificationActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
             }

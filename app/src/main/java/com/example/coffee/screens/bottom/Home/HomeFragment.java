@@ -173,7 +173,7 @@ public class HomeFragment extends Fragment {
         imageNotify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(), NotifycationActivity.class);
+                Intent intent = new Intent(getContext(), NotificationActivity.class);
                 startActivity(intent);
                 requireActivity().finish();
             }
