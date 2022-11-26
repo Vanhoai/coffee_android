@@ -11,7 +11,7 @@ import android.util.Pair;
 import android.view.MenuItem;
 
 import com.example.coffee.R;
-import com.example.coffee.fcm.FirebaseService;
+import com.example.coffee.fcm.UseFCM;
 import com.example.coffee.screens.bottom.Gift.GiftFragment;
 import com.example.coffee.screens.bottom.Home.HomeFragment;
 import com.example.coffee.screens.bottom.Profile.ProfileFragment;
@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        FirebaseService.getDeviceToken();
+        UseFCM.getDeviceToken();
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigation);
         bottomNavigationView.setItemIconTintList(null);

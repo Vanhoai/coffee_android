@@ -1,10 +1,7 @@
 package com.example.coffee.fcm;
 
-import static android.content.ContentValues.TAG;
-
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.StrictMode;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -13,12 +10,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.messaging.FirebaseMessaging;
 
-import org.json.JSONObject;
-
-import java.util.HashMap;
-import java.util.Map;
-
-public class FirebaseService {
+public class UseFCM {
 
     public static void getDeviceToken() {
         FirebaseMessaging.getInstance().getToken()
