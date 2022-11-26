@@ -44,11 +44,11 @@ public class RecycleAllShopAdapter extends RecyclerView.Adapter<RecycleAllShopAd
         Shop shop = shops.get(position);
         holder.tvNameShop.setText("Aurora Coffee");
         String[] desc = shop.getDescription().split(" ");
-        if (desc.length > 16) {
+        if (desc.length > 15) {
             StringBuilder result = new StringBuilder();
-            for (int i = 0; i < 16; i++) {
+            for (int i = 0; i < 15; i++) {
                 result.append(desc[i]);
-                if (i < 15) {
+                if (i < 14) {
                     result.append(" ");
                 }
             }
