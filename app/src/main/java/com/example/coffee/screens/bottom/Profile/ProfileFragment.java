@@ -196,6 +196,9 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(requireContext(), ProductListActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("Page Title", "Bookmark");
+                intent.putExtras(bundle);
                 requireContext().startActivity(intent);
                 requireActivity().finish();
             }

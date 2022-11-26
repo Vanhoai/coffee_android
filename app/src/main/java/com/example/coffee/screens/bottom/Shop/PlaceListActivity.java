@@ -51,8 +51,28 @@ public class PlaceListActivity extends AppCompatActivity {
         shops = new ArrayList<>();
         shopService = new ShopService();
 
+        // call api
         initShop();
-        
+
+        // handle onclick
+        handleOnClick();
+
+        // set view
+        setView();
+    }
+
+    private void setView() {
+        try {
+            Intent intent = getIntent();
+            Bundle bundle = intent.getExtras();
+            String title = bundle.getString("Page Title", "All Shop");
+            tvTitle.setText(title);
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+    }
+
+    private void handleOnClick() {
         backNavigation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,14 +81,14 @@ public class PlaceListActivity extends AppCompatActivity {
                 finish();
             }
         });
-
     }
+
     public void initShop(){
         shopService.getAllShop(new ShopCallback() {
             @Override
             public void onSuccess(boolean value, ShopResponse shopResponse) {
                 Logger.log("SHOPRESPONSE", shopResponse);
-                tvTitle.setText("All Shop");
+
                 shops.addAll(shopResponse.getShops());
                 renderShop(recyclePlaceList, shops);
             }

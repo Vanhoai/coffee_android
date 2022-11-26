@@ -180,6 +180,9 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), ProductListActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("Page Title", "Best Seller");
+                intent.putExtras(bundle);
                 startActivity(intent);
                 requireActivity().finish();
             }
@@ -188,6 +191,9 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), PlaceListActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("Page Title", "Nearby Place");
+                intent.putExtras(bundle);
                 startActivity(intent);
                 requireActivity().finish();
             }

@@ -46,8 +46,28 @@ public class ProductListActivity extends AppCompatActivity {
         products = new ArrayList<>();
         productService = new ProductService();
 
+        // call api
         initProduct();
 
+        // handle onclick
+        handleOnclick();
+
+        // set view
+        setView();
+    }
+
+    private void setView() {
+        try {
+            Intent intent = getIntent();
+            Bundle bundle = intent.getExtras();
+            String title = bundle.getString("Page Title", "All Product");
+            tvTitle.setText(title);
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+    }
+
+    private void handleOnclick() {
         backNavigation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,7 +83,7 @@ public class ProductListActivity extends AppCompatActivity {
             @Override
             public void onSuccess(boolean value, ProductResponse productResponse) {
                 Logger.log("PRODUCTS", productResponse);
-                tvTitle.setText("All Product");
+
                 products.addAll(productResponse.getProducts());
                 renderProduct(recyclerProductList, products);
             }
