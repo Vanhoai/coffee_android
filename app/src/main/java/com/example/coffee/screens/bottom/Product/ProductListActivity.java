@@ -1,7 +1,6 @@
 package com.example.coffee.screens.bottom.Product;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,8 +16,7 @@ import com.example.coffee.adapters.RecycleProductAdapter;
 import com.example.coffee.callbacks.ProductCallback;
 import com.example.coffee.models.Product.Product;
 import com.example.coffee.models.Product.ProductResponse;
-import com.example.coffee.models.Shop.Mission;
-import com.example.coffee.screens.bottom.Home.PromoActivity;
+
 import com.example.coffee.screens.bottom.MainActivity;
 import com.example.coffee.services.ProductService;
 import com.example.coffee.utils.Logger;
@@ -50,16 +48,14 @@ public class ProductListActivity extends AppCompatActivity {
 
         initProduct();
 
-
         backNavigation.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ProductListActivity.this,MainActivity.class);
+            public void onClick(View view) {
+                Intent intent = new Intent(ProductListActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
             }
         });
-
     }
 
     public void initProduct(){
