@@ -85,6 +85,51 @@
 
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="20dp">
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Code"
+                    style="@style/textMedium"
+                    android:textSize="16dp"
+                    android:layout_marginBottom="8dp"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:background="@drawable/background_input"
+                    android:paddingHorizontal="20dp">
+
+                    <EditText
+                        android:id="@+id/edtCode"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="Enter code otp"
+                        style="@style/textWeight"
+                        android:background="@null"
+                        android:textSize="16dp"
+                        android:inputType="phone"/>
+
+                    <ImageView
+                        android:id="@+id/checkCode"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="right"
+                        android:src="@drawable/check" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
             <androidx.appcompat.widget.AppCompatButton
                 android:layout_marginTop="24dp"
                 android:id="@+id/btnVerify"
@@ -98,10 +143,8 @@
                 style="@style/textWeight"
                 android:textAllCaps="false"
                 app:backgroundTint="@null" />
-
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

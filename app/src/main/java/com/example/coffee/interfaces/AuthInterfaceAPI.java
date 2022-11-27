@@ -25,7 +25,8 @@ public interface AuthInterfaceAPI extends BaseAPI{
     Call<UserResponse> register(
             @Field("username") String username,
             @Field("email") String email,
-            @Field("password") String password
+            @Field("password") String password,
+            @Field("phone") String phone
     );
 
 }

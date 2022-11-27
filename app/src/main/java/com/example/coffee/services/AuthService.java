@@ -58,8 +58,8 @@ public class AuthService {
         }
     }
     
-    public void register(String username, String email, String password, AuthCallback callback){
-        getAPI().register(username, email, password).enqueue(new Callback<UserResponse>() {
+    public void register(String username, String email, String password, String phone, AuthCallback callback){
+        getAPI().register(username, email, password, phone).enqueue(new Callback<UserResponse>() {
             @Override
             public void onResponse(@NonNull Call<UserResponse> call, @NonNull Response<UserResponse> response) {
                 if (response.code() == 200) {
