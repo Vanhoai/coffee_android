@@ -76,6 +76,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tvXP"
                         style="@style/textMedium"
                         android:textSize="16dp"
                         android:textColor="@color/darkColor"
@@ -119,6 +120,7 @@
                     android:padding="16dp">
 
                     <TextView
+                        android:id="@+id/tvtotalGift"
                         style="@style/textMedium"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -168,6 +170,7 @@
                     android:padding="16dp">
 
                     <TextView
+                        android:id="@+id/tvtotalMission"
                         style="@style/textMedium"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -200,6 +203,7 @@
                     </RelativeLayout>
 
                     <TextView
+                        android:id="@+id/tvtotalMissionProgress"
                         style="@style/textMedium"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -225,6 +229,7 @@
                     android:textSize="20dp" />
 
                 <TextView
+                    android:id="@+id/tvViewAllGift"
                     style="@style/textWeight"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -238,7 +243,7 @@
             <LinearLayout
                 android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="125dp"
                 android:background="@drawable/background_input"
                 android:orientation="horizontal"
                 android:padding="12dp">
@@ -277,7 +282,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
-                        android:layout_marginTop="50dp">
+                        android:layout_marginTop="70dp">
 
                         <ImageView
                             android:layout_width="14dp"
@@ -315,6 +320,7 @@
                     android:textSize="20dp" />
 
                 <TextView
+                    android:id="@+id/tvViewAllMission"
                     style="@style/textWeight"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

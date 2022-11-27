@@ -4,6 +4,7 @@ import com.example.coffee.models.Order.Type;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class Mission implements Serializable {
 
@@ -23,7 +24,7 @@ public class Mission implements Serializable {
     private String total;
 
     @SerializedName("expiredAt")
-    private int expiredAt;
+    private Date expiredAt;
 
     @SerializedName("current")
     private int current;
@@ -31,7 +32,7 @@ public class Mission implements Serializable {
     @SerializedName("type")
     private Type type;
 
-    public Mission(int id, float mark, String name, String description, String total, int expiredAt, int current, Type type) {
+    public Mission(int id, float mark, String name, String description, String total, Date expiredAt, int current, Type type) {
         this.id = id;
         this.mark = mark;
         this.name = name;
@@ -82,11 +83,11 @@ public class Mission implements Serializable {
         this.total = total;
     }
 
-    public int getExpiredAt() {
+    public Date getExpiredAt() {
         return expiredAt;
     }
 
-    public void setExpiredAt(int expiredAt) {
+    public void setExpiredAt(Date expiredAt) {
         this.expiredAt = expiredAt;
     }
 
@@ -104,5 +105,19 @@ public class Mission implements Serializable {
 
     public void setType(Type type) {
         this.type = type;
+    }
+
+    @Override
+    public String toString() {
+        return "Mission{" +
+                "id=" + id +
+                ", mark=" + mark +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", total='" + total + '\'' +
+                ", expiredAt=" + expiredAt +
+                ", current=" + current +
+                ", type=" + type +
+                '}';
     }
 }
