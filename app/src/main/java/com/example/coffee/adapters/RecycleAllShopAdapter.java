@@ -44,11 +44,11 @@ public class RecycleAllShopAdapter extends RecyclerView.Adapter<RecycleAllShopAd
         Shop shop = shops.get(position);
         holder.tvNameShop.setText("Aurora Coffee");
         String[] desc = shop.getDescription().split(" ");
-        if (desc.length > 16) {
+        if (desc.length > 15) {
             StringBuilder result = new StringBuilder();
-            for (int i = 0; i < 16; i++) {
+            for (int i = 0; i < 15; i++) {
                 result.append(desc[i]);
-                if (i < 15) {
+                if (i < 14) {
                     result.append(" ");
                 }
             }
@@ -56,6 +56,7 @@ public class RecycleAllShopAdapter extends RecyclerView.Adapter<RecycleAllShopAd
         } else {
             holder.tvDescriptionShop.setText(shop.getDescription());
         }
+        holder.tvAddress.setText(shop.getAddress());
         Glide.with(context).load(shop.getImage()).into(holder.imageAllShop);
         holder.cardViewAllShop.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,21 +75,8 @@ public class RecycleAllShopAdapter extends RecyclerView.Adapter<RecycleAllShopAd
         return shops.size();
     }
 
-    public static class AllShopViewHolder extends RecyclerView.ViewHolder {
-        CardView cardViewAllShop;
-        TextView tvNameShop,tvDescriptionShop;
-        ImageView imageAllShop;
-        public AllShopViewHolder(@NonNull View itemView) {
-            super(itemView);
-            cardViewAllShop = itemView.findViewById(R.id.cardViewAllShop);
-            tvNameShop = itemView.findViewById(R.id.tvNameShop);
-            tvDescriptionShop = itemView.findViewById(R.id.tvDescriptionShop);
-            imageAllShop = itemView.findViewById(R.id.imageAllShop);
-        }
-    }
-
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tvNameShop,tvDescriptionShop;
+        TextView tvNameShop,tvDescriptionShop, tvAddress;
         CardView cardViewAllShop;
         ImageView imageAllShop;
 
@@ -98,6 +86,7 @@ public class RecycleAllShopAdapter extends RecyclerView.Adapter<RecycleAllShopAd
             tvDescriptionShop = itemView.findViewById(R.id.tvDescriptionShop);
             cardViewAllShop = itemView.findViewById(R.id.cardViewAllShop);
             imageAllShop = itemView.findViewById(R.id.imageAllShop);
+            tvAddress = itemView.findViewById(R.id.tvPlaceLocation);
         }
     }
 }

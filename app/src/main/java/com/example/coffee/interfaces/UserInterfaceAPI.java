@@ -32,11 +32,19 @@ public interface UserInterfaceAPI {
             @Part MultipartBody.Part image
     );
 
+
     @PATCH("{id}")
     @FormUrlEncoded
     Call<BalanceResponse> topUp(
             @Path("id") int id,
             @Field("code") String code,
             @Field("balance") Float balance
+
+    @PUT("update/{id}")
+    @FormUrlEncoded
+    Call<UserResponse> updatePhoneNumber(
+            @Path("id") int id,
+            @Field("phone") String phone
+
     );
 }

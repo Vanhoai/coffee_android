@@ -31,6 +31,7 @@
                 android:textSize="20dp" />
 
             <ImageView
+                android:id="@+id/imageNotify"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_weight="1"
@@ -233,7 +234,7 @@
                     android:layout_height="match_parent"/>
 
                 <TextView
-                    android:id="@+id/tvViewAll"
+                    android:id="@+id/tvViewAllMyReward"
                     android:gravity="bottom"
                     android:layout_alignParentEnd="true"
                     android:text="View All"
@@ -308,7 +309,7 @@
                         android:layout_height="match_parent"/>
 
                     <TextView
-                        android:id="@+id/tvViewAll_NearbyPlace"
+                        android:id="@+id/tvViewHomeNearby"
                         android:gravity="bottom"
                         android:layout_alignParentEnd="true"
                         android:text="View All"
@@ -350,7 +351,7 @@
                         android:layout_height="match_parent"/>
 
                     <TextView
-                        android:id="@+id/tvViewAllBestSeller"
+                        android:id="@+id/tvViewHomeBestSeller"
                         android:gravity="bottom"
                         android:layout_alignParentEnd="true"
                         android:text="View All"

@@ -35,7 +35,6 @@ public class ShopFragment extends Fragment {
     ArrayList<Shop> shopsNearby;
     ArrayList<Shop> shopsAllShop;
 
-
     @SuppressLint("MissingInflatedId")
     @Nullable
     @Override
@@ -51,9 +50,11 @@ public class ShopFragment extends Fragment {
         shopsAllShop = new ArrayList<>();
         shopService = new ShopService();
 
+        // call api
         initShop();
         initAllShop();
 
+        // handle onclick
         handleOnClick();
 
         return view;
@@ -68,14 +69,18 @@ public class ShopFragment extends Fragment {
         recyclerViewNearbyPlace = view.findViewById(R.id.recycleViewNearbyPlace);
         recyclerViewAllShop = view.findViewById(R.id.recycleViewAllShop);
         tvViewAllHottest = view.findViewById(R.id.tvViewAllHottest);
-        tvViewAllShop = view.findViewById(R.id.tvViewAllShop);
-        tvViewAllNearby = view.findViewById(R.id.tvViewAllNearby);
+        tvViewAllShop = view.findViewById(R.id.tvViewShopAll);
+        tvViewAllNearby = view.findViewById(R.id.tvViewShopNearby);
     }
+
     public void handleOnClick(){
         tvViewAllShop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), PlaceListActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("Page Title", "All Shop");
+                intent.putExtras(bundle);
                 startActivity(intent);
             }
         });
@@ -90,6 +95,9 @@ public class ShopFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), PlaceListActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("Page Title", "Nearby Place");
+                intent.putExtras(bundle);
                 startActivity(intent);
             }
         });
@@ -117,6 +125,7 @@ public class ShopFragment extends Fragment {
             @Override
             public void onSuccess(boolean value, ShopResponse shopResponse) {
                 Logger.log("ALL SHOPS", shopResponse);
+
                 shopsAllShop.addAll(shopResponse.getShops());
                 renderAllShop(recyclerViewAllShop, shopsAllShop);
             }

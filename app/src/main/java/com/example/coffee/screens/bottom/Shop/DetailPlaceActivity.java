@@ -1,12 +1,16 @@
 package com.example.coffee.screens.bottom.Shop;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -40,11 +44,11 @@ public class DetailPlaceActivity extends AppCompatActivity {
     int shopId;
     ShopService shopService;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_place);
-
         // init view
         initView();
 
@@ -134,6 +138,7 @@ public class DetailPlaceActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
     public void render(ArrayList<Product> data) {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(DetailPlaceActivity.this) {
             @Override

@@ -13,14 +13,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.coffee.R;
 import com.example.coffee.adapters.RecyclePromoAdapter;
+import com.example.coffee.models.Order.Gift;
 import com.example.coffee.models.Product.Product;
 import com.example.coffee.models.Shop.Mission;
+import com.example.coffee.services.GiftService;
 
 import java.util.ArrayList;
 
 public class GiftFragment extends Fragment {
     private RecyclerView recyclerMission;
     private ArrayList<Product> products;
+    private ArrayList<Gift> gifts;
+    private ArrayList<Mission> missions;
+    GiftService giftService;
 
     @Nullable
     @Override
@@ -33,12 +38,6 @@ public class GiftFragment extends Fragment {
         products = new ArrayList<>();
 
         ArrayList<Mission> missions = new ArrayList<>();
-        missions.add(new Mission(1,"Buy 10 Coffees and get 1 Coffee for free",9,10,"Free a coffee"));
-        missions.add(new Mission(1,"Buy 10 Coffees and get 1 Coffee for free",9,10,"Free a coffee"));
-        missions.add(new Mission(1,"Buy 10 Coffees and get 1 Coffee for free",9,10,"Free a coffee"));
-        missions.add(new Mission(1,"Buy 10 Coffees and get 1 Coffee for free",9,10,"Free a coffee"));
-        missions.add(new Mission(1,"Buy 10 Coffees and get 1 Coffee for free",9,10,"Free a coffee"));
-
         renderPromo(recyclerMission, missions);
         return view;
     }
@@ -46,6 +45,10 @@ public class GiftFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+    }
+
+    public  void intView (View view){
+
     }
 
     public void renderPromo(RecyclerView recyclerView, ArrayList<Mission> data) {

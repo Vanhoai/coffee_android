@@ -1,5 +1,7 @@
-package com.example.coffee.utils.fcm;
+package com.example.coffee.fcm;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -8,7 +10,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.messaging.FirebaseMessaging;
 
-public class FirebaseService {
+public class UseFCM {
 
     public static void getDeviceToken() {
         FirebaseMessaging.getInstance().getToken()
@@ -27,4 +29,8 @@ public class FirebaseService {
                 });
     }
 
+    public static String getMyToken(Context context) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("TOKEN", Context.MODE_PRIVATE);
+        return sharedPreferences.getString("deviceToken", "");
+    }
 }

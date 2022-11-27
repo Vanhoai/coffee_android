@@ -26,6 +26,7 @@ import com.example.coffee.models.Shop.Shop;
 import com.example.coffee.models.Shop.ShopResponse;
 import com.example.coffee.models.User.User;
 
+import com.example.coffee.screens.bottom.Product.ProductListActivity;
 import com.example.coffee.screens.bottom.Profile.HistoryActivity;
 import com.example.coffee.screens.bottom.Profile.RewardDetailActivity;
 import com.example.coffee.screens.bottom.Profile.TopUpActivity;
@@ -38,15 +39,17 @@ import com.example.coffee.utils.UserInformation;
 import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
-    TextView tvView;
+    TextView tvViewAllMyReward;
     RecyclerView recycleViewNearbyPlace;
     RecyclerView recycleViewBestSeller;
     ImageView imageTopUp;
     ImageView imagePay;
     ImageView imagePromo;
     ImageView imageHistory;
+    ImageView imageNotify;
     TextView tvBalance;
     TextView tvViewAllBestSeller;
+    TextView tvViewAllNearbyPlace;
     ShopService shopService;
     ProductService productService;
     ArrayList<Product> products;
@@ -124,9 +127,11 @@ public class HomeFragment extends Fragment {
         imagePay = view.findViewById(R.id.imagePay);
         imagePromo = view.findViewById(R.id.imagePromo);
         imageHistory = view.findViewById(R.id.imageHistory);
+        imageNotify = view.findViewById(R.id.imageNotify);
         tvBalance = view.findViewById(R.id.tvBalance);
-        tvView = view.findViewById(R.id.tvViewAll);
-        tvViewAllBestSeller = view.findViewById(R.id.tvViewAllBestSeller);
+        tvViewAllMyReward = view.findViewById(R.id.tvViewAllMyReward);
+        tvViewAllBestSeller = view.findViewById(R.id.tvViewHomeBestSeller);
+        tvViewAllNearbyPlace = view.findViewById(R.id.tvViewHomeNearby);
     }
 
     public void handleOnClick () {
@@ -165,7 +170,15 @@ public class HomeFragment extends Fragment {
                 requireActivity().finish();
             }
         });
-        tvView.setOnClickListener(new View.OnClickListener() {
+        imageNotify.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), NotificationActivity.class);
+                startActivity(intent);
+                requireActivity().finish();
+            }
+        });
+        tvViewAllMyReward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), RewardDetailActivity.class);
@@ -176,7 +189,21 @@ public class HomeFragment extends Fragment {
         tvViewAllBestSeller.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(getContext(), ProductListActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("Page Title", "Best Seller");
+                intent.putExtras(bundle);
+                startActivity(intent);
+                requireActivity().finish();
+            }
+        });
+        tvViewAllNearbyPlace.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 Intent intent = new Intent(getContext(), PlaceListActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("Page Title", "Nearby Place");
+                intent.putExtras(bundle);
                 startActivity(intent);
                 requireActivity().finish();
             }

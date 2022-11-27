@@ -1,17 +1,21 @@
 package com.example.coffee.screens.bottom.Product;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.coffee.R;
@@ -43,7 +47,9 @@ public class ProductDetailActivity extends AppCompatActivity {
     ArrayList<Comment> comments;
     ImageView backNavigation;
     ProductService productService;
-
+    AppCompatButton btnReview;
+    ImageView bookmark;
+    boolean check = false;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -73,6 +79,8 @@ public class ProductDetailActivity extends AppCompatActivity {
         tvDescription = findViewById(R.id.tvDescriptionProduct);
         btnTextProduct = findViewById(R.id.btnTextProduct);
         backNavigation = findViewById(R.id.backNavigation);
+        btnReview = findViewById(R.id.btnReview);
+        bookmark = findViewById(R.id.bookmark);
     }
 
     public void handleOnClick() {
@@ -81,6 +89,23 @@ public class ProductDetailActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(ProductDetailActivity.this, MainActivity.class);
                 startActivity(intent);
+            }
+        });
+        btnReview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialogReview();
+            }
+        });
+        bookmark.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                check = !check;
+                if (check) {
+                    bookmark.setImageResource(R.drawable.gift_active);
+                } else {
+                    bookmark.setImageResource(R.drawable.gift);
+                }
             }
         });
     }
@@ -101,8 +126,6 @@ public class ProductDetailActivity extends AppCompatActivity {
                     tvDescription.setText(productResponse.getProductDetail().getDescription());
                     btnTextProduct.setText(String.valueOf(productResponse.getProductDetail().getComments().size()));
                     Glide.with(ProductDetailActivity.this).load(productResponse.getProductDetail().getImage()).into(imageProduct);
-
-
                     comments.addAll(productResponse.getProductDetail().getComments());
                     render(comments);
                 }
@@ -117,6 +140,27 @@ public class ProductDetailActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void dialogReview() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(ProductDetailActivity.this);
+        LayoutInflater layoutInflater = getLayoutInflater();
+        View view = layoutInflater.inflate(R.layout.dialog_review, null);
+        builder.setView(view);
+        builder.setMessage("Thông báo ");
+        builder.setPositiveButton("Không đồng ý", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+            }
+        });
+        builder.setNegativeButton(" đồng ý", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     public void render(ArrayList<Comment> data) {

@@ -101,4 +101,27 @@ public class UserService {
         }
     }
 
+    public void updatePhoneNumber(int id, String phone, AuthCallback callback) {
+        try {
+            getAPI().updatePhoneNumber(id, phone).enqueue(new Callback<UserResponse>() {
+                @Override
+                public void onResponse(@NonNull Call<UserResponse> call, @NonNull Response<UserResponse> response) {
+                    if (response.code() == 200) {
+                        callback.onSuccess(true, response.body());
+                    } else {
+                        callback.onFailed(false);
+                        Logger.log("O DAY HA BA", "UH");
+                    }
+                }
+
+                @Override
+                public void onFailure(@NonNull Call<UserResponse> call, @NonNull Throwable t) {
+                    callback.onFailed(false);
+                    Logger.log("ERROR", t);
+                }
+            });
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+    }
 }

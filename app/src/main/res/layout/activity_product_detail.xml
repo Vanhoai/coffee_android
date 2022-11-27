@@ -18,6 +18,14 @@
             android:backgroundTint="@color/hintText"
             android:src="@drawable/back_icon" />
 
+        <ImageView
+            android:id="@+id/bookmark"
+            android:layout_alignParentEnd="true"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:backgroundTint="@color/hintText"
+            android:src="@drawable/gift" />
+
     </RelativeLayout>
 
     <ScrollView
@@ -34,7 +42,7 @@
                 android:id="@+id/imageDetailProduct"
                 android:layout_width="match_parent"
                 android:layout_height="400dp"
-                android:scaleType="center"/>
+                android:scaleType="center" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -133,8 +141,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="680dp" />
 
-
                 <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnReview"
                     android:layout_width="match_parent"
                     android:layout_marginTop="12dp"
                     android:layout_height="56dp"
