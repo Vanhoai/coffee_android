@@ -2,9 +2,12 @@ package com.example.coffee.services;
 
 import static com.example.coffee.interfaces.GiftInterfaceAPI.GIFT_URL;
 
+import androidx.annotation.NonNull;
+
 import com.example.coffee.callbacks.GiftCallback;
 import com.example.coffee.interfaces.GiftInterfaceAPI;
 import com.example.coffee.models.Shop.GiftResponse;
+import com.example.coffee.utils.Logger;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -20,7 +23,7 @@ public class GiftService {
      return API;
  }
 
- public void GiftInterfaceAPI(){
+ public  GiftService(){
      API = new Retrofit.Builder()
              .baseUrl(GIFT_URL)
              .addConverterFactory(GsonConverterFactory.create())
@@ -30,9 +33,10 @@ public class GiftService {
 
  public void getGift(int limit, int id, GiftCallback callback){
      try {
-         getAPI().getGift(limit, id).enqueue(new Callback<GiftResponse>() {
+         getAPI().getGift(id, limit).enqueue(new Callback<GiftResponse>() {
              @Override
-             public void onResponse(Call<GiftResponse> call, Response<GiftResponse> response) {
+             public void onResponse(@NonNull Call<GiftResponse> call, @NonNull Response<GiftResponse> response) {
+                Logger.log("RESPONSE", response);
                  if (response.code() == 200){
                      callback.onSuccess(true, response.body());
                  }else {
@@ -42,8 +46,9 @@ public class GiftService {
              }
 
              @Override
-             public void onFailure(Call<GiftResponse> call, Throwable t) {
+             public void onFailure(@NonNull Call<GiftResponse> call, @NonNull Throwable t) {
                 callback.onFailed(false);
+                 Logger.log("ERROR",t);
              }
          });
      }catch (Exception e){
