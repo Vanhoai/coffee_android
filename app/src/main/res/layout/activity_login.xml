@@ -44,7 +44,6 @@
                 android:layout_marginBottom="24dp">
 
                 <EditText
-                    android:text="hoaitv@gmail.com"
                     android:id="@+id/edtEmail"
                     style="@style/textWeight"
                     android:layout_width="match_parent"
@@ -54,6 +53,7 @@
                     android:textSize="16dp" />
 
                 <ImageView
+                    android:id="@+id/checkEmail"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_alignParentEnd="true"
@@ -86,7 +86,6 @@
                 android:paddingHorizontal="20dp">
 
                 <EditText
-                    android:text="admin"
                     android:id="@+id/edtPassword"
                     style="@style/textWeight"
                     android:inputType="textPassword"
@@ -97,6 +96,7 @@
                     android:textSize="16dp" />
 
                 <ImageView
+                    android:id="@+id/checkPassword"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_alignParentEnd="true"

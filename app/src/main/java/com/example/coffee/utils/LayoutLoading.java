@@ -11,24 +11,24 @@ import com.example.coffee.R;
 
 public class LayoutLoading {
 
-    static ConstraintLayout parent;
-    static Context context;
-    static View view;
+    ConstraintLayout parent;
+    Context context;
+    View view;
 
     public LayoutLoading(ConstraintLayout parent, Context context) {
-        LayoutLoading.parent = parent;
-        LayoutLoading.context = context;
+        this.parent = parent;
+        this.context = context;
         LayoutInflater layoutInflater = ((Activity) context).getLayoutInflater();
-        LayoutLoading.view = layoutInflater.inflate(R.layout.layout_loading, parent, false);
-        LayoutLoading.parent.addView(LayoutLoading.view);
-        LayoutLoading.view.setVisibility(View.GONE);
+        this.view = layoutInflater.inflate(R.layout.layout_loading, parent, false);
+        this.parent.addView(this.view);
+        this.view.setVisibility(View.GONE);
     }
 
-    public static void setLoading() {
-        LayoutLoading.view.setVisibility(View.VISIBLE);
+    public void setLoading() {
+        this.view.setVisibility(View.VISIBLE);
     }
 
-    public static void setGone() {
-        LayoutLoading.view.setVisibility(View.GONE);
+    public void setGone() {
+        this.view.setVisibility(View.GONE);
     }
 }

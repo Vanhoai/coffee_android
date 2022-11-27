@@ -17,6 +17,9 @@ public class User implements Serializable {
     
     @SerializedName("role")
     private String role;
+
+    @SerializedName("phone")
+    private String phone;
     
     @SerializedName("typeAccount")
     private String typeAccount;
@@ -43,11 +46,12 @@ public class User implements Serializable {
     private String refreshToken;
 
 
-    public User(int id, String username, String email, String role, String typeAccount, Balance balance, int exp, String image, int history, int favorite, String accessToken, String refreshToken) {
+    public User(int id, String username, String email, String role, String phone, String typeAccount, Balance balance, int exp, String image, int history, int favorite, String accessToken, String refreshToken) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.role = role;
+        this.phone = phone;
         this.typeAccount = typeAccount;
         this.balance = balance;
         this.exp = exp;
@@ -88,6 +92,14 @@ public class User implements Serializable {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getTypeAccount() {
@@ -161,6 +173,7 @@ public class User implements Serializable {
                 ", username='" + username + '\'' +
                 ", email='" + email + '\'' +
                 ", role='" + role + '\'' +
+                ", phone='" + phone + '\'' +
                 ", typeAccount='" + typeAccount + '\'' +
                 ", balance=" + balance +
                 ", exp=" + exp +

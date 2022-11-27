@@ -8,6 +8,8 @@ import java.util.Map;
 
 import okhttp3.MultipartBody;
 import retrofit2.Call;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.HeaderMap;
 import retrofit2.http.Headers;
 import retrofit2.http.Multipart;
@@ -20,11 +22,18 @@ public interface UserInterfaceAPI {
 
     String USER_URL = String.format("%s/users/", BASE_URL);
 
-    @PUT("/{id}")
+    @PUT("{id}")
     @Multipart
     Call<UserResponse> uploadAvatar(
             @HeaderMap Map<String, String> headers,
             @Path("id") int id,
             @Part MultipartBody.Part image
+    );
+
+    @PUT("update/{id}")
+    @FormUrlEncoded
+    Call<UserResponse> updatePhoneNumber(
+            @Path("id") int id,
+            @Field("phone") String phone
     );
 }

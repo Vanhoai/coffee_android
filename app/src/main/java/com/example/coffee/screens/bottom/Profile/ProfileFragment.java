@@ -56,7 +56,6 @@ import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 
 public class ProfileFragment extends Fragment {
-    private Context context;
 
     private static final int REQUEST_CODE = 10;
     private static final String TAG = ProfileFragment.class.getName();
@@ -221,17 +220,17 @@ public class ProfileFragment extends Fragment {
         User user = UserInformation.getUser(requireContext());
         File file = new File(path);
 
-        LayoutLoading.setLoading();
+        layoutLoading.setLoading();
         userService.uploadAvatar(user.getAccessToken(), user.getId(), file, new AuthCallback() {
             @Override
             public void onSuccess(Boolean value, UserResponse userResponse) {
                 Logger.log(TAG, userResponse);
-                LayoutLoading.setGone();
+                layoutLoading.setGone();
             }
 
             @Override
             public void onFailed(Boolean value) {
-                LayoutLoading.setGone();
+                layoutLoading.setGone();
             }
         });
     }

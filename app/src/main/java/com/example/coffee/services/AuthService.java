@@ -62,14 +62,17 @@ public class AuthService {
         getAPI().register(username, email, password).enqueue(new Callback<UserResponse>() {
             @Override
             public void onResponse(@NonNull Call<UserResponse> call, @NonNull Response<UserResponse> response) {
-                callback.onSuccess(true, response.body());
-                Log.d("RESPONE", response.body().toString());
+                if (response.code() == 200) {
+                    callback.onSuccess(true, response.body());
+                } else {
+                    callback.onFailed(false);
+                }
             }
 
             @Override
             public void onFailure(@NonNull Call<UserResponse> call, @NonNull Throwable t) {
-                Log.e("ERROR", t.toString());
                 callback.onFailed(false);
+                Logger.log("ERROR", t);
             }
         });
     }
