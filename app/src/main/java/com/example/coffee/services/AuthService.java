@@ -58,19 +58,45 @@ public class AuthService {
         }
     }
     
-    public void register(String username, String email, String password, AuthCallback callback){
-        getAPI().register(username, email, password).enqueue(new Callback<UserResponse>() {
+    public void register(String username, String email, String password, String phone, AuthCallback callback){
+        getAPI().register(username, email, password, phone).enqueue(new Callback<UserResponse>() {
             @Override
             public void onResponse(@NonNull Call<UserResponse> call, @NonNull Response<UserResponse> response) {
-                callback.onSuccess(true, response.body());
-                Log.d("RESPONE", response.body().toString());
+                if (response.code() == 200) {
+                    callback.onSuccess(true, response.body());
+                } else {
+                    callback.onFailed(false);
+                }
             }
 
             @Override
             public void onFailure(@NonNull Call<UserResponse> call, @NonNull Throwable t) {
-                Log.e("ERROR", t.toString());
                 callback.onFailed(false);
+                Logger.log("ERROR", t);
             }
         });
+    }
+
+    public void resetPassword(String email, String password, AuthCallback callback) {
+        try {
+            getAPI().resetPassword(email, password).enqueue(new Callback<UserResponse>() {
+                @Override
+                public void onResponse(@NonNull Call<UserResponse> call, @NonNull Response<UserResponse> response) {
+                    if (response.code() == 200) {
+                        callback.onSuccess(true, response.body());
+                    } else {
+                        callback.onFailed(false);
+                    }
+                }
+
+                @Override
+                public void onFailure(@NonNull Call<UserResponse> call, @NonNull Throwable throwable) {
+                    callback.onFailed(false);
+                    Logger.log("ERROR", throwable);
+                }
+            });
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
     }
 }

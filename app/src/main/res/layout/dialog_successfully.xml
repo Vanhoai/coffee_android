@@ -37,7 +37,7 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnOK"
-            android:text="OK"
+            android:text="Ok"
             android:textColor="@color/white"
             android:layout_margin="20dp"
             android:layout_marginTop="24dp"

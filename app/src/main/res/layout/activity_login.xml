@@ -44,16 +44,17 @@
                 android:layout_marginBottom="24dp">
 
                 <EditText
-                    android:text="aurorastudyvn@gmail.com"
                     android:id="@+id/edtEmail"
                     style="@style/textWeight"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@null"
+                    android:text="hoaitv@gmail.com"
                     android:hint="Enter your username"
                     android:textSize="16dp" />
 
                 <ImageView
+                    android:id="@+id/checkEmail"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_alignParentEnd="true"
@@ -97,6 +98,7 @@
                     android:textSize="16dp" />
 
                 <ImageView
+                    android:id="@+id/checkPassword"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_alignParentEnd="true"
@@ -114,6 +116,7 @@
             android:layout_height="wrap_content">
 
             <CheckBox
+                android:id="@+id/checkLogin"
                 style="@style/textWeight"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
@@ -123,6 +126,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/tvForgotPassword"
                 style="@style/textWeight"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"

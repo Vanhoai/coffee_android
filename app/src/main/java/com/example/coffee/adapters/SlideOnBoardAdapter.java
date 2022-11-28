@@ -17,8 +17,9 @@ import com.example.coffee.models.Others.SliderImage;
 import java.util.ArrayList;
 
 public class SlideOnBoardAdapter extends PagerAdapter {
-    Context context;
-    ArrayList<SliderImage> ListSlider_Image;
+
+    private final Context context;
+    private final ArrayList<SliderImage> ListSlider_Image;
 
     public SlideOnBoardAdapter(Context context, ArrayList<SliderImage> listSlider_Image) {
         this.context = context;

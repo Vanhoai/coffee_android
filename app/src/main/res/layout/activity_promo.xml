@@ -4,89 +4,232 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20dp"
     android:orientation="vertical"
+    android:padding="20dp"
     tools:context=".screens.bottom.Home.PromoActivity">
 
     <RelativeLayout
         android:id="@+id/relativecheckOut"
-        app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/backNavigation"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/back_icon"
-            android:backgroundTint="#5F5F5F" />
+            android:backgroundTint="#5F5F5F"
+            android:src="@drawable/back_icon" />
 
         <TextView
-            android:text="Promo"
-            android:gravity="center"
             style="@style/textMedium"
-            android:textColor="@color/darkColor"
-            android:textSize="16dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Promo"
+            android:textColor="@color/darkColor"
+            android:textSize="16dp" />
     </RelativeLayout>
 
-    <LinearLayout
+    <ScrollView
+        android:layout_marginTop="24dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:scrollbars="none">
+
         <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    <TextView
-        android:layout_marginTop="36dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="18dp"
-        style="@style/textWeight"
-        android:text="Hottest Promo"
-        android:textColor="@color/darkColor"/>
-    </LinearLayout>
-        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclePromo"
-        android:layout_marginTop="8dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-        </ScrollView>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <TextView
-            android:layout_marginTop="14dp"
-            style="@style/textWeight"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Recomendation Promo"
-            android:textColor="@color/darkColor"
-            android:textSize="18dp"
-            />
-        <TextView
-            android:layout_marginTop="14dp"
-            style="@style/textWeight"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:gravity="center_vertical"
-            android:text="View All"
-            android:textColor="@color/primaryColor"
-            android:textSize="14dp"
-            android:textStyle="bold" />
-    </RelativeLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclePromo2"
-        android:layout_marginTop="8dp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+                <TextView
+                    style="@style/textWeight"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Hottest Promo"
+                    android:textColor="@color/darkColor"
+                    android:textSize="18dp" />
+            </LinearLayout>
 
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/background_input"
+                    android:orientation="horizontal"
+                    android:padding="12dp">
+
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginRight="12dp"
+                        android:src="@drawable/promo5" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/textMedium"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Free a coffee"
+                            android:textColor="@color/darkColor"
+                            android:textSize="16dp" />
+
+                        <TextView
+                            style="@style/textWeight"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:text="8/10"
+                            android:textSize="14dp" />
+
+                        <TextView
+                            style="@style/textMedium"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:text="Buy 10 Coffees and get 1 Coffee for free"
+                            android:textColor="@color/textColor"
+                            android:textSize="14dp" />
+
+                        <LinearLayout
+                            android:gravity="center_vertical"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="50dp">
+
+                            <ImageView
+                                android:layout_width="14dp"
+                                android:layout_height="14dp"
+                                android:src="@drawable/time" />
+
+                            <TextView
+                                style="@style/textMedium"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="8dp"
+                                android:text="Ends in 12 hours"
+                                android:textColor="@color/redColor"
+                                android:textSize="12dp" />
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/background_input"
+                    android:orientation="horizontal"
+                    android:padding="12dp">
+
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginRight="12dp"
+                        android:src="@drawable/promo1" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/textMedium"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Free a coffee"
+                            android:textColor="@color/darkColor"
+                            android:textSize="16dp" />
+
+                        <TextView
+                            style="@style/textWeight"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:text="8/10"
+                            android:textSize="14dp" />
+
+                        <TextView
+                            style="@style/textMedium"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:text="Buy 10 Coffees and get 1 Coffee for free"
+                            android:textColor="@color/textColor"
+                            android:textSize="14dp" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:layout_marginTop="50dp">
+
+                            <ImageView
+                                android:layout_width="14dp"
+                                android:layout_height="14dp"
+                                android:src="@drawable/time" />
+
+                            <TextView
+                                style="@style/textMedium"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="8dp"
+                                android:text="Ends in 12 hours"
+                                android:textColor="@color/redColor"
+                                android:textSize="12dp" />
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    style="@style/textWeight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="Recomendation Promo"
+                    android:textColor="@color/darkColor"
+                    android:textSize="18dp" />
+
+                <TextView
+                    style="@style/textWeight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="14dp"
+                    android:gravity="center_vertical"
+                    android:text="View All"
+                    android:textColor="@color/primaryColor"
+                    android:textSize="14dp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclePromo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp" />
+
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

@@ -1,8 +1,9 @@
 package com.example.coffee.interfaces;
 
-public interface BaseAPI {
-    
-    String BASE_URL = "https://b1ac-58-187-172-81.ap.ngrok.io/api/v1";
+import com.example.coffee.app.Constants;
 
+public interface BaseAPI {
+
+    String BASE_URL = Constants.DEBUG ? String.format("%s%s", Constants.BASE_URL_LOCAL, Constants.API_VERSION) : String.format("%s%s", Constants.BASE_URL, Constants.API_VERSION);
 
 }

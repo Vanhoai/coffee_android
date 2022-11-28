@@ -3,6 +3,7 @@ package com.example.coffee.adapters;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.text.Layout;
 import android.view.ContentInfo;
 import android.view.LayoutInflater;
@@ -16,20 +17,28 @@ import androidx.appcompat.widget.AppCompatButton;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.coffee.R;
 import com.example.coffee.models.Product.Product;
+import com.example.coffee.models.Product.ProductDetail;
+import com.example.coffee.screens.bottom.Gift.GiftFragment;
 import com.example.coffee.screens.bottom.Product.ProductDetailActivity;
+import com.example.coffee.utils.Logger;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
 public class RecycleProductDetailAdapter extends RecyclerView.Adapter<RecycleProductDetailAdapter.ViewHolder> {
 
-    Context context;
-    ArrayList<Product> products;
+    private final Context context;
+    private final ArrayList<Product> products;
+    private final UpdateTotal updateTotal;
 
-    public RecycleProductDetailAdapter(Context context, ArrayList<Product> products) {
+    public RecycleProductDetailAdapter(Context context, ArrayList<Product> products, UpdateTotal updateTotal) {
         this.context = context;
         this.products = products;
+        this.updateTotal = updateTotal;
     }
 
     @NonNull
@@ -43,15 +52,53 @@ public class RecycleProductDetailAdapter extends RecyclerView.Adapter<RecyclePro
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Product product = products.get(position);
+        Logger.log("PRODUCT", product);
         holder.tvProductTitle.setText(product.getName());
         holder.tvProductPrice.setText(String.valueOf(product.getPrice()));
+        Glide.with(context).load(product.getImage()).into(holder.imageProduct);
+        holder.tvProductPrice.setText(String.format("%.1f", product.getPrice() * product.getCurrent()));
+        holder.btnCurrent.setText(String.valueOf(product.getCurrent()));
+        updateTotal.update(products);
+
         holder.cardProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent(context, ProductDetailActivity.class);
+                Bundle bundle =new Bundle();
+                bundle.putInt("id", product.getId());
+                intent.putExtras(bundle);
+                context.startActivity(intent);
+            }
+        });
+        holder.btnDecrease.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (product.getCurrent() ==0){
+                    return;
+                }
 
+                // update current
+                product.setCurrent(product.getCurrent() - 1);
+                holder.btnCurrent.setText(String.valueOf(product.getCurrent()));
+                holder.tvProductPrice.setText(String.format("%.1f", product.getPrice() * product.getCurrent()));
+                updateTotal.update(products);
+            }
+        });
+        holder.btnIncrease.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                product.setCurrent(product.getCurrent() + 1);
+                holder.btnCurrent.setText(String.valueOf(product.getCurrent()));
+                holder.tvProductPrice.setText(String.format("%.1f", product.getPrice() * product.getCurrent()));
+                updateTotal.update(products);
             }
         });
     }
+
+    public interface UpdateTotal {
+        public void update(ArrayList<Product> products);
+    }
+
 
     @Override
     public int getItemCount() {

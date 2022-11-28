@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginBottom="16dp"
+    app:cardCornerRadius="12sp"
+    android:layout_marginHorizontal="1dp">
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:padding="20dp">
+
+       <de.hdodenhof.circleimageview.CircleImageView
+           android:id="@+id/imageUserComment"
+           android:layout_width="60dp"
+           android:layout_height="60dp"
+           android:background="@drawable/custom_circle"/>
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="vertical"
+               android:paddingHorizontal="16dp">
+
+               <RelativeLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content">
+                   <TextView
+                       android:id="@+id/tvNameUser"
+                       android:layout_alignParentStart="true"
+                       android:textSize="16dp"
+                       style="@style/textMedium"
+                       android:text="Aurora Coffee"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:layout_weight="1"/>
+                   <TextView
+                       android:id="@+id/tvDate"
+                       android:layout_alignParentEnd="true"
+                       android:textSize="14sp"
+                       android:text="21 July 2022"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_weight="1"/>
+
+               </RelativeLayout>
+
+               <RelativeLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content">
+
+                   <TextView
+                       style="@style/textMedium"
+                       android:id="@+id/tvEmail"
+                       android:layout_alignParentStart="true"
+                       android:textSize="14dp"
+                       android:text="AuroraCoffee@gmail.com"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:layout_weight="1"/>
+                   <TextView
+                       android:id="@+id/tvRating"
+                       android:layout_alignParentEnd="true"
+                       android:textSize="14sp"
+                       android:text="Rating"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_weight="1"/>
+
+               </RelativeLayout>
+               <TextView
+                   android:id="@+id/tvDescription"
+                   android:textSize="14sp"
+                   android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna......"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"/>
+           </LinearLayout>
+
+       </LinearLayout>
+
+   </LinearLayout>
+</androidx.cardview.widget.CardView>

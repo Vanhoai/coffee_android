@@ -1,21 +1,37 @@
 package com.example.coffee.models.Order;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 import java.math.BigInteger;
+import java.util.Date;
 
 public class Gift implements Serializable {
+    @SerializedName("id")
     private int id;
-    private int type;
-    private String code;
-    private int count;
-    private BigInteger expire;
 
-    public Gift(int id, int type, String code, int count, BigInteger expire) {
+    @SerializedName("name")
+    private String name;
+
+    @SerializedName("code")
+    private String code;
+
+    @SerializedName("count")
+    private int count;
+
+    @SerializedName("expiredAt")
+    private Date expiredAt;
+
+    @SerializedName("type")
+    private Type type;
+
+    public Gift(int id, String name, String code, int count, Date expiredAt, Type type) {
         this.id = id;
-        this.type = type;
+        this.name = name;
         this.code = code;
         this.count = count;
-        this.expire = expire;
+        this.expiredAt = expiredAt;
+        this.type = type;
     }
 
     public int getId() {
@@ -26,12 +42,12 @@ public class Gift implements Serializable {
         this.id = id;
     }
 
-    public int getType() {
-        return type;
+    public String getName() {
+        return name;
     }
 
-    public void setType(int type) {
-        this.type = type;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getCode() {
@@ -50,11 +66,31 @@ public class Gift implements Serializable {
         this.count = count;
     }
 
-    public BigInteger getExpire() {
-        return expire;
+    public Date getExpiredAt() {
+        return expiredAt;
     }
 
-    public void setExpire(BigInteger expire) {
-        this.expire = expire;
+    public void setExpiredAt(Date expiredAt) {
+        this.expiredAt = expiredAt;
+    }
+
+    public Type getType() {
+        return type;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
+    }
+
+    @Override
+    public String toString() {
+        return "Gift{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", code='" + code + '\'' +
+                ", count=" + count +
+                ", expiredAt=" + expiredAt +
+                ", type=" + type +
+                '}';
     }
 }

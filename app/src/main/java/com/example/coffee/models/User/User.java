@@ -17,12 +17,15 @@ public class User implements Serializable {
     
     @SerializedName("role")
     private String role;
+
+    @SerializedName("phone")
+    private String phone;
     
     @SerializedName("typeAccount")
     private String typeAccount;
     
     @SerializedName("balance")
-    private float balance;
+    private Balance balance;
     
     @SerializedName("exp")
     private int exp;
@@ -41,13 +44,16 @@ public class User implements Serializable {
     
     @SerializedName("refreshToken")
     private String refreshToken;
-    
 
-    public User(int id, String username, String email, String role, String typeAccount, float balance, int exp, String image, int history, int favorite, String accessToken, String refreshToken) {
+    @SerializedName("deviceToken")
+    private String deviceToken;
+
+    public User(int id, String username, String email, String role, String phone, String typeAccount, Balance balance, int exp, String image, int history, int favorite, String accessToken, String refreshToken, String deviceToken) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.role = role;
+        this.phone = phone;
         this.typeAccount = typeAccount;
         this.balance = balance;
         this.exp = exp;
@@ -56,6 +62,7 @@ public class User implements Serializable {
         this.favorite = favorite;
         this.accessToken = accessToken;
         this.refreshToken = refreshToken;
+        this.deviceToken = deviceToken;
     }
 
     public int getId() {
@@ -90,6 +97,14 @@ public class User implements Serializable {
         this.role = role;
     }
 
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
     public String getTypeAccount() {
         return typeAccount;
     }
@@ -98,11 +113,11 @@ public class User implements Serializable {
         this.typeAccount = typeAccount;
     }
 
-    public float getBalance() {
+    public Balance getBalance() {
         return balance;
     }
 
-    public void setBalance(float balance) {
+    public void setBalance(Balance balance) {
         this.balance = balance;
     }
 
@@ -154,6 +169,14 @@ public class User implements Serializable {
         this.refreshToken = refreshToken;
     }
 
+    public String getDeviceToken() {
+        return deviceToken;
+    }
+
+    public void setDeviceToken(String deviceToken) {
+        this.deviceToken = deviceToken;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -161,6 +184,7 @@ public class User implements Serializable {
                 ", username='" + username + '\'' +
                 ", email='" + email + '\'' +
                 ", role='" + role + '\'' +
+                ", phone='" + phone + '\'' +
                 ", typeAccount='" + typeAccount + '\'' +
                 ", balance=" + balance +
                 ", exp=" + exp +
@@ -169,6 +193,7 @@ public class User implements Serializable {
                 ", favorite=" + favorite +
                 ", accessToken='" + accessToken + '\'' +
                 ", refreshToken='" + refreshToken + '\'' +
+                ", deviceToken='" + deviceToken + '\'' +
                 '}';
     }
 }

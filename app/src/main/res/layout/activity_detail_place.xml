@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:src="@drawable/rectangle"
+                    android:id="@+id/imageDetailPlace"
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
                     android:scaleType="fitXY"/>
@@ -55,6 +55,7 @@
             </androidx.cardview.widget.CardView>
 
             <TextView
+                android:id="@+id/tvNameDetailPlace"
                 android:layout_marginTop="20dp"
                 android:text="Aurora Coffee"
                 style="@style/textMedium"
@@ -75,6 +76,7 @@
                     android:layout_height="22dp"/>
 
                 <TextView
+                    android:id="@+id/tvDistrict"
                     style="@style/textMedium"
                     android:text="Tân Bình Ditrict"
                     android:layout_marginLeft="4dp"
@@ -102,7 +104,7 @@
                     android:layout_marginTop="12dp"
                     android:id="@+id/recycleProducts"
                     android:layout_width="match_parent"
-                    android:layout_height="680dp"/>
+                    android:layout_height="760dp"/>
 
             </LinearLayout>
 
@@ -114,10 +116,11 @@
                 android:layout_marginBottom="12dp">
 
                 <TextView
+                    android:id="@+id/tvTotal"
                     android:layout_alignParentStart="true"
                     android:text="95.000 VND"
                     android:textColor="@color/primaryColor"
-                    android:textSize="24dp"
+                    android:textSize="16dp"
                     style="@style/textMedium"
                     android:textStyle="normal"
                     android:layout_gravity="bottom"

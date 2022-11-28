@@ -4,13 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.ea.async.instrumentation.Main;
 import com.example.coffee.R;
+import com.example.coffee.screens.bottom.MainActivity;
 import com.example.coffee.utils.Storage;
 
 public class FlashActivity extends AppCompatActivity {
@@ -29,8 +32,14 @@ public class FlashActivity extends AppCompatActivity {
     }
 
     public void next() {
-        // check if login then go to home screen
-        Intent intent = new Intent(FlashActivity.this, OnBoardActivity.class);
+        Intent intent;
+        SharedPreferences sharedPreferences = getSharedPreferences("CHECK_LOGIN", MODE_PRIVATE);
+        boolean check = sharedPreferences.getBoolean("SIGN_IN", false);
+        if (check) {
+            intent = new Intent(FlashActivity.this, MainActivity.class);
+        } else {
+            intent = new Intent(FlashActivity.this, OnBoardActivity.class);
+        }
         startActivity(intent);
         finish();
     }

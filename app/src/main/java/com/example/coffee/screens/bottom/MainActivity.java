@@ -7,10 +7,12 @@ import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Pair;
 import android.view.MenuItem;
 
 import com.example.coffee.R;
-import com.example.coffee.fcm.FirebaseService;
+import com.example.coffee.fcm.UseFCM;
+import com.example.coffee.screens.auth.LoginActivity;
 import com.example.coffee.screens.bottom.Gift.GiftFragment;
 import com.example.coffee.screens.bottom.Home.HomeFragment;
 import com.example.coffee.screens.bottom.Profile.ProfileFragment;
@@ -19,6 +21,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,28 +30,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        FirebaseService.getDeviceToken();
+        UseFCM.getDeviceToken(MainActivity.this);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigation);
         bottomNavigationView.setItemIconTintList(null);
 
-        HashMap<Integer, Object> hashMap = new HashMap<>();
-        hashMap.put(1, new HomeFragment());
-        hashMap.put(2, new ShopFragment());
-        hashMap.put(3, new GiftFragment());
-        hashMap.put(4, new ProfileFragment());
-
-        try {
-            Intent intent = getIntent();
-            Bundle bundle = intent.getExtras();
-            int index = bundle.getInt("index", 0);
-            replaceFragment((Fragment) hashMap.get(index));
-
-        } catch (Exception exception) {
-            replaceFragment(new HomeFragment());
-        }
-
-
+        replaceFragment(new HomeFragment());
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
@@ -71,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
 
     public void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();

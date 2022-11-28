@@ -22,26 +22,27 @@ import java.util.TimerTask;
 import me.relex.circleindicator.CircleIndicator;
 
 public class OnBoardActivity extends AppCompatActivity {
-    ViewPager viewPager;
-    CircleIndicator circleIndicator;
-    SlideOnBoardAdapter adapter;
-    ArrayList<SliderImage> listSL;
-    Timer timer;
+    private ViewPager viewPager;
+    private CircleIndicator circleIndicator;
+    private ArrayList<SliderImage> listSL;
+    private Timer timer;
+    private AppCompatButton btnNext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_on_board);
 
-        AppCompatButton btnNext = findViewById(R.id.btnNext);
-        viewPager = findViewById(R.id.viewpagerSlider);
-        circleIndicator = findViewById(R.id.circleSlider);
+        // init view
+        initView();
 
+        // init data
         listSL = getList();
-        adapter = new SlideOnBoardAdapter(OnBoardActivity.this,listSL);
-        viewPager.setAdapter(adapter);
-        circleIndicator.setViewPager(viewPager);
-        adapter.registerDataSetObserver(circleIndicator.getDataSetObserver());
+
+        // init slide
+        initSlide();
+
+        // run
         autoSlider();
 
         btnNext.setOnClickListener(new View.OnClickListener() {
@@ -53,6 +54,20 @@ public class OnBoardActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void initSlide() {
+        SlideOnBoardAdapter adapter = new SlideOnBoardAdapter(OnBoardActivity.this, listSL);
+        viewPager.setAdapter(adapter);
+        circleIndicator.setViewPager(viewPager);
+        adapter.registerDataSetObserver(circleIndicator.getDataSetObserver());
+    }
+
+    private void initView() {
+        btnNext = findViewById(R.id.btnNext);
+        viewPager = findViewById(R.id.viewpagerSlider);
+        circleIndicator = findViewById(R.id.circleSlider);
+    }
+
     private ArrayList<SliderImage> getList(){
         ArrayList<SliderImage> sliderImages = new ArrayList<>();
         sliderImages.add(new SliderImage(R.drawable.slider_img1));
@@ -61,6 +76,7 @@ public class OnBoardActivity extends AppCompatActivity {
         sliderImages.add(new SliderImage(R.drawable.slider_img4));
         return sliderImages;
     }
+
     private void autoSlider(){
         if (listSL == null || listSL.isEmpty() || viewPager == null){
             return;

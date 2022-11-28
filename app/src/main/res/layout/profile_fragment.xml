@@ -1,396 +1,365 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="20dp">
+    android:id="@+id/loading">
 
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="My Profile"
-        style="@style/textWeight"
-        android:textColor="@color/darkColor"
-        android:textSize="24dp" />
+        android:layout_height="match_parent"
+        android:paddingTop="20dp"
+        android:paddingHorizontal="20dp">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <LinearLayout
+        <TextView
+            app:layout_constraintTop_toTopOf="parent"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:text="My Profile"
+            style="@style/textWeight"
+            android:textColor="@color/darkColor"
+            android:textSize="24dp" />
+
+        <ScrollView
+            android:scrollbars="none"
+            android:layout_marginTop="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_horizontal">
+                    android:orientation="vertical">
 
-                    <RelativeLayout
-                        android:id="@+id/relativeImage"
-                        android:layout_width="120dp"
-                        android:layout_height="120dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal">
 
-                        <ImageView
-                            android:translationZ="10dp"
-                            android:layout_alignParentBottom="true"
-                            android:layout_alignParentEnd="true"
-                            android:layout_width="32dp"
-                            android:layout_height="32dp"
-                            android:src="@drawable/edit_icon" />
-
-                        <androidx.cardview.widget.CardView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            app:cardCornerRadius="120dp">
+                        <RelativeLayout
+                            android:id="@+id/relativeImage"
+                            android:layout_width="120dp"
+                            android:layout_height="120dp">
 
                             <ImageView
+                                android:id="@+id/imageUploadAvatar"
+                                android:translationZ="10dp"
+                                android:layout_alignParentBottom="true"
+                                android:layout_alignParentEnd="true"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:src="@drawable/edit_icon" />
+
+                            <de.hdodenhof.circleimageview.CircleImageView
                                 android:id="@+id/imageAvatar"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"/>
 
-                        </androidx.cardview.widget.CardView>
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:gravity="center"
+                        android:id="@+id/tvUsername"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/textWeight"
+                        android:layout_marginTop="12dp"
+                        android:text="Aurora Study"
+                        android:textColor="@color/darkColor"
+                        android:textSize="24dp" />
+
+                    <TextView
+                        style="@style/textMedium"
+                        android:id="@+id/tvEmail"
+                        android:gravity="center_horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:lineHeight="25dp"
+                        android:text="aurorastudyvn@gmail.com"
+                        android:textSize="16dp" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnUpload"
+                        android:layout_marginTop="24dp"
+                        style="@style/textMedium"
+                        android:text="Change"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="16dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/background_button"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearAccount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_marginVertical="24dp">
+
+                    <RelativeLayout
+                        android:layout_marginRight="20dp"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:background="@drawable/custom_circle"
+                        android:padding="20dp">
+
+                        <ImageView
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:src="@drawable/user_icon" />
 
                     </RelativeLayout>
 
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Account"
+                            android:textColor="@color/textColor"
+                            android:textSize="20dp"
+                            style="@style/textWeight"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Manage and protect your account"
+                            android:textColor="@color/textColor"
+                            android:textSize="14dp"
+                            style="@style/textLight"/>
+
+                    </LinearLayout>
+
                 </LinearLayout>
 
-                <TextView
-                    android:gravity="center"
-                    android:id="@+id/tvUsername"
+                <LinearLayout
+                    android:id="@+id/linearHistory"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="@style/textWeight"
-                    android:layout_marginTop="12dp"
-                    android:text="Aurora Study"
-                    android:textColor="@color/darkColor"
-                    android:textSize="24dp" />
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="24dp">
 
-                <TextView
-                    style="@style/textMedium"
-                    android:id="@+id/tvEmail"
-                    android:gravity="center_horizontal"
+                    <RelativeLayout
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:background="@drawable/custom_circle"
+                        android:padding="20dp"
+                        android:layout_marginRight="20dp">
+
+                        <ImageView
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:src="@drawable/notification_icon" />
+
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="History"
+                            android:textColor="@color/textColor"
+                            android:textSize="20dp"
+                            style="@style/textWeight"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="See all history"
+                            android:textColor="@color/textColor"
+                            android:textSize="14dp"
+                            style="@style/textLight"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearPayment"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:lineHeight="25dp"
-                    android:text="aurorastudyvn@gmail.com"
-                    android:textSize="20dp" />
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="24dp">
 
-            </LinearLayout>
+                    <RelativeLayout
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:background="@drawable/custom_circle"
+                        android:padding="20dp"
+                        android:layout_marginRight="20dp">
 
-            <LinearLayout
-                android:id="@+id/linearAccount"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:layout_marginVertical="24dp">
+                        <ImageView
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:src="@drawable/payment_icon" />
 
-                <RelativeLayout
-                    android:layout_marginRight="20dp"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:background="@drawable/custom_circle"
-                    android:padding="20dp">
+                    </RelativeLayout>
 
-                    <ImageView
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentBottom="true"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentStart="true"
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
-                        android:src="@drawable/user_icon" />
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center_vertical">
 
-                </RelativeLayout>
-                <LinearLayout
-                    android:layout_weight="1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="center_vertical">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Payment"
+                            android:textColor="@color/textColor"
+                            android:textSize="20dp"
+                            style="@style/textWeight"/>
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Account"
-                        android:textColor="@color/textColor"
-                        android:textSize="20dp"
-                        style="@style/textWeight"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Manage and protect your payment"
+                            android:textColor="@color/textColor"
+                            android:textSize="14dp"
+                            style="@style/textLight"/>
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Manage and protect your account"
-                        android:textColor="@color/textColor"
-                        android:textSize="14dp"
-                        style="@style/textLight"/>
+                    </LinearLayout>
+
                 </LinearLayout>
 
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/linearHistory"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:layout_marginBottom="24dp">
-
-                <RelativeLayout
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:background="@drawable/custom_circle"
-                    android:padding="20dp"
-                    android:layout_marginRight="20dp">
-
-                    <ImageView
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentBottom="true"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentStart="true"
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
-                        android:src="@drawable/notification_icon" />
-
-                </RelativeLayout>
                 <LinearLayout
-                    android:layout_weight="1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="center_vertical">
+                    android:id="@+id/linearBookmark"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="24dp">
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="History"
-                        android:textColor="@color/textColor"
-                        android:textSize="20dp"
-                        style="@style/textWeight"/>
+                    <RelativeLayout
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:background="@drawable/custom_circle"
+                        android:padding="20dp"
+                        android:layout_marginRight="20dp">
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="See all history"
-                        android:textColor="@color/textColor"
-                        android:textSize="14dp"
-                        style="@style/textLight"/>
+                        <ImageView
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:src="@drawable/bookmark_icon" />
+
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:id="@+id/tvBookmark"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Bookmark"
+                            android:textColor="@color/textColor"
+                            android:textSize="20dp"
+                            style="@style/textWeight"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Set bookmark"
+                            android:textColor="@color/textColor"
+                            android:textSize="14dp"
+                            style="@style/textLight"/>
+
+                    </LinearLayout>
+
                 </LinearLayout>
 
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/linearPayment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:layout_marginBottom="24dp">
-
-                <RelativeLayout
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:background="@drawable/custom_circle"
-                    android:padding="20dp"
-                    android:layout_marginRight="20dp">
-
-                    <ImageView
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentBottom="true"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentStart="true"
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
-                        android:src="@drawable/payment_icon" />
-
-                </RelativeLayout>
-
                 <LinearLayout
-                    android:layout_weight="1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
+                    android:layout_marginBottom="20dp"
+                    android:id="@+id/linearLogout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:gravity="center_vertical">
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Payment"
-                        android:textColor="@color/textColor"
-                        android:textSize="20dp"
-                        style="@style/textWeight"/>
+                    <RelativeLayout
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:background="@drawable/custom_circle"
+                        android:padding="20dp"
+                        android:layout_marginRight="20dp">
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Manage and protect your payment"
-                        android:textColor="@color/textColor"
-                        android:textSize="14dp"
-                        style="@style/textLight"/>
+                        <ImageView
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:src="@drawable/logout_icon" />
+
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:id="@+id/tvLogout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Logout"
+                            android:textColor="@color/redColor"
+                            android:textSize="20dp"
+                            style="@style/textWeight"/>
+                    </LinearLayout>
+
                 </LinearLayout>
-
 
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/linearBookmark"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:layout_marginBottom="24dp">
+        </ScrollView>
 
-                <RelativeLayout
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:background="@drawable/custom_circle"
-                    android:padding="20dp"
-                    android:layout_marginRight="20dp">
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <ImageView
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentBottom="true"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentStart="true"
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
-                        android:src="@drawable/bookmark_icon" />
-
-                </RelativeLayout>
-                <LinearLayout
-                    android:layout_weight="1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="center_vertical">
-
-                    <TextView
-                        android:id="@+id/tvBookmark"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Bookmark"
-                        android:textColor="@color/textColor"
-                        android:textSize="20dp"
-                        style="@style/textWeight"/>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Set bookmark"
-                        android:textColor="@color/textColor"
-                        android:textSize="14dp"
-                        style="@style/textLight"/>
-                </LinearLayout>
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:layout_marginBottom="24dp">
-
-                <RelativeLayout
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:background="@drawable/custom_circle"
-                    android:padding="20dp"
-                    android:layout_marginRight="20dp">
-
-                    <ImageView
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentBottom="true"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentStart="true"
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
-                        android:src="@drawable/privacy_icon" />
-
-                </RelativeLayout>
-                <LinearLayout
-                    android:layout_weight="1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="center_vertical">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Privacy and Policy"
-                        android:textColor="@color/textColor"
-                        android:textSize="20dp"
-                        style="@style/textWeight"/>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Manage and protect your account"
-                        android:textColor="@color/textColor"
-                        android:textSize="14dp"
-                        style="@style/textLight"/>
-                </LinearLayout>
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/linearLogout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical">
-
-                <RelativeLayout
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:background="@drawable/custom_circle"
-                    android:padding="20dp"
-                    android:layout_marginRight="20dp">
-
-                    <ImageView
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentBottom="true"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentStart="true"
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
-                        android:src="@drawable/logout_icon" />
-
-                </RelativeLayout>
-                <LinearLayout
-                    android:layout_weight="1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="center_vertical">
-
-                    <TextView
-                        android:id="@+id/tvLogout"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Logout"
-                        android:textColor="@color/redColor"
-                        android:textSize="20dp"
-                        style="@style/textWeight"/>
-                </LinearLayout>
-
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-    </ScrollView>
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 
 
 
