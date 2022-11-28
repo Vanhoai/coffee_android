@@ -113,19 +113,14 @@ public class GiftFragment extends Fragment {
                     tvTotalMission.setText(String.valueOf(giftResponse.getTotal().getTotalMission()));
                     tvTotalMissionProgress.setText(String.valueOf(giftResponse.getTotal().getTotalMissionProgress()));
 
-
                 if (giftResponse.getTotal().getListGifts().size() <= 0) {
                     cardGift.setVisibility(View.GONE);
                 } else {
-
                     Gift gift = giftResponse.getTotal().getListGifts().get(0);
                     imagePromo.setImageResource(HelperFunction.getDrawable(gift.getType().getPercent()));
                     tvName.setText(gift.getName());
                     tvDescription.setText(String.valueOf(gift.getExpiredAt()));
-
                 }
-
-
                     tvExp.setText(String.format("%d XP more to get rewards" ,user.getExp()));
                 }
 
