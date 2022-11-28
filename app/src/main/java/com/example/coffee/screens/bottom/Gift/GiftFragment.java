@@ -97,31 +97,36 @@ public class GiftFragment extends Fragment {
     }
 
     private void initMission(){
-        User user = UserInformation.getUser(requireContext());
-        Logger.log("USER", user);
-        giftService.getGift(5, user.getId(), new GiftCallback() {
-            @Override
-            public void onSuccess(boolean value, GiftResponse giftResponse) {
-                Logger.log("MISSION", giftResponse);
-                missions.addAll(giftResponse.getTotal().getListMissions());
-                renderGift(recyclerMission, missions);
-                tvTotalGift.setText(String.valueOf(giftResponse.getTotal().getTotalGift()));
-                tvTotalMission.setText(String.valueOf(giftResponse.getTotal().getTotalMission()));
-                tvTotalMissionProgress.setText(String.valueOf(giftResponse.getTotal().getTotalMissionProgress()));
+        try {
+            User user = UserInformation.getUser(requireContext());
+            Logger.log("USER", user);
+            giftService.getGift(5, user.getId(), new GiftCallback() {
+                @Override
+                public void onSuccess(boolean value, GiftResponse giftResponse) {
+                    Logger.log("MISSION", giftResponse);
+                    missions.addAll(giftResponse.getTotal().getListMissions());
+                    renderGift(recyclerMission, missions);
+                    tvTotalGift.setText(String.valueOf(giftResponse.getTotal().getTotalGift()));
+                    tvTotalMission.setText(String.valueOf(giftResponse.getTotal().getTotalMission()));
+                    tvTotalMissionProgress.setText(String.valueOf(giftResponse.getTotal().getTotalMissionProgress()));
 
-                Gift gift = giftResponse.getTotal().getListGifts().get(0);
-                imagePromo.setImageResource(HelperFunction.getDrawable(gift.getType().getPercent()));
-                tvName.setText(gift.getName());
-                tvDescription.setText(String.valueOf(gift.getExpiredAt()));
+                    Gift gift = giftResponse.getTotal().getListGifts().get(0);
+                    imagePromo.setImageResource(HelperFunction.getDrawable(gift.getType().getPercent()));
+                    tvName.setText(gift.getName());
+                    tvDescription.setText(String.valueOf(gift.getExpiredAt()));
 
-                tvExp.setText(String.format("%d XP more to get rewards" ,user.getExp()));
-            }
+                    tvExp.setText(String.format("%d XP more to get rewards" ,user.getExp()));
+                }
 
-            @Override
-            public void onFailed(boolean value) {
-                Logger.log("MISSION", "ERROR");
-            }
-        });
+                @Override
+                public void onFailed(boolean value) {
+                    Logger.log("MISSION", "ERROR");
+                }
+            });
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 
     private void renderGift(RecyclerView recyclerMission, ArrayList<Mission> data) {

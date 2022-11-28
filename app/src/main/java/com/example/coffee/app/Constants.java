@@ -4,7 +4,7 @@ public class Constants {
 
     public static final boolean DEBUG = true;
     public static final String BASE_URL = "https://coffee-server.onrender.com";
-    public static final String BASE_URL_LOCAL = "http://192.168.1.108:8080";
+    public static final String BASE_URL_LOCAL = "https://cb5d-222-253-144-157.ap.ngrok.io";
     public static final String API_VERSION = "/api/v1";
     public static String CHANEL_ID = "CHAT";
     public static String NOTIFICATION_URL = "https://fcm.googleapis.com/fcm/send";

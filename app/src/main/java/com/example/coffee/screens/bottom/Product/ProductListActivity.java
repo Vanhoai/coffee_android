@@ -38,9 +38,7 @@ public class ProductListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_product_list);
 
         // init view
-        backNavigation = findViewById(R.id.backNavigation);
-        recyclerProductList = findViewById(R.id.recycleProductsList);
-        tvTitle = findViewById(R.id.tvTitle);
+
 
         // init data
         products = new ArrayList<>();
@@ -67,6 +65,12 @@ public class ProductListActivity extends AppCompatActivity {
         } catch (Exception exception) {
             exception.printStackTrace();
         }
+    }
+
+    public void initView(){
+        backNavigation = findViewById(R.id.backNavigation);
+        recyclerProductList = findViewById(R.id.recycleProductsList);
+        tvTitle = findViewById(R.id.tvTitle);
     }
 
     private void handleOnclick() {
