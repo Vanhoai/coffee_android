@@ -23,8 +23,8 @@ import java.util.ArrayList;
 
 public class RecycleAllShopAdapter extends RecyclerView.Adapter<RecycleAllShopAdapter.ViewHolder> {
 
-    Context context;
-    ArrayList<Shop> shops;
+    private final Context context;
+    private final ArrayList<Shop> shops;
 
     public RecycleAllShopAdapter(Context context, ArrayList<Shop> shops) {
         this.context = context;

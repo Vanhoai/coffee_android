@@ -10,6 +10,7 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface GiftInterfaceAPI {
+
     String GIFT_URL = String.format("%s/mission/user/", BASE_URL);
 
     @GET("{id}")

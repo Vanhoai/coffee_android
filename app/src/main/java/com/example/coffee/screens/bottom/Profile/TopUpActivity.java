@@ -18,9 +18,10 @@ import com.example.coffee.screens.bottom.MainActivity;
 import com.example.coffee.utils.Logger;
 
 public class TopUpActivity extends AppCompatActivity {
+
     ImageView backNavigation;
     AppCompatButton btn50, btn100, btn200, btn250, btnPayNow;
-    EditText edtCardNumber, edtCardHolder, edtDate, edtCVC, edtNomial;
+    EditText edtCardNumber, edtCardHolder, edtDate, edtCVC, edtNominal;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -28,23 +29,16 @@ public class TopUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_top_up);
 
+        // init view
+        initView();
+
+        // handle click
+        handleClick();
+    }
+
+    private void handleClick() {
         Drawable backgroundInput = getResources().getDrawable(R.drawable.background_input);
         Drawable backgroundButton = getResources().getDrawable(R.drawable.background_button);
-
-        btn50 = findViewById(R.id.btn50);
-        btn100 = findViewById(R.id.btn100);
-        btn200 = findViewById(R.id.btn200);
-        btn250 = findViewById(R.id.btn250);
-        btnPayNow = findViewById(R.id.btnPayNow);
-
-        edtCardNumber = findViewById(R.id.edtCardNumber);
-        edtCardHolder = findViewById(R.id.edtCardHolder);
-        edtDate = findViewById(R.id.edtDate);
-        edtCVC = findViewById(R.id.edtCVC);
-        edtNomial = findViewById(R.id.edtNomial);
-
-        // mapping
-        backNavigation = findViewById(R.id.backNavigation);
 
         backNavigation.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,13 +108,22 @@ public class TopUpActivity extends AppCompatActivity {
                 String cardHolder = edtCardHolder.getText().toString().trim();
                 String date = edtDate.getText().toString().trim();
                 String cvc = edtCVC.getText().toString().trim();
-                String nomial = edtNomial.getText().toString().trim();
-                Logger.log("cardNumber", cardNumber);
-                Logger.log("cardHolder", cardHolder);
-                Logger.log("date", date);
-                Logger.log("cvc", cvc);
-                Logger.log("nomial", nomial);
+                String nominal = edtNominal.getText().toString().trim();
             }
         });
+    }
+
+    private void initView() {
+        btn50 = findViewById(R.id.btn50);
+        btn100 = findViewById(R.id.btn100);
+        btn200 = findViewById(R.id.btn200);
+        btn250 = findViewById(R.id.btn250);
+        btnPayNow = findViewById(R.id.btnPayNow);
+        edtCardNumber = findViewById(R.id.edtCardNumber);
+        edtCardHolder = findViewById(R.id.edtCardHolder);
+        edtDate = findViewById(R.id.edtDate);
+        edtCVC = findViewById(R.id.edtCVC);
+        edtNominal = findViewById(R.id.edtNomial);
+        backNavigation = findViewById(R.id.backNavigation);
     }
 }

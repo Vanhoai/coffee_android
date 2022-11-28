@@ -31,21 +31,12 @@ import com.example.coffee.utils.UserInformation;
 import java.util.ArrayList;
 
 public class GiftFragment extends Fragment {
-    TextView tvtotalGift;
-    TextView tvtotalMission;
-    TextView tvtotalMissionProgress;
-    TextView tvViewAllGift;
-    TextView tvViewAllMission;
-    ImageView imagePromo;
-    TextView tvName;
-    TextView tvDescription;
-    TextView tvExpired;
-    TextView tvXP;
-    RecyclerView recyclerMission;
-    ArrayList<Gift> gifts;
-    ArrayList<Mission> missions;
-    GiftService giftService;
-    Total total;
+
+    private TextView tvTotalGift, tvTotalMission, tvTotalMissionProgress, tvViewAllGift, tvViewAllMission, tvDescription, tvExpired, tvExp, tvName;
+    private ImageView imagePromo;
+    private RecyclerView recyclerMission;
+    private GiftService giftService;
+    private ArrayList<Mission> missions;
 
     @Nullable
     @Override
@@ -53,23 +44,20 @@ public class GiftFragment extends Fragment {
         LayoutInflater layoutInflater = getLayoutInflater();
         View view = layoutInflater.inflate(R.layout.gift_fragment, container, false);
 
-       //init View
+       // init View
         intView(view);
 
-        //handle click
+        // handle click
         handleClick();
 
-        //init data
-        gifts = new ArrayList<>();
+        // init data
         missions = new ArrayList<>();
+
+        // init service
         giftService = new GiftService();
 
-
-        //call API
+        // call API
         initMission();
-
-
-
 
         return view;
     }
@@ -79,21 +67,21 @@ public class GiftFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
     }
 
-    public void intView (View view){
+    private void intView (View view){
         recyclerMission = view.findViewById(R.id.recyclerMission);
-        tvtotalGift = view.findViewById(R.id.tvtotalGift);
-        tvtotalMission = view.findViewById(R.id.tvtotalMission);
-        tvtotalMissionProgress = view.findViewById(R.id.tvtotalMissionProgress);
+        tvTotalGift = view.findViewById(R.id.tvtotalGift);
+        tvTotalMission = view.findViewById(R.id.tvtotalMission);
+        tvTotalMissionProgress = view.findViewById(R.id.tvtotalMissionProgress);
         tvViewAllGift = view.findViewById(R.id.tvViewAllGift);
         tvViewAllMission = view.findViewById(R.id.tvViewAllMission);
         imagePromo = view.findViewById(R.id.imagePromo);
         tvName = view.findViewById(R.id.tvNamePromo);
         tvDescription = view.findViewById(R.id.tvDescription);
         tvExpired = view.findViewById(R.id.tvExpired);
-        tvXP = view.findViewById(R.id.tvXP);
+        tvExp = view.findViewById(R.id.tvXP);
     }
 
-    public void handleClick(){
+    private void handleClick(){
         tvViewAllGift.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -108,7 +96,7 @@ public class GiftFragment extends Fragment {
         });
     }
 
-    public void initMission(){
+    private void initMission(){
         User user = UserInformation.getUser(requireContext());
         Logger.log("USER", user);
         giftService.getGift(5, user.getId(), new GiftCallback() {
@@ -117,16 +105,16 @@ public class GiftFragment extends Fragment {
                 Logger.log("MISSION", giftResponse);
                 missions.addAll(giftResponse.getTotal().getListMissions());
                 renderGift(recyclerMission, missions);
-                tvtotalGift.setText(String.valueOf(giftResponse.getTotal().getTotalGift()));
-                tvtotalMission.setText(String.valueOf(giftResponse.getTotal().getTotalMission()));
-                tvtotalMissionProgress.setText(String.valueOf(giftResponse.getTotal().getTotalMissionProgress()));
+                tvTotalGift.setText(String.valueOf(giftResponse.getTotal().getTotalGift()));
+                tvTotalMission.setText(String.valueOf(giftResponse.getTotal().getTotalMission()));
+                tvTotalMissionProgress.setText(String.valueOf(giftResponse.getTotal().getTotalMissionProgress()));
 
                 Gift gift = giftResponse.getTotal().getListGifts().get(0);
                 imagePromo.setImageResource(HelperFunction.getDrawable(gift.getType().getPercent()));
                 tvName.setText(gift.getName());
                 tvDescription.setText(String.valueOf(gift.getExpiredAt()));
 
-                tvXP.setText(String.format("%d XP more to get rewards" ,user.getExp()));
+                tvExp.setText(String.format("%d XP more to get rewards" ,user.getExp()));
             }
 
             @Override
@@ -136,7 +124,7 @@ public class GiftFragment extends Fragment {
         });
     }
 
-    public void renderGift(RecyclerView recyclerMission, ArrayList<Mission> data) {
+    private void renderGift(RecyclerView recyclerMission, ArrayList<Mission> data) {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext()) {
             @Override
             public boolean canScrollVertically() {

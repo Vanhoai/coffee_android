@@ -19,8 +19,9 @@ import com.example.coffee.models.User.User;
 import java.util.ArrayList;
 
 public class RecycleCommentAdapter extends RecyclerView.Adapter<RecycleCommentAdapter.ViewHolder> {
-    ArrayList<Comment> comments;
-    Context context;
+
+    private final ArrayList<Comment> comments;
+    private final Context context;
 
     public RecycleCommentAdapter(ArrayList<Comment> comments, Context context) {
         this.comments = comments;

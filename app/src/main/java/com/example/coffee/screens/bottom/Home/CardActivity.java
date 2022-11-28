@@ -26,18 +26,20 @@ public class CardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_card);
 
+        // mapping
         ImageView imageBack = findViewById(R.id.imageBack);
         TextView tvUserName = findViewById(R.id.tvUserName);
         TextView tvBalance = findViewById(R.id.tvBalance);
         TextView tvCode = findViewById(R.id.tvCode);
 
+        // set view
         User user = UserInformation.getUser(CardActivity.this);
         Balance balance = user.getBalance();
         tvUserName.setText(user.getUsername());
         tvBalance.setText(String.valueOf(balance.getAmount()));
         tvCode.setText(balance.getCode());
 
-
+        // handle click
         imageBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

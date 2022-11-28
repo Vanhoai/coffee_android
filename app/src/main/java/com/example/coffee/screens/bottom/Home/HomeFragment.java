@@ -39,21 +39,14 @@ import com.example.coffee.utils.UserInformation;
 import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
-    TextView tvViewAllMyReward;
-    RecyclerView recycleViewNearbyPlace;
-    RecyclerView recycleViewBestSeller;
-    ImageView imageTopUp;
-    ImageView imagePay;
-    ImageView imagePromo;
-    ImageView imageHistory;
-    ImageView imageNotify;
-    TextView tvBalance;
-    TextView tvViewAllBestSeller;
-    TextView tvViewAllNearbyPlace;
-    ShopService shopService;
-    ProductService productService;
-    ArrayList<Product> products;
-    ArrayList<Shop> shops;
+    
+    private RecyclerView recycleViewNearbyPlace, recycleViewBestSeller;
+    private ImageView imageTopUp, imagePay, imagePromo, imageHistory, imageNotify;
+    private TextView tvBalance, tvViewAllBestSeller, tvViewAllNearbyPlace, tvViewAllMyReward;
+    private ShopService shopService;
+    private ProductService productService;
+    private ArrayList<Product> products;
+    private ArrayList<Shop> shops;
 
     @Nullable
     @Override
@@ -67,17 +60,28 @@ public class HomeFragment extends Fragment {
         // init data
         shops = new ArrayList<>();
         products = new ArrayList<>();
+
+        // init service
         shopService = new ShopService();
         productService = new ProductService();
 
+        // call api
         initShop();
         initProduct();
 
         // set view
+        setView();
+
+        // handle onclick
+        handleOnClick();
+
+        return view;
+    }
+
+    private void setView() {
         User user = UserInformation.getUser(getContext());
         @SuppressLint("DefaultLocale") String balance = String.format("%.0f VND",user.getBalance().getAmount());
         tvBalance.setText(balance);
-        return view;
     }
 
     public void initShop() {
@@ -115,12 +119,9 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        // handle onclick
-        handleOnClick();
     }
 
-    public void init(View view) {
+    private void init(View view) {
         recycleViewNearbyPlace = view.findViewById(R.id.recycleViewNearbyPlace);
         recycleViewBestSeller = view.findViewById(R.id.recycleViewBestSeller);
         imageTopUp = view.findViewById(R.id.imageTopUp);
@@ -134,7 +135,7 @@ public class HomeFragment extends Fragment {
         tvViewAllNearbyPlace = view.findViewById(R.id.tvViewHomeNearby);
     }
 
-    public void handleOnClick () {
+    private void handleOnClick () {
         imageTopUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -170,6 +171,7 @@ public class HomeFragment extends Fragment {
                 requireActivity().finish();
             }
         });
+
         imageNotify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -178,6 +180,7 @@ public class HomeFragment extends Fragment {
                 requireActivity().finish();
             }
         });
+
         tvViewAllMyReward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -186,6 +189,7 @@ public class HomeFragment extends Fragment {
                 requireActivity().finish();
             }
         });
+
         tvViewAllBestSeller.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -197,6 +201,7 @@ public class HomeFragment extends Fragment {
                 requireActivity().finish();
             }
         });
+
         tvViewAllNearbyPlace.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -210,14 +215,14 @@ public class HomeFragment extends Fragment {
         });
     }
 
-    public void renderPlace(RecyclerView recyclerView, ArrayList<Shop> data) {
+    private void renderPlace(RecyclerView recyclerView, ArrayList<Shop> data) {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
         RecycleNearlyAdapter adapter = new RecycleNearlyAdapter(getContext(), data);
         recyclerView.setAdapter(adapter);
     }
 
-    public void renderProduct(RecyclerView recyclerView, ArrayList<Product> data) {
+    private void renderProduct(RecyclerView recyclerView, ArrayList<Product> data) {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext()) {
             @Override
             public boolean canScrollVertically() {

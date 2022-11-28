@@ -44,7 +44,6 @@
                 android:layout_marginBottom="24dp">
 
                 <EditText
-                    android:text="hoaitv@gmail.com"
                     android:id="@+id/edtEmail"
                     style="@style/textWeight"
                     android:layout_width="match_parent"
@@ -95,7 +94,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@null"
-                    android:text="admin"
                     android:hint="Enter your password"
                     android:textSize="16dp" />
 

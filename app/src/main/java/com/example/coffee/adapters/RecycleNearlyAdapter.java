@@ -25,8 +25,8 @@ import java.util.ArrayList;
 
 public class RecycleNearlyAdapter extends RecyclerView.Adapter<RecycleNearlyAdapter.ViewHolder> {
 
-    Context context;
-    ArrayList<Shop> shops;
+    private final Context context;
+    private final ArrayList<Shop> shops;
 
     public RecycleNearlyAdapter(Context context, ArrayList<Shop> shops) {
         this.context = context;

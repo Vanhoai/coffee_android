@@ -29,9 +29,8 @@ import java.util.ArrayList;
 
 public class RecycleProductAdapter extends RecyclerView.Adapter<RecycleProductAdapter.ViewHolder> {
 
-    Context context;
-    ArrayList<Product> products;
-
+    private final Context context;
+    private final ArrayList<Product> products;
 
     public RecycleProductAdapter(Context context, ArrayList<Product> products) {
         this.context = context;

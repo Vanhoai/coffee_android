@@ -34,20 +34,7 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigation);
         bottomNavigationView.setItemIconTintList(null);
 
-        HashMap<Integer, Pair<Object, Integer>> hashMap = new HashMap<>();
-        hashMap.put(1, new Pair<>(new HomeFragment(), R.drawable.home_active));
-        hashMap.put(2, new Pair<>(new ShopFragment(), R.drawable.shop_active));
-        hashMap.put(3, new Pair<>(new GiftFragment(), R.drawable.gift_active));
-        hashMap.put(4, new Pair<>(new ProfileFragment(), R.drawable.profile_active));
-
-        try {
-            Intent intent = getIntent();
-            Bundle bundle = intent.getExtras();
-            int index = bundle.getInt("index", 0);
-            replaceFragment((Fragment) Objects.requireNonNull(hashMap.get(index)).first);
-        } catch (Exception exception) {
-            replaceFragment(new HomeFragment());
-        }
+        replaceFragment(new HomeFragment());
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override

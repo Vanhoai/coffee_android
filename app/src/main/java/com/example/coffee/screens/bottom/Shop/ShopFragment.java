@@ -26,14 +26,12 @@ import com.example.coffee.utils.Logger;
 import java.util.ArrayList;
 
 public class ShopFragment extends Fragment {
-    RecyclerView recyclerViewNearbyPlace;
-    RecyclerView recyclerViewAllShop;
-    TextView tvViewAllHottest;
-    TextView tvViewAllShop;
-    TextView tvViewAllNearby;
-    ShopService shopService;
-    ArrayList<Shop> shopsNearby;
-    ArrayList<Shop> shopsAllShop;
+    
+    private RecyclerView recyclerViewNearbyPlace, recyclerViewAllShop;
+    private TextView tvViewAllHottest, tvViewAllShop, tvViewAllNearby;
+    private ShopService shopService;
+    private ArrayList<Shop> shopsNearby;
+    private ArrayList<Shop> shopsAllShop;
 
     @SuppressLint("MissingInflatedId")
     @Nullable
@@ -48,6 +46,8 @@ public class ShopFragment extends Fragment {
         // init data
         shopsNearby = new ArrayList<>();
         shopsAllShop = new ArrayList<>();
+
+        // init service
         shopService = new ShopService();
 
         // call api

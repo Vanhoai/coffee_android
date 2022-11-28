@@ -32,7 +32,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class UserService {
 
-    public UserInterfaceAPI API;
+    private final UserInterfaceAPI API;
 
     public synchronized UserInterfaceAPI getAPI() {
         return API;

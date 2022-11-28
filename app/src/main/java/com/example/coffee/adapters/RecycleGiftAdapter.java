@@ -21,8 +21,8 @@ import java.util.ArrayList;
 
 public class RecycleGiftAdapter extends RecyclerView.Adapter<RecycleGiftAdapter.ViewHolder>{
 
-    Context context;
-    ArrayList<Mission> missions;
+    private final Context context;
+    private final ArrayList<Mission> missions;
 
     public RecycleGiftAdapter(Context context, ArrayList<Mission> missions){
         this.context = context;

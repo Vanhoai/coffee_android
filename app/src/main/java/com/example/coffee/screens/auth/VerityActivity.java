@@ -47,14 +47,14 @@ public class VerityActivity extends AppCompatActivity implements View.OnClickLis
     private FirebaseAuth.AuthStateListener authStateListener;
     private PhoneAuthProvider.ForceResendingToken forceResendingToken;
     private String verificationId;
-    EditText edtPhone, edtCode;
-    ImageView checkPhone, checkCode, backNavigation;
-    AppCompatButton btnVerify;
-    UserService userService;
-    ConstraintLayout constraintLayout;
-    LayoutLoading layoutLoading;
-    AuthService authService;
-    boolean checkVerify = false;
+    private EditText edtPhone, edtCode;
+    private ImageView checkPhone, checkCode, backNavigation;
+    private AppCompatButton btnVerify;
+    private UserService userService;
+    private ConstraintLayout constraintLayout;
+    private LayoutLoading layoutLoading;
+    private AuthService authService;
+    private boolean checkVerify = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

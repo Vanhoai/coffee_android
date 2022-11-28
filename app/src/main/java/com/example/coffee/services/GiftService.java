@@ -17,9 +17,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class GiftService {
 
- private GiftInterfaceAPI API;
+ private final GiftInterfaceAPI API;
 
- public GiftInterfaceAPI getAPI(){
+ public synchronized GiftInterfaceAPI getAPI(){
      return API;
  }
 

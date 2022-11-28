@@ -17,17 +17,34 @@ import com.example.coffee.screens.bottom.MainActivity;
 import java.util.ArrayList;
 
 public class PromoActivity extends AppCompatActivity {
-    ImageView backNavigation;
-    RecyclerView recyclePromo;
+
+    private ImageView backNavigation;
+    private RecyclerView recyclePromo;
+    private ArrayList<Mission> missions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_promo);
 
-        backNavigation = findViewById(R.id.backNavigation);
-        recyclePromo = findViewById(R.id.recyclePromo);
+        // init view
+        initView();
 
+        // handle click
+        handleClick();
+
+        // init data
+        missions = new ArrayList<>();
+
+        // init mission
+        initMission();
+    }
+
+    private void initMission() {
+        renderPromo(recyclePromo,missions);
+    }
+
+    private void handleClick() {
         backNavigation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -36,12 +53,14 @@ public class PromoActivity extends AppCompatActivity {
                 finish();
             }
         });
-
-        ArrayList<Mission> missions = new ArrayList<>();
-        renderPromo(recyclePromo,missions);
     }
 
-    public void renderPromo(RecyclerView recyclerView, ArrayList<Mission> data) {
+    private void initView() {
+        backNavigation = findViewById(R.id.backNavigation);
+        recyclePromo = findViewById(R.id.recyclePromo);
+    }
+
+    private void renderPromo(RecyclerView recyclerView, ArrayList<Mission> data) {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(PromoActivity.this) {
             @Override
             public boolean canScrollVertically() {

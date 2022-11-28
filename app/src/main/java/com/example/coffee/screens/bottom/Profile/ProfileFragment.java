@@ -58,24 +58,19 @@ import okhttp3.RequestBody;
 public class ProfileFragment extends Fragment {
 
     private static final int REQUEST_CODE = 10;
-    private static final String TAG = ProfileFragment.class.getName();
-
-    LinearLayout linearAccount, linearHistory, linearPayment, linearBookmark, linearLogout;
-    ImageView imageUploadAvatar;
-    ImageView imageAvatar;
-    TextView tvUsername;
-    TextView tvEmail;
-    UserService userService;
-    AppCompatButton btnChange;
-    LayoutLoading layoutLoading;
-    Uri mUri;
+    private LinearLayout linearAccount, linearHistory, linearPayment, linearBookmark, linearLogout;
+    private ImageView imageUploadAvatar, imageAvatar;
+    private TextView tvUsername, tvEmail;
+    private UserService userService;
+    private AppCompatButton btnChange;
+    private LayoutLoading layoutLoading;
+    private Uri mUri;
 
     ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {
                 @Override
                 public void onActivityResult(ActivityResult result) {
-                    Log.d(TAG, "On Activity Result");
                     if (result.getResultCode() == RESULT_OK) {
                         Intent data = result.getData();
                         if (data == null) {
@@ -111,16 +106,18 @@ public class ProfileFragment extends Fragment {
         // request permission read in gallery
         requestPermission();
 
-        // get data
-        User user = UserInformation.getUser(getContext());
-
         // set view
-        tvUsername.setText(user.getUsername());
-        tvEmail.setText(user.getEmail());
-        Glide.with(requireContext()).load(user.getImage()).into(imageAvatar);
+        setView();
 
         return view;
 
+    }
+
+    private void setView() {
+        User user = UserInformation.getUser(getContext());
+        tvUsername.setText(user.getUsername());
+        tvEmail.setText(user.getEmail());
+        Glide.with(requireContext()).load(user.getImage()).into(imageAvatar);
     }
 
     @Override
@@ -224,7 +221,7 @@ public class ProfileFragment extends Fragment {
         userService.uploadAvatar(user.getAccessToken(), user.getId(), file, new AuthCallback() {
             @Override
             public void onSuccess(Boolean value, UserResponse userResponse) {
-                Logger.log(TAG, userResponse);
+                Logger.log("USER RESPONSE", userResponse);
                 layoutLoading.setGone();
             }
 

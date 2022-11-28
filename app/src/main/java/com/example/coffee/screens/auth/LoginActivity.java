@@ -33,15 +33,12 @@ import com.google.gson.Gson;
 
 public class LoginActivity extends AppCompatActivity {
 
-    EditText edtEmail;
-    EditText edtPassword;
-    AppCompatButton btnLogin;
-    AppCompatButton btnCreateAccount;
-    AuthService authService;
-    LayoutLoading layoutLoading;
-    ConstraintLayout constraintLayout;
-    ImageView checkEmail;
-    ImageView checkPassword;
+    private EditText edtEmail, edtPassword;
+    private AppCompatButton btnLogin, btnCreateAccount;
+    private AuthService authService;
+    private LayoutLoading layoutLoading;
+    private ConstraintLayout constraintLayout;
+    private ImageView checkEmail, checkPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,11 +54,11 @@ public class LoginActivity extends AppCompatActivity {
         // handle onclick
         handleOnclick();
 
-        // handle onchange
-        handleOnchange();
+        // handle change
+        handleOnChange();
     }
 
-    private void handleOnchange() {
+    private void handleOnChange() {
         edtEmail.addTextChangedListener((new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}

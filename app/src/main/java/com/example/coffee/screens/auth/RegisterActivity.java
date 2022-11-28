@@ -24,12 +24,12 @@ import com.example.coffee.utils.Validation;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener{
 
-    EditText edtUsername, edtEmail, edtPassword, edtConfirmPassword;
-    AppCompatButton btnCreateAccount;
-    AuthService authService;
-    ImageView backNavigation, checkEmail, checkPassword, checkUsername, checkConfirmPassword;
-    ConstraintLayout constraintLayout;
-    LayoutLoading layoutLoading;
+    private EditText edtUsername, edtEmail, edtPassword, edtConfirmPassword;
+    private AppCompatButton btnCreateAccount;
+    private AuthService authService;
+    private ImageView backNavigation, checkEmail, checkPassword, checkUsername, checkConfirmPassword;
+    private ConstraintLayout constraintLayout;
+    private LayoutLoading layoutLoading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

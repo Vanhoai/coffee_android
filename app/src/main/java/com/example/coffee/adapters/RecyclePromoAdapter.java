@@ -20,8 +20,9 @@ import com.example.coffee.screens.bottom.Profile.RewardDetailActivity;
 import java.util.ArrayList;
 
 public class RecyclePromoAdapter extends RecyclerView.Adapter<RecyclePromoAdapter.ViewHolder> {
-    Context context;
-    ArrayList<Mission> missions;
+
+    private final Context context;
+    private final ArrayList<Mission> missions;
 
     public RecyclePromoAdapter(Context context, ArrayList<Mission> missions) {
         this.context = context;
