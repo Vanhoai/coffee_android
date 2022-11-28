@@ -144,17 +144,6 @@
                     android:textColor="@color/darkColor"
                     android:textSize="18dp" />
 
-                <TextView
-                    style="@style/textWeight"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginTop="14dp"
-                    android:gravity="center_vertical"
-                    android:text="View All"
-                    android:textColor="@color/primaryColor"
-                    android:textSize="14dp"
-                    android:textStyle="bold" />
             </RelativeLayout>
 
             <androidx.recyclerview.widget.RecyclerView
@@ -162,7 +151,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="8dp" />
-
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
