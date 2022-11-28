@@ -241,6 +241,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/cardGift"
                 android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="125dp"
@@ -334,7 +335,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerMission"
                 android:layout_width="match_parent"
-                android:layout_height="500dp"
+                android:layout_height="700dp"
                 android:layout_marginTop="8dp"/>
 
         </LinearLayout>

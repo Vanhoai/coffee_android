@@ -226,6 +226,8 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onSuccess(Boolean value, UserResponse userResponse) {
                 Logger.log("USER RESPONSE", userResponse);
+                UserInformation.setUser(requireContext(), userResponse.getUser());
+                setView();
                 layoutLoading.setGone();
             }
 
