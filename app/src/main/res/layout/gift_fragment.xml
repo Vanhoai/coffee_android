@@ -241,9 +241,10 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/cardGift"
                 android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
-                android:layout_height="125dp"
+                android:layout_height="100dp"
                 android:background="@drawable/background_input"
                 android:orientation="horizontal"
                 android:padding="12dp">
@@ -278,27 +279,7 @@
                         android:textColor="@color/textColor"
                         android:textSize="14dp" />
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:layout_marginTop="70dp">
 
-                        <ImageView
-                            android:layout_width="14dp"
-                            android:layout_height="14dp"
-                            android:src="@drawable/time" />
-
-                        <TextView
-                            android:id="@+id/tvExpired"
-                            style="@style/textMedium"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="8dp"
-                            android:text="Ends in 12 hours"
-                            android:textColor="@color/redColor"
-                            android:textSize="12dp" />
-                    </LinearLayout>
 
                 </RelativeLayout>
 
@@ -334,7 +315,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerMission"
                 android:layout_width="match_parent"
-                android:layout_height="500dp"
+                android:layout_height="700dp"
                 android:layout_marginTop="8dp"/>
 
         </LinearLayout>

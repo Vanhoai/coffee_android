@@ -15,11 +15,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.coffee.R;
 import com.example.coffee.adapters.RecycleNearlyAdapter;
 import com.example.coffee.adapters.RecycleProductAdapter;
+import com.example.coffee.callbacks.GiftCallback;
 import com.example.coffee.callbacks.ProductCallback;
 import com.example.coffee.callbacks.ShopCallback;
+import com.example.coffee.models.Order.Gift;
 import com.example.coffee.models.Product.Product;
 
 import com.example.coffee.models.Product.ProductResponse;
+import com.example.coffee.models.Shop.GiftResponse;
 import com.example.coffee.models.Shop.Shop;
 
 
@@ -31,8 +34,10 @@ import com.example.coffee.screens.bottom.Profile.HistoryActivity;
 import com.example.coffee.screens.bottom.Profile.RewardDetailActivity;
 import com.example.coffee.screens.bottom.Profile.TopUpActivity;
 import com.example.coffee.screens.bottom.Shop.PlaceListActivity;
+import com.example.coffee.services.GiftService;
 import com.example.coffee.services.ProductService;
 import com.example.coffee.services.ShopService;
+import com.example.coffee.utils.HelperFunction;
 import com.example.coffee.utils.Logger;
 import com.example.coffee.utils.UserInformation;
 
@@ -40,13 +45,18 @@ import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
     
-    private RecyclerView recycleViewNearbyPlace, recycleViewBestSeller;
-    private ImageView imageTopUp, imagePay, imagePromo, imageHistory, imageNotify;
-    private TextView tvBalance, tvViewAllBestSeller, tvViewAllNearbyPlace, tvViewAllMyReward;
-    private ShopService shopService;
-    private ProductService productService;
-    private ArrayList<Product> products;
-    private ArrayList<Shop> shops;
+     RecyclerView recycleViewNearbyPlace, recycleViewBestSeller;
+    ImageView imageTopUp, imagePay, imagePromo, imageHistory, imageNotify;
+     TextView tvBalance, tvViewAllBestSeller, tvViewAllNearbyPlace, tvViewAllMyReward;
+     ImageView imageReward;
+     TextView tvNameReward;
+     TextView tvDescription;
+     ShopService shopService;
+     ProductService productService;
+     ArrayList<Product> products;
+     ArrayList<Shop> shops;
+     ArrayList<Gift> gifts;
+     GiftService giftService;
 
     @Nullable
     @Override
@@ -60,14 +70,17 @@ public class HomeFragment extends Fragment {
         // init data
         shops = new ArrayList<>();
         products = new ArrayList<>();
+        gifts = new ArrayList<>();
 
         // init service
         shopService = new ShopService();
         productService = new ProductService();
+        giftService = new GiftService();
 
         // call api
         initShop();
         initProduct();
+        initReward();
 
         // set view
         setView();
@@ -120,6 +133,26 @@ public class HomeFragment extends Fragment {
         });
     }
 
+    public void  initReward(){
+        User user = UserInformation.getUser(getContext());
+        giftService.getGift(5, user.getId(), new GiftCallback() {
+            @Override
+            public void onSuccess(boolean value, GiftResponse giftResponse) {
+                Logger.log("REWARD", giftResponse);
+                Gift gift = giftResponse.getTotal().getListGifts().get(0);
+                imageReward.setImageResource(HelperFunction.getDrawable(gift.getType().getPercent()));
+                tvNameReward.setText(gift.getName());
+                tvDescription.setText(String.valueOf(gift.getExpiredAt()));
+
+            }
+
+            @Override
+            public void onFailed(boolean value) {
+
+            }
+        });
+    }
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -137,6 +170,9 @@ public class HomeFragment extends Fragment {
         tvViewAllMyReward = view.findViewById(R.id.tvViewAllMyReward);
         tvViewAllBestSeller = view.findViewById(R.id.tvViewHomeBestSeller);
         tvViewAllNearbyPlace = view.findViewById(R.id.tvViewHomeNearby);
+        imageReward = view.findViewById(R.id.imageReward);
+        tvNameReward = view.findViewById(R.id.tvNameReward);
+        tvDescription = view.findViewById(R.id.tvDescription);
     }
 
     private void handleOnClick () {

@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -37,6 +38,7 @@ public class GiftFragment extends Fragment {
     private RecyclerView recyclerMission;
     private GiftService giftService;
     private ArrayList<Mission> missions;
+    private LinearLayout cardGift;
 
     @Nullable
     @Override
@@ -79,6 +81,7 @@ public class GiftFragment extends Fragment {
         tvDescription = view.findViewById(R.id.tvDescription);
         tvExpired = view.findViewById(R.id.tvExpired);
         tvExp = view.findViewById(R.id.tvXP);
+        cardGift = view.findViewById(R.id.cardGift);
     }
 
     private void handleClick(){
@@ -110,11 +113,13 @@ public class GiftFragment extends Fragment {
                     tvTotalMission.setText(String.valueOf(giftResponse.getTotal().getTotalMission()));
                     tvTotalMissionProgress.setText(String.valueOf(giftResponse.getTotal().getTotalMissionProgress()));
 
+                if (giftResponse.getTotal().getListGifts().size() <= 0) {
+                    cardGift.setVisibility(View.GONE);
+                } else {
                     Gift gift = giftResponse.getTotal().getListGifts().get(0);
                     imagePromo.setImageResource(HelperFunction.getDrawable(gift.getType().getPercent()));
                     tvName.setText(gift.getName());
                     tvDescription.setText(String.valueOf(gift.getExpiredAt()));
-
                     tvExp.setText(String.format("%d XP more to get rewards" ,user.getExp()));
                 }
 
