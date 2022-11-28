@@ -142,7 +142,7 @@ public class GiftFragment extends Fragment {
             }
         };
         recyclerMission.setLayoutManager(linearLayoutManager);
-        RecycleGiftAdapter adapter = new RecycleGiftAdapter(getContext(),data);
+        RecycleGiftAdapter adapter = new RecycleGiftAdapter(getContext(), data);
         recyclerMission.setAdapter(adapter);
     }
 }
