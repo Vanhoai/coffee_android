@@ -123,7 +123,6 @@ public class GiftFragment extends Fragment {
                         tvExp.setText(String.format("%d XP more to get rewards", user.getExp()));
                     }
                 }
-
                 @Override
                 public void onFailed(boolean value) {
                     Logger.log("MISSION", "ERROR");

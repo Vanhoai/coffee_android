@@ -58,8 +58,6 @@
                     android:textSize="14dp" />
             </RelativeLayout>
 
-
-
             <TextView
                 android:id="@+id/tvDescription"
                 style="@style/textMedium"
