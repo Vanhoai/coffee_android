@@ -78,6 +78,10 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
+    private void updateDeviceToken() {
+
+    }
+
     private void setView() {
         User user = UserInformation.getUser(getContext());
         @SuppressLint("DefaultLocale") String balance = String.format("%.0f VND",user.getBalance().getAmount());

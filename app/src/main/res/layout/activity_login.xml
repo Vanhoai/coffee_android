@@ -116,6 +116,7 @@
             android:layout_height="wrap_content">
 
             <CheckBox
+                android:id="@+id/checkLogin"
                 style="@style/textWeight"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
@@ -125,6 +126,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/tvForgotPassword"
                 style="@style/textWeight"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"

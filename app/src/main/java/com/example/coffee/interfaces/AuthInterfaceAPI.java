@@ -29,4 +29,11 @@ public interface AuthInterfaceAPI extends BaseAPI{
             @Field("phone") String phone
     );
 
+    @POST("reset")
+    @FormUrlEncoded
+    Call<UserResponse> resetPassword(
+            @Field("email") String email,
+            @Field("password") String password
+    );
+
 }

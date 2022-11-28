@@ -101,11 +101,11 @@ public class VerityActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View view) {
         String phone = edtPhone.getText().toString().trim();
         if (!checkVerify) {
-            if (Validation.verifyPhoneNumber(phone)) {
-                verify(phone);
-            } else {
+            if (!Validation.verifyPhoneNumber(phone)) {
                 Toast.makeText(this, "PHONE NUMBER INVALID", Toast.LENGTH_SHORT).show();
+                return;
             }
+            verify(phone);
         } else {
             verifyCode(edtCode.getText().toString().trim());
         }
@@ -140,6 +140,8 @@ public class VerityActivity extends AppCompatActivity implements View.OnClickLis
         public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
             Logger.log("PHONE VERIFY", "ON VERIFICATION COMPLETED");
             edtCode.setText(phoneAuthCredential.getSmsCode());
+            checkVerify = true;
+            btnVerify.setText("Register");
         }
 
         @Override
@@ -161,7 +163,6 @@ public class VerityActivity extends AppCompatActivity implements View.OnClickLis
             Logger.log("VERIFICATION ID", s);
             Logger.log("RESENDING TOKEN", token);
             layoutLoading.setGone();
-            btnVerify.setText("Register");
         }
     };
 
@@ -197,6 +198,9 @@ public class VerityActivity extends AppCompatActivity implements View.OnClickLis
                 public void onSuccess(Boolean value, UserResponse userResponse) {
                     layoutLoading.setGone();
                     Logger.log("RESPONSE", userResponse);
+                    Intent intent = new Intent(VerityActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                    finish();
                 }
 
                 @Override

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -66,7 +67,7 @@ public class ProfileFragment extends Fragment {
     private LayoutLoading layoutLoading;
     private Uri mUri;
 
-    ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
+    private final ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {
                 @Override
@@ -93,7 +94,6 @@ public class ProfileFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
         LayoutInflater layoutInflater = getLayoutInflater();
         View view =  layoutInflater.inflate(R.layout.profile_fragment, container, false);
 
@@ -117,7 +117,9 @@ public class ProfileFragment extends Fragment {
         User user = UserInformation.getUser(getContext());
         tvUsername.setText(user.getUsername());
         tvEmail.setText(user.getEmail());
-        Glide.with(requireContext()).load(user.getImage()).into(imageAvatar);
+        if (user.getImage() != null) {
+            Glide.with(requireContext()).load(user.getImage()).into(imageAvatar);
+        }
     }
 
     @Override
@@ -138,8 +140,6 @@ public class ProfileFragment extends Fragment {
         linearLogout = view.findViewById(R.id.linearLogout);
         imageUploadAvatar = view.findViewById(R.id.imageUploadAvatar);
         btnChange = view.findViewById(R.id.btnUpload);
-
-        // add loading
         ConstraintLayout constraintLayout = view.findViewById(R.id.loading);
         layoutLoading = new LayoutLoading(constraintLayout, requireContext());
     }
@@ -203,6 +203,10 @@ public class ProfileFragment extends Fragment {
         linearLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                SharedPreferences sharedPreferences = requireContext().getSharedPreferences("CHECK_LOGIN", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.remove("SIGN_IN");
+                editor.apply();
                 Intent intent = new Intent(requireContext(), LoginActivity.class);
                 requireContext().startActivity(intent);
                 requireActivity().finish();
