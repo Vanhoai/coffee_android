@@ -43,7 +43,7 @@ public class RecycleGiftAdapter extends RecyclerView.Adapter<RecycleGiftAdapter.
         holder.imagePromo.setImageResource(HelperFunction.getDrawable(mission.getType().getPercent()));
         holder.tvName.setText(mission.getName());
         holder.tvCount.setText(String.valueOf(mission.getCurrent()));
-        holder.tvTotal.setText(String.valueOf(mission.getTotal()));
+        holder.tvTotal.setText(" / " +  mission.getTotal());
         holder.tvDescription.setText(mission.getDescription());
         //holder.tvExpired.setText(mission.getExpiredAt());
         holder.cardPromo.setOnClickListener(new View.OnClickListener() {
