@@ -279,6 +279,7 @@
                         android:textSize="18dp" />
 
                         <TextView
+                            android:textSize="14dp"
                             android:id="@+id/tvDescription"
                             style="@style/textMedium"
                             android:textColor="@color/textColor"

@@ -21,7 +21,7 @@ public class Mission implements Serializable {
     private String description;
 
     @SerializedName("total")
-    private String total;
+    private int total;
 
     @SerializedName("expiredAt")
     private Date expiredAt;
@@ -32,7 +32,7 @@ public class Mission implements Serializable {
     @SerializedName("type")
     private Type type;
 
-    public Mission(int id, float mark, String name, String description, String total, Date expiredAt, int current, Type type) {
+    public Mission(int id, float mark, String name, String description, int total, Date expiredAt, int current, Type type) {
         this.id = id;
         this.mark = mark;
         this.name = name;
@@ -75,11 +75,11 @@ public class Mission implements Serializable {
         this.description = description;
     }
 
-    public String getTotal() {
+    public int getTotal() {
         return total;
     }
 
-    public void setTotal(String total) {
+    public void setTotal(int total) {
         this.total = total;
     }
 
@@ -114,7 +114,7 @@ public class Mission implements Serializable {
                 ", mark=" + mark +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", total='" + total + '\'' +
+                ", total=" + total +
                 ", expiredAt=" + expiredAt +
                 ", current=" + current +
                 ", type=" + type +

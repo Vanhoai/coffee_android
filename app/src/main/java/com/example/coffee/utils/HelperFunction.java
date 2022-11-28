@@ -1,6 +1,10 @@
 package com.example.coffee.utils;
 
 import com.example.coffee.R;
+import com.example.coffee.app.Data;
+
+import java.util.Calendar;
+import java.util.Date;
 
 public class HelperFunction {
 
@@ -15,5 +19,13 @@ public class HelperFunction {
             return R.drawable.promo4;
         }
         return R.drawable.promo5;
+    }
+
+    public static int getDifferenceHour(Date date) {
+        Date currentTime = Calendar.getInstance().getTime();
+        long exp = date.getTime();
+        long current = currentTime.getTime();
+        long difference = exp - current;
+        return (int) (difference / (1000 * 3600));
     }
 }

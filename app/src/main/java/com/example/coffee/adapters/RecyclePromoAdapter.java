@@ -36,7 +36,6 @@ public class RecyclePromoAdapter extends RecyclerView.Adapter<RecyclePromoAdapte
         LayoutInflater layoutInflater = ((Activity) context).getLayoutInflater();
         View view = layoutInflater.inflate(R.layout.card_promo, parent, false);
         return new RecyclePromoAdapter.ViewHolder(view);
-
     }
 
     @Override
@@ -44,7 +43,7 @@ public class RecyclePromoAdapter extends RecyclerView.Adapter<RecyclePromoAdapte
         Mission mission = missions.get(position);
         holder.imagePromo.setImageResource(HelperFunction.getDrawable(mission.getType().getPercent()));
         holder.tvDescription.setText(mission.getDescription());
-        holder.tvExpired.setText(String.format("Ends in %d hours", 12));
+        holder.tvExpired.setText(String.format("Ends in %d hours", HelperFunction.getDifferenceHour(mission.getExpiredAt())));
         holder.tvName.setText(mission.getName());
         holder.tvCount.setVisibility(View.GONE);
         holder.cardPromo.setOnClickListener(new View.OnClickListener() {
@@ -69,7 +68,6 @@ public class RecyclePromoAdapter extends RecyclerView.Adapter<RecyclePromoAdapte
         TextView tvCount;
         TextView tvExpired;
         CardView cardPromo;
-
 
         public ViewHolder(@NonNull View view) {
             super(view);

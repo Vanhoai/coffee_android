@@ -111,7 +111,8 @@ public class GiftFragment extends Fragment {
                     renderGift(recyclerMission, missions);
                     tvTotalGift.setText(String.valueOf(giftResponse.getTotal().getTotalGift()));
                     tvTotalMission.setText(String.valueOf(giftResponse.getTotal().getTotalMission()));
-                    tvTotalMissionProgress.setText(String.valueOf(giftResponse.getTotal().getTotalMissionProgress()));
+                    tvTotalMissionProgress.setText(String.format("%d missions progress", giftResponse.getTotal().getTotalMissionProgress()));
+
 
                     if (giftResponse.getTotal().getListGifts().size() <= 0) {
                         cardGift.setVisibility(View.GONE);
@@ -119,7 +120,7 @@ public class GiftFragment extends Fragment {
                         Gift gift = giftResponse.getTotal().getListGifts().get(0);
                         imagePromo.setImageResource(HelperFunction.getDrawable(gift.getType().getPercent()));
                         tvName.setText(gift.getName());
-                        tvDescription.setText(String.valueOf(gift.getExpiredAt()));
+                        tvDescription.setText(String.format("Gift will expire on %d hours", HelperFunction.getDifferenceHour(gift.getExpiredAt())));
                         tvExp.setText(String.format("%d XP more to get rewards", user.getExp()));
                     }
                 }

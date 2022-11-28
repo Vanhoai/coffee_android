@@ -42,10 +42,9 @@ public class RecycleGiftAdapter extends RecyclerView.Adapter<RecycleGiftAdapter.
         Logger.log("MISSIONS", mission);
         holder.imagePromo.setImageResource(HelperFunction.getDrawable(mission.getType().getPercent()));
         holder.tvName.setText(mission.getName());
-        holder.tvCount.setText(String.valueOf(mission.getCurrent()));
-        holder.tvTotal.setText(" / " +  mission.getTotal());
+        holder.tvCount.setText(String.format("%d / %d", mission.getCurrent(), mission.getTotal()));
         holder.tvDescription.setText(mission.getDescription());
-        //holder.tvExpired.setText(mission.getExpiredAt());
+        holder.tvExpired.setText(String.format("Ends in %d hours", HelperFunction.getDifferenceHour(mission.getExpiredAt())));
         holder.cardPromo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,7 +64,6 @@ public class RecycleGiftAdapter extends RecyclerView.Adapter<RecycleGiftAdapter.
         TextView tvName;
         TextView tvDescription;
         TextView tvCount;
-        TextView tvTotal;
         TextView tvExpired;
         CardView cardPromo;
 
@@ -76,7 +74,6 @@ public class RecycleGiftAdapter extends RecyclerView.Adapter<RecycleGiftAdapter.
             tvDescription = view.findViewById(R.id.tvDescription);
             tvExpired = view.findViewById(R.id.tvExpired);
             tvCount = view.findViewById(R.id.tvCount);
-            tvTotal = view.findViewById(R.id.tvTotal);
             cardPromo = view.findViewById(R.id.cardPromo);
         }
     }
