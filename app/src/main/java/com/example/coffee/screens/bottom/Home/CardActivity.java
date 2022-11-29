@@ -20,10 +20,11 @@ import com.example.coffee.screens.bottom.MainActivity;
 import com.example.coffee.utils.UserInformation;
 
 public class CardActivity extends AppCompatActivity {
-    ImageView imageBack;
-    TextView tvUserName;
-    TextView tvBalance;
-    TextView tvCode;
+
+    private ImageView imageBack;
+    private TextView tvUserName;
+    private TextView tvBalance;
+    private TextView tvCode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +33,6 @@ public class CardActivity extends AppCompatActivity {
 
         //init View
         initView();
-
 
         // set view
         User user = UserInformation.getUser(CardActivity.this);
@@ -44,11 +44,12 @@ public class CardActivity extends AppCompatActivity {
         // handle click
        handleClick();
     }
+
     public void initView(){
-        ImageView imageBack = findViewById(R.id.imageBack);
-        TextView tvUserName = findViewById(R.id.tvUserName);
-        TextView tvBalance = findViewById(R.id.tvBalance);
-        TextView tvCode = findViewById(R.id.tvCode);
+        imageBack = findViewById(R.id.imageBack);
+        tvUserName = findViewById(R.id.tvUserName);
+        tvBalance = findViewById(R.id.tvBalance);
+        tvCode = findViewById(R.id.tvCode);
     }
 
     public void handleClick(){
