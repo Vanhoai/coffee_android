@@ -54,6 +54,12 @@ public class CardActivity extends AppCompatActivity {
          tvBalance = findViewById(R.id.tvBalance);
          tvCode = findViewById(R.id.tvCode);
          TopUpCard = findViewById(R.id.TopUpCard);
+
+        imageBack = findViewById(R.id.imageBack);
+        tvUserName = findViewById(R.id.tvUserName);
+        tvBalance = findViewById(R.id.tvBalance);
+        tvCode = findViewById(R.id.tvCode);
+
     }
 
     public void handleClick(){
