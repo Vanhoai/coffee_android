@@ -1,17 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:padding="20dp"
+    android:background="@drawable/background_input">
 
-    <TextView
-        style="@style/textMedium"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    <LinearLayout
+        android:orientation="vertical"
         android:gravity="center"
-        android:text="Review"
-        android:textSize="16sp" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
+        <TextView
+            android:text="Did you like the product?"
+            android:textSize="24dp"
+            android:textColor="@color/darkColor"
+            android:layout_marginTop="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
+        <TextView
+            android:text="Let us know what you think"
+            android:textColor="@color/darkColor"
+            android:textSize="20dp"
+            style="@style/textWeight"
+            android:layout_marginTop="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
-</LinearLayout>
+        <TextView
+            android:layout_marginTop="24dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:layout_margin="32dp"
+            android:background="@drawable/background_input"
+            android:layout_width="match_parent"
+            android:layout_height="149dp"/>
+
+        <LinearLayout
+
+            android:layout_marginTop="28dp"
+            android:gravity="right"
+            android:layout_marginRight="20dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="24dp">
+
+            <TextView
+                android:text="Cancel"
+                android:textSize="20dp"
+                android:textColor="#1DA66F"
+                style="@style/textWeight"
+                android:layout_marginRight="32dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:text="Send Comment"
+                android:textSize="20dp"
+                android:textColor="#1DA66F"
+                style="@style/textWeight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
