@@ -13,11 +13,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.coffee.R;
 import com.example.coffee.models.User.History;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class RecycleHistoryAdapter extends RecyclerView.Adapter<RecycleHistoryAdapter.HistoryViewHolder> {
     private final Context context;
     private final ArrayList<History> list_history;
+    private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd - MM - yyyy");
 
     public RecycleHistoryAdapter(Context context, ArrayList<History> list_history) {
         this.context = context;
@@ -35,11 +37,10 @@ public class RecycleHistoryAdapter extends RecyclerView.Adapter<RecycleHistoryAd
     @Override
     public void onBindViewHolder(@NonNull HistoryViewHolder holder, int position) {
         History history = list_history.get(position);
-        holder.tvNameHistory.setText(history.getNameHistory());
-        holder.tvPriceHistory.setText(history.getPriceHistory());
-        holder.tvDerscriptionHistory.setText(history.getDescription());
-        holder.tvDateHistory.setText(String.valueOf(history.getDateHistory()));
-
+        holder.tvNameHistory.setText("Order Successfully");
+        holder.tvPriceHistory.setText(String.valueOf(history.getPrice()));
+        holder.tvDerscriptionHistory.setText("Congratulation, you have successfully made a coffee purchase");
+        holder.tvDateHistory.setText(String.valueOf(simpleDateFormat.format(history.getDate())));
     }
 
     @Override

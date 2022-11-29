@@ -12,8 +12,14 @@ import android.widget.ImageView;
 
 import com.example.coffee.R;
 import com.example.coffee.adapters.RecycleHistoryAdapter;
+import com.example.coffee.callbacks.HistoryCallback;
 import com.example.coffee.models.User.History;
+import com.example.coffee.models.User.HistoryResponse;
+import com.example.coffee.models.User.User;
 import com.example.coffee.screens.bottom.MainActivity;
+import com.example.coffee.services.HistoryService;
+import com.example.coffee.utils.Logger;
+import com.example.coffee.utils.UserInformation;
 
 import java.util.ArrayList;
 
@@ -22,6 +28,7 @@ public class HistoryActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private ArrayList<History> histories;
     private ImageView backNavigation;
+    private HistoryService historyService;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -36,6 +43,9 @@ public class HistoryActivity extends AppCompatActivity {
         // init data
         histories = new ArrayList<>();
 
+        // init service
+        historyService = new HistoryService();
+
         // call api
         initHistory();
 
@@ -44,7 +54,20 @@ public class HistoryActivity extends AppCompatActivity {
     }
 
     private void initHistory() {
-        render(recyclerView, histories);
+        User user = UserInformation.getUser(HistoryActivity.this);
+        historyService.getAllHistoryOfUser(user.getId(), new HistoryCallback() {
+            @Override
+            public void onSuccess(Boolean value, HistoryResponse historyResponse) {
+                Logger.log("RESPONSE", historyResponse);
+                histories.addAll(historyResponse.getHistories());
+                render(recyclerView, histories);
+            }
+
+            @Override
+            public void onFailed(Boolean value) {
+                Logger.log("RESPONSE", "ERROR");
+            }
+        });
     }
 
     private void handleClick() {

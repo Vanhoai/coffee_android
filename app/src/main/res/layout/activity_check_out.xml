@@ -160,6 +160,7 @@
                     android:layout_marginTop="12dp">
 
                     <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnPickUp"
                         style="@style/textMedium"
                         app:backgroundTint="@null"
                         android:text="Pick up"
@@ -173,6 +174,7 @@
                         android:textColor="@color/white"/>
 
                     <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnShip"
                         app:backgroundTint="@null"
                         style="@style/textMedium"
                         android:textSize="16dp"
@@ -260,10 +262,10 @@
 
                         <TextView
                             android:id="@+id/tvAmount"
+                            android:gravity="end"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:layout_marginLeft="190dp"
                             android:layout_marginTop="20dp"
                             android:text="100.000"
                             style="@style/textWeight"
@@ -279,7 +281,6 @@
 
                         <TextView
                             android:layout_marginTop="20dp"
-                            android:layout_weight="1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Promo"
@@ -289,10 +290,10 @@
 
                         <TextView
                             android:id="@+id/tvPromo"
+                            android:gravity="end"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:layout_marginLeft="250dp"
                             android:layout_marginTop="20dp"
                             android:text="-"
                             style="@style/textWeight"
@@ -308,7 +309,6 @@
 
                         <TextView
                             android:layout_marginTop="20dp"
-                            android:layout_weight="1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Ship"
@@ -318,10 +318,9 @@
 
                         <TextView
                             android:id="@+id/tvShip"
-                            android:layout_width="wrap_content"
+                            android:gravity="end"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_marginLeft="268dp"
                             android:layout_marginTop="20dp"
                             android:text="-"
                             style="@style/textWeight"
