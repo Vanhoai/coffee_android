@@ -19,6 +19,7 @@ import com.example.coffee.R;
 import com.example.coffee.callbacks.AuthCallback;
 import com.example.coffee.models.User.User;
 import com.example.coffee.models.User.UserResponse;
+import com.example.coffee.services.AuthService;
 import com.example.coffee.services.UserService;
 import com.example.coffee.utils.LayoutLoading;
 import com.example.coffee.utils.Logger;
@@ -46,12 +47,14 @@ public class VerityActivity extends AppCompatActivity implements View.OnClickLis
     private FirebaseAuth.AuthStateListener authStateListener;
     private PhoneAuthProvider.ForceResendingToken forceResendingToken;
     private String verificationId;
-    EditText edtPhone;
-    ImageView checkPhone, backNavigation;
-    AppCompatButton btnVerify;
-    UserService userService;
-    ConstraintLayout constraintLayout;
-    LayoutLoading layoutLoading;
+    private EditText edtPhone, edtCode;
+    private ImageView checkPhone, checkCode, backNavigation;
+    private AppCompatButton btnVerify;
+    private UserService userService;
+    private ConstraintLayout constraintLayout;
+    private LayoutLoading layoutLoading;
+    private AuthService authService;
+    private boolean checkVerify = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +66,7 @@ public class VerityActivity extends AppCompatActivity implements View.OnClickLis
 
         // init service
         userService = new UserService();
+        authService = new AuthService();
 
         // handle onclick
         handleOnclick();
@@ -73,9 +77,12 @@ public class VerityActivity extends AppCompatActivity implements View.OnClickLis
         checkPhone = findViewById(R.id.checkPhone);
         btnVerify = findViewById(R.id.btnVerify);
         backNavigation = findViewById(R.id.backNavigation);
+        checkCode = findViewById(R.id.checkCode);
+        edtCode = findViewById(R.id.edtCode);
         constraintLayout = findViewById(R.id.loading);
         layoutLoading = new LayoutLoading(constraintLayout, VerityActivity.this);
         layoutLoading.setGone();
+        btnVerify.setText("Verify");
     }
 
     private void handleOnclick() {
@@ -93,10 +100,28 @@ public class VerityActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View view) {
         String phone = edtPhone.getText().toString().trim();
-        if (Validation.verifyPhoneNumber(phone)) {
+        if (!checkVerify) {
+            if (!Validation.verifyPhoneNumber(phone)) {
+                Toast.makeText(this, "PHONE NUMBER INVALID", Toast.LENGTH_SHORT).show();
+                return;
+            }
             verify(phone);
         } else {
-            Toast.makeText(this, "PHONE NUMBER INVALID", Toast.LENGTH_SHORT).show();
+            verifyCode(edtCode.getText().toString().trim());
+        }
+    }
+
+    private void handleRegister() {
+        try {
+            Intent intent = getIntent();
+            Bundle bundle = intent.getExtras();
+            String username = bundle.getString("username", "");
+            String email = bundle.getString("email", "");
+            String password = bundle.getString("password", "");
+            String phone = String.format("+84%s", edtPhone.getText().toString().trim().substring(1));
+            register(username, email, password, phone);
+        } catch (Exception exception) {
+            exception.printStackTrace();
         }
     }
 
@@ -114,7 +139,9 @@ public class VerityActivity extends AppCompatActivity implements View.OnClickLis
         @Override
         public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
             Logger.log("PHONE VERIFY", "ON VERIFICATION COMPLETED");
-            verifyCode(phoneAuthCredential.getSmsCode());
+            edtCode.setText(phoneAuthCredential.getSmsCode());
+            checkVerify = true;
+            btnVerify.setText("Register");
         }
 
         @Override
@@ -133,6 +160,9 @@ public class VerityActivity extends AppCompatActivity implements View.OnClickLis
             super.onCodeSent(s, forceResendingToken);
             verificationId = s;
             forceResendingToken = token;
+            Logger.log("VERIFICATION ID", s);
+            Logger.log("RESENDING TOKEN", token);
+            layoutLoading.setGone();
         }
     };
 
@@ -148,7 +178,7 @@ public class VerityActivity extends AppCompatActivity implements View.OnClickLis
                 if (task.isSuccessful()) {
                     FirebaseUser user = task.getResult().getUser();
                     assert user != null;
-                    updateUser(user.getPhoneNumber());
+                    handleRegister();
                 } else {
                     Logger.log("ERROR", Objects.requireNonNull(task.getException()));
                     if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
@@ -160,15 +190,14 @@ public class VerityActivity extends AppCompatActivity implements View.OnClickLis
         });
     }
 
-    private void updateUser (String phone) {
+    public void register(String username, String email, String password, String phone){
         try {
-            String value = String.format("+84%s", phone.substring(1));
-            User user = UserInformation.getUser(VerityActivity.this);
-            userService.updatePhoneNumber(user.getId(), value, new AuthCallback() {
+            layoutLoading.setLoading();
+            authService.register(username, email, password, phone, new AuthCallback() {
                 @Override
                 public void onSuccess(Boolean value, UserResponse userResponse) {
-                    Logger.log("RESPONSE", userResponse);
                     layoutLoading.setGone();
+                    Logger.log("RESPONSE", userResponse);
                     Intent intent = new Intent(VerityActivity.this, LoginActivity.class);
                     startActivity(intent);
                     finish();
@@ -176,12 +205,13 @@ public class VerityActivity extends AppCompatActivity implements View.OnClickLis
 
                 @Override
                 public void onFailed(Boolean value) {
+                    Toast.makeText(VerityActivity.this, "REGISTER FAILED", Toast.LENGTH_SHORT).show();
                     layoutLoading.setGone();
-                    Logger.log("RESPONSE", "ERROR");
                 }
             });
-        } catch (Exception exception) {
-            exception.printStackTrace();
+        }catch (Exception e){
+            e.printStackTrace();
+            layoutLoading.setGone();
         }
     }
 

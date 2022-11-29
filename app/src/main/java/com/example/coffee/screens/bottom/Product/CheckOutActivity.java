@@ -22,12 +22,11 @@ import java.util.ArrayList;
 
 public class CheckOutActivity extends AppCompatActivity {
 
-    AppCompatButton btnContinuePayment;
-    ImageView backNavigation;
-    ArrayList<Product> products;
-    RecyclerView recycleProducts;
-    TextView tvTotal, tvAmount, tvShip, tvPromo;
-    int shopId;
+    private AppCompatButton btnContinuePayment;
+    private ImageView backNavigation;
+    private ArrayList<Product> products;
+    private RecyclerView recycleProducts;
+    private TextView tvTotal, tvAmount, tvShip, tvPromo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,20 +36,13 @@ public class CheckOutActivity extends AppCompatActivity {
         // init view
         initView();
 
-
-        // init shared data
+        // init data
         products = new ArrayList<>();
 
-        // get data
-        getData();
-
         // set view
-        render(products);
+        initProducts();
 
-        getBundle();
-
-
-        // handle logic
+        // handle click
         handleOnclick();
     }
 
@@ -58,9 +50,13 @@ public class CheckOutActivity extends AppCompatActivity {
         backNavigation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intentStart = getIntent();
+                Bundle bundleStart = intentStart.getExtras();
+                int id = bundleStart.getInt("id", -1);
+
                 Intent intent = new Intent(CheckOutActivity.this, DetailPlaceActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putInt("id", shopId);
+                bundle.putInt("id", id);
                 intent.putExtras(bundle);
                 startActivity(intent);
                 finish();
@@ -86,21 +82,12 @@ public class CheckOutActivity extends AppCompatActivity {
         tvTotal = findViewById(R.id.tvTotal);
     }
 
-    public void getBundle() {
-       try {
-           Intent intentStart = getIntent();
-           Bundle bundle = intentStart.getExtras();
-           shopId = bundle.getInt("id", -1);
-       } catch (Exception exception){
-           exception.printStackTrace();
-       }
-    }
-
-    public void getData() {
+    public void initProducts() {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         try {
             products = (ArrayList<Product>) bundle.getSerializable("products");
+            render(products);
         } catch (Exception exception) {
             exception.printStackTrace();
         }

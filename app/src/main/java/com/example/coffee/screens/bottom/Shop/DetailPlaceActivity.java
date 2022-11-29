@@ -33,16 +33,12 @@ import java.util.ArrayList;
 
 public class DetailPlaceActivity extends AppCompatActivity {
 
-    ImageView backNavigation;
-    ImageView imageDetailPlace;
-    TextView tvNameDetailPlace;
-    TextView tvTotal;
-    TextView tvDistrict;
-    AppCompatButton btnOrderNow;
-    RecyclerView recycleProducts;
-    ArrayList<Product> products;
-    int shopId;
-    ShopService shopService;
+    private ImageView backNavigation, imageDetailPlace;
+    private TextView tvNameDetailPlace, tvTotal, tvDistrict;
+    private AppCompatButton btnOrderNow;
+    private RecyclerView recycleProducts;
+    private ArrayList<Product> products;
+    private ShopService shopService;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -54,6 +50,8 @@ public class DetailPlaceActivity extends AppCompatActivity {
 
         // init shared data
         products = new ArrayList<>();
+
+        // init service
         shopService = new ShopService();
 
         // set view
@@ -71,19 +69,28 @@ public class DetailPlaceActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 ArrayList<Product> productCurrent = new ArrayList<>();
+
+                // check selected product
                 for (Product product : products){
                     if (product.getCurrent() > 0){
                         productCurrent.add(product);
                     }
                 }
+
                 if (productCurrent.size() <= 0) {
                     Toast.makeText(DetailPlaceActivity.this, "NO PRODUCT SELECTED", Toast.LENGTH_SHORT).show();
                     return;
                 }
+
+                // redirect
+                Intent intentStart = getIntent();
+                Bundle bundleStart = intentStart.getExtras();
+                int id = bundleStart.getInt("id",-1);
+
                 Intent intent = new Intent(DetailPlaceActivity.this, CheckOutActivity.class);
                 Bundle bundle1 = new Bundle();
                 bundle1.putSerializable("products", productCurrent);
-                bundle1.putInt("id", shopId);
+                bundle1.putInt("id", id);
                 intent.putExtras(bundle1);
                 startActivity(intent);
                 finish();
@@ -114,9 +121,9 @@ public class DetailPlaceActivity extends AppCompatActivity {
         try {
             Intent intent = getIntent();
             Bundle bundle = intent.getExtras();
-            shopId = bundle.getInt("id",-1);
+            int id = bundle.getInt("id",-1);
 
-            shopService.getDetail(shopId, new ShopDetailCallback() {
+            shopService.getDetail(id, new ShopDetailCallback() {
                 @Override
                 public void onSuccess(boolean value, ShopDetailResponse shopDetailResponse) {
                     Logger.log("RESPONSE", shopDetailResponse);

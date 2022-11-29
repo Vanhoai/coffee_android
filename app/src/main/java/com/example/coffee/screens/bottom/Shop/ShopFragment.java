@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,24 +18,34 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.coffee.R;
 import com.example.coffee.adapters.RecycleNearlyAdapter;
 import com.example.coffee.adapters.RecycleAllShopAdapter;
+import com.example.coffee.callbacks.PromoCallback;
 import com.example.coffee.callbacks.ShopCallback;
+import com.example.coffee.models.Shop.Mission;
+import com.example.coffee.models.Shop.PromoResponse;
 import com.example.coffee.models.Shop.Shop;
 import com.example.coffee.models.Shop.ShopResponse;
 import com.example.coffee.screens.bottom.Home.PromoActivity;
+import com.example.coffee.services.GiftService;
 import com.example.coffee.services.ShopService;
+import com.example.coffee.utils.HelperFunction;
 import com.example.coffee.utils.Logger;
 
 import java.util.ArrayList;
 
 public class ShopFragment extends Fragment {
-    RecyclerView recyclerViewNearbyPlace;
-    RecyclerView recyclerViewAllShop;
-    TextView tvViewAllHottest;
-    TextView tvViewAllShop;
-    TextView tvViewAllNearby;
-    ShopService shopService;
-    ArrayList<Shop> shopsNearby;
-    ArrayList<Shop> shopsAllShop;
+    
+    private RecyclerView recyclerViewNearbyPlace, recyclerViewAllShop;
+    private TextView tvViewAllHottest, tvViewAllShop, tvViewAllNearby;
+    private ShopService shopService;
+    private ArrayList<Shop> shopsNearby;
+    private ArrayList<Shop> shopsAllShop;
+    ImageView imageHottest;
+    TextView tvNameHottest;
+    TextView tvDescription;
+    TextView tvCount;
+    LinearLayout CardHottest;
+    GiftService giftService;
+    ArrayList<Mission> missions;
 
     @SuppressLint("MissingInflatedId")
     @Nullable
@@ -48,11 +60,16 @@ public class ShopFragment extends Fragment {
         // init data
         shopsNearby = new ArrayList<>();
         shopsAllShop = new ArrayList<>();
+        missions = new ArrayList<>();
+
+        // init service
         shopService = new ShopService();
+        giftService = new GiftService();
 
         // call api
         initShop();
         initAllShop();
+        initPromo();
 
         // handle onclick
         handleOnClick();
@@ -71,6 +88,12 @@ public class ShopFragment extends Fragment {
         tvViewAllHottest = view.findViewById(R.id.tvViewAllHottest);
         tvViewAllShop = view.findViewById(R.id.tvViewShopAll);
         tvViewAllNearby = view.findViewById(R.id.tvViewShopNearby);
+        CardHottest = view.findViewById(R.id.CardHottest);
+        tvDescription =view.findViewById(R.id.tvDescription);
+        tvNameHottest = view.findViewById(R.id.tvNameHottest);
+        imageHottest = view.findViewById(R.id.imageHottest);
+        tvCount = view.findViewById(R.id.tvCount);
+
     }
 
     public void handleOnClick(){
@@ -135,6 +158,29 @@ public class ShopFragment extends Fragment {
                 Logger.log("RESPONSE", "ERROR");
             }
         });
+    }
+
+    private void initPromo(){
+        try {
+            giftService.getPromo(5, new PromoCallback() {
+                @Override
+                public void onSuccess(boolean value, PromoResponse promoResponse) {
+                        Mission mission = promoResponse.getPromo().getHottest();
+                        imageHottest.setImageResource(HelperFunction.getDrawable(mission.getType().getPercent()));
+                        tvNameHottest.setText(mission.getName());
+                        tvDescription.setText(mission.getDescription());
+                        tvCount.setVisibility(View.GONE);
+                    }
+
+                @Override
+                public void onFailed(boolean value) {
+                    Logger.log("PROMO", "ERROR");
+                }
+            });
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 
 

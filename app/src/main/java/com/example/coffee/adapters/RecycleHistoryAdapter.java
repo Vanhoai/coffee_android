@@ -16,8 +16,8 @@ import com.example.coffee.models.User.History;
 import java.util.ArrayList;
 
 public class RecycleHistoryAdapter extends RecyclerView.Adapter<RecycleHistoryAdapter.HistoryViewHolder> {
-    private Context context;
-    private ArrayList<History> list_history;
+    private final Context context;
+    private final ArrayList<History> list_history;
 
     public RecycleHistoryAdapter(Context context, ArrayList<History> list_history) {
         this.context = context;

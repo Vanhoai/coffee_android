@@ -21,7 +21,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ShopService {
 
-    private ShopInterfaceAPI API;
+    private final ShopInterfaceAPI API;
 
     public ShopInterfaceAPI getAPI() {return API;}
 

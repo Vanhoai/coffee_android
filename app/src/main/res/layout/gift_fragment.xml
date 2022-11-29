@@ -76,6 +76,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tvXP"
                         style="@style/textMedium"
                         android:textSize="16dp"
                         android:textColor="@color/darkColor"
@@ -119,6 +120,7 @@
                     android:padding="16dp">
 
                     <TextView
+                        android:id="@+id/tvtotalGift"
                         style="@style/textMedium"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -168,6 +170,7 @@
                     android:padding="16dp">
 
                     <TextView
+                        android:id="@+id/tvtotalMission"
                         style="@style/textMedium"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -200,6 +203,7 @@
                     </RelativeLayout>
 
                     <TextView
+                        android:id="@+id/tvtotalMissionProgress"
                         style="@style/textMedium"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -225,6 +229,7 @@
                     android:textSize="20dp" />
 
                 <TextView
+                    android:id="@+id/tvViewAllGift"
                     style="@style/textWeight"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -236,66 +241,47 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/cardGift"
                 android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:background="@drawable/background_input"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:background="@drawable/background_input"
                 android:padding="12dp">
 
                 <ImageView
                     android:id="@+id/imagePromo"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:layout_marginRight="12dp"
-                    android:src="@drawable/promo1" />
+                    android:src="@drawable/reward_type_1"
+                    android:layout_marginRight="12dp"/>
 
-                <RelativeLayout
+                <LinearLayout
+                    android:layout_weight="1"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center_vertical">
 
                     <TextView
                         android:id="@+id/tvNamePromo"
-                        style="@style/textMedium"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Free a coffee"
+                        style="@style/textMedium"
                         android:textColor="@color/darkColor"
-                        android:textSize="16dp" />
+                        android:textSize="18dp" />
 
                     <TextView
                         android:id="@+id/tvDescription"
                         style="@style/textMedium"
+                        android:textColor="@color/textColor"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:text="Buy 10 Coffees and get 1 Coffee for free"
-                        android:textColor="@color/textColor"
-                        android:textSize="14dp" />
+                        android:text="Free a any coffee at Aurora Shop"/>
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:layout_marginTop="50dp">
+                </LinearLayout>
 
-                        <ImageView
-                            android:layout_width="14dp"
-                            android:layout_height="14dp"
-                            android:src="@drawable/time" />
-
-                        <TextView
-                            android:id="@+id/tvExpired"
-                            style="@style/textMedium"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="8dp"
-                            android:text="Ends in 12 hours"
-                            android:textColor="@color/redColor"
-                            android:textSize="12dp" />
-                    </LinearLayout>
-
-                </RelativeLayout>
 
             </LinearLayout>
 
@@ -315,6 +301,7 @@
                     android:textSize="20dp" />
 
                 <TextView
+                    android:id="@+id/tvViewAllMission"
                     style="@style/textWeight"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -328,7 +315,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerMission"
                 android:layout_width="match_parent"
-                android:layout_height="500dp"
+                android:layout_height="700dp"
                 android:layout_marginTop="8dp"/>
 
         </LinearLayout>

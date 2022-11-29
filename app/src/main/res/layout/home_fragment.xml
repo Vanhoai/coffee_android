@@ -256,6 +256,7 @@
                 android:padding="12dp">
 
                 <ImageView
+                    android:id="@+id/imageReward"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:src="@drawable/reward_type_1"
@@ -269,6 +270,7 @@
                     android:gravity="center_vertical">
 
                     <TextView
+                        android:id="@+id/tvNameReward"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Free a coffee"
@@ -277,6 +279,8 @@
                         android:textSize="18dp" />
 
                         <TextView
+                            android:textSize="14dp"
+                            android:id="@+id/tvDescription"
                             style="@style/textMedium"
                             android:textColor="@color/textColor"
                             android:layout_width="match_parent"

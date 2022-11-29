@@ -14,13 +14,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.coffee.R;
 import com.example.coffee.models.Shop.Mission;
+import com.example.coffee.utils.HelperFunction;
+import com.example.coffee.utils.Logger;
 
 import java.util.ArrayList;
 
 public class RecycleGiftAdapter extends RecyclerView.Adapter<RecycleGiftAdapter.ViewHolder>{
 
-    Context context;
-    ArrayList<Mission> missions;
+    private final Context context;
+    private final ArrayList<Mission> missions;
 
     public RecycleGiftAdapter(Context context, ArrayList<Mission> missions){
         this.context = context;
@@ -31,17 +33,18 @@ public class RecycleGiftAdapter extends RecyclerView.Adapter<RecycleGiftAdapter.
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = ((Activity) context).getLayoutInflater();
         View view = layoutInflater.inflate(R.layout.card_gift, parent, false);
-        return new RecycleGiftAdapter.ViewHolder(view);
+        return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Mission mission = missions.get(position);
-        holder.imagePromo.setImageResource(R.drawable.promo1);
-        holder.tvDescription.setText(mission.getDescription());
-        holder.tvExpired.setText(String.format("Ends in %d hours", 12));
-        holder.tvCount.setText(String.format("%d/10", mission.getCurrent()));
+        Logger.log("MISSIONS", mission);
+        holder.imagePromo.setImageResource(HelperFunction.getDrawable(mission.getType().getPercent()));
         holder.tvName.setText(mission.getName());
+        holder.tvCount.setText(String.format("%d / %d", mission.getCurrent(), mission.getTotal()));
+        holder.tvDescription.setText(mission.getDescription());
+        holder.tvExpired.setText(String.format("Ends in %d hours", HelperFunction.getDifferenceHour(mission.getExpiredAt())));
         holder.cardPromo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,7 +55,7 @@ public class RecycleGiftAdapter extends RecyclerView.Adapter<RecycleGiftAdapter.
 
     @Override
     public int getItemCount() {
-        return 0;
+        return missions.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

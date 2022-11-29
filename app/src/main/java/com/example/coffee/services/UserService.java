@@ -34,7 +34,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class UserService {
 
-    public UserInterfaceAPI API;
+    private final UserInterfaceAPI API;
 
     public synchronized UserInterfaceAPI getAPI() {
         return API;
@@ -51,13 +51,12 @@ public class UserService {
     public void uploadAvatar(String accessToken, int id, File file, AuthCallback callback) {
         RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
         MultipartBody.Part part = MultipartBody.Part.createFormData("image", file.getName(), requestBody);
-        Map<String, String> map = new HashMap<>();
-        map.put("Authorization", String.format("Bearer %s", accessToken));
+
         Logger.log("ACCESS TOKEN", accessToken);
         Logger.log("ID", id);
         Logger.log("FILE", file);
 
-        getAPI().uploadAvatar(map, id, part).enqueue(new Callback<UserResponse>() {
+        getAPI().uploadAvatar(id, part).enqueue(new Callback<UserResponse>() {
             @Override
             public void onResponse(@NonNull Call<UserResponse> call, @NonNull Response<UserResponse> response) {
                 if (response.code() == 200) {
@@ -104,6 +103,30 @@ public class UserService {
     public void updatePhoneNumber(int id, String phone, AuthCallback callback) {
         try {
             getAPI().updatePhoneNumber(id, phone).enqueue(new Callback<UserResponse>() {
+                @Override
+                public void onResponse(@NonNull Call<UserResponse> call, @NonNull Response<UserResponse> response) {
+                    if (response.code() == 200) {
+                        callback.onSuccess(true, response.body());
+                    } else {
+                        callback.onFailed(false);
+                        Logger.log("O DAY HA BA", "UH");
+                    }
+                }
+
+                @Override
+                public void onFailure(@NonNull Call<UserResponse> call, @NonNull Throwable t) {
+                    callback.onFailed(false);
+                    Logger.log("ERROR", t);
+                }
+            });
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+    }
+
+    public void updateDeviceToken(int id, String deviceToken, AuthCallback callback) {
+        try {
+            getAPI().updateDeviceToken(id, deviceToken).enqueue(new Callback<UserResponse>() {
                 @Override
                 public void onResponse(@NonNull Call<UserResponse> call, @NonNull Response<UserResponse> response) {
                     if (response.code() == 200) {

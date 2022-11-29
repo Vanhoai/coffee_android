@@ -25,11 +25,11 @@ import java.util.ArrayList;
 
 public class ProductListActivity extends AppCompatActivity {
 
-    RecyclerView recyclerProductList;
-    ImageView backNavigation;
-    ArrayList<Product> products;
-    ProductService productService;
-    TextView tvTitle;
+    private RecyclerView recyclerProductList;
+    private ImageView backNavigation;
+    private ArrayList<Product> products;
+    private ProductService productService;
+    private TextView tvTitle;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -37,13 +37,13 @@ public class ProductListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_list);
 
-        //mapping
-        backNavigation = findViewById(R.id.backNavigation);
-        recyclerProductList = findViewById(R.id.recycleProductsList);
-        tvTitle = findViewById(R.id.tvTitle);
+        // init view
 
-        //init data
+
+        // init data
         products = new ArrayList<>();
+
+        // init service
         productService = new ProductService();
 
         // call api
@@ -65,6 +65,12 @@ public class ProductListActivity extends AppCompatActivity {
         } catch (Exception exception) {
             exception.printStackTrace();
         }
+    }
+
+    public void initView(){
+        backNavigation = findViewById(R.id.backNavigation);
+        recyclerProductList = findViewById(R.id.recycleProductsList);
+        tvTitle = findViewById(R.id.tvTitle);
     }
 
     private void handleOnclick() {

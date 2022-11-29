@@ -45,8 +45,10 @@ public class User implements Serializable {
     @SerializedName("refreshToken")
     private String refreshToken;
 
+    @SerializedName("deviceToken")
+    private String deviceToken;
 
-    public User(int id, String username, String email, String role, String phone, String typeAccount, Balance balance, int exp, String image, int history, int favorite, String accessToken, String refreshToken) {
+    public User(int id, String username, String email, String role, String phone, String typeAccount, Balance balance, int exp, String image, int history, int favorite, String accessToken, String refreshToken, String deviceToken) {
         this.id = id;
         this.username = username;
         this.email = email;
@@ -60,6 +62,7 @@ public class User implements Serializable {
         this.favorite = favorite;
         this.accessToken = accessToken;
         this.refreshToken = refreshToken;
+        this.deviceToken = deviceToken;
     }
 
     public int getId() {
@@ -166,6 +169,14 @@ public class User implements Serializable {
         this.refreshToken = refreshToken;
     }
 
+    public String getDeviceToken() {
+        return deviceToken;
+    }
+
+    public void setDeviceToken(String deviceToken) {
+        this.deviceToken = deviceToken;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -182,6 +193,7 @@ public class User implements Serializable {
                 ", favorite=" + favorite +
                 ", accessToken='" + accessToken + '\'' +
                 ", refreshToken='" + refreshToken + '\'' +
+                ", deviceToken='" + deviceToken + '\'' +
                 '}';
     }
 }

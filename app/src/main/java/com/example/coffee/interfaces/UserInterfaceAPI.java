@@ -27,7 +27,6 @@ public interface UserInterfaceAPI {
     @PUT("{id}")
     @Multipart
     Call<UserResponse> uploadAvatar(
-            @HeaderMap Map<String, String> headers,
             @Path("id") int id,
             @Part MultipartBody.Part image
     );
@@ -46,5 +45,12 @@ public interface UserInterfaceAPI {
     Call<UserResponse> updatePhoneNumber(
             @Path("id") int id,
             @Field("phone") String phone
+    );
+
+    @PUT("token/{id}")
+    @FormUrlEncoded
+    Call<UserResponse> updateDeviceToken(
+            @Path("id") int id,
+            @Field("token") String token
     );
 }

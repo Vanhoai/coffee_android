@@ -24,18 +24,32 @@ import com.example.coffee.utils.Logger;
 import com.example.coffee.utils.UserInformation;
 
 public class TopUpActivity extends AppCompatActivity {
+
     ImageView backNavigation;
     AppCompatButton btn50, btn100, btn200, btn250, btnPayNow;
     EditText edtCardNumber, edtCardHolder, edtDate, edtCVC, edtNominal;
+
     UserService userService;
+
+
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_top_up);
 
+        // init view
+        initView();
+
+        // handle click
+        handleClick();
+    }
+
+    private void handleClick() {
         Drawable backgroundInput = getResources().getDrawable(R.drawable.background_input);
         Drawable backgroundButton = getResources().getDrawable(R.drawable.background_button);
+
 
         btn50 = findViewById(R.id.btn50);
         btn100 = findViewById(R.id.btn100);
@@ -52,6 +66,7 @@ public class TopUpActivity extends AppCompatActivity {
         // mapping
         backNavigation = findViewById(R.id.backNavigation);
         userService = new UserService();
+
         backNavigation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -121,6 +136,7 @@ public class TopUpActivity extends AppCompatActivity {
                 String date = edtDate.getText().toString().trim();
                 String cvc = edtCVC.getText().toString().trim();
                 String nominal = edtNominal.getText().toString().trim();
+
                 User user = UserInformation.getUser(TopUpActivity.this);
                 userService.topUp(user.getId(), cardNumber, Float.parseFloat(nominal), new BalanceCallback() {
                     @Override
@@ -133,7 +149,22 @@ public class TopUpActivity extends AppCompatActivity {
 
                     }
                 });
+
             }
         });
+    }
+
+    private void initView() {
+        btn50 = findViewById(R.id.btn50);
+        btn100 = findViewById(R.id.btn100);
+        btn200 = findViewById(R.id.btn200);
+        btn250 = findViewById(R.id.btn250);
+        btnPayNow = findViewById(R.id.btnPayNow);
+        edtCardNumber = findViewById(R.id.edtCardNumber);
+        edtCardHolder = findViewById(R.id.edtCardHolder);
+        edtDate = findViewById(R.id.edtDate);
+        edtCVC = findViewById(R.id.edtCVC);
+        edtNominal = findViewById(R.id.edtNomial);
+        backNavigation = findViewById(R.id.backNavigation);
     }
 }

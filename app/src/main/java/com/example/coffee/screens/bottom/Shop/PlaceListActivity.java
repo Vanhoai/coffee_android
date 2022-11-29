@@ -30,11 +30,11 @@ import java.util.ArrayList;
 
 public class PlaceListActivity extends AppCompatActivity {
 
-    TextView tvTitle;
-    ImageView backNavigation;
-    RecyclerView recyclePlaceList;
-    ArrayList<Shop> shops ;
-    ShopService shopService;
+    private TextView tvTitle;
+    private ImageView backNavigation;
+    private RecyclerView recyclePlaceList;
+    private ArrayList<Shop> shops ;
+    private ShopService shopService;
 
     @SuppressLint({"MissingInflatedId"})
     @Override
@@ -42,13 +42,13 @@ public class PlaceListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_place_list);
 
-        //mapping
-        recyclePlaceList = findViewById(R.id.recyclePlaceList);
-        backNavigation = findViewById(R.id.backNavigation);
-        tvTitle = findViewById(R.id.tvTitle);
+        // init view
+        initView();
 
         //init data
         shops = new ArrayList<>();
+
+        // init service
         shopService = new ShopService();
 
         // call api
@@ -59,6 +59,12 @@ public class PlaceListActivity extends AppCompatActivity {
 
         // set view
         setView();
+    }
+
+    private void initView() {
+        recyclePlaceList = findViewById(R.id.recyclePlaceList);
+        backNavigation = findViewById(R.id.backNavigation);
+        tvTitle = findViewById(R.id.tvTitle);
     }
 
     private void setView() {
@@ -87,7 +93,7 @@ public class PlaceListActivity extends AppCompatActivity {
         shopService.getAllShop(new ShopCallback() {
             @Override
             public void onSuccess(boolean value, ShopResponse shopResponse) {
-                Logger.log("SHOPRESPONSE", shopResponse);
+                Logger.log("SHOP RESPONSE", shopResponse);
 
                 shops.addAll(shopResponse.getShops());
                 renderShop(recyclePlaceList, shops);

@@ -15,18 +15,22 @@ import com.example.coffee.screens.bottom.MainActivity;
 
 public class PaymentActivity extends AppCompatActivity {
 
-    AppCompatButton btnPayNow;
-    ImageView backNavigation;
+    private AppCompatButton btnPayNow;
+    private ImageView backNavigation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
 
-        // mapping
-        btnPayNow  = findViewById(R.id.btnPayNow);
-        backNavigation = findViewById(R.id.backNavigation);
+        // init View
+        initView();
 
+        // handle click
+        handleClick();
+    }
+
+    private void handleClick() {
         backNavigation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -39,12 +43,15 @@ public class PaymentActivity extends AppCompatActivity {
         btnPayNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // call api
-
                 // show dialog success
                 showDialog();
             }
         });
+    }
+
+    private void initView() {
+        btnPayNow  = findViewById(R.id.btnPayNow);
+        backNavigation = findViewById(R.id.backNavigation);
     }
 
     public void showDialog()  {

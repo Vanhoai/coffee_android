@@ -36,20 +36,13 @@ import java.util.ArrayList;
 
 public class ProductDetailActivity extends AppCompatActivity {
 
-    RecyclerView recyclerComment;
-    ImageView imageProduct;
-    TextView tvNameProduct;
-    TextView tvPriceProduct;
-    TextView tvExploredProduct;
-    TextView tvDescription;
-    Button btnTextProduct;
-    int productId;
-    ArrayList<Comment> comments;
-    ImageView backNavigation;
-    ProductService productService;
-    AppCompatButton btnReview;
-    ImageView bookmark;
-    boolean check = false;
+    private RecyclerView recyclerComment;
+    private ImageView imageProduct, bookmark, backNavigation;
+    private TextView tvNameProduct, tvPriceProduct, tvExploredProduct, tvDescription;
+    private ArrayList<Comment> comments;
+    private ProductService productService;
+    private AppCompatButton btnReview, btnTextProduct;
+    private boolean check = false;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -65,8 +58,11 @@ public class ProductDetailActivity extends AppCompatActivity {
 
         // init shared data
         comments = new ArrayList<>();
+
+        // init service
         productService = new ProductService();
 
+        // call api
         detailProduct();
     }
 
@@ -114,9 +110,9 @@ public class ProductDetailActivity extends AppCompatActivity {
         try {
             Intent intent = getIntent();
             Bundle bundle = intent.getExtras();
-            productId = bundle.getInt("id", -1);
+            int id = bundle.getInt("id", -1);
 
-            productService.getProductDetail(productId, new ProductDetailCallback() {
+            productService.getProductDetail(id, new ProductDetailCallback() {
                 @Override
                 public void onSuccess(boolean value, ProductDetailResponse productResponse) {
                     Logger.log("PRODUCT RESPONSE", productResponse);

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:layout_height="120dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cardPromo"
     android:elevation="12dp"
@@ -11,7 +11,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:padding="12dp">
 
@@ -58,11 +58,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:layout_marginTop="50dp">
+                android:layout_marginTop="70dp">
 
                 <ImageView
-                    android:layout_width="14dp"
-                    android:layout_height="14dp"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
                     android:src="@drawable/time" />
 
                 <TextView
@@ -73,7 +73,7 @@
                     android:layout_marginLeft="8dp"
                     android:text="Ends in 12 hours"
                     android:textColor="@color/redColor"
-                    android:textSize="12dp" />
+                    android:textSize="14dp" />
             </LinearLayout>
 
         </RelativeLayout>

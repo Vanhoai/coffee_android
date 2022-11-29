@@ -142,7 +142,7 @@
             </RelativeLayout>
 
             <LinearLayout
-                android:id="@+id/linearHottest"
+                android:id="@+id/cardHottest"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -151,6 +151,7 @@
                 android:padding="12dp">
 
                 <ImageView
+                    android:id="@+id/imageHottest"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_marginRight="12dp"
@@ -169,6 +170,7 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/tvNameHottest"
                             style="@style/textMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -178,6 +180,7 @@
                             android:textSize="18dp" />
 
                         <TextView
+                            android:id="@+id/tvCount"
                             style="@style/textMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -189,6 +192,7 @@
                     </RelativeLayout>
 
                     <TextView
+                        android:id="@+id/tvDescription"
                         style="@style/textMedium"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

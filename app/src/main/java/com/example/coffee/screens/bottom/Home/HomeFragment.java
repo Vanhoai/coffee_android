@@ -15,11 +15,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.coffee.R;
 import com.example.coffee.adapters.RecycleNearlyAdapter;
 import com.example.coffee.adapters.RecycleProductAdapter;
+import com.example.coffee.callbacks.GiftCallback;
 import com.example.coffee.callbacks.ProductCallback;
 import com.example.coffee.callbacks.ShopCallback;
+import com.example.coffee.models.Order.Gift;
 import com.example.coffee.models.Product.Product;
 
 import com.example.coffee.models.Product.ProductResponse;
+import com.example.coffee.models.Shop.GiftResponse;
 import com.example.coffee.models.Shop.Shop;
 
 
@@ -31,29 +34,29 @@ import com.example.coffee.screens.bottom.Profile.HistoryActivity;
 import com.example.coffee.screens.bottom.Profile.RewardDetailActivity;
 import com.example.coffee.screens.bottom.Profile.TopUpActivity;
 import com.example.coffee.screens.bottom.Shop.PlaceListActivity;
+import com.example.coffee.services.GiftService;
 import com.example.coffee.services.ProductService;
 import com.example.coffee.services.ShopService;
+import com.example.coffee.utils.HelperFunction;
 import com.example.coffee.utils.Logger;
 import com.example.coffee.utils.UserInformation;
 
 import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
-    TextView tvViewAllMyReward;
-    RecyclerView recycleViewNearbyPlace;
-    RecyclerView recycleViewBestSeller;
-    ImageView imageTopUp;
-    ImageView imagePay;
-    ImageView imagePromo;
-    ImageView imageHistory;
-    ImageView imageNotify;
-    TextView tvBalance;
-    TextView tvViewAllBestSeller;
-    TextView tvViewAllNearbyPlace;
-    ShopService shopService;
-    ProductService productService;
-    ArrayList<Product> products;
-    ArrayList<Shop> shops;
+    
+     RecyclerView recycleViewNearbyPlace, recycleViewBestSeller;
+    ImageView imageTopUp, imagePay, imagePromo, imageHistory, imageNotify;
+     TextView tvBalance, tvViewAllBestSeller, tvViewAllNearbyPlace, tvViewAllMyReward;
+     ImageView imageReward;
+     TextView tvNameReward;
+     TextView tvDescription;
+     ShopService shopService;
+     ProductService productService;
+     ArrayList<Product> products;
+     ArrayList<Shop> shops;
+     ArrayList<Gift> gifts;
+     GiftService giftService;
 
     @Nullable
     @Override
@@ -67,17 +70,35 @@ public class HomeFragment extends Fragment {
         // init data
         shops = new ArrayList<>();
         products = new ArrayList<>();
+        gifts = new ArrayList<>();
+
+        // init service
         shopService = new ShopService();
         productService = new ProductService();
+        giftService = new GiftService();
 
+        // call api
         initShop();
         initProduct();
+        initReward();
 
         // set view
+        setView();
+
+        // handle onclick
+        handleOnClick();
+
+        return view;
+    }
+
+    private void updateDeviceToken() {
+
+    }
+
+    private void setView() {
         User user = UserInformation.getUser(getContext());
         @SuppressLint("DefaultLocale") String balance = String.format("%.0f VND",user.getBalance().getAmount());
         tvBalance.setText(balance);
-        return view;
     }
 
     public void initShop() {
@@ -112,15 +133,34 @@ public class HomeFragment extends Fragment {
         });
     }
 
+    public void  initReward(){
+        User user = UserInformation.getUser(getContext());
+        giftService.getGift(5, user.getId(), new GiftCallback() {
+            @Override
+            public void onSuccess(boolean value, GiftResponse giftResponse) {
+                Logger.log("REWARD", giftResponse);
+                Gift gift = giftResponse.getTotal().getListGifts().get(0);
+                imageReward.setImageResource(HelperFunction.getDrawable(gift.getType().getPercent()));
+                tvNameReward.setText(gift.getName());
+                tvDescription.setText(String.format("Gift will expire on %d hours", HelperFunction.getDifferenceHour(gift.getExpiredAt())));
+
+                int result = HelperFunction.getDifferenceHour(gift.getExpiredAt());
+                Logger.log("RESULT", result);
+            }
+
+            @Override
+            public void onFailed(boolean value) {
+
+            }
+        });
+    }
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        // handle onclick
-        handleOnClick();
     }
 
-    public void init(View view) {
+    private void init(View view) {
         recycleViewNearbyPlace = view.findViewById(R.id.recycleViewNearbyPlace);
         recycleViewBestSeller = view.findViewById(R.id.recycleViewBestSeller);
         imageTopUp = view.findViewById(R.id.imageTopUp);
@@ -132,9 +172,12 @@ public class HomeFragment extends Fragment {
         tvViewAllMyReward = view.findViewById(R.id.tvViewAllMyReward);
         tvViewAllBestSeller = view.findViewById(R.id.tvViewHomeBestSeller);
         tvViewAllNearbyPlace = view.findViewById(R.id.tvViewHomeNearby);
+        imageReward = view.findViewById(R.id.imageReward);
+        tvNameReward = view.findViewById(R.id.tvNameReward);
+        tvDescription = view.findViewById(R.id.tvDescription);
     }
 
-    public void handleOnClick () {
+    private void handleOnClick () {
         imageTopUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -170,6 +213,7 @@ public class HomeFragment extends Fragment {
                 requireActivity().finish();
             }
         });
+
         imageNotify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -178,6 +222,7 @@ public class HomeFragment extends Fragment {
                 requireActivity().finish();
             }
         });
+
         tvViewAllMyReward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -186,6 +231,7 @@ public class HomeFragment extends Fragment {
                 requireActivity().finish();
             }
         });
+
         tvViewAllBestSeller.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -197,6 +243,7 @@ public class HomeFragment extends Fragment {
                 requireActivity().finish();
             }
         });
+
         tvViewAllNearbyPlace.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -210,14 +257,14 @@ public class HomeFragment extends Fragment {
         });
     }
 
-    public void renderPlace(RecyclerView recyclerView, ArrayList<Shop> data) {
+    private void renderPlace(RecyclerView recyclerView, ArrayList<Shop> data) {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
         RecycleNearlyAdapter adapter = new RecycleNearlyAdapter(getContext(), data);
         recyclerView.setAdapter(adapter);
     }
 
-    public void renderProduct(RecyclerView recyclerView, ArrayList<Product> data) {
+    private void renderProduct(RecyclerView recyclerView, ArrayList<Product> data) {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext()) {
             @Override
             public boolean canScrollVertically() {

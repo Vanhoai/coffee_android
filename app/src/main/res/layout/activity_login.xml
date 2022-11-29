@@ -49,6 +49,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@null"
+                    android:text="hoaitv@gmail.com"
                     android:hint="Enter your username"
                     android:textSize="16dp" />
 
@@ -86,6 +87,7 @@
                 android:paddingHorizontal="20dp">
 
                 <EditText
+                    android:text="admin"
                     android:id="@+id/edtPassword"
                     style="@style/textWeight"
                     android:inputType="textPassword"
@@ -114,6 +116,7 @@
             android:layout_height="wrap_content">
 
             <CheckBox
+                android:id="@+id/checkLogin"
                 style="@style/textWeight"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
@@ -123,6 +126,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/tvForgotPassword"
                 style="@style/textWeight"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"

@@ -7,19 +7,23 @@ import androidx.appcompat.widget.AppCompatButton;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.AbsListView;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.coffee.R;
 import com.example.coffee.callbacks.AuthCallback;
+import com.example.coffee.fcm.UseFCM;
 import com.example.coffee.models.User.User;
 import com.example.coffee.models.User.UserResponse;
 import com.example.coffee.screens.bottom.MainActivity;
@@ -33,15 +37,14 @@ import com.google.gson.Gson;
 
 public class LoginActivity extends AppCompatActivity {
 
-    EditText edtEmail;
-    EditText edtPassword;
-    AppCompatButton btnLogin;
-    AppCompatButton btnCreateAccount;
-    AuthService authService;
-    LayoutLoading layoutLoading;
-    ConstraintLayout constraintLayout;
-    ImageView checkEmail;
-    ImageView checkPassword;
+    private EditText edtEmail, edtPassword;
+    private AppCompatButton btnLogin, btnCreateAccount;
+    private AuthService authService;
+    private LayoutLoading layoutLoading;
+    private ConstraintLayout constraintLayout;
+    private ImageView checkEmail, checkPassword;
+    private CheckBox checkLogin;
+    private TextView tvForgotPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,11 +60,11 @@ public class LoginActivity extends AppCompatActivity {
         // handle onclick
         handleOnclick();
 
-        // handle onchange
-        handleOnchange();
+        // handle change
+        handleOnChange();
     }
 
-    private void handleOnchange() {
+    private void handleOnChange() {
         edtEmail.addTextChangedListener((new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
@@ -119,7 +122,6 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // get data
                 String email = edtEmail.getText().toString();
                 String password = edtPassword.getText().toString();
                 layoutLoading.setLoading();
@@ -135,6 +137,15 @@ public class LoginActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        tvForgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this, ResetPasswordActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
     private void initView() {
@@ -146,6 +157,8 @@ public class LoginActivity extends AppCompatActivity {
         layoutLoading = new LayoutLoading(constraintLayout,LoginActivity.this);
         checkEmail = findViewById(R.id.checkEmail);
         checkPassword = findViewById(R.id.checkPassword);
+        checkLogin = findViewById(R.id.checkLogin);
+        tvForgotPassword = findViewById(R.id.tvForgotPassword);
     }
 
     private final AuthCallback authCallback = new AuthCallback() {
@@ -175,6 +188,12 @@ public class LoginActivity extends AppCompatActivity {
     };
 
     public boolean saveUserToShareReference(User user) {
+        if (checkLogin.isChecked()) {
+            SharedPreferences sharedPreferences = getSharedPreferences("CHECK_LOGIN", MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putBoolean("SIGN_IN", true);
+            editor.apply();
+        }
         return UserInformation.setUser(LoginActivity.this, user);
     }
 }

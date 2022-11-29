@@ -24,12 +24,12 @@ import com.example.coffee.utils.Validation;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener{
 
-    EditText edtUsername, edtEmail, edtPassword, edtConfirmPassword;
-    AppCompatButton btnCreateAccount;
-    AuthService authService;
-    ImageView backNavigation, checkEmail, checkPassword, checkUsername, checkConfirmPassword;
-    ConstraintLayout constraintLayout;
-    LayoutLoading layoutLoading;
+    private EditText edtUsername, edtEmail, edtPassword, edtConfirmPassword;
+    private AppCompatButton btnCreateAccount;
+    private AuthService authService;
+    private ImageView backNavigation, checkEmail, checkPassword, checkUsername, checkConfirmPassword;
+    private ConstraintLayout constraintLayout;
+    private LayoutLoading layoutLoading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -132,23 +132,25 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 finish();
             }
         });
-
         btnCreateAccount.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
-        // validate
         String username = edtUsername.getText().toString().trim();
         String email = edtEmail.getText().toString().trim();
         String password = edtPassword.getText().toString().trim();
         String confirmPassword = edtConfirmPassword.getText().toString().trim();
 
         if (Validation.verifyRegister(username, email, password, confirmPassword)) {
-            register(username, email, password);
-            Logger.log("USERNAME", username);
-            Logger.log("EMAIL", email);
-            Logger.log("PASSWORD", password);
+            Intent intent = new Intent(RegisterActivity.this, VerityActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putString("username", username);
+            bundle.putString("email", email);
+            bundle.putString("password", password);
+            intent.putExtras(bundle);
+            startActivity(intent);
+            finish();
         } else {
             Toast.makeText(this, "DATA INSIDE IS INVALID", Toast.LENGTH_SHORT).show();
         }
@@ -207,31 +209,5 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         constraintLayout = findViewById(R.id.loading);
         layoutLoading = new LayoutLoading(constraintLayout, RegisterActivity.this);
         layoutLoading.setGone();
-    }
-
-
-    public void register(String username, String email, String password){
-        try {
-            layoutLoading.setLoading();
-            authService.register(username, email, password, new AuthCallback() {
-                @Override
-                public void onSuccess(Boolean value, UserResponse userResponse) {
-                    layoutLoading.setGone();
-                    Logger.log("RESPONSE", userResponse);
-                    Intent intent = new Intent(RegisterActivity.this, VerityActivity.class);
-                    startActivity(intent);
-                    finish();
-                }
-
-                @Override
-                public void onFailed(Boolean value) {
-                    Toast.makeText(RegisterActivity.this, "REGISTER FAILED", Toast.LENGTH_SHORT).show();
-                    layoutLoading.setGone();
-                }
-            });
-        }catch (Exception e){
-            e.printStackTrace();
-            layoutLoading.setGone();
-        }
     }
 }

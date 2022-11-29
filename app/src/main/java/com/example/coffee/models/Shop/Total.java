@@ -17,18 +17,19 @@ public class Total implements Serializable {
     @SerializedName("totalMissionProgress")
     private int totalMissionProgress;
 
-   @SerializedName("listGift")
-    private ArrayList<Gift> listGift;
+   @SerializedName("listGifts")
+    private ArrayList<Gift> listGifts;
 
-   @SerializedName("listMission")
-    private ArrayList<Mission> listMission;
+   @SerializedName("listMissions")
+    private ArrayList<Mission> listMissions;
 
-    public Total(int totalGift, int totalMission, int totalMissionProgress, ArrayList<Gift> listGift, ArrayList<Mission> listMission) {
+
+    public Total(int totalGift, int totalMission, int totalMissionProgress, ArrayList<Gift> listGifts, ArrayList<Mission> listMissions) {
         this.totalGift = totalGift;
         this.totalMission = totalMission;
         this.totalMissionProgress = totalMissionProgress;
-        this.listGift = listGift;
-        this.listMission = listMission;
+        this.listGifts = listGifts;
+        this.listMissions = listMissions;
     }
 
     public int getTotalGift() {
@@ -55,20 +56,20 @@ public class Total implements Serializable {
         this.totalMissionProgress = totalMissionProgress;
     }
 
-    public ArrayList<Gift> getListGift() {
-        return listGift;
+    public ArrayList<Gift> getListGifts() {
+        return listGifts;
     }
 
-    public void setListGift(ArrayList<Gift> listGift) {
-        this.listGift = listGift;
+    public void setListGifts(ArrayList<Gift> listGifts) {
+        this.listGifts = listGifts;
     }
 
-    public ArrayList<Mission> getListMission() {
-        return listMission;
+    public ArrayList<Mission> getListMissions() {
+        return listMissions;
     }
 
-    public void setListMission(ArrayList<Mission> listMission) {
-        this.listMission = listMission;
+    public void setListMissions(ArrayList<Mission> listMissions) {
+        this.listMissions = listMissions;
     }
 
     @Override
@@ -77,8 +78,8 @@ public class Total implements Serializable {
                 "totalGift=" + totalGift +
                 ", totalMission=" + totalMission +
                 ", totalMissionProgress=" + totalMissionProgress +
-                ", listGift=" + listGift +
-                ", listMission=" + listMission +
+                ", listGifts=" + listGifts +
+                ", listMissions=" + listMissions +
                 '}';
     }
 }

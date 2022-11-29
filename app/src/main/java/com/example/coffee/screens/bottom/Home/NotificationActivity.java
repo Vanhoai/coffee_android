@@ -12,8 +12,7 @@ import com.example.coffee.screens.bottom.MainActivity;
 
 public class NotificationActivity extends AppCompatActivity {
 
-    ImageView backNavigation;
-
+    private ImageView backNavigation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
