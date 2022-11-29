@@ -38,6 +38,7 @@ public class ProductListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_product_list);
 
         // init view
+        initView();
 
 
         // init data
