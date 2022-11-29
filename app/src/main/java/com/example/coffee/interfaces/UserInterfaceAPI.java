@@ -39,12 +39,12 @@ public interface UserInterfaceAPI {
             @Path("id") int id,
             @Field("code") String code,
             @Field("balance") Float balance
+    );
 
     @PUT("update/{id}")
     @FormUrlEncoded
     Call<UserResponse> updatePhoneNumber(
             @Path("id") int id,
             @Field("phone") String phone
-
     );
 }
