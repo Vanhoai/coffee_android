@@ -2,84 +2,68 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/background_input"
-    android:padding="20dp">
+    android:padding="20dp"
+    android:background="@drawable/background_input">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:orientation="vertical"
         android:gravity="center"
-        android:orientation="vertical">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <TextView
-            style="@style/textWeight"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
             android:text="Did you like the product?"
+            android:textSize="24dp"
             android:textColor="@color/darkColor"
-            android:textSize="24dp" />
+            android:layout_marginTop="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
         <TextView
-            style="@style/textMedium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
             android:text="Let us know what you think"
-            android:textColor="@color/hintText"
-            android:textSize="20dp" />
-
-        <androidx.appcompat.widget.AppCompatRatingBar
-            android:id="@+id/ratingCommnet"
+            android:textColor="@color/darkColor"
+            android:textSize="20dp"
+            style="@style/textWeight"
+            android:layout_marginTop="4dp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="8dp"
-            android:numStars="5"
-            android:progressTint="#EDC309"
-            android:rating="0"
-            android:stepSize="1"/>
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:layout_marginTop="24dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
         <EditText
-            android:id="@+id/edCommnent"
-            android:layout_width="match_parent"
-            android:layout_height="149dp"
-            android:layout_margin="16dp"
+            android:layout_margin="32dp"
             android:background="@drawable/background_input"
-            android:gravity="top"
-            android:inputType="text|textMultiLine"
-            android:padding="20dp" />
+            android:layout_width="match_parent"
+            android:layout_height="149dp"/>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
+
+            android:layout_marginTop="28dp"
             android:gravity="right"
-            android:orientation="horizontal">
+            android:layout_marginRight="20dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="24dp">
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnCancel"
-                style="@style/textWeight"
-                android:layout_width="wrap_content"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:background="@drawable/background_button"
+            <TextView
                 android:text="Cancel"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="16dp" />
+                android:textSize="20dp"
+                android:textColor="#1DA66F"
+                style="@style/textWeight"
+                android:layout_marginRight="32dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnSend"
+            <TextView
+                android:text="Send Comment"
+                android:textSize="20dp"
+                android:textColor="#1DA66F"
                 style="@style/textWeight"
                 android:layout_width="wrap_content"
-                android:layout_height="48dp"
-                android:layout_marginLeft="8dp"
-                android:layout_weight="1"
-                android:background="@drawable/background_button"
-                android:text="Send Comment"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="16dp" />
+                android:layout_height="wrap_content"/>
 
         </LinearLayout>
 
