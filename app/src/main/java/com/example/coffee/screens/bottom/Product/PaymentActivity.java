@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RelativeLayout;
 
 import com.example.coffee.R;
 import com.example.coffee.screens.bottom.MainActivity;
@@ -17,6 +19,8 @@ public class PaymentActivity extends AppCompatActivity {
 
     private AppCompatButton btnPayNow;
     private ImageView backNavigation;
+    private RelativeLayout relativeWallet, relativeZaloPay;
+    private RadioButton checkWallet, checkZaloPay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,11 +51,31 @@ public class PaymentActivity extends AppCompatActivity {
                 showDialog();
             }
         });
+
+        relativeWallet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                checkWallet.setChecked(true);
+                checkZaloPay.setChecked(false);
+            }
+        });
+
+        relativeZaloPay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                checkWallet.setChecked(false);
+                checkZaloPay.setChecked(true);
+            }
+        });
     }
 
     private void initView() {
         btnPayNow  = findViewById(R.id.btnPayNow);
         backNavigation = findViewById(R.id.backNavigation);
+        relativeWallet = findViewById(R.id.relativeWallet);
+        relativeZaloPay = findViewById(R.id.relativeZaloPay);
+        checkWallet = findViewById(R.id.checkWallet);
+        checkZaloPay = findViewById(R.id.checkZaloPay);
     }
 
     public void showDialog()  {

@@ -6,7 +6,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Pair;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -19,14 +24,16 @@ import com.example.coffee.screens.bottom.Shop.DetailPlaceActivity;
 import com.example.coffee.utils.Logger;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class CheckOutActivity extends AppCompatActivity {
 
-    private AppCompatButton btnContinuePayment;
+    private AppCompatButton btnContinuePayment, btnPickUp, btnShip;
     private ImageView backNavigation;
     private ArrayList<Product> products;
     private RecyclerView recycleProducts;
     private TextView tvTotal, tvAmount, tvShip, tvPromo;
+    private HashMap<String, Boolean> checkDelivery;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +53,31 @@ public class CheckOutActivity extends AppCompatActivity {
         handleOnclick();
     }
 
+    private void calculator() {
+        String amountText = tvAmount.getText().toString();
+        String shipText = tvShip.getText().toString();
+        String promoText = tvPromo.getText().toString();
+        float amount = 0, ship = 0, promo = 0;
+        try {
+            if (!amountText.equals("-")) {
+                amount = Float.parseFloat(amountText);
+            }
+            if (!promoText.equals("-")) {
+                promo = Float.parseFloat(promoText);
+            }
+            if (!shipText.equals("-")) {
+                ship = Float.parseFloat(shipText);
+            }
+            float total = amount + ship - promo;
+            tvTotal.setText(String.format("%.0f", total));
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+    }
+
     public void handleOnclick() {
+
+
         backNavigation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -70,6 +101,20 @@ public class CheckOutActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        btnPickUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                changeDelivery(true, false);
+            }
+        });
+
+        btnShip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                changeDelivery(false, true);
+            }
+        });
     }
 
     public void initView() {
@@ -80,6 +125,35 @@ public class CheckOutActivity extends AppCompatActivity {
         tvPromo = findViewById(R.id.tvPromo);
         tvShip = findViewById(R.id.tvShip);
         tvTotal = findViewById(R.id.tvTotal);
+        btnPickUp = findViewById(R.id.btnPickUp);
+        btnShip = findViewById(R.id.btnShip);
+        checkDelivery = new HashMap<>();
+        checkDelivery.put("PICKUP", true);
+        checkDelivery.put("SHIP", false);
+    }
+
+    public void changeDelivery(Boolean pickup, Boolean ship) {
+        Drawable backgroundInput = getResources().getDrawable(R.drawable.background_input);
+        Drawable backgroundButton = getResources().getDrawable(R.drawable.background_button);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            checkDelivery.replace("PICKUP", pickup);
+            checkDelivery.replace("PICKUP", ship);
+        }
+
+        if (pickup) {
+            btnPickUp.setBackground(backgroundButton);
+            btnShip.setBackground(backgroundInput);
+            btnPickUp.setTextColor(Color.parseColor("#FFFFFF"));
+            btnShip.setTextColor(Color.parseColor("#343434"));
+            tvShip.setText("-");
+        } else {
+            btnShip.setBackground(backgroundButton);
+            btnPickUp.setBackground(backgroundInput);
+            btnShip.setTextColor(Color.parseColor("#FFFFFF"));
+            btnPickUp.setTextColor(Color.parseColor("#343434"));
+            tvShip.setText("20000");
+        }
+        calculator();
     }
 
     public void initProducts() {
@@ -110,6 +184,8 @@ public class CheckOutActivity extends AppCompatActivity {
                 }
 
                 tvAmount.setText(String.format("%.0f", total));
+
+                calculator();
             }
         });
         recycleProducts.setAdapter(adapter);
