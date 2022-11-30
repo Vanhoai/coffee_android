@@ -27,5 +27,4 @@ public interface GiftInterfaceAPI {
 
     @GET("gift/user/{id}")
     Call<GiftResponse> getGiftOfUser();
-
 }

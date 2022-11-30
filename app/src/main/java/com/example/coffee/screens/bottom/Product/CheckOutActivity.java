@@ -3,6 +3,7 @@ package com.example.coffee.screens.bottom.Product;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -28,10 +29,17 @@ import android.widget.Toast;
 
 import com.example.coffee.R;
 import com.example.coffee.adapters.RecycleProductDetailAdapter;
+import com.example.coffee.callbacks.OrderCallback;
+import com.example.coffee.models.Order.OrderResponse;
 import com.example.coffee.models.Product.Product;
+import com.example.coffee.models.Product.ProductRequest;
 import com.example.coffee.models.Shop.Shop;
+import com.example.coffee.models.User.User;
 import com.example.coffee.screens.bottom.Shop.DetailPlaceActivity;
+import com.example.coffee.services.OrderService;
+import com.example.coffee.utils.LayoutLoading;
 import com.example.coffee.utils.Logger;
+import com.example.coffee.utils.UserInformation;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -46,6 +54,8 @@ public class CheckOutActivity extends AppCompatActivity {
     private TextView tvTotal, tvAmount, tvShip, tvPromo;
     private HashMap<String, Boolean> checkDelivery;
     private LocationManager locationManager;
+    private OrderService orderService;
+    private LayoutLoading layoutLoading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +67,9 @@ public class CheckOutActivity extends AppCompatActivity {
 
         // init data
         products = new ArrayList<>();
+
+        // init service
+        orderService = new OrderService();
 
         // set view
         initProducts();
@@ -88,8 +101,6 @@ public class CheckOutActivity extends AppCompatActivity {
     }
 
     public void handleOnclick() {
-
-
         backNavigation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -133,7 +144,35 @@ public class CheckOutActivity extends AppCompatActivity {
     }
 
     private void createOrder() {
+       try {
+           layoutLoading.setLoading();
+           Intent intentStart = getIntent();
+           Bundle bundleStart = intentStart.getExtras();
+           int id = bundleStart.getInt("id", -1);
+           User user = UserInformation.getUser(CheckOutActivity.this);
+           ArrayList<ProductRequest> productRequests = new ArrayList<>();
 
+           for (Product product: products) {
+               ProductRequest productRequest = new ProductRequest(product.getId(), product.getCurrent());
+               productRequests.add(productRequest);
+           }
+
+           orderService.createOrder(user.getId(), id, "", productRequests, new OrderCallback() {
+               @Override
+               public void onSuccess(boolean value, OrderResponse orderResponse) {
+                   Logger.log("RESPONSE", orderResponse);
+                   layoutLoading.setGone();
+               }
+
+               @Override
+               public void onFailed(boolean value) {
+                    Logger.log("RESPONSE", "ERROR");
+                   layoutLoading.setGone();
+               }
+           });
+       } catch (Exception exception) {
+           exception.printStackTrace();
+       }
     }
 
     public void initView() {
@@ -146,6 +185,10 @@ public class CheckOutActivity extends AppCompatActivity {
         tvTotal = findViewById(R.id.tvTotal);
         btnPickUp = findViewById(R.id.btnPickUp);
         btnShip = findViewById(R.id.btnShip);
+        ConstraintLayout constraintLayout = findViewById(R.id.loading);
+        layoutLoading = new LayoutLoading(constraintLayout, CheckOutActivity.this);
+        layoutLoading.setGone();
+
         checkDelivery = new HashMap<>();
         checkDelivery.put("PICKUP", true);
         checkDelivery.put("SHIP", false);
