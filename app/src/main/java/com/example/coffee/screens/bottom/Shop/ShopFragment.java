@@ -43,7 +43,7 @@ public class ShopFragment extends Fragment {
     TextView tvNameHottest;
     TextView tvDescription;
     TextView tvCount;
-    LinearLayout CardHottest;
+    LinearLayout cardHottest;
     GiftService giftService;
     ArrayList<Mission> missions;
 
@@ -88,12 +88,11 @@ public class ShopFragment extends Fragment {
         tvViewAllHottest = view.findViewById(R.id.tvViewAllHottest);
         tvViewAllShop = view.findViewById(R.id.tvViewShopAll);
         tvViewAllNearby = view.findViewById(R.id.tvViewShopNearby);
-        CardHottest = view.findViewById(R.id.CardHottest);
+        cardHottest = view.findViewById(R.id.cardHottest);
         tvDescription =view.findViewById(R.id.tvDescription);
         tvNameHottest = view.findViewById(R.id.tvNameHottest);
         imageHottest = view.findViewById(R.id.imageHottest);
         tvCount = view.findViewById(R.id.tvCount);
-
     }
 
     public void handleOnClick(){
@@ -165,16 +164,21 @@ public class ShopFragment extends Fragment {
             giftService.getPromo(5, new PromoCallback() {
                 @Override
                 public void onSuccess(boolean value, PromoResponse promoResponse) {
+                    if (promoResponse.getPromo().getHottest() != null) {
                         Mission mission = promoResponse.getPromo().getHottest();
                         imageHottest.setImageResource(HelperFunction.getDrawable(mission.getType().getPercent()));
                         tvNameHottest.setText(mission.getName());
                         tvDescription.setText(mission.getDescription());
                         tvCount.setVisibility(View.GONE);
+                        return;
                     }
+                    cardHottest.setVisibility(View.GONE);
+                }
 
                 @Override
                 public void onFailed(boolean value) {
                     Logger.log("PROMO", "ERROR");
+                    cardHottest.setVisibility(View.GONE);
                 }
             });
         }catch (Exception e){

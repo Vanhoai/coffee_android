@@ -7,7 +7,6 @@ import java.io.Serializable;
 
 public class PromoResponse extends HttpResponse implements Serializable {
 
-
     @SerializedName("data")
     private Promo promo;
 
