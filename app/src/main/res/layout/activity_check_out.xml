@@ -210,24 +210,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="56dp"
-                        android:layout_marginStart="20dp"
-                        android:gravity="center_vertical"
-                        android:layout_marginBottom="12dp"
-                        android:text="mKTkApl"
-                        style="@style/textWeight"
-                        android:layout_weight="1"
-                        android:textSize="18dp"
-                        android:textColor="#000000"/>
-
-                    <ImageView
-                        android:layout_marginTop="20dp"
-                        android:src="@drawable/arrow_bottom"
-                        android:layout_marginRight="20dp"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"/>
+                   <Spinner
+                       android:id="@+id/spinnerCheckout"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"/>
 
                 </LinearLayout>
 
