@@ -16,6 +16,7 @@ import com.example.coffee.R;
 import com.example.coffee.adapters.RecycleNearlyAdapter;
 import com.example.coffee.adapters.RecycleProductAdapter;
 import com.example.coffee.callbacks.GiftCallback;
+import com.example.coffee.callbacks.GiftOfUserCallback;
 import com.example.coffee.callbacks.ProductCallback;
 import com.example.coffee.callbacks.ShopCallback;
 import com.example.coffee.models.Order.Gift;
@@ -81,6 +82,7 @@ public class HomeFragment extends Fragment {
         initShop();
         initProduct();
         initReward();
+        initGiftOfUser();
 
         // set view
         setView();
@@ -151,6 +153,21 @@ public class HomeFragment extends Fragment {
             @Override
             public void onFailed(boolean value) {
 
+            }
+        });
+    }
+
+    public void initGiftOfUser(){
+        User user = UserInformation.getUser(getContext());
+        giftService.getGiftOfUser(user.getId(),new GiftOfUserCallback() {
+            @Override
+            public void onSuccess(boolean value, com.example.coffee.models.Order.GiftResponse giftResponse) {
+                Logger.log("GIFTOFUSER", giftResponse);
+            }
+
+            @Override
+            public void onFailed(boolean vaue) {
+                Logger.log("GIFTOFUSER", "ERROR");
             }
         });
     }

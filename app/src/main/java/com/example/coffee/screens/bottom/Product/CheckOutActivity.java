@@ -24,6 +24,7 @@ import android.provider.Settings;
 import android.util.Pair;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -56,6 +57,7 @@ public class CheckOutActivity extends AppCompatActivity {
     private LocationManager locationManager;
     private OrderService orderService;
     private LayoutLoading layoutLoading;
+    private Spinner spinnerCheckout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -141,6 +143,8 @@ public class CheckOutActivity extends AppCompatActivity {
                 changeDelivery(false, true);
             }
         });
+
+
     }
 
     private void createOrder() {
@@ -192,6 +196,7 @@ public class CheckOutActivity extends AppCompatActivity {
         checkDelivery = new HashMap<>();
         checkDelivery.put("PICKUP", true);
         checkDelivery.put("SHIP", false);
+        spinnerCheckout = findViewById(R.id.spinnerCheckout);
 
         ActivityCompat.requestPermissions( this, new String[] {Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);

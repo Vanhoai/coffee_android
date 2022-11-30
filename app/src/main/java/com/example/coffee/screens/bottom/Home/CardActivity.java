@@ -10,6 +10,7 @@ import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.ea.async.instrumentation.Main;
@@ -17,6 +18,7 @@ import com.example.coffee.R;
 import com.example.coffee.models.User.Balance;
 import com.example.coffee.models.User.User;
 import com.example.coffee.screens.bottom.MainActivity;
+import com.example.coffee.screens.bottom.Profile.TopUpActivity;
 import com.example.coffee.utils.UserInformation;
 
 public class CardActivity extends AppCompatActivity {
@@ -25,6 +27,7 @@ public class CardActivity extends AppCompatActivity {
     private TextView tvUserName;
     private TextView tvBalance;
     private TextView tvCode;
+    LinearLayout TopUpCard;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +41,7 @@ public class CardActivity extends AppCompatActivity {
         User user = UserInformation.getUser(CardActivity.this);
         Balance balance = user.getBalance();
         tvUserName.setText(user.getUsername());
-        tvBalance.setText(String.valueOf(balance.getAmount()));
+        tvBalance.setText(String.format("%.0f",balance.getAmount()));
         tvCode.setText(balance.getCode());
 
         // handle click
@@ -50,6 +53,7 @@ public class CardActivity extends AppCompatActivity {
          tvUserName = findViewById(R.id.tvUserName);
          tvBalance = findViewById(R.id.tvBalance);
          tvCode = findViewById(R.id.tvCode);
+         TopUpCard = findViewById(R.id.TopUpCard);
     }
 
     public void handleClick(){
@@ -57,6 +61,14 @@ public class CardActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(CardActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+        TopUpCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CardActivity.this, TopUpActivity.class);
                 startActivity(intent);
                 finish();
             }
