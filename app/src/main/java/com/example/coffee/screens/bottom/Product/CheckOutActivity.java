@@ -109,9 +109,11 @@ public class CheckOutActivity extends AppCompatActivity {
         btnContinuePayment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(CheckOutActivity.this, PaymentActivity.class);
-                startActivity(intent);
-                finish();
+                createOrder();
+
+//                Intent intent = new Intent(CheckOutActivity.this, PaymentActivity.class);
+//                startActivity(intent);
+//                finish();
             }
         });
 
@@ -131,7 +133,7 @@ public class CheckOutActivity extends AppCompatActivity {
     }
 
     private void createOrder() {
-        Logger.log("PRODUCTS", products);
+
     }
 
     public void initView() {
