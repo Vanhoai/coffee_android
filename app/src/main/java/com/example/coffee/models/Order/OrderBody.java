@@ -19,13 +19,17 @@ public class OrderBody implements Serializable {
     @SerializedName("products")
     private ArrayList<ProductRequest> products;
 
+    @SerializedName("gift")
+    private int gift;
+
     public OrderBody() {}
 
-    public OrderBody(int user, int shop, String address, ArrayList<ProductRequest> products) {
+    public OrderBody(int user, int shop, String address, ArrayList<ProductRequest> products, int gift) {
         this.user = user;
         this.shop = shop;
         this.address = address;
         this.products = products;
+        this.gift = gift;
     }
 
     public int getUser() {
@@ -60,13 +64,12 @@ public class OrderBody implements Serializable {
         this.products = products;
     }
 
-    @Override
-    public String toString() {
-        return "OrderBody{" +
-                "user=" + user +
-                ", shop=" + shop +
-                ", address='" + address + '\'' +
-                ", products=" + products +
-                '}';
+    public int getGift() {
+        return gift;
+    }
+
+    public void setGift(int gift) {
+        this.gift = gift;
     }
 }
+

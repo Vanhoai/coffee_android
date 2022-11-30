@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -47,7 +48,7 @@ import java.util.ArrayList;
 public class HomeFragment extends Fragment {
     
      RecyclerView recycleViewNearbyPlace, recycleViewBestSeller;
-    ImageView imageTopUp, imagePay, imagePromo, imageHistory, imageNotify;
+     ImageView imageTopUp, imagePay, imagePromo, imageHistory, imageNotify;
      TextView tvBalance, tvViewAllBestSeller, tvViewAllNearbyPlace, tvViewAllMyReward;
      ImageView imageReward;
      TextView tvNameReward;
@@ -58,6 +59,7 @@ public class HomeFragment extends Fragment {
      ArrayList<Shop> shops;
      ArrayList<Gift> gifts;
      GiftService giftService;
+     LinearLayout linearMyReward;
 
     @Nullable
     @Override
@@ -82,7 +84,6 @@ public class HomeFragment extends Fragment {
         initShop();
         initProduct();
         initReward();
-        initGiftOfUser();
 
         // set view
         setView();
@@ -135,11 +136,15 @@ public class HomeFragment extends Fragment {
         });
     }
 
-    public void  initReward(){
+    public void initReward(){
         User user = UserInformation.getUser(getContext());
         giftService.getGift(5, user.getId(), new GiftCallback() {
             @Override
             public void onSuccess(boolean value, GiftResponse giftResponse) {
+                if (giftResponse.getTotal().getListGifts().size() <= 0) {
+                    linearMyReward.setVisibility(View.GONE);
+                    return;
+                }
                 Logger.log("REWARD", giftResponse);
                 Gift gift = giftResponse.getTotal().getListGifts().get(0);
                 imageReward.setImageResource(HelperFunction.getDrawable(gift.getType().getPercent()));
@@ -153,21 +158,6 @@ public class HomeFragment extends Fragment {
             @Override
             public void onFailed(boolean value) {
 
-            }
-        });
-    }
-
-    public void initGiftOfUser(){
-        User user = UserInformation.getUser(getContext());
-        giftService.getGiftOfUser(user.getId(),new GiftOfUserCallback() {
-            @Override
-            public void onSuccess(boolean value, com.example.coffee.models.Order.GiftResponse giftResponse) {
-                Logger.log("GIFTOFUSER", giftResponse);
-            }
-
-            @Override
-            public void onFailed(boolean vaue) {
-                Logger.log("GIFTOFUSER", "ERROR");
             }
         });
     }
@@ -192,6 +182,7 @@ public class HomeFragment extends Fragment {
         imageReward = view.findViewById(R.id.imageReward);
         tvNameReward = view.findViewById(R.id.tvNameReward);
         tvDescription = view.findViewById(R.id.tvDescription);
+        linearMyReward = view.findViewById(R.id.linearMyReward);
     }
 
     private void handleOnClick () {

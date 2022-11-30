@@ -23,20 +23,26 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Pair;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.coffee.R;
 import com.example.coffee.adapters.RecycleProductDetailAdapter;
+import com.example.coffee.callbacks.GiftOfUserCallback;
 import com.example.coffee.callbacks.OrderCallback;
+import com.example.coffee.models.Order.Gift;
 import com.example.coffee.models.Order.OrderResponse;
+import com.example.coffee.models.Order.Type;
 import com.example.coffee.models.Product.Product;
 import com.example.coffee.models.Product.ProductRequest;
 import com.example.coffee.models.Shop.Shop;
 import com.example.coffee.models.User.User;
 import com.example.coffee.screens.bottom.Shop.DetailPlaceActivity;
+import com.example.coffee.services.GiftService;
 import com.example.coffee.services.OrderService;
 import com.example.coffee.utils.LayoutLoading;
 import com.example.coffee.utils.Logger;
@@ -57,7 +63,9 @@ public class CheckOutActivity extends AppCompatActivity {
     private LocationManager locationManager;
     private OrderService orderService;
     private LayoutLoading layoutLoading;
-    private Spinner spinnerCheckout;
+    private Spinner spinnerGift;
+    private GiftService giftService;
+    private ArrayList<Gift> gifts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,12 +77,15 @@ public class CheckOutActivity extends AppCompatActivity {
 
         // init data
         products = new ArrayList<>();
+        gifts = new ArrayList<>();
 
         // init service
         orderService = new OrderService();
+        giftService = new GiftService();
 
         // set view
         initProducts();
+        initGiftOfUser();
 
         // handle click
         handleOnclick();
@@ -191,13 +202,12 @@ public class CheckOutActivity extends AppCompatActivity {
         btnShip = findViewById(R.id.btnShip);
         ConstraintLayout constraintLayout = findViewById(R.id.loading);
         layoutLoading = new LayoutLoading(constraintLayout, CheckOutActivity.this);
+        spinnerGift = findViewById(R.id.spinnerCheckout);
         layoutLoading.setGone();
 
         checkDelivery = new HashMap<>();
         checkDelivery.put("PICKUP", true);
         checkDelivery.put("SHIP", false);
-        spinnerCheckout = findViewById(R.id.spinnerCheckout);
-
         ActivityCompat.requestPermissions( this, new String[] {Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
@@ -297,5 +307,60 @@ public class CheckOutActivity extends AppCompatActivity {
         });
         final AlertDialog alertDialog = builder.create();
         alertDialog.show();
+    }
+
+    public void initGiftOfUser(){
+        User user = UserInformation.getUser(CheckOutActivity.this);
+        giftService.getGiftOfUser(user.getId(),new GiftOfUserCallback() {
+            @Override
+            public void onSuccess(boolean value, com.example.coffee.models.Order.GiftResponse giftResponse) {
+                gifts.addAll(giftResponse.getGifts());
+                Logger.log("GIFT OF USER", gifts);
+                setViewSpinner(gifts);
+            }
+
+            @Override
+            public void onFailed(boolean vaue) {
+                Logger.log("GIFT OF USER", "ERROR");
+            }
+        });
+    }
+
+    private void setViewSpinner(ArrayList<Gift> gifts) {
+        ArrayList<HashMap<String, Object>> result = new ArrayList<>();
+        for (Gift gift : gifts) {
+            HashMap<String , Object> hashMap = new HashMap<>();
+            hashMap.put("code", gift.getCode());
+            hashMap.put("gift", gift);
+            result.add(hashMap);
+        }
+
+        SimpleAdapter simpleAdapter = new SimpleAdapter(
+                CheckOutActivity.this,
+                result,
+                android.R.layout.simple_list_item_1,
+                new String[]{"code"},
+                new int[]{android.R.id.text1}
+        );
+        spinnerGift.setAdapter(simpleAdapter);
+
+        spinnerGift.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                HashMap<String, Object> selected = (HashMap<String, Object>) spinnerGift.getSelectedItem();
+                Gift gift = (Gift) selected.get("gift");
+                assert gift != null;
+                Type type = gift.getType();
+                float amount = Float.parseFloat(tvAmount.getText().toString());
+                float promo = amount * (type.getPercent() / 100);
+                tvPromo.setText(String.format("%.0f", promo));
+                calculator();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
     }
 }
