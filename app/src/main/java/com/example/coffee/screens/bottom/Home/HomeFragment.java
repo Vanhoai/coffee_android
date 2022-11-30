@@ -149,9 +149,9 @@ public class HomeFragment extends Fragment {
                 Gift gift = giftResponse.getTotal().getListGifts().get(0);
                 imageReward.setImageResource(HelperFunction.getDrawable(gift.getType().getPercent()));
                 tvNameReward.setText(gift.getName());
-                tvDescription.setText(String.format("Gift will expire on %d hours", HelperFunction.getDifferenceHour(gift.getExpiredAt())));
+                tvDescription.setText(HelperFunction.getDifferenceHour(gift.getExpiredAt()));
 
-                int result = HelperFunction.getDifferenceHour(gift.getExpiredAt());
+                String result = HelperFunction.getDifferenceHour(gift.getExpiredAt());
                 Logger.log("RESULT", result);
             }
 

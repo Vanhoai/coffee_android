@@ -44,7 +44,7 @@ public class RecycleGiftAdapter extends RecyclerView.Adapter<RecycleGiftAdapter.
         holder.tvName.setText(mission.getName());
         holder.tvCount.setText(String.format("%d / %d", mission.getCurrent(), mission.getTotal()));
         holder.tvDescription.setText(mission.getDescription());
-        holder.tvExpired.setText(String.format("Ends in %d hours", HelperFunction.getDifferenceHour(mission.getExpiredAt())));
+        holder.tvExpired.setText(HelperFunction.getDifferenceHour(mission.getExpiredAt()));
         holder.cardPromo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -120,7 +120,7 @@ public class GiftFragment extends Fragment {
                         Gift gift = giftResponse.getTotal().getListGifts().get(0);
                         imagePromo.setImageResource(HelperFunction.getDrawable(gift.getType().getPercent()));
                         tvName.setText(gift.getName());
-                        tvDescription.setText(String.format("Gift will expire on %d hours", HelperFunction.getDifferenceHour(gift.getExpiredAt())));
+                        tvDescription.setText(HelperFunction.getDifferenceHour(gift.getExpiredAt()));
                         tvExp.setText(String.format("%d XP more to get rewards", user.getExp()));
                     }
                 }

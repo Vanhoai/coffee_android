@@ -40,10 +40,10 @@ public class ShopFragment extends Fragment {
     private ArrayList<Shop> shopsNearby;
     private ArrayList<Shop> shopsAllShop;
     ImageView imageHottest;
-    TextView tvNameHottest;
+    TextView tvNameHottest, tvExpired;
     TextView tvDescription;
     TextView tvCount;
-    LinearLayout CardHottest;
+    LinearLayout cardHottest;
     GiftService giftService;
     ArrayList<Mission> missions;
 
@@ -81,6 +81,8 @@ public class ShopFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
     }
+<<<<<<< HEAD
+=======
 
     public void init(View view){
         recyclerViewNearbyPlace = view.findViewById(R.id.recycleViewNearbyPlace);
@@ -88,12 +90,12 @@ public class ShopFragment extends Fragment {
         tvViewAllHottest = view.findViewById(R.id.tvViewAllHottest);
         tvViewAllShop = view.findViewById(R.id.tvViewShopAll);
         tvViewAllNearby = view.findViewById(R.id.tvViewShopNearby);
-        CardHottest = view.findViewById(R.id.CardHottest);
+        cardHottest = view.findViewById(R.id.cardHottest);
         tvDescription =view.findViewById(R.id.tvDescription);
         tvNameHottest = view.findViewById(R.id.tvNameHottest);
         imageHottest = view.findViewById(R.id.imageHottest);
         tvCount = view.findViewById(R.id.tvCount);
-
+        tvExpired = view.findViewById(R.id.tvExpired);
     }
 
     public void handleOnClick(){
@@ -165,16 +167,22 @@ public class ShopFragment extends Fragment {
             giftService.getPromo(5, new PromoCallback() {
                 @Override
                 public void onSuccess(boolean value, PromoResponse promoResponse) {
+                    if (promoResponse.getPromo().getHottest() != null) {
                         Mission mission = promoResponse.getPromo().getHottest();
                         imageHottest.setImageResource(HelperFunction.getDrawable(mission.getType().getPercent()));
                         tvNameHottest.setText(mission.getName());
                         tvDescription.setText(mission.getDescription());
                         tvCount.setVisibility(View.GONE);
+                        tvExpired.setText(HelperFunction.getDifferenceHour(mission.getExpiredAt()));
+                        return;
                     }
+                    cardHottest.setVisibility(View.GONE);
+                }
 
                 @Override
                 public void onFailed(boolean value) {
                     Logger.log("PROMO", "ERROR");
+                    cardHottest.setVisibility(View.GONE);
                 }
             });
         }catch (Exception e){
@@ -202,4 +210,5 @@ public class ShopFragment extends Fragment {
         RecycleAllShopAdapter adapter = new RecycleAllShopAdapter(getContext(), data);
         recyclerViewAllShop.setAdapter(adapter);
     }
+>>>>>>> dev
 }
