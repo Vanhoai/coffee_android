@@ -27,13 +27,25 @@ public class HelperFunction {
         long current = currentTime.getTime();
         long difference = exp - current;
         double time = difference * 1.0 / (1000 * 3600);
-        // time is hour
-        if (time > 48) {
-            return String.format("Ends in %d day", (int) time / 24);
+        if (time > 24) {
+            // case 1
+            int day = (int) time / 24;
+            int hour = (int) time % 24;
+            return  String.format("Ends in %d day %d hour", day, hour);
+        } else if (time > 1) {
+            // case 2
+            int hour = (int) time; // => 6 hour
+            int minite = (int) ((hour * 60) % 60);
+            return String.format("Ends in %d hour %d minute", hour, minite);
         }
-        if (time < 1) {
-            return String.format("Ends in %d minutes", (int) time * 60);
-        }
-        return String.format("Ends in %d hour", (int) time);
+        // case 3
+        // 0.5
+        int minute = (int) time * 60;
+        int second = (int) ((time * 3600) % 60);
+        return String.format("Ends in %d minute %d second", minute, second);
+    }
+
+    private int getMinute() {
+        return 1;
     }
 }
