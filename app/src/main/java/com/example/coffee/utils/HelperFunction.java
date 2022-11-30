@@ -21,11 +21,19 @@ public class HelperFunction {
         return R.drawable.promo5;
     }
 
-    public static int getDifferenceHour(Date date) {
+    public static String getDifferenceHour(Date date) {
         Date currentTime = Calendar.getInstance().getTime();
         long exp = date.getTime();
         long current = currentTime.getTime();
         long difference = exp - current;
-        return (int) (difference / (1000 * 3600));
+        double time = difference * 1.0 / (1000 * 3600);
+        // time is hour
+        if (time > 48) {
+            return String.format("Ends in %d day", (int) time / 24);
+        }
+        if (time < 1) {
+            return String.format("Ends in %d minutes", (int) time * 60);
+        }
+        return String.format("Ends in %d hour", (int) time);
     }
 }

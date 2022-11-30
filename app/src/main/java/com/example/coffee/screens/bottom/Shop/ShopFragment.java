@@ -40,7 +40,7 @@ public class ShopFragment extends Fragment {
     private ArrayList<Shop> shopsNearby;
     private ArrayList<Shop> shopsAllShop;
     ImageView imageHottest;
-    TextView tvNameHottest;
+    TextView tvNameHottest, tvExpired;
     TextView tvDescription;
     TextView tvCount;
     LinearLayout cardHottest;
@@ -93,6 +93,7 @@ public class ShopFragment extends Fragment {
         tvNameHottest = view.findViewById(R.id.tvNameHottest);
         imageHottest = view.findViewById(R.id.imageHottest);
         tvCount = view.findViewById(R.id.tvCount);
+        tvExpired = view.findViewById(R.id.tvExpired);
     }
 
     public void handleOnClick(){
@@ -170,6 +171,7 @@ public class ShopFragment extends Fragment {
                         tvNameHottest.setText(mission.getName());
                         tvDescription.setText(mission.getDescription());
                         tvCount.setVisibility(View.GONE);
+                        tvExpired.setText(HelperFunction.getDifferenceHour(mission.getExpiredAt()));
                         return;
                     }
                     cardHottest.setVisibility(View.GONE);
