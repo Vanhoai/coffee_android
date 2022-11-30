@@ -26,6 +26,8 @@ public interface GiftInterfaceAPI {
     );
 
     @GET("gift/user/{id}")
-    Call<GiftResponse> getGiftOfUser();
+    Call<com.example.coffee.models.Order.GiftResponse> getGiftOfUser(
+            @Path("id") int id
+    );
 
 }
