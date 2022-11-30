@@ -1,25 +1,30 @@
 package com.example.coffee.models.Order;
 
 import com.example.coffee.models.Product.Product;
+import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Order implements Serializable {
-    private int id;
-    private int userId;
-    private float total;
-    private String address;
-    private ArrayList<Product> products;
-    private ArrayList<Gift> gifts;
 
-    public Order(int id, int userId, float total, String address, ArrayList<Product> products, ArrayList<Gift> gifts) {
+    @SerializedName("id")
+    private int id;
+
+    @SerializedName("address")
+    private String address;
+
+    @SerializedName("total")
+    private Double total;
+
+    @SerializedName("status")
+    private int status;
+
+    public Order(int id, String address, Double total, int status) {
         this.id = id;
-        this.userId = userId;
-        this.total = total;
         this.address = address;
-        this.products = products;
-        this.gifts = gifts;
+        this.total = total;
+        this.status = status;
     }
 
     public int getId() {
@@ -30,22 +35,6 @@ public class Order implements Serializable {
         this.id = id;
     }
 
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    public float getTotal() {
-        return total;
-    }
-
-    public void setTotal(float total) {
-        this.total = total;
-    }
-
     public String getAddress() {
         return address;
     }
@@ -54,19 +43,19 @@ public class Order implements Serializable {
         this.address = address;
     }
 
-    public ArrayList<Product> getProducts() {
-        return products;
+    public Double getTotal() {
+        return total;
     }
 
-    public void setProducts(ArrayList<Product> products) {
-        this.products = products;
+    public void setTotal(Double total) {
+        this.total = total;
     }
 
-    public ArrayList<Gift> getGifts() {
-        return gifts;
+    public int getStatus() {
+        return status;
     }
 
-    public void setGifts(ArrayList<Gift> gifts) {
-        this.gifts = gifts;
+    public void setStatus(int status) {
+        this.status = status;
     }
 }

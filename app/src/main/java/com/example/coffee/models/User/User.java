@@ -177,6 +177,23 @@ public class User implements Serializable {
         this.deviceToken = deviceToken;
     }
 
+    public void assign(User user) {
+        this.id = user.id;
+        this.username = user.username;
+        this.email = user.email;
+        this.role = user.role;
+        this.phone = user.phone;
+        this.typeAccount = user.typeAccount;
+        this.balance = user.balance;
+        this.exp = user.exp;
+        this.image = user.image;
+        this.history = user.history;
+        this.favorite = user.favorite;
+        this.accessToken = user.accessToken;
+        this.refreshToken = user.refreshToken;
+        this.deviceToken = user.deviceToken;
+    }
+
     @Override
     public String toString() {
         return "User{" +

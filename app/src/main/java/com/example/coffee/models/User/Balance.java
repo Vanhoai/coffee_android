@@ -13,9 +13,9 @@ public class Balance implements Serializable {
     private String code;
 
     @SerializedName("amount")
-    private Float amount;
+    private Double amount;
 
-    public Balance(int id, String code, Float amount) {
+    public Balance(int id, String code, Double amount) {
         this.id = id;
         this.code = code;
         this.amount = amount;
@@ -37,20 +37,11 @@ public class Balance implements Serializable {
         this.code = code;
     }
 
-    public Float getAmount() {
+    public Double getAmount() {
         return amount;
     }
 
-    public void setAmount(Float amount) {
+    public void setAmount(Double amount) {
         this.amount = amount;
-    }
-
-    @Override
-    public String toString() {
-        return "Balance{" +
-                "id=" + id +
-                ", code='" + code + '\'' +
-                ", amount=" + amount +
-                '}';
     }
 }

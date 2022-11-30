@@ -105,6 +105,7 @@ public class CheckOutActivity extends AppCompatActivity {
                 finish();
             }
         });
+
         btnContinuePayment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -127,6 +128,10 @@ public class CheckOutActivity extends AppCompatActivity {
                 changeDelivery(false, true);
             }
         });
+    }
+
+    private void createOrder() {
+        Logger.log("PRODUCTS", products);
     }
 
     public void initView() {

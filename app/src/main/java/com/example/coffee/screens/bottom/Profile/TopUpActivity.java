@@ -133,14 +133,25 @@ public class TopUpActivity extends AppCompatActivity {
         });
     }
 
+    private void updateUser(BalanceResponse balanceResponse) {
+        User user = UserInformation.getUser(TopUpActivity.this);
+        user.setBalance(balanceResponse.getBalance());
+        boolean check = UserInformation.setUser(TopUpActivity.this, user);
+        if (!check) {
+            Toast.makeText(this, "UPDATE USER FAILED", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        layoutLoading.setGone();
+        Intent intent = new Intent(TopUpActivity.this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
     private final BalanceCallback balanceCallback = new BalanceCallback() {
         @Override
         public void onSuccess(Boolean value, BalanceResponse balanceResponse) {
             Logger.log("RESPONSE", balanceResponse);
-            layoutLoading.setGone();
-//            Intent intent = new Intent(TopUpActivity.this, MainActivity.class);
-//            startActivity(intent);
-//            finish();
+            updateUser(balanceResponse);
         }
 
         @Override
