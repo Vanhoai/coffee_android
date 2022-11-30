@@ -7,8 +7,6 @@ public class Constants {
 
     public static final String BASE_URL_LOCAL = "http://10.22.209.139:8080";
 
-    public static final String BASE_URL_LOCAL = "https://9e0b-2405-4803-c8b1-380-51bc-7bc2-c561-d349.ap.ngrok.io";
- 
     public static final String API_VERSION = "/api/v1";
     public static String CHANEL_ID = "CHAT";
     public static String NOTIFICATION_URL = "https://fcm.googleapis.com/fcm/send";
