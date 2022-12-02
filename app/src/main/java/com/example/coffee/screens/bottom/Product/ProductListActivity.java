@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.example.coffee.R;
@@ -29,7 +30,8 @@ public class ProductListActivity extends AppCompatActivity {
     private ImageView backNavigation;
     private ArrayList<Product> products;
     private ProductService productService;
-    private TextView tvTitle;
+    private TextView tvTitle, tvNothing;
+    private ScrollView svMain;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -38,8 +40,11 @@ public class ProductListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_product_list);
 
         // init view
-        initView();
-
+        backNavigation = findViewById(R.id.backNavigation);
+        recyclerProductList = findViewById(R.id.recycleProductsList);
+        tvTitle = findViewById(R.id.tvTitle);
+        tvNothing = findViewById(R.id.tvNothing);
+        svMain = findViewById(R.id.svMain);
 
         // init data
         products = new ArrayList<>();
@@ -91,8 +96,16 @@ public class ProductListActivity extends AppCompatActivity {
             public void onSuccess(boolean value, ProductResponse productResponse) {
                 Logger.log("PRODUCTS", productResponse);
 
-                products.addAll(productResponse.getProducts());
-                renderProduct(recyclerProductList, products);
+                if(productResponse.getProducts().size() == 0){
+                    svMain.setVisibility(View.GONE);
+                    tvNothing.setVisibility(View.VISIBLE);
+                }else{
+                    svMain.setVisibility(View.VISIBLE);
+                    tvNothing.setVisibility(View.GONE);
+                    products.addAll(productResponse.getProducts());
+                    renderProduct(recyclerProductList, products);
+                }
+
             }
 
             @Override
@@ -109,7 +122,7 @@ public class ProductListActivity extends AppCompatActivity {
             }
         };
         recyclerView.setLayoutManager(linearLayoutManager);
-        RecycleProductAdapter adapter = new RecycleProductAdapter(ProductListActivity.this, data);
+        RecycleProductAdapter adapter = new RecycleProductAdapter(ProductListActivity.this, data, "LIST");
         recyclerView.setAdapter(adapter);
     }
 }
