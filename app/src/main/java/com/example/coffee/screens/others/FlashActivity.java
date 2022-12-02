@@ -32,7 +32,7 @@ public class FlashActivity extends AppCompatActivity {
             public void run() {
                 next();
             }
-        }, 10000);
+        }, 2000);
     }
 
     public void next() {

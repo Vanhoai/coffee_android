@@ -13,7 +13,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,15 +24,20 @@ import com.example.coffee.R;
 import com.example.coffee.adapters.RecycleCommentAdapter;
 import com.example.coffee.adapters.RecycleProductAdapter;
 import com.example.coffee.adapters.RecycleProductDetailAdapter;
+import com.example.coffee.callbacks.CommentCallback;
 import com.example.coffee.callbacks.ProductDetailCallback;
 import com.example.coffee.models.Product.Comment;
+import com.example.coffee.models.Product.CommentResponse;
 import com.example.coffee.models.Product.Product;
 import com.example.coffee.models.Product.ProductDetail;
 import com.example.coffee.models.Product.ProductDetailResponse;
+import com.example.coffee.models.User.User;
 import com.example.coffee.screens.bottom.MainActivity;
 import com.example.coffee.screens.bottom.Shop.DetailPlaceActivity;
+import com.example.coffee.services.CommentService;
 import com.example.coffee.services.ProductService;
 import com.example.coffee.utils.Logger;
+import com.example.coffee.utils.UserInformation;
 
 import java.util.ArrayList;
 
@@ -43,6 +50,9 @@ public class ProductDetailActivity extends AppCompatActivity {
     private ProductService productService;
     private AppCompatButton btnReview, btnTextProduct;
     private boolean check = false;
+    AppCompatButton btnSend, btnCancel;
+    RatingBar ratingComment;
+    EditText edComment;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -122,6 +132,7 @@ public class ProductDetailActivity extends AppCompatActivity {
                     tvDescription.setText(productResponse.getProductDetail().getDescription());
                     btnTextProduct.setText(String.valueOf(productResponse.getProductDetail().getComments().size()));
                     Glide.with(ProductDetailActivity.this).load(productResponse.getProductDetail().getImage()).into(imageProduct);
+                    comments.clear();
                     comments.addAll(productResponse.getProductDetail().getComments());
                     render(comments);
                 }
@@ -138,25 +149,74 @@ public class ProductDetailActivity extends AppCompatActivity {
         }
     }
 
+    @SuppressLint("MissingInflatedId")
     public void dialogReview() {
         AlertDialog.Builder builder = new AlertDialog.Builder(ProductDetailActivity.this);
         LayoutInflater layoutInflater = getLayoutInflater();
         View view = layoutInflater.inflate(R.layout.dialog_review, null);
         builder.setView(view);
-        builder.setMessage("Thông báo ");
-        builder.setPositiveButton("Không đồng ý", new DialogInterface.OnClickListener() {
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+        //mapping
+        ratingComment = view.findViewById(R.id.ratingCommnet);
+        edComment = view.findViewById(R.id.edCommnent);
+        btnSend = view.findViewById(R.id.btnSend);
+        btnCancel = view.findViewById(R.id.btnCancel);
+
+        CommentService commentService = new CommentService();
+        //ratingComment.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+        // @Override
+        // public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
+        // Logger.log("RATING", v);
+        // }
+        // });
+        btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-            }
-        });
-        builder.setNegativeButton(" đồng ý", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
+            public void onClick(View view) {
+
+                User user = UserInformation.getUser(ProductDetailActivity.this);
+                int idUser = user.getId();
+
+                Intent intent = getIntent();
+                Bundle bundle = intent.getExtras();
+                int id = bundle.getInt("id", -1);
+
+                String commnent = edComment.getText().toString();
+                int rating = (int) ratingComment.getRating();
+
+                Logger.log("ID USER", idUser);
+                Logger.log("ID", id);
+                Logger.log("COMMENT", commnent);
+                Logger.log("RATING", rating);
+
+                commentService.getComment(idUser, id, commnent, rating, new CommentCallback() {
+                    @Override
+                    public void onSuccess(boolean value, CommentResponse commentResponse) {
+                        Logger.log("COMMENT", commentResponse);
+                        detailProduct();
+                        dialog.dismiss();
+
+                    }
+
+                    @Override
+                    public void onFailed(boolean value) {
+
+                    }
+                });
+
 
             }
         });
-        AlertDialog dialog = builder.create();
-        dialog.show();
+
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+
+
     }
 
     public void render(ArrayList<Comment> data) {
