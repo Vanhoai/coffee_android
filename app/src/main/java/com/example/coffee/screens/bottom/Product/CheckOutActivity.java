@@ -35,6 +35,7 @@ import com.example.coffee.adapters.RecycleProductDetailAdapter;
 import com.example.coffee.callbacks.GiftOfUserCallback;
 import com.example.coffee.callbacks.OrderCallback;
 import com.example.coffee.models.Order.Gift;
+import com.example.coffee.models.Order.Order;
 import com.example.coffee.models.Order.OrderResponse;
 import com.example.coffee.models.Order.Type;
 import com.example.coffee.models.Product.Product;
@@ -120,10 +121,13 @@ public class CheckOutActivity extends AppCompatActivity {
                 Intent intentStart = getIntent();
                 Bundle bundleStart = intentStart.getExtras();
                 int id = bundleStart.getInt("id", -1);
+                Order order = (Order) bundleStart.getSerializable("OrderDetail");
+
 
                 Intent intent = new Intent(CheckOutActivity.this, DetailPlaceActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putInt("id", id);
+                bundle.putSerializable("OrderDetail", order);
                 intent.putExtras(bundle);
                 startActivity(intent);
                 finish();
@@ -133,11 +137,9 @@ public class CheckOutActivity extends AppCompatActivity {
         btnContinuePayment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                createOrder();
-
-//                Intent intent = new Intent(CheckOutActivity.this, PaymentActivity.class);
-//                startActivity(intent);
-//                finish();
+                Intent intent = new Intent(CheckOutActivity.this, PaymentActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
 
@@ -154,40 +156,6 @@ public class CheckOutActivity extends AppCompatActivity {
                 changeDelivery(false, true);
             }
         });
-
-
-    }
-
-    private void createOrder() {
-       try {
-           layoutLoading.setLoading();
-           Intent intentStart = getIntent();
-           Bundle bundleStart = intentStart.getExtras();
-           int id = bundleStart.getInt("id", -1);
-           User user = UserInformation.getUser(CheckOutActivity.this);
-           ArrayList<ProductRequest> productRequests = new ArrayList<>();
-
-           for (Product product: products) {
-               ProductRequest productRequest = new ProductRequest(product.getId(), product.getCurrent());
-               productRequests.add(productRequest);
-           }
-
-           orderService.createOrder(user.getId(), id, "", productRequests, new OrderCallback() {
-               @Override
-               public void onSuccess(boolean value, OrderResponse orderResponse) {
-                   Logger.log("RESPONSE", orderResponse);
-                   layoutLoading.setGone();
-               }
-
-               @Override
-               public void onFailed(boolean value) {
-                    Logger.log("RESPONSE", "ERROR");
-                   layoutLoading.setGone();
-               }
-           });
-       } catch (Exception exception) {
-           exception.printStackTrace();
-       }
     }
 
     public void initView() {
@@ -253,6 +221,10 @@ public class CheckOutActivity extends AppCompatActivity {
     }
 
     public void render(ArrayList<Product> data) {
+        Intent intentStart = getIntent();
+        Bundle bundleStart = intentStart.getExtras();
+        int id = bundleStart.getInt("id", -1);
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(CheckOutActivity.this) {
             @Override
             public boolean canScrollVertically() {
@@ -260,7 +232,12 @@ public class CheckOutActivity extends AppCompatActivity {
             }
         };
         recycleProducts.setLayoutManager(linearLayoutManager);
-        RecycleProductDetailAdapter adapter = new RecycleProductDetailAdapter(CheckOutActivity.this, data, new RecycleProductDetailAdapter.UpdateTotal() {
+        RecycleProductDetailAdapter adapter = new RecycleProductDetailAdapter(CheckOutActivity.this, data, "PLACE", id, -1, new RecycleProductDetailAdapter.OnClick() {
+            @Override
+            public void onClick(Product product) {
+                Toast.makeText(CheckOutActivity.this, "FAILED", Toast.LENGTH_SHORT).show();
+            }
+        }, new RecycleProductDetailAdapter.UpdateTotal() {
             @Override
             public void update(ArrayList<Product> products) {
                 float total = 0;
@@ -269,6 +246,11 @@ public class CheckOutActivity extends AppCompatActivity {
                 }
                 tvAmount.setText(String.format("%.0f", total));
                 calculator();
+            }
+        }, new RecycleProductDetailAdapter.UpdateOrder() {
+            @Override
+            public void update(ArrayList<Product> products, Product product, int change) {
+                Logger.log("product", product);
             }
         });
         recycleProducts.setAdapter(adapter);

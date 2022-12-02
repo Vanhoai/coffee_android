@@ -109,7 +109,7 @@ public class ProductListActivity extends AppCompatActivity {
             }
         };
         recyclerView.setLayoutManager(linearLayoutManager);
-        RecycleProductAdapter adapter = new RecycleProductAdapter(ProductListActivity.this, data);
+        RecycleProductAdapter adapter = new RecycleProductAdapter(ProductListActivity.this, data, "LIST");
         recyclerView.setAdapter(adapter);
     }
 }

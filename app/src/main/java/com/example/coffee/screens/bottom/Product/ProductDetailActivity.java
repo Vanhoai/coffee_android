@@ -23,6 +23,7 @@ import com.example.coffee.adapters.RecycleCommentAdapter;
 import com.example.coffee.adapters.RecycleProductAdapter;
 import com.example.coffee.adapters.RecycleProductDetailAdapter;
 import com.example.coffee.callbacks.ProductDetailCallback;
+import com.example.coffee.models.Order.Order;
 import com.example.coffee.models.Product.Comment;
 import com.example.coffee.models.Product.Product;
 import com.example.coffee.models.Product.ProductDetail;
@@ -83,8 +84,24 @@ public class ProductDetailActivity extends AppCompatActivity {
         backNavigation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ProductDetailActivity.this, MainActivity.class);
-                startActivity(intent);
+                Intent intent1 = null;
+
+                Intent intent = getIntent();
+                Bundle bundle = intent.getExtras();
+                String status = bundle.getString("status", "HOME");
+                if (status.equals("HOME")) {
+                    intent1 = new Intent(ProductDetailActivity.this, MainActivity.class);
+                } else if (status.equals("PLACE")) {
+                    intent1 = new Intent(ProductDetailActivity.this, DetailPlaceActivity.class);
+                    int shop = bundle.getInt("shop", 1);
+                    Order order = (Order) bundle.getSerializable("OrderDetail");
+                    Bundle bundle1 = new Bundle();
+                    bundle1.putInt("id", shop);
+                    bundle1.putSerializable("OrderDetail", order);
+                    intent1.putExtras(bundle1);
+                }
+                
+                startActivity(intent1);
             }
         });
         btnReview.setOnClickListener(new View.OnClickListener() {

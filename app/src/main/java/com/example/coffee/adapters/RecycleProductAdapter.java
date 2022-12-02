@@ -31,10 +31,12 @@ public class RecycleProductAdapter extends RecyclerView.Adapter<RecycleProductAd
 
     private final Context context;
     private final ArrayList<Product> products;
+    private String status;
 
-    public RecycleProductAdapter(Context context, ArrayList<Product> products) {
+    public RecycleProductAdapter(Context context, ArrayList<Product> products, String status) {
         this.context = context;
         this.products = products;
+        this.status = status;
     }
 
     @NonNull
@@ -67,9 +69,10 @@ public class RecycleProductAdapter extends RecyclerView.Adapter<RecycleProductAd
         holder.cardProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               Intent intent = new Intent(context, ProductDetailActivity.class);
+                Intent intent = new Intent(context, ProductDetailActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putInt("id", product.getId());
+                bundle.putString("status", status);
                 intent.putExtras(bundle);
                 context.startActivity(intent);
             }

@@ -5,27 +5,19 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-public class OrderResponse extends HttpResponse implements Serializable {
+public class OrderDetailResponse extends HttpResponse implements Serializable {
 
     @SerializedName("data")
     private Order order;
 
-    public OrderResponse(String message, int code, Order order) {
+    public OrderDetailResponse(String message, int code, Order order) {
         super(message, code);
-        this.order = order;
-    }
-
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
         this.order = order;
     }
 
     @Override
     public String toString() {
-        return "OrderResponse{" +
+        return "OrderDetailResponse{" +
                 "order=" + order +
                 '}';
     }

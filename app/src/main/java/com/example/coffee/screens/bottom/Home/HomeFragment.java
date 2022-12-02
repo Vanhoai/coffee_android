@@ -280,7 +280,7 @@ public class HomeFragment extends Fragment {
             }
         };
         recyclerView.setLayoutManager(linearLayoutManager);
-        RecycleProductAdapter adapter = new RecycleProductAdapter(getContext(), data);
+        RecycleProductAdapter adapter = new RecycleProductAdapter(getContext(), data, "HOME");
         recyclerView.setAdapter(adapter);
     }
 
