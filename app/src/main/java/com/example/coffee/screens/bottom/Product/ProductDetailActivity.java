@@ -12,8 +12,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.SimpleAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +26,8 @@ import com.example.coffee.adapters.RecycleCommentAdapter;
 import com.example.coffee.adapters.RecycleProductAdapter;
 import com.example.coffee.adapters.RecycleProductDetailAdapter;
 import com.example.coffee.callbacks.ProductDetailCallback;
+import com.example.coffee.models.Order.Gift;
+import com.example.coffee.models.Order.Type;
 import com.example.coffee.models.Product.Comment;
 import com.example.coffee.models.Product.Product;
 import com.example.coffee.models.Product.ProductDetail;
@@ -33,6 +38,7 @@ import com.example.coffee.services.ProductService;
 import com.example.coffee.utils.Logger;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ProductDetailActivity extends AppCompatActivity {
 
@@ -143,20 +149,42 @@ public class ProductDetailActivity extends AppCompatActivity {
         LayoutInflater layoutInflater = getLayoutInflater();
         View view = layoutInflater.inflate(R.layout.dialog_review, null);
         builder.setView(view);
-        builder.setMessage("Thông báo ");
-        builder.setPositiveButton("Không đồng ý", new DialogInterface.OnClickListener() {
+
+        Spinner spinnerReview = findViewById(R.id.spinnerReview);
+        setViewSpinner(spinnerReview);
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    private void setViewSpinner(Spinner spinnerReview) {
+        ArrayList<HashMap<String, Integer>> result = new ArrayList<>();
+        for (int i = 1; i < 5; i++) {
+            HashMap<String, Integer> hashMap = new HashMap<>();
+            hashMap.put("star", i);
+            result.add(hashMap);
+        }
+
+        SimpleAdapter simpleAdapter = new SimpleAdapter(
+                ProductDetailActivity.this,
+                result,
+                android.R.layout.simple_list_item_1,
+                new String[]{"code"},
+                new int[]{android.R.id.text1}
+        );
+        spinnerReview.setAdapter(simpleAdapter);
+
+        spinnerReview.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
             }
-        });
-        builder.setNegativeButton(" đồng ý", new DialogInterface.OnClickListener() {
+
             @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
+            public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
         });
-        AlertDialog dialog = builder.create();
-        dialog.show();
     }
 
     public void render(ArrayList<Comment> data) {
