@@ -81,6 +81,8 @@ public class ShopFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
     }
+<<<<<<< HEAD
+=======
 
     public void init(View view){
         recyclerViewNearbyPlace = view.findViewById(R.id.recycleViewNearbyPlace);
@@ -208,4 +210,5 @@ public class ShopFragment extends Fragment {
         RecycleAllShopAdapter adapter = new RecycleAllShopAdapter(getContext(), data);
         recyclerViewAllShop.setAdapter(adapter);
     }
+>>>>>>> dev
 }
