@@ -34,9 +34,11 @@ import com.example.coffee.R;
 import com.example.coffee.adapters.RecycleProductDetailAdapter;
 import com.example.coffee.callbacks.GiftOfUserCallback;
 import com.example.coffee.callbacks.OrderCallback;
+import com.example.coffee.callbacks.OrderDetailCallback;
 import com.example.coffee.models.Order.Gift;
 import com.example.coffee.models.Order.Order;
 import com.example.coffee.models.Order.OrderResponse;
+import com.example.coffee.models.Order.ProductOrder;
 import com.example.coffee.models.Order.Type;
 import com.example.coffee.models.Product.Product;
 import com.example.coffee.models.Product.ProductRequest;
@@ -67,7 +69,7 @@ public class CheckOutActivity extends AppCompatActivity {
     private Spinner spinnerGift;
     private GiftService giftService;
     private ArrayList<Gift> gifts;
-
+    private Order order;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,6 +88,7 @@ public class CheckOutActivity extends AppCompatActivity {
 
         // set view
         initProducts();
+
         initGiftOfUser();
 
         // handle click
@@ -213,6 +216,7 @@ public class CheckOutActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         try {
+            order = (Order) bundle.getSerializable("OrderDetail");
             products = (ArrayList<Product>) bundle.getSerializable("products");
             render(products);
         } catch (Exception exception) {
@@ -251,6 +255,16 @@ public class CheckOutActivity extends AppCompatActivity {
             @Override
             public void update(ArrayList<Product> products, Product product, int change) {
                 Logger.log("product", product);
+                User user = UserInformation.getUser(CheckOutActivity.this);
+
+                if (order == null) {
+                    if (change == -1) {
+                        return;
+                    }
+                    orderService.createOrder("", user.getId(), product.getId(), id, change, -1, orderCallback);
+                } else {
+                    orderService.createOrder("", user.getId(), product.getId(), id, change, order.getId(), orderCallback);
+                }
             }
         });
         recycleProducts.setAdapter(adapter);
@@ -345,4 +359,30 @@ public class CheckOutActivity extends AppCompatActivity {
             }
         });
     }
+    private final OrderCallback orderCallback = new OrderCallback() {
+        @Override
+        public void onSuccess(boolean value, OrderResponse orderResponse) {
+            Logger.log("ORDER RESPONSE", orderResponse);
+            layoutLoading.setGone();
+            if (order == null) {
+                int id = orderResponse.getOrder().getId();
+                Shop shop = orderResponse.getOrder().getShop();
+                String address = orderResponse.getOrder().getAddress();
+                int status = orderResponse.getOrder().getStatus();
+                User user = orderResponse.getOrder().getUser();
+                Double total = orderResponse.getOrder().getTotal();
+                ArrayList<ProductOrder> list = orderResponse.getOrder().getProducts();
+                order = new Order(id, address, shop, total, status, user, list);
+            } else {
+                Order order1 = orderResponse.getOrder();
+                order.assign(order1);
+            }
+        }
+
+        @Override
+        public void onFailed(boolean value) {
+            Logger.log("ORDER RESPONSE", "ERROR");
+            layoutLoading.setGone();
+        }
+    };
 }
