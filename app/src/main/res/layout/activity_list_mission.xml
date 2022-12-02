@@ -8,7 +8,6 @@
     android:orientation="vertical"
     tools:context=".screens.bottom.Shop.PlaceListActivity">
 
-
     <RelativeLayout
         android:id="@+id/RelativePlaceList"
         app:layout_constraintTop_toTopOf="parent"
@@ -24,7 +23,7 @@
 
         <TextView
             android:id="@+id/tvTitle"
-            android:text="Bookmark"
+            android:text="ListMission"
             android:gravity="center"
             style="@style/textMedium"
             android:textColor="@color/darkColor"
@@ -40,18 +39,17 @@
         android:textColor="@color/darkColor"
         android:textSize="16sp"
         android:gravity="center"
-        android:id="@+id/tvNothing"
-        android:text="Không có sản phẩm nào ở đây!"
+        android:id="@+id/tvListMission"
+        android:text="Không có shop nào gần đây!"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
     <ScrollView
-        android:id="@+id/svMain"
+        android:id="@+id/svListMission"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="none">
-
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycleProductsList"
+            android:id="@+id/recycleListMission"
             android:layout_marginTop="32dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>

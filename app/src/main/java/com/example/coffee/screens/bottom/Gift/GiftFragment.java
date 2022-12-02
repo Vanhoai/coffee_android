@@ -1,5 +1,6 @@
 package com.example.coffee.screens.bottom.Gift;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +25,7 @@ import com.example.coffee.models.Shop.GiftResponse;
 import com.example.coffee.models.Shop.Mission;
 import com.example.coffee.models.Shop.Total;
 import com.example.coffee.models.User.User;
+import com.example.coffee.screens.bottom.Home.PromoActivity;
 import com.example.coffee.services.GiftService;
 import com.example.coffee.utils.HelperFunction;
 import com.example.coffee.utils.Logger;
@@ -94,7 +96,12 @@ public class GiftFragment extends Fragment {
         tvViewAllMission.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(getContext(), PromoActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("Page Title", "Promo");
+                intent.putExtras(bundle);
+                startActivity(intent);
+                requireActivity().finish();
             }
         });
     }
