@@ -12,10 +12,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.RatingBar;
+import android.widget.SimpleAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,7 +28,8 @@ import com.example.coffee.adapters.RecycleProductAdapter;
 import com.example.coffee.adapters.RecycleProductDetailAdapter;
 import com.example.coffee.callbacks.CommentCallback;
 import com.example.coffee.callbacks.ProductDetailCallback;
-import com.example.coffee.models.Order.Order;
+import com.example.coffee.models.Order.Gift;
+import com.example.coffee.models.Order.Type;
 import com.example.coffee.models.Product.Comment;
 import com.example.coffee.models.Product.CommentResponse;
 import com.example.coffee.models.Product.Product;
@@ -41,6 +44,7 @@ import com.example.coffee.utils.Logger;
 import com.example.coffee.utils.UserInformation;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ProductDetailActivity extends AppCompatActivity {
 
@@ -172,68 +176,42 @@ public class ProductDetailActivity extends AppCompatActivity {
         LayoutInflater layoutInflater = getLayoutInflater();
         View view = layoutInflater.inflate(R.layout.dialog_review, null);
         builder.setView(view);
+
+        Spinner spinnerReview = findViewById(R.id.spinnerReview);
+        setViewSpinner(spinnerReview);
+
         AlertDialog dialog = builder.create();
         dialog.show();
+    }
 
-        //mapping
-        ratingComment = view.findViewById(R.id.ratingCommnet);
-        edComment = view.findViewById(R.id.edCommnent);
-        btnSend = view.findViewById(R.id.btnSend);
-        btnCancel = view.findViewById(R.id.btnCancel);
+    private void setViewSpinner(Spinner spinnerReview) {
+        ArrayList<HashMap<String, Integer>> result = new ArrayList<>();
+        for (int i = 1; i < 5; i++) {
+            HashMap<String, Integer> hashMap = new HashMap<>();
+            hashMap.put("star", i);
+            result.add(hashMap);
+        }
 
-        CommentService commentService = new CommentService();
-        //ratingComment.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
-        // @Override
-        // public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
-        // Logger.log("RATING", v);
-        // }
-        // });
-        btnSend.setOnClickListener(new View.OnClickListener() {
+        SimpleAdapter simpleAdapter = new SimpleAdapter(
+                ProductDetailActivity.this,
+                result,
+                android.R.layout.simple_list_item_1,
+                new String[]{"code"},
+                new int[]{android.R.id.text1}
+        );
+        spinnerReview.setAdapter(simpleAdapter);
+
+        spinnerReview.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onClick(View view) {
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
-                User user = UserInformation.getUser(ProductDetailActivity.this);
-                int idUser = user.getId();
+            }
 
-                Intent intent = getIntent();
-                Bundle bundle = intent.getExtras();
-                int id = bundle.getInt("id", -1);
-
-                String commnent = edComment.getText().toString();
-                int rating = (int) ratingComment.getRating();
-
-                Logger.log("ID USER", idUser);
-                Logger.log("ID", id);
-                Logger.log("COMMENT", commnent);
-                Logger.log("RATING", rating);
-
-                commentService.getComment(idUser, id, commnent, rating, new CommentCallback() {
-                    @Override
-                    public void onSuccess(boolean value, CommentResponse commentResponse) {
-                        Logger.log("COMMENT", commentResponse);
-                        detailProduct();
-                        dialog.dismiss();
-
-                    }
-
-                    @Override
-                    public void onFailed(boolean value) {
-
-                    }
-                });
-
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
         });
-
-        btnCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.dismiss();
-            }
-        });
-
-
     }
 
     public void render(ArrayList<Comment> data) {
