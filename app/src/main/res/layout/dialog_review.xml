@@ -28,38 +28,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
-        <LinearLayout
-            android:layout_marginTop="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:orientation="horizontal">
-            <LinearLayout
-                android:background="@drawable/background_input"
-                android:layout_weight="10"
-                android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent">
+        <TextView
+            android:layout_marginTop="24dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
-                <Spinner
-                    android:id="@+id/spinnerReview"
-                    android:layout_width="match_parent"
-                    android:layout_height="56dp"/>
-
-            </LinearLayout>
-
-            <ImageView
-                android:layout_weight="1"
-                android:layout_gravity="center_vertical"
-                android:src="@drawable/rating"
-                android:layout_width="30dp"
-                android:layout_height="30dp"/>
-        </LinearLayout>
-
-        <androidx.appcompat.widget.AppCompatEditText
-            android:padding="20dp"
-            android:gravity="top"
-            android:layout_marginTop="20dp"
-            android:inputType="text|textMultiLine"
+        <EditText
+            android:layout_margin="32dp"
             android:background="@drawable/background_input"
             android:layout_width="match_parent"
             android:layout_height="149dp"/>
