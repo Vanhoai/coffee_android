@@ -48,4 +48,9 @@ public class HelperFunction {
     private int getMinute() {
         return 1;
     }
+
+    public static double distance(double xA, double xB, double yA, double yB){
+        double result = Math.sqrt(Math.pow(xB - xA, 2) + Math.pow(yB - yA, 2));
+        return result ;
+    }
 }
