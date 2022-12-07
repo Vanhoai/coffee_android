@@ -97,6 +97,7 @@ public class PromoActivity extends AppCompatActivity {
                        imageHottest.setImageResource(HelperFunction.getDrawable(mission.getType().getPercent()));
                        tvNameHottest.setText(mission.getName());
                        tvDescription.setText(mission.getDescription());
+
                        tvCount.setVisibility(View.GONE);
                     }
 

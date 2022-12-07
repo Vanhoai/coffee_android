@@ -65,17 +65,33 @@
                        android:layout_width="match_parent"
                        android:layout_height="wrap_content"
                        android:layout_weight="1"/>
-                   <TextView
-                       android:id="@+id/tvRating"
+
+                   <LinearLayout
                        android:layout_alignParentEnd="true"
-                       android:textSize="14sp"
-                       android:text="Rating"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
-                       android:layout_weight="1"/>
+                       android:orientation="horizontal">
+
+                       <ImageView
+                           android:layout_marginTop="4dp"
+                           android:layout_width="14dp"
+                           android:layout_height="14dp"
+                           android:src="@drawable/rating"/>
+
+                       <TextView
+                           android:paddingLeft="8dp"
+                           android:id="@+id/tvRating"
+                           style="@style/textMedium"
+                           android:textColor="@color/textColor"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:text="4.8"/>
+
+                   </LinearLayout>
 
                </RelativeLayout>
                <TextView
+                   android:layout_marginVertical="8dp"
                    android:id="@+id/tvDescription"
                    android:textSize="14sp"
                    android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna......"

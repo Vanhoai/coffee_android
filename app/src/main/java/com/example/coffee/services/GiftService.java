@@ -5,6 +5,7 @@ import static com.example.coffee.interfaces.GiftInterfaceAPI.GIFT_URL;
 import androidx.annotation.NonNull;
 
 import com.example.coffee.callbacks.GiftCallback;
+import com.example.coffee.callbacks.GiftOfUserCallback;
 import com.example.coffee.callbacks.PromoCallback;
 import com.example.coffee.interfaces.GiftInterfaceAPI;
 import com.example.coffee.models.Shop.GiftResponse;
@@ -77,4 +78,23 @@ public class GiftService {
         });
     }
 
+   public void getGiftOfUser(int id, GiftOfUserCallback callback) {
+        getAPI().getGiftOfUser(id).enqueue(new Callback<com.example.coffee.models.Order.GiftResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<com.example.coffee.models.Order.GiftResponse> call, @NonNull Response<com.example.coffee.models.Order.GiftResponse> response) {
+                if (response.code() == 200){
+                    Logger.log("GIFTOFUSER", response);
+                    callback.onSuccess(true, response.body());
+                }else {
+                    callback.onFailed(false);
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<com.example.coffee.models.Order.GiftResponse> call, @NonNull Throwable t) {
+                callback.onFailed(false);
+                Logger.log("GIFTOFUSER", t);
+            }
+        });
+   }
 }

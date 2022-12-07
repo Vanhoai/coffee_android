@@ -12,17 +12,22 @@ import retrofit2.http.Query;
 
 public interface GiftInterfaceAPI {
 
-    String GIFT_URL = String.format("%s/mission/", BASE_URL);
+    String GIFT_URL = String.format("%s/", BASE_URL);
 
-    @GET("user/{id}")
+    @GET("mission/user/{id}")
     Call<GiftResponse> getGift(
             @Path("id") int id,
             @Query("limit") int limit
     );
 
-    @GET("information")
+    @GET("mission/information")
     Call<PromoResponse> getPromo(
             @Query("limit") int limit
+    );
+
+    @GET("gift/user/{id}")
+    Call<com.example.coffee.models.Order.GiftResponse> getGiftOfUser(
+            @Path("id") int id
     );
 
 }

@@ -33,6 +33,8 @@ public class Product implements Serializable {
     @SerializedName("description")
     private String description;
 
+    public Product() {}
+
     public Product(int id, String name, String image, float price, int explored, int quantity, int current, float rating, String description) {
         this.id = id;
         this.name = name;
@@ -130,5 +132,17 @@ public class Product implements Serializable {
                 ", rating=" + rating +
                 ", description='" + description + '\'' +
                 '}';
+    }
+
+    public void assign(Product product) {
+        this.id = product.id;
+        this.name = product.name;
+        this.image = product.image;
+        this.price = product.price;
+        this.explored = product.explored;
+        this.quantity = product.quantity;
+        this.rating = product.rating;
+        this.description = product.description;
+        this.current = product.current;
     }
 }

@@ -1,25 +1,44 @@
 package com.example.coffee.models.Order;
 
 import com.example.coffee.models.Product.Product;
+import com.example.coffee.models.Shop.Shop;
+import com.example.coffee.models.User.User;
+import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Order implements Serializable {
-    private int id;
-    private int userId;
-    private float total;
-    private String address;
-    private ArrayList<Product> products;
-    private ArrayList<Gift> gifts;
 
-    public Order(int id, int userId, float total, String address, ArrayList<Product> products, ArrayList<Gift> gifts) {
+    @SerializedName("id")
+    private int id;
+
+    @SerializedName("address")
+    private String address;
+
+    @SerializedName("shop")
+    private Shop shop;
+
+    @SerializedName("total")
+    private Double total;
+
+    @SerializedName("status")
+    private int status;
+
+    @SerializedName("user")
+    private User user;
+
+    @SerializedName("products")
+    private ArrayList<ProductOrder> products;
+
+    public Order(int id, String address, Shop shop, Double total, int status, User user, ArrayList<ProductOrder> products) {
         this.id = id;
-        this.userId = userId;
-        this.total = total;
         this.address = address;
+        this.shop = shop;
+        this.total = total;
+        this.status = status;
+        this.user = user;
         this.products = products;
-        this.gifts = gifts;
     }
 
     public int getId() {
@@ -30,22 +49,6 @@ public class Order implements Serializable {
         this.id = id;
     }
 
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    public float getTotal() {
-        return total;
-    }
-
-    public void setTotal(float total) {
-        this.total = total;
-    }
-
     public String getAddress() {
         return address;
     }
@@ -54,19 +57,66 @@ public class Order implements Serializable {
         this.address = address;
     }
 
-    public ArrayList<Product> getProducts() {
+    public Shop getShop() {
+        return shop;
+    }
+
+    public void setShop(Shop shop) {
+        this.shop = shop;
+    }
+
+    public Double getTotal() {
+        return total;
+    }
+
+    public void setTotal(Double total) {
+        this.total = total;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public ArrayList<ProductOrder> getProducts() {
         return products;
     }
 
-    public void setProducts(ArrayList<Product> products) {
+    public void setProducts(ArrayList<ProductOrder> products) {
         this.products = products;
     }
 
-    public ArrayList<Gift> getGifts() {
-        return gifts;
+    public void assign(Order order) {
+        this.id = order.id;
+        this.address = order.address;
+        this.shop = order.shop;
+        this.total = order.total;
+        this.status = order.status;
+        this.user = order.user;
+        this.products = order.products;
     }
 
-    public void setGifts(ArrayList<Gift> gifts) {
-        this.gifts = gifts;
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", address='" + address + '\'' +
+                ", shop=" + shop +
+                ", total=" + total +
+                ", status=" + status +
+                ", user=" + user +
+                ", products=" + products +
+                '}';
     }
 }

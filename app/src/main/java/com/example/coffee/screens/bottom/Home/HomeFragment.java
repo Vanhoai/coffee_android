@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,6 +17,7 @@ import com.example.coffee.R;
 import com.example.coffee.adapters.RecycleNearlyAdapter;
 import com.example.coffee.adapters.RecycleProductAdapter;
 import com.example.coffee.callbacks.GiftCallback;
+import com.example.coffee.callbacks.GiftOfUserCallback;
 import com.example.coffee.callbacks.ProductCallback;
 import com.example.coffee.callbacks.ShopCallback;
 import com.example.coffee.models.Order.Gift;
@@ -46,7 +48,7 @@ import java.util.ArrayList;
 public class HomeFragment extends Fragment {
     
      RecyclerView recycleViewNearbyPlace, recycleViewBestSeller;
-    ImageView imageTopUp, imagePay, imagePromo, imageHistory, imageNotify;
+     ImageView imageTopUp, imagePay, imagePromo, imageHistory, imageNotify;
      TextView tvBalance, tvViewAllBestSeller, tvViewAllNearbyPlace, tvViewAllMyReward;
      ImageView imageReward;
      TextView tvNameReward;
@@ -57,6 +59,7 @@ public class HomeFragment extends Fragment {
      ArrayList<Shop> shops;
      ArrayList<Gift> gifts;
      GiftService giftService;
+     LinearLayout linearMyReward;
 
     @Nullable
     @Override
@@ -133,18 +136,22 @@ public class HomeFragment extends Fragment {
         });
     }
 
-    public void  initReward(){
+    public void initReward(){
         User user = UserInformation.getUser(getContext());
         giftService.getGift(5, user.getId(), new GiftCallback() {
             @Override
             public void onSuccess(boolean value, GiftResponse giftResponse) {
+                if (giftResponse.getTotal().getListGifts().size() <= 0) {
+                    linearMyReward.setVisibility(View.GONE);
+                    return;
+                }
                 Logger.log("REWARD", giftResponse);
                 Gift gift = giftResponse.getTotal().getListGifts().get(0);
                 imageReward.setImageResource(HelperFunction.getDrawable(gift.getType().getPercent()));
                 tvNameReward.setText(gift.getName());
-                tvDescription.setText(String.format("Gift will expire on %d hours", HelperFunction.getDifferenceHour(gift.getExpiredAt())));
+                tvDescription.setText(HelperFunction.getDifferenceHour(gift.getExpiredAt()));
 
-                int result = HelperFunction.getDifferenceHour(gift.getExpiredAt());
+                String result = HelperFunction.getDifferenceHour(gift.getExpiredAt());
                 Logger.log("RESULT", result);
             }
 
@@ -175,6 +182,7 @@ public class HomeFragment extends Fragment {
         imageReward = view.findViewById(R.id.imageReward);
         tvNameReward = view.findViewById(R.id.tvNameReward);
         tvDescription = view.findViewById(R.id.tvDescription);
+        linearMyReward = view.findViewById(R.id.linearMyReward);
     }
 
     private void handleOnClick () {
@@ -272,7 +280,7 @@ public class HomeFragment extends Fragment {
             }
         };
         recyclerView.setLayoutManager(linearLayoutManager);
-        RecycleProductAdapter adapter = new RecycleProductAdapter(getContext(), data);
+        RecycleProductAdapter adapter = new RecycleProductAdapter(getContext(), data, "HOME");
         recyclerView.setAdapter(adapter);
     }
 

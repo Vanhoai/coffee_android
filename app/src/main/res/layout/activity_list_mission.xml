@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    android:orientation="vertical"
+    tools:context=".screens.bottom.Shop.PlaceListActivity">
+
+    <RelativeLayout
+        android:id="@+id/RelativePlaceList"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/backNavigation"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/back_icon"
+            android:backgroundTint="#5F5F5F" />
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:text="ListMission"
+            android:gravity="center"
+            style="@style/textMedium"
+            android:textColor="@color/darkColor"
+            android:textSize="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
+    <TextView
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="parent"
+        android:layout_marginTop="20dp"
+        style="@style/textLight"
+        android:textColor="@color/darkColor"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:id="@+id/tvListMission"
+        android:text="Không có shop nào gần đây!"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+    <ScrollView
+        android:id="@+id/svListMission"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycleListMission"
+            android:layout_marginTop="32dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

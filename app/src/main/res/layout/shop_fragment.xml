@@ -213,6 +213,7 @@
                             android:src="@drawable/time" />
 
                         <TextView
+                            android:id="@+id/tvExpired"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"

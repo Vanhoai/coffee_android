@@ -32,4 +32,12 @@ public class ProductRequest implements Serializable {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+
+    @Override
+    public String toString() {
+        return "ProductRequest{" +
+                "id=" + id +
+                ", quantity=" + quantity +
+                '}';
+    }
 }
