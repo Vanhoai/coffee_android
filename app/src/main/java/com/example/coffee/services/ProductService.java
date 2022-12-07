@@ -95,4 +95,28 @@ public class ProductService {
             }
         });
     }
+
+    public void searchProducts(String name, ProductCallback callback) {
+        try {
+            getAPI().searchProducts(name).enqueue(new Callback<ProductResponse>() {
+                @Override
+                public void onResponse(@NonNull Call<ProductResponse> call, @NonNull Response<ProductResponse> response) {
+                    if (response.code() == 200) {
+                        callback.onSuccess(true, response.body());
+                        return;
+                    }
+
+                    callback.onFailed(false);
+                }
+
+                @Override
+                public void onFailure(@NonNull Call<ProductResponse> call, @NonNull Throwable t) {
+                    callback.onFailed(false);
+                    Logger.log("ERROR", t);
+                }
+            });
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+    }
 }

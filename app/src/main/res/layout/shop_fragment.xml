@@ -55,6 +55,7 @@
                 android:src="@drawable/search" />
 
             <EditText
+                android:id="@+id/edtSearchProduct"
                 style="@style/textMedium"
                 android:textSize="14sp"
                 android:layout_width="wrap_content"

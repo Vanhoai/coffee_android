@@ -3,9 +3,12 @@ package com.example.coffee.screens.bottom.Shop;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -18,19 +21,31 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.coffee.R;
 import com.example.coffee.adapters.RecycleNearlyAdapter;
 import com.example.coffee.adapters.RecycleAllShopAdapter;
+import com.example.coffee.callbacks.ProductCallback;
 import com.example.coffee.callbacks.PromoCallback;
 import com.example.coffee.callbacks.ShopCallback;
+import com.example.coffee.models.Product.ProductResponse;
 import com.example.coffee.models.Shop.Mission;
 import com.example.coffee.models.Shop.PromoResponse;
 import com.example.coffee.models.Shop.Shop;
 import com.example.coffee.models.Shop.ShopResponse;
 import com.example.coffee.screens.bottom.Home.PromoActivity;
 import com.example.coffee.services.GiftService;
+import com.example.coffee.services.ProductService;
 import com.example.coffee.services.ShopService;
 import com.example.coffee.utils.HelperFunction;
 import com.example.coffee.utils.Logger;
 
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
+
+import io.reactivex.BackpressureStrategy;
+import io.reactivex.Flowable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
+import io.reactivex.subjects.BehaviorSubject;
 
 public class ShopFragment extends Fragment {
     
@@ -39,6 +54,8 @@ public class ShopFragment extends Fragment {
     private ShopService shopService;
     private ArrayList<Shop> shopsNearby;
     private ArrayList<Shop> shopsAllShop;
+    private EditText edtSearchProduct;
+    private ProductService productService;
     ImageView imageHottest;
     TextView tvNameHottest, tvExpired;
     TextView tvDescription;
@@ -46,6 +63,10 @@ public class ShopFragment extends Fragment {
     LinearLayout cardHottest;
     GiftService giftService;
     ArrayList<Mission> missions;
+
+    CompositeDisposable disposable = new CompositeDisposable();
+    BehaviorSubject<String> _textInput = BehaviorSubject.create();
+    Flowable<String> textInput = _textInput.toFlowable(BackpressureStrategy.LATEST);
 
     @SuppressLint("MissingInflatedId")
     @Nullable
@@ -65,6 +86,7 @@ public class ShopFragment extends Fragment {
         // init service
         shopService = new ShopService();
         giftService = new GiftService();
+        productService = new ProductService();
 
         // call api
         initShop();
@@ -74,8 +96,43 @@ public class ShopFragment extends Fragment {
         // handle onclick
         handleOnClick();
 
+        handleOnchange();
+
         return view;
     }
+
+    private void handleOnchange() {
+        edtSearchProduct.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                String value = editable.toString();
+//                productService.searchProducts(value, productCallback);
+                _textInput.onNext(value);
+            }
+        });
+    }
+
+    private final ProductCallback productCallback = new ProductCallback() {
+        @Override
+        public void onSuccess(boolean value, ProductResponse productResponse) {
+            Logger.log("RESPONSE", productResponse);
+        }
+
+        @Override
+        public void onFailed(boolean value) {
+
+        }
+    };
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -95,6 +152,7 @@ public class ShopFragment extends Fragment {
         imageHottest = view.findViewById(R.id.imageHottest);
         tvCount = view.findViewById(R.id.tvCount);
         tvExpired = view.findViewById(R.id.tvExpired);
+        edtSearchProduct = view.findViewById(R.id.edtSearchProduct);
     }
 
     public void handleOnClick(){

@@ -29,4 +29,9 @@ public interface ProductInterfaceAPI {
     Call<ProductDetailResponse> getProductDetail(
             @Path("id") int id
     );
+
+    @GET("search")
+    Call<ProductResponse> searchProducts(
+            @Query("name") String name
+    );
 }
