@@ -130,6 +130,7 @@ public class DetailPlaceActivity extends AppCompatActivity {
         ConstraintLayout constraintLayout = findViewById(R.id.loading);
         layoutLoading = new LayoutLoading(constraintLayout, DetailPlaceActivity.this);
         layoutLoading.setGone();
+        tvTotal.setText("0 VND");
     }
 
     public ArrayList<Product> getProducts(Order order) {

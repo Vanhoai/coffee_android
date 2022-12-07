@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class RecycleHistoryAdapter extends RecyclerView.Adapter<RecycleHistoryAdapter.HistoryViewHolder> {
     private final Context context;
     private final ArrayList<History> list_history;
-    private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd - MM - yyyy");
+    private final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd - MM - yyyy");
 
     public RecycleHistoryAdapter(Context context, ArrayList<History> list_history) {
         this.context = context;
