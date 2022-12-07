@@ -50,6 +50,7 @@ public class DetailPlaceActivity extends AppCompatActivity {
     private Order order;
     private LayoutLoading layoutLoading;
 
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,9 +113,43 @@ public class DetailPlaceActivity extends AppCompatActivity {
         backNavigation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent1 = new Intent(DetailPlaceActivity.this, MainActivity.class);
-                startActivity(intent1);
-                finish();
+                if (order != null) {
+                    boolean check = true;
+                    for (int i = 0; i < products.size(); i++) {
+                        if (products.get(i).getCurrent() > 0) {
+                            check = false;
+                        }
+                    }
+
+                    if (check) {
+                        layoutLoading.setLoading();
+                        orderService.deleteOrder(order.getId(), new OrderCallback() {
+                            @Override
+                            public void onSuccess(boolean value, OrderResponse orderResponse) {
+                                Logger.log("order",order);
+                                layoutLoading.setGone();
+                                Intent intent1 = new Intent(DetailPlaceActivity.this, MainActivity.class);
+                                startActivity(intent1);
+                                finish();
+                            }
+
+                            @Override
+                            public void onFailed(boolean value) {
+                                Logger.log("onFailed","onFailed");
+                                layoutLoading.setGone();
+                            }
+                        });
+                    } else {
+                        Intent intent1 = new Intent(DetailPlaceActivity.this, MainActivity.class);
+                        startActivity(intent1);
+                        finish();
+                    }
+                } else {
+                    Intent intent1 = new Intent(DetailPlaceActivity.this, MainActivity.class);
+                    startActivity(intent1);
+                    finish();
+                }
+
             }
         });
     }
@@ -196,68 +231,75 @@ public class DetailPlaceActivity extends AppCompatActivity {
     }
 
     public void render(ArrayList<Product> data) {
-        // user
-        User user = UserInformation.getUser(DetailPlaceActivity.this);
 
-        // shop
-        Intent intent = getIntent();
-        Bundle bundle = intent.getExtras();
-        int id = bundle.getInt("id",-1);
 
-        int orderId = -1;
-        if (order != null) {
-            orderId = order.getId();
-        }
+      try {
+          // user
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(DetailPlaceActivity.this) {
-            @Override
-            public boolean canScrollVertically() {
-                return false;
-            }
-        };
-        recycleProducts.setLayoutManager(linearLayoutManager);
-        RecycleProductDetailAdapter adapter = new RecycleProductDetailAdapter(DetailPlaceActivity.this, data, "PLACE", id, orderId, new RecycleProductDetailAdapter.OnClick() {
-            @Override
-            public void onClick(Product product) {
-                Intent intentStart = getIntent();
-                Bundle bundleStart = intentStart.getExtras();
-                int id = bundleStart.getInt("id",-1);
+          User user = UserInformation.getUser(DetailPlaceActivity.this);
 
-                Intent intent = new Intent(DetailPlaceActivity.this, ProductDetailActivity.class);
-                Bundle bundle =new Bundle();
-                bundle.putInt("id", product.getId());
-                bundle.putString("status", "PLACE");
-                bundle.putSerializable("OrderDetail", order);
-                bundle.putInt("shop", id);
-                intent.putExtras(bundle);
-                startActivity(intent);
-                finish();
-            }
-        }, new RecycleProductDetailAdapter.UpdateTotal() {
-            @Override
-            public void update(ArrayList<Product> products) {
-                float total = 0;
-                for (int i = 0; i < products.size(); i++) {
-                    total += products.get(i).getPrice() * products.get(i).getCurrent();
-                }
+          // shop
+          Intent intent = getIntent();
+          Bundle bundle = intent.getExtras();
+          int id = bundle.getInt("id",-1);
 
-                tvTotal.setText(String.format("%.1f VND", total));
-            }
-        }, new RecycleProductDetailAdapter.UpdateOrder() {
-            @Override
-            public void update(ArrayList<Product> products, Product product, int change) {
-                layoutLoading.setLoading();
-                if (order == null) {
-                    if (change == -1) {
-                        return;
-                    }
-                    orderService.createOrder("", user.getId(), product.getId(), id, change, -1, orderCallback);
-                } else {
-                    orderService.createOrder("", user.getId(), product.getId(), id, change, order.getId(), orderCallback);
-                }
-            }
-        });
-        recycleProducts.setAdapter(adapter);
+          int orderId = -1;
+          if (order != null) {
+              orderId = order.getId();
+          }
+
+          LinearLayoutManager linearLayoutManager = new LinearLayoutManager(DetailPlaceActivity.this) {
+              @Override
+              public boolean canScrollVertically() {
+                  return false;
+              }
+          };
+          recycleProducts.setLayoutManager(linearLayoutManager);
+          RecycleProductDetailAdapter adapter = new RecycleProductDetailAdapter(DetailPlaceActivity.this, data, "PLACE", id, orderId, new RecycleProductDetailAdapter.OnClick() {
+              @Override
+              public void onClick(Product product) {
+                  Intent intentStart = getIntent();
+                  Bundle bundleStart = intentStart.getExtras();
+                  int id = bundleStart.getInt("id",-1);
+
+                  Intent intent = new Intent(DetailPlaceActivity.this, ProductDetailActivity.class);
+                  Bundle bundle =new Bundle();
+                  bundle.putInt("id", product.getId());
+                  bundle.putString("status", "PLACE");
+                  bundle.putSerializable("OrderDetail", order);
+                  bundle.putInt("shop", id);
+                  intent.putExtras(bundle);
+                  startActivity(intent);
+                  finish();
+              }
+          }, new RecycleProductDetailAdapter.UpdateTotal() {
+              @Override
+              public void update(ArrayList<Product> products) {
+                  float total = 0;
+                  for (int i = 0; i < products.size(); i++) {
+                      total += products.get(i).getPrice() * products.get(i).getCurrent();
+                  }
+
+                  tvTotal.setText(String.format("%.1f VND", total));
+              }
+          }, new RecycleProductDetailAdapter.UpdateOrder() {
+              @Override
+              public void update(ArrayList<Product> products, Product product, int change) {
+                  layoutLoading.setLoading();
+                  if (order == null) {
+                      if (change == -1) {
+                          return;
+                      }
+                      orderService.createOrder("", user.getId(), product.getId(), id, change, -1, orderCallback);
+                  } else {
+                      orderService.createOrder("", user.getId(), product.getId(), id, change, order.getId(), orderCallback);
+                  }
+              }
+          });
+          recycleProducts.setAdapter(adapter);
+      }catch (Exception exception){
+          exception.printStackTrace();
+      }
     }
 
     private final OrderCallback orderCallback = new OrderCallback() {
