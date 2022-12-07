@@ -2,14 +2,18 @@ package com.example.coffee.services;
 
 import static com.example.coffee.interfaces.OrderInterfaceAPI.ORDER_URL;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
+import com.example.coffee.callbacks.HistoryCallback;
 import com.example.coffee.callbacks.OrderCallback;
 import com.example.coffee.callbacks.OrderDetailCallback;
 import com.example.coffee.interfaces.OrderInterfaceAPI;
 import com.example.coffee.models.Order.OrderDetailResponse;
 import com.example.coffee.models.Order.OrderResponse;
 import com.example.coffee.models.Product.ProductRequest;
+import com.example.coffee.models.User.HistoryResponse;
 import com.example.coffee.utils.Logger;
 
 import java.util.ArrayList;
@@ -93,6 +97,75 @@ public class OrderService {
 
                 @Override
                 public void onFailure(@NonNull Call<OrderDetailResponse> call, @NonNull Throwable t) {
+                    callback.onFailed(false);
+                    Logger.log("ERROR", t);
+                }
+            });
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+    }
+
+    public void cancelOrder(int id, HistoryCallback callback) {
+        try {
+            getAPI().cancelOrder(id).enqueue(new Callback<HistoryResponse>() {
+                @Override
+                public void onResponse(@NonNull Call<HistoryResponse> call, @NonNull Response<HistoryResponse> response) {
+                    if (response.code() == 200) {
+                        callback.onSuccess(true, response.body());
+                        return;
+                    }
+                    callback.onFailed(false);
+                }
+
+                @Override
+                public void onFailure(@NonNull Call<HistoryResponse> call, @NonNull Throwable t) {
+                    callback.onFailed(false);
+                    Logger.log("ERROR", t);
+                }
+            });
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+    }
+
+    public void updateStatusOrder(int id, int status, OrderCallback callback) {
+        try {
+            getAPI().updateStatusOrder(id, status).enqueue(new Callback<OrderResponse>() {
+                @Override
+                public void onResponse(@NonNull Call<OrderResponse> call, @NonNull Response<OrderResponse> response) {
+                    if (response.code() == 200) {
+                        callback.onSuccess(true, response.body());
+                        return;
+                    }
+                    callback.onFailed(false);
+                }
+
+                @Override
+                public void onFailure(@NonNull Call<OrderResponse> call, @NonNull Throwable t) {
+                    callback.onFailed(false);
+                    Logger.log("ERROR", t);
+                }
+            });
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+    }
+
+    public void updateBalanceOrder(int id, int status, double balance, OrderCallback callback) {
+        try {
+            getAPI().updatePriceOrder(id, status, balance).enqueue(new Callback<OrderResponse>() {
+                @Override
+                public void onResponse(@NonNull Call<OrderResponse> call, @NonNull Response<OrderResponse> response) {
+                    if (response.code() == 200) {
+                        callback.onSuccess(true, response.body());
+                        return;
+                    }
+                    callback.onFailed(false);
+                }
+
+                @Override
+                public void onFailure(@NonNull Call<OrderResponse> call, @NonNull Throwable t) {
                     callback.onFailed(false);
                     Logger.log("ERROR", t);
                 }

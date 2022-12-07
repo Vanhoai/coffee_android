@@ -17,7 +17,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.coffee.R;
 import com.example.coffee.models.Shop.Shop;
-import com.example.coffee.models.Shop.ShopDetailResponse;
 import com.example.coffee.screens.bottom.Shop.DetailPlaceActivity;
 import com.example.coffee.utils.Logger;
 

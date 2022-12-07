@@ -21,10 +21,18 @@ public class History implements Serializable {
     @SerializedName("updatedAt")
     private Date date;
 
-    public History(int id, float price, Date date) {
+    @SerializedName("user")
+    private User user;
+
+    @SerializedName("order")
+    private Order order;
+
+    public History(int id, float price, Date date, User user, Order order) {
         this.id = id;
         this.price = price;
         this.date = date;
+        this.user = user;
+        this.order = order;
     }
 
     public int getId() {
@@ -51,12 +59,30 @@ public class History implements Serializable {
         this.date = date;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
     @Override
     public String toString() {
         return "History{" +
                 "id=" + id +
                 ", price=" + price +
                 ", date=" + date +
+                ", user=" + user +
+                ", order=" + order +
                 '}';
     }
 }

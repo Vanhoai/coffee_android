@@ -82,6 +82,7 @@ public class ShopFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
     }
 
+
     public void init(View view){
         recyclerViewNearbyPlace = view.findViewById(R.id.recycleViewNearbyPlace);
         recyclerViewAllShop = view.findViewById(R.id.recycleViewAllShop);
