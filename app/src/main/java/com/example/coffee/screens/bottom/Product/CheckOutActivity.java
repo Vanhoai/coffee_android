@@ -70,6 +70,7 @@ public class CheckOutActivity extends AppCompatActivity {
     private GiftService giftService;
     private ArrayList<Gift> gifts;
     private Order order;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -123,13 +124,10 @@ public class CheckOutActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intentStart = getIntent();
                 Bundle bundleStart = intentStart.getExtras();
-                int id = bundleStart.getInt("id", -1);
                 Order order = (Order) bundleStart.getSerializable("OrderDetail");
-
 
                 Intent intent = new Intent(CheckOutActivity.this, DetailPlaceActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putInt("id", id);
                 bundle.putSerializable("OrderDetail", order);
                 intent.putExtras(bundle);
                 startActivity(intent);
@@ -140,9 +138,12 @@ public class CheckOutActivity extends AppCompatActivity {
         btnContinuePayment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(CheckOutActivity.this, PaymentActivity.class);
-                startActivity(intent);
-                finish();
+                String balanceText = tvPromo.getText().toString().trim();
+                double balance = 0;
+                if (!balanceText.equals("-")) {
+                    balance = Double.parseDouble(balanceText);
+                }
+                orderService.updateBalanceOrder(order.getId(), 1, balance, orderCallback1);
             }
         });
 
@@ -160,6 +161,23 @@ public class CheckOutActivity extends AppCompatActivity {
             }
         });
     }
+
+    private final OrderCallback orderCallback1 = new OrderCallback() {
+        @Override
+        public void onSuccess(boolean value, OrderResponse orderResponse) {
+            Intent intent = new Intent(CheckOutActivity.this, PaymentActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("ORDER", orderResponse.getOrder());
+            intent.putExtras(bundle);
+            startActivity(intent);
+            finish();
+        }
+
+        @Override
+        public void onFailed(boolean value) {
+
+        }
+    };
 
     public void initView() {
         btnContinuePayment = findViewById(R.id.btnContinuePayment);
@@ -359,7 +377,7 @@ public class CheckOutActivity extends AppCompatActivity {
             }
         });
     }
-    private final OrderCallback orderCallback = new OrderCallback() {
+    private OrderCallback orderCallback = new OrderCallback() {
         @Override
         public void onSuccess(boolean value, OrderResponse orderResponse) {
             Logger.log("ORDER RESPONSE", orderResponse);

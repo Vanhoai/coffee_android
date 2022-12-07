@@ -9,6 +9,7 @@
     tools:context=".screens.bottom.Shop.PlaceListActivity">
 
     <RelativeLayout
+        android:translationZ="1dp"
         android:id="@+id/RelativePlaceList"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
@@ -43,11 +44,14 @@
         android:text="Không có shop nào gần đây!"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+
     <ScrollView
+        android:layout_marginTop="16dp"
         android:id="@+id/svPlacelist"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="none">
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclePlaceList"
         android:layout_marginTop="32dp"

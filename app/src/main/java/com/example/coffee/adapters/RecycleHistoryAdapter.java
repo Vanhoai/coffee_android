@@ -10,13 +10,20 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.coffee.R;
+import com.example.coffee.callbacks.HistoryCallback;
+import com.example.coffee.callbacks.OrderDetailCallback;
+import com.example.coffee.models.Order.Order;
+import com.example.coffee.models.Order.OrderDetailResponse;
 import com.example.coffee.models.User.History;
+import com.example.coffee.models.User.HistoryResponse;
 import com.example.coffee.screens.bottom.Profile.RewardDetailActivity;
 import com.example.coffee.screens.bottom.Shop.DetailPlaceActivity;
+import com.example.coffee.services.OrderService;
 import com.example.coffee.utils.Logger;
 
 import java.text.SimpleDateFormat;
@@ -26,11 +33,12 @@ public class RecycleHistoryAdapter extends RecyclerView.Adapter<RecycleHistoryAd
     private final Context context;
     private final ArrayList<History> list_history;
     private final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd - MM - yyyy");
-
+    private final OrderService orderService;
 
     public RecycleHistoryAdapter(Context context, ArrayList<History> list_history) {
         this.context = context;
         this.list_history = list_history;
+        orderService = new OrderService();
     }
 
     @NonNull
@@ -44,22 +52,41 @@ public class RecycleHistoryAdapter extends RecyclerView.Adapter<RecycleHistoryAd
     @Override
     public void onBindViewHolder(@NonNull HistoryViewHolder holder, int position) {
         History history = list_history.get(position);
-        Logger.log("history", history);
-        holder.tvNameHistory.setText("Order Successfully");
-        holder.tvPriceHistory.setText(String.valueOf(history.getPrice()));
-        holder.tvDerscriptionHistory.setText("Congratulation, you have successfully made a coffee purchase");
+        Logger.log("status", history.getOrder().getStatus());
+
+        if (history.getOrder().getStatus() >= 2) {
+            holder.tvNameHistory.setText("Order Successfully");
+            holder.tvStatus.setText(String.valueOf(history.getPrice()));
+            holder.tvDerscriptionHistory.setText("Congratulation, you have successfully made a coffee purchase");
+            holder.btnCancel.setVisibility(View.GONE);
+        } else {
+            holder.tvNameHistory.setText("Orders are pending");
+            holder.tvStatus.setText(String.valueOf(history.getPrice()));
+            holder.tvDerscriptionHistory.setVisibility(View.GONE);
+            holder.btnCancel.setText("Cancel Order");
+        }
+
+        holder.btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                orderService.cancelOrder(history.getOrder().getId(), historyCallback);
+            }
+        });
+
         holder.tvDateHistory.setText(String.valueOf(simpleDateFormat.format(history.getDate())));
+
+
         holder.cardHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Intent intent = new Intent(context, DetailPlaceActivity.class); Bundle bundle =new Bundle();
-                bundle.putInt("id", history.getOrder().getShop().getId());
-                bundle.putString("status", "HISTORY");
-                bundle.putSerializable("OrderDetail", history.getOrder());
-                intent.putExtras(bundle);
-                context.startActivity(intent);
-
+                if (history.getOrder().getStatus() != 3) {
+                    Intent intent = new Intent(context, DetailPlaceActivity.class); Bundle bundle =new Bundle();
+                    bundle.putInt("id", history.getOrder().getShop().getId());
+                    bundle.putString("status", "HISTORY");
+                    bundle.putSerializable("OrderDetail", history.getOrder());
+                    intent.putExtras(bundle);
+                    context.startActivity(intent);
+                }
             }
         });
     }
@@ -70,16 +97,37 @@ public class RecycleHistoryAdapter extends RecyclerView.Adapter<RecycleHistoryAd
     }
 
     public static class HistoryViewHolder extends RecyclerView.ViewHolder {
-        TextView tvNameHistory, tvPriceHistory, tvDerscriptionHistory, tvDateHistory;
+        TextView tvNameHistory, tvStatus, tvDerscriptionHistory, tvDateHistory;
         CardView cardHistory;
+        AppCompatButton btnCancel;
+
         public HistoryViewHolder(@NonNull View itemView) {
             super(itemView);
             tvNameHistory = itemView.findViewById(R.id.tvNameHistory);
-            tvPriceHistory = itemView.findViewById(R.id.tvPriceHistory);
+            tvStatus = itemView.findViewById(R.id.tvStatus);
             tvDerscriptionHistory = itemView.findViewById(R.id.tvDescriptionHisstory);
             tvDateHistory = itemView.findViewById(R.id.tvDateHistory);
             cardHistory = itemView.findViewById(R.id.cardHistory);
-
+            btnCancel = itemView.findViewById(R.id.btnCancel);
         }
     }
+
+    private void render(ArrayList<History> data) {
+        list_history.clear();
+        list_history.addAll(data);
+        notifyDataSetChanged();
+    }
+
+    private final HistoryCallback historyCallback = new HistoryCallback() {
+        @Override
+        public void onSuccess(Boolean value, HistoryResponse historyResponse) {
+            render(historyResponse.getHistories());
+            Logger.log("RESPONSE", historyResponse);
+        }
+
+        @Override
+        public void onFailed(Boolean value) {
+
+        }
+    };
 }
