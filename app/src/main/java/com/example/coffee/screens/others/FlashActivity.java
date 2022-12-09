@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.ea.async.instrumentation.Main;
 import com.example.coffee.R;
+import com.example.coffee.screens.auth.LoginActivity;
 import com.example.coffee.screens.bottom.MainActivity;
 import com.example.coffee.utils.Storage;
 
@@ -42,7 +43,7 @@ public class FlashActivity extends AppCompatActivity {
         if (check) {
             intent = new Intent(FlashActivity.this, MainActivity.class);
         } else {
-            intent = new Intent(FlashActivity.this, OnBoardActivity.class);
+            intent = new Intent(FlashActivity.this, LoginActivity.class);
         }
         startActivity(intent);
         finish();
