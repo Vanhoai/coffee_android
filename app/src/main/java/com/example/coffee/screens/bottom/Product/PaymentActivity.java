@@ -13,7 +13,12 @@ import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 
 import com.example.coffee.R;
+import com.example.coffee.callbacks.OrderCallback;
+import com.example.coffee.models.Order.Order;
+import com.example.coffee.models.Order.OrderResponse;
 import com.example.coffee.screens.bottom.MainActivity;
+import com.example.coffee.services.OrderService;
+import com.example.coffee.utils.Logger;
 
 public class PaymentActivity extends AppCompatActivity {
 
@@ -21,6 +26,8 @@ public class PaymentActivity extends AppCompatActivity {
     private ImageView backNavigation;
     private RelativeLayout relativeWallet, relativeZaloPay;
     private RadioButton checkWallet, checkZaloPay;
+    private Order order;
+    private OrderService orderService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +39,10 @@ public class PaymentActivity extends AppCompatActivity {
 
         // handle click
         handleClick();
+
+        getOrder();
+
+        orderService = new OrderService();
     }
 
     private void handleClick() {
@@ -48,7 +59,13 @@ public class PaymentActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // show dialog success
-                showDialog();
+                if (checkWallet.isChecked()) {
+                    Logger.log("ORDER", order);
+                    orderService.updateStatusOrder(order.getId(), 3, orderCallback);
+                    return;
+                }
+
+                // handle zalo pay
             }
         });
 
@@ -69,6 +86,19 @@ public class PaymentActivity extends AppCompatActivity {
         });
     }
 
+    private final OrderCallback orderCallback = new OrderCallback() {
+        @Override
+        public void onSuccess(boolean value, OrderResponse orderResponse) {
+            Logger.log("RESPONSE", orderResponse);
+            showDialog();
+        }
+
+        @Override
+        public void onFailed(boolean value) {
+
+        }
+    };
+
     private void initView() {
         btnPayNow  = findViewById(R.id.btnPayNow);
         backNavigation = findViewById(R.id.backNavigation);
@@ -76,6 +106,16 @@ public class PaymentActivity extends AppCompatActivity {
         relativeZaloPay = findViewById(R.id.relativeZaloPay);
         checkWallet = findViewById(R.id.checkWallet);
         checkZaloPay = findViewById(R.id.checkZaloPay);
+    }
+
+    public void getOrder() {
+        try {
+            Intent intent = getIntent();
+            Bundle bundle = intent.getExtras();
+            order = (Order) bundle.getSerializable("ORDER");
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
     }
 
     public void showDialog()  {

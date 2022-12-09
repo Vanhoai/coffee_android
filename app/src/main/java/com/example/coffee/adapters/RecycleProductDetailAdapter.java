@@ -34,11 +34,25 @@ public class RecycleProductDetailAdapter extends RecyclerView.Adapter<RecyclePro
     private final Context context;
     private final ArrayList<Product> products;
     private final UpdateTotal updateTotal;
+    private final UpdateOrder updateOrder;
+    private String status;
+    private int shop;
+    private int order;
+    private OnClick onClick;
 
-    public RecycleProductDetailAdapter(Context context, ArrayList<Product> products, UpdateTotal updateTotal) {
+    public RecycleProductDetailAdapter(Context context, ArrayList<Product> products, String status, int shop, int order, OnClick onClick,UpdateTotal updateTotal, UpdateOrder updateOrder) {
         this.context = context;
         this.products = products;
         this.updateTotal = updateTotal;
+        this.updateOrder = updateOrder;
+        this.status = status;
+        this.shop = shop;
+        this.onClick = onClick;
+        if (order != -1) {
+            this.order = order;
+        } else {
+            this.order = -1;
+        }
     }
 
     @NonNull
@@ -56,18 +70,14 @@ public class RecycleProductDetailAdapter extends RecyclerView.Adapter<RecyclePro
         holder.tvProductTitle.setText(product.getName());
         holder.tvProductPrice.setText(String.valueOf(product.getPrice()));
         Glide.with(context).load(product.getImage()).into(holder.imageProduct);
-        holder.tvProductPrice.setText(String.format("%.1f", product.getPrice() * product.getCurrent()));
+        holder.tvProductPrice.setText(String.format("%.1f VND", product.getPrice() * product.getCurrent()));
         holder.btnCurrent.setText(String.valueOf(product.getCurrent()));
         updateTotal.update(products);
 
         holder.cardProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, ProductDetailActivity.class);
-                Bundle bundle =new Bundle();
-                bundle.putInt("id", product.getId());
-                intent.putExtras(bundle);
-                context.startActivity(intent);
+                onClick.onClick(product);
             }
         });
         holder.btnDecrease.setOnClickListener(new View.OnClickListener() {
@@ -80,8 +90,9 @@ public class RecycleProductDetailAdapter extends RecyclerView.Adapter<RecyclePro
                 // update current
                 product.setCurrent(product.getCurrent() - 1);
                 holder.btnCurrent.setText(String.valueOf(product.getCurrent()));
-                holder.tvProductPrice.setText(String.format("%.1f", product.getPrice() * product.getCurrent()));
+                holder.tvProductPrice.setText(String.format("%.1f VND", product.getPrice() * product.getCurrent()));
                 updateTotal.update(products);
+                updateOrder.update(products, product, -1);
             }
         });
         holder.btnIncrease.setOnClickListener(new View.OnClickListener() {
@@ -89,14 +100,23 @@ public class RecycleProductDetailAdapter extends RecyclerView.Adapter<RecyclePro
             public void onClick(View view) {
                 product.setCurrent(product.getCurrent() + 1);
                 holder.btnCurrent.setText(String.valueOf(product.getCurrent()));
-                holder.tvProductPrice.setText(String.format("%.1f", product.getPrice() * product.getCurrent()));
+                holder.tvProductPrice.setText(String.format("%.1f VND", product.getPrice() * product.getCurrent()));
                 updateTotal.update(products);
+                updateOrder.update(products, product, 1);
             }
         });
     }
 
     public interface UpdateTotal {
         public void update(ArrayList<Product> products);
+    }
+
+    public interface UpdateOrder {
+        public void update(ArrayList<Product> products, Product product, int change);
+    }
+
+    public interface OnClick {
+        public void onClick(Product product);
     }
 
 

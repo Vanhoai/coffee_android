@@ -34,8 +34,11 @@ import com.example.coffee.R;
 import com.example.coffee.adapters.RecycleProductDetailAdapter;
 import com.example.coffee.callbacks.GiftOfUserCallback;
 import com.example.coffee.callbacks.OrderCallback;
+import com.example.coffee.callbacks.OrderDetailCallback;
 import com.example.coffee.models.Order.Gift;
+import com.example.coffee.models.Order.Order;
 import com.example.coffee.models.Order.OrderResponse;
+import com.example.coffee.models.Order.ProductOrder;
 import com.example.coffee.models.Order.Type;
 import com.example.coffee.models.Product.Product;
 import com.example.coffee.models.Product.ProductRequest;
@@ -66,6 +69,7 @@ public class CheckOutActivity extends AppCompatActivity {
     private Spinner spinnerGift;
     private GiftService giftService;
     private ArrayList<Gift> gifts;
+    private Order order;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +89,7 @@ public class CheckOutActivity extends AppCompatActivity {
 
         // set view
         initProducts();
+
         initGiftOfUser();
 
         // handle click
@@ -119,11 +124,11 @@ public class CheckOutActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intentStart = getIntent();
                 Bundle bundleStart = intentStart.getExtras();
-                int id = bundleStart.getInt("id", -1);
+                Order order = (Order) bundleStart.getSerializable("OrderDetail");
 
                 Intent intent = new Intent(CheckOutActivity.this, DetailPlaceActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putInt("id", id);
+                bundle.putSerializable("OrderDetail", order);
                 intent.putExtras(bundle);
                 startActivity(intent);
                 finish();
@@ -133,11 +138,12 @@ public class CheckOutActivity extends AppCompatActivity {
         btnContinuePayment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                createOrder();
-
-//                Intent intent = new Intent(CheckOutActivity.this, PaymentActivity.class);
-//                startActivity(intent);
-//                finish();
+                String balanceText = tvPromo.getText().toString().trim();
+                double balance = 0;
+                if (!balanceText.equals("-")) {
+                    balance = Double.parseDouble(balanceText);
+                }
+                orderService.updateBalanceOrder(order.getId(), 1, balance, orderCallback1);
             }
         });
 
@@ -154,41 +160,24 @@ public class CheckOutActivity extends AppCompatActivity {
                 changeDelivery(false, true);
             }
         });
-
-
     }
 
-    private void createOrder() {
-       try {
-           layoutLoading.setLoading();
-           Intent intentStart = getIntent();
-           Bundle bundleStart = intentStart.getExtras();
-           int id = bundleStart.getInt("id", -1);
-           User user = UserInformation.getUser(CheckOutActivity.this);
-           ArrayList<ProductRequest> productRequests = new ArrayList<>();
+    private final OrderCallback orderCallback1 = new OrderCallback() {
+        @Override
+        public void onSuccess(boolean value, OrderResponse orderResponse) {
+            Intent intent = new Intent(CheckOutActivity.this, PaymentActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("ORDER", orderResponse.getOrder());
+            intent.putExtras(bundle);
+            startActivity(intent);
+            finish();
+        }
 
-           for (Product product: products) {
-               ProductRequest productRequest = new ProductRequest(product.getId(), product.getCurrent());
-               productRequests.add(productRequest);
-           }
+        @Override
+        public void onFailed(boolean value) {
 
-           orderService.createOrder(user.getId(), id, "", productRequests, new OrderCallback() {
-               @Override
-               public void onSuccess(boolean value, OrderResponse orderResponse) {
-                   Logger.log("RESPONSE", orderResponse);
-                   layoutLoading.setGone();
-               }
-
-               @Override
-               public void onFailed(boolean value) {
-                    Logger.log("RESPONSE", "ERROR");
-                   layoutLoading.setGone();
-               }
-           });
-       } catch (Exception exception) {
-           exception.printStackTrace();
-       }
-    }
+        }
+    };
 
     public void initView() {
         btnContinuePayment = findViewById(R.id.btnContinuePayment);
@@ -245,6 +234,7 @@ public class CheckOutActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         try {
+            order = (Order) bundle.getSerializable("OrderDetail");
             products = (ArrayList<Product>) bundle.getSerializable("products");
             render(products);
         } catch (Exception exception) {
@@ -253,6 +243,10 @@ public class CheckOutActivity extends AppCompatActivity {
     }
 
     public void render(ArrayList<Product> data) {
+        Intent intentStart = getIntent();
+        Bundle bundleStart = intentStart.getExtras();
+        int id = bundleStart.getInt("id", -1);
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(CheckOutActivity.this) {
             @Override
             public boolean canScrollVertically() {
@@ -260,7 +254,12 @@ public class CheckOutActivity extends AppCompatActivity {
             }
         };
         recycleProducts.setLayoutManager(linearLayoutManager);
-        RecycleProductDetailAdapter adapter = new RecycleProductDetailAdapter(CheckOutActivity.this, data, new RecycleProductDetailAdapter.UpdateTotal() {
+        RecycleProductDetailAdapter adapter = new RecycleProductDetailAdapter(CheckOutActivity.this, data, "PLACE", id, -1, new RecycleProductDetailAdapter.OnClick() {
+            @Override
+            public void onClick(Product product) {
+                Toast.makeText(CheckOutActivity.this, "FAILED", Toast.LENGTH_SHORT).show();
+            }
+        }, new RecycleProductDetailAdapter.UpdateTotal() {
             @Override
             public void update(ArrayList<Product> products) {
                 float total = 0;
@@ -269,6 +268,21 @@ public class CheckOutActivity extends AppCompatActivity {
                 }
                 tvAmount.setText(String.format("%.0f", total));
                 calculator();
+            }
+        }, new RecycleProductDetailAdapter.UpdateOrder() {
+            @Override
+            public void update(ArrayList<Product> products, Product product, int change) {
+                Logger.log("product", product);
+                User user = UserInformation.getUser(CheckOutActivity.this);
+
+                if (order == null) {
+                    if (change == -1) {
+                        return;
+                    }
+                    orderService.createOrder("", user.getId(), product.getId(), id, change, -1, orderCallback);
+                } else {
+                    orderService.createOrder("", user.getId(), product.getId(), id, change, order.getId(), orderCallback);
+                }
             }
         });
         recycleProducts.setAdapter(adapter);
@@ -363,4 +377,30 @@ public class CheckOutActivity extends AppCompatActivity {
             }
         });
     }
+    private OrderCallback orderCallback = new OrderCallback() {
+        @Override
+        public void onSuccess(boolean value, OrderResponse orderResponse) {
+            Logger.log("ORDER RESPONSE", orderResponse);
+            layoutLoading.setGone();
+            if (order == null) {
+                int id = orderResponse.getOrder().getId();
+                Shop shop = orderResponse.getOrder().getShop();
+                String address = orderResponse.getOrder().getAddress();
+                int status = orderResponse.getOrder().getStatus();
+                User user = orderResponse.getOrder().getUser();
+                Double total = orderResponse.getOrder().getTotal();
+                ArrayList<ProductOrder> list = orderResponse.getOrder().getProducts();
+                order = new Order(id, address, shop, total, status, user, list);
+            } else {
+                Order order1 = orderResponse.getOrder();
+                order.assign(order1);
+            }
+        }
+
+        @Override
+        public void onFailed(boolean value) {
+            Logger.log("ORDER RESPONSE", "ERROR");
+            layoutLoading.setGone();
+        }
+    };
 }

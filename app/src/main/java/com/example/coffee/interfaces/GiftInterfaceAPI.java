@@ -2,11 +2,16 @@ package com.example.coffee.interfaces;
 
 import static com.example.coffee.interfaces.BaseAPI.BASE_URL;
 
+import com.example.coffee.models.Others.MissionUserResponse;
+import com.example.coffee.models.Others.UpdateMissionResponse;
 import com.example.coffee.models.Shop.GiftResponse;
 import com.example.coffee.models.Shop.PromoResponse;
 
 import retrofit2.Call;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -30,4 +35,18 @@ public interface GiftInterfaceAPI {
             @Path("id") int id
     );
 
+    @POST("mission/register")
+    @FormUrlEncoded()
+    Call<MissionUserResponse> registerMission(
+            @Field("userId") int userId,
+            @Field("missionId") int missionId
+    );
+
+    @POST("mission/update")
+    @FormUrlEncoded()
+    Call<UpdateMissionResponse> updateMissionUser(
+            @Field("userId") int userId,
+            @Field("missionId") int missionId,
+            @Field("current") int current
+    );
 }

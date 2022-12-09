@@ -1,6 +1,7 @@
 package com.example.coffee.interfaces;
 
 
+import com.example.coffee.models.Others.MailResponse;
 import com.example.coffee.models.User.UserResponse;
 
 import retrofit2.Call;
@@ -38,6 +39,11 @@ public interface AuthInterfaceAPI extends BaseAPI{
             @Field("password") String password
     );
 
-
+    @POST("send-code")
+    @FormUrlEncoded
+    Call<MailResponse> sendCode(
+            @Field("email") String email,
+            @Field("code") String code
+    );
 
 }

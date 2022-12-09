@@ -8,6 +8,8 @@ import androidx.annotation.NonNull;
 
 import com.example.coffee.callbacks.AuthCallback;
 import com.example.coffee.interfaces.AuthInterfaceAPI;
+import com.example.coffee.interfaces.MailCallback;
+import com.example.coffee.models.Others.MailResponse;
 import com.example.coffee.models.User.UserResponse;
 import com.example.coffee.utils.Logger;
 
@@ -93,6 +95,30 @@ public class AuthService {
                 public void onFailure(@NonNull Call<UserResponse> call, @NonNull Throwable throwable) {
                     callback.onFailed(false);
                     Logger.log("ERROR", throwable);
+                }
+            });
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+    }
+
+    public void sendCode(String email, String code, MailCallback callback) {
+        try {
+            getAPI().sendCode(email, code).enqueue(new Callback<MailResponse>() {
+                @Override
+                public void onResponse(@NonNull Call<MailResponse> call, @NonNull Response<MailResponse> response) {
+                    if (response.code() == 200) {
+                        callback.onSuccess(response.body());
+                        return;
+                    }
+
+                    callback.onFailed(false);
+                }
+
+                @Override
+                public void onFailure(@NonNull Call<MailResponse> call, @NonNull Throwable t) {
+                    callback.onFailed(false);
+                    Logger.log("ERROR", t);
                 }
             });
         } catch (Exception exception) {

@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.example.coffee.R;
@@ -30,17 +31,21 @@ import java.util.ArrayList;
 
 public class PlaceListActivity extends AppCompatActivity {
 
-    private TextView tvTitle;
+    private TextView tvTitle, tvPlacelist;
     private ImageView backNavigation;
     private RecyclerView recyclePlaceList;
     private ArrayList<Shop> shops ;
     private ShopService shopService;
+    private ScrollView svPlacelist;
 
     @SuppressLint({"MissingInflatedId"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_place_list);
+
+        tvPlacelist = findViewById(R.id.tvPlacelist);
+        svPlacelist = findViewById(R.id.svPlacelist);
 
         // init view
         initView();
@@ -95,8 +100,15 @@ public class PlaceListActivity extends AppCompatActivity {
             public void onSuccess(boolean value, ShopResponse shopResponse) {
                 Logger.log("SHOP RESPONSE", shopResponse);
 
-                shops.addAll(shopResponse.getShops());
-                renderShop(recyclePlaceList, shops);
+                if(shopResponse.getShops().size() == 0){
+                    svPlacelist.setVisibility(View.GONE);
+                    tvPlacelist.setVisibility(View.VISIBLE);
+                }else{
+                    svPlacelist.setVisibility(View.VISIBLE);
+                    tvPlacelist.setVisibility(View.GONE);
+                    shops.addAll(shopResponse.getShops());
+                    renderShop(recyclePlaceList, shops);
+                }
             }
 
             @Override

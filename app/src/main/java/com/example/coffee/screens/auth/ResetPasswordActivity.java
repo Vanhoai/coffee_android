@@ -16,11 +16,15 @@ import android.widget.Toast;
 
 import com.example.coffee.R;
 import com.example.coffee.callbacks.AuthCallback;
+import com.example.coffee.interfaces.MailCallback;
+import com.example.coffee.models.Others.MailResponse;
 import com.example.coffee.models.User.UserResponse;
 import com.example.coffee.services.AuthService;
 import com.example.coffee.utils.LayoutLoading;
 import com.example.coffee.utils.Logger;
 import com.example.coffee.utils.Validation;
+
+import java.util.Random;
 
 public class ResetPasswordActivity extends AppCompatActivity {
 
@@ -31,6 +35,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
     private AuthService authService;
     private ConstraintLayout constraintLayout;
     private LayoutLoading layoutLoading;
+    private String code = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -123,32 +128,61 @@ public class ResetPasswordActivity extends AppCompatActivity {
                 String password = edtNewPassword.getText().toString().trim();
                 String confirmPassword = edtConfirmNewPassword.getText().toString().trim();
 
-                if (email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) return;
-                if (!password.equals(confirmPassword) || !Validation.verifyLogin(email, password)) return;
+                if (email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
+                    Toast.makeText(ResetPasswordActivity.this, "DATA IS NOT EMPTY", Toast.LENGTH_SHORT).show();
+                    return;
+                };
+                if (!password.equals(confirmPassword) || !Validation.verifyLogin(email, password)) {
+                    Toast.makeText(ResetPasswordActivity.this, "DATA IN VALID", Toast.LENGTH_SHORT).show();
+                    return;
+                };
+
+                code = randomString();
+
+                Logger.log("CODE", code);
 
                 layoutLoading.setLoading();
-                authService.resetPassword(email, password, authCallback);
+                authService.sendCode(email, code, mailCallback);
             }
         });
     }
 
-    private final AuthCallback authCallback = new AuthCallback() {
+    private final MailCallback mailCallback = new MailCallback() {
         @Override
-        public void onSuccess(Boolean value, UserResponse userResponse) {
+        public void onSuccess(MailResponse mailResponse) {
             layoutLoading.setGone();
-            Logger.log("USER RESPONSE", userResponse);
-            Toast.makeText(ResetPasswordActivity.this, "RESET PASSWORD SUCCESSFULLY", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(ResetPasswordActivity.this, LoginActivity.class);
+            Logger.log("RESPONSE", mailResponse);
+
+            String email = edtEmail.getText().toString().trim();
+            String password = edtNewPassword.getText().toString().trim();
+            Intent intent = new Intent(ResetPasswordActivity.this, SendCodeActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putString("email", email);
+            bundle.putString("password", password);
+            bundle.putString("code", code);
+            intent.putExtras(bundle);
             startActivity(intent);
             finish();
         }
 
         @Override
-        public void onFailed(Boolean value) {
+        public void onFailed(boolean failed) {
             layoutLoading.setGone();
-            Toast.makeText(ResetPasswordActivity.this, "EMAIL NOT FOUND", Toast.LENGTH_SHORT).show();
+            Logger.log("RESPONSE", "ERROR");
         }
     };
+
+    public String randomString() {
+        String str = "0123456789";
+        StringBuilder res = new StringBuilder(6);
+
+        for (int i = 0; i < 6; i++) {
+            int index = (int)(str.length() * Math.random());
+            res.append(str.charAt(index));
+        }
+
+        return res.toString();
+    }
 
     private void validate(String value, String type) {
         Logger.log("VALUE", value);

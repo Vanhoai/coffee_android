@@ -36,11 +36,6 @@ public class OnBoardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_on_board);
 
-//        Window window = getWindow();
-//        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-//        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-//        window.setStatusBarColor(Color.parseColor("#FFFFFF"));
-
         // init view
         initView();
 
@@ -53,6 +48,9 @@ public class OnBoardActivity extends AppCompatActivity {
         // run
         autoSlider();
 
+        // check register
+        checkRegister();
+
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -62,6 +60,22 @@ public class OnBoardActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void checkRegister() {
+        try {
+            Intent intent = getIntent();
+            Bundle bundle = intent.getExtras();
+            boolean check = bundle.getBoolean("CHECK_REGISTER", false);
+            if (check) {
+                Intent intent1 = new Intent(OnBoardActivity.this, LoginActivity.class);
+                startActivity(intent1);
+                finish();
+            }
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+    }
+
 
     private void initSlide() {
         SlideOnBoardAdapter adapter = new SlideOnBoardAdapter(OnBoardActivity.this, listSL);

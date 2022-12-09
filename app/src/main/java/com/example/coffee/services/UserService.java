@@ -74,7 +74,7 @@ public class UserService {
             }
         });
     }
-    public  void  topUp(int id, String code, Float balance, BalanceCallback callback){
+    public void topUp(int id, String code, Float balance, BalanceCallback callback){
         try {
             getAPI().topUp(id, code, balance).enqueue(new Callback<BalanceResponse>() {
                 @Override
@@ -100,9 +100,9 @@ public class UserService {
         }
     }
 
-    public void updatePhoneNumber(int id, String phone, AuthCallback callback) {
+    public void updateDeviceToken(int id, String deviceToken, AuthCallback callback) {
         try {
-            getAPI().updatePhoneNumber(id, phone).enqueue(new Callback<UserResponse>() {
+            getAPI().updateDeviceToken(id, deviceToken).enqueue(new Callback<UserResponse>() {
                 @Override
                 public void onResponse(@NonNull Call<UserResponse> call, @NonNull Response<UserResponse> response) {
                     if (response.code() == 200) {
@@ -124,21 +124,21 @@ public class UserService {
         }
     }
 
-    public void updateDeviceToken(int id, String deviceToken, AuthCallback callback) {
+    public void getBalanceOfUser(int id, BalanceCallback callback) {
         try {
-            getAPI().updateDeviceToken(id, deviceToken).enqueue(new Callback<UserResponse>() {
+            getAPI().getBalance(id).enqueue(new Callback<BalanceResponse>() {
                 @Override
-                public void onResponse(@NonNull Call<UserResponse> call, @NonNull Response<UserResponse> response) {
+                public void onResponse(@NonNull Call<BalanceResponse> call, @NonNull Response<BalanceResponse> response) {
                     if (response.code() == 200) {
                         callback.onSuccess(true, response.body());
-                    } else {
-                        callback.onFailed(false);
-                        Logger.log("O DAY HA BA", "UH");
+                        return;
                     }
+
+                    callback.onFailed(false);
                 }
 
                 @Override
-                public void onFailure(@NonNull Call<UserResponse> call, @NonNull Throwable t) {
+                public void onFailure(@NonNull Call<BalanceResponse> call, @NonNull Throwable t) {
                     callback.onFailed(false);
                     Logger.log("ERROR", t);
                 }

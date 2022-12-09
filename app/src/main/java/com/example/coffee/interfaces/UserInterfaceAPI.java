@@ -11,6 +11,7 @@ import okhttp3.MultipartBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.HeaderMap;
 import retrofit2.http.Headers;
 import retrofit2.http.Multipart;
@@ -52,5 +53,10 @@ public interface UserInterfaceAPI {
     Call<UserResponse> updateDeviceToken(
             @Path("id") int id,
             @Field("token") String token
+    );
+
+    @GET("balance/{id}")
+    Call<BalanceResponse> getBalance(
+            @Path("id") int id
     );
 }
