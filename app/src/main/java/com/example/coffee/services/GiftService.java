@@ -6,8 +6,10 @@ import androidx.annotation.NonNull;
 
 import com.example.coffee.callbacks.GiftCallback;
 import com.example.coffee.callbacks.GiftOfUserCallback;
+import com.example.coffee.callbacks.MissionUseCallback;
 import com.example.coffee.callbacks.PromoCallback;
 import com.example.coffee.interfaces.GiftInterfaceAPI;
+import com.example.coffee.models.Others.MissionUserResponse;
 import com.example.coffee.models.Shop.GiftResponse;
 import com.example.coffee.models.Shop.PromoResponse;
 import com.example.coffee.utils.Logger;
@@ -96,5 +98,29 @@ public class GiftService {
                 Logger.log("GIFTOFUSER", t);
             }
         });
+   }
+
+   public void registerMission(int userId, int missionId, MissionUseCallback callback) {
+        try {
+            getAPI().registerMission(userId, missionId).enqueue(new Callback<MissionUserResponse>() {
+                @Override
+                public void onResponse(@NonNull Call<MissionUserResponse> call, @NonNull Response<MissionUserResponse> response) {
+                    if (response.code() == 200) {
+                        callback.onSuccess(response.body());
+                        return;
+                    }
+
+                    callback.onFailed(false);
+                }
+
+                @Override
+                public void onFailure(@NonNull Call<MissionUserResponse> call, @NonNull Throwable t) {
+                    callback.onFailed(false);
+                    Logger.log("ERROR", t);
+                }
+            });
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
    }
 }

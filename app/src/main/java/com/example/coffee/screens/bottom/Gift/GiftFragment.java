@@ -120,7 +120,6 @@ public class GiftFragment extends Fragment {
                     tvTotalMission.setText(String.valueOf(giftResponse.getTotal().getTotalMission()));
                     tvTotalMissionProgress.setText(String.format("%d missions progress", giftResponse.getTotal().getTotalMissionProgress()));
 
-
                     if (giftResponse.getTotal().getListGifts().size() <= 0) {
                         cardGift.setVisibility(View.GONE);
                     } else {

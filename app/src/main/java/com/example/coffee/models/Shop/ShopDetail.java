@@ -17,10 +17,10 @@ public class ShopDetail implements Serializable {
     private String description;
 
     @SerializedName("longitude")
-    private int longitude;
+    private double longitude;
 
     @SerializedName("latitude")
-    private int latitude;
+    private double latitude;
 
     @SerializedName("image")
     private String image;
@@ -28,7 +28,7 @@ public class ShopDetail implements Serializable {
     @SerializedName("products")
     private ArrayList<ProductDetail> products;
 
-    public ShopDetail(int id, String location, String description, int longitude, int latitude, String image, ArrayList<ProductDetail> products) {
+    public ShopDetail(int id, String location, String description, double longitude, double latitude, String image, ArrayList<ProductDetail> products) {
         this.id = id;
         this.location = location;
         this.description = description;
@@ -62,19 +62,19 @@ public class ShopDetail implements Serializable {
         this.description = description;
     }
 
-    public int getLongitude() {
+    public double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(int longitude) {
+    public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
 
-    public int getLatitude() {
+    public double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(int latitude) {
+    public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
 

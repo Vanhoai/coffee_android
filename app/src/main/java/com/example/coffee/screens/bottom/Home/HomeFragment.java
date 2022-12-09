@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.coffee.R;
 import com.example.coffee.adapters.RecycleNearlyAdapter;
 import com.example.coffee.adapters.RecycleProductAdapter;
+import com.example.coffee.callbacks.BalanceCallback;
 import com.example.coffee.callbacks.GiftCallback;
 import com.example.coffee.callbacks.GiftOfUserCallback;
 import com.example.coffee.callbacks.ProductCallback;
@@ -29,6 +30,8 @@ import com.example.coffee.models.Shop.Shop;
 
 
 import com.example.coffee.models.Shop.ShopResponse;
+import com.example.coffee.models.User.Balance;
+import com.example.coffee.models.User.BalanceResponse;
 import com.example.coffee.models.User.User;
 
 import com.example.coffee.screens.bottom.Product.ProductListActivity;
@@ -39,6 +42,7 @@ import com.example.coffee.screens.bottom.Shop.PlaceListActivity;
 import com.example.coffee.services.GiftService;
 import com.example.coffee.services.ProductService;
 import com.example.coffee.services.ShopService;
+import com.example.coffee.services.UserService;
 import com.example.coffee.utils.HelperFunction;
 import com.example.coffee.utils.Logger;
 import com.example.coffee.utils.UserInformation;
@@ -60,6 +64,7 @@ public class HomeFragment extends Fragment {
      ArrayList<Gift> gifts;
      GiftService giftService;
      LinearLayout linearMyReward;
+     private UserService userService;
 
     @Nullable
     @Override
@@ -79,6 +84,7 @@ public class HomeFragment extends Fragment {
         shopService = new ShopService();
         productService = new ProductService();
         giftService = new GiftService();
+        userService = new UserService();
 
         // call api
         initShop();
@@ -102,6 +108,22 @@ public class HomeFragment extends Fragment {
         User user = UserInformation.getUser(getContext());
         @SuppressLint("DefaultLocale") String balance = String.format("%.0f VND",user.getBalance().getAmount());
         tvBalance.setText(balance);
+
+        userService.getBalanceOfUser(user.getId(), new BalanceCallback() {
+            @Override
+            public void onSuccess(Boolean value, BalanceResponse balanceResponse) {
+                Balance balance1 = balanceResponse.getBalance();
+                user.setBalance(balance1);
+
+                String balance = String.format("%.0f VND",user.getBalance().getAmount());
+                tvBalance.setText(balance);
+            }
+
+            @Override
+            public void onFailed(Boolean value) {
+
+            }
+        });
     }
 
     public void initShop() {

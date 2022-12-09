@@ -95,6 +95,7 @@ public class ShopService {
            @Override
            public void onFailure(@NonNull Call<ShopDetailResponse> call, @NonNull Throwable t) {
                 callback.onFailed(false);
+                Logger.log("ERROR", t);
            }
        });
     }

@@ -70,7 +70,7 @@ public class RecycleProductDetailAdapter extends RecyclerView.Adapter<RecyclePro
         holder.tvProductTitle.setText(product.getName());
         holder.tvProductPrice.setText(String.valueOf(product.getPrice()));
         Glide.with(context).load(product.getImage()).into(holder.imageProduct);
-        holder.tvProductPrice.setText(String.format("%.1f", product.getPrice() * product.getCurrent()));
+        holder.tvProductPrice.setText(String.format("%.1f VND", product.getPrice() * product.getCurrent()));
         holder.btnCurrent.setText(String.valueOf(product.getCurrent()));
         updateTotal.update(products);
 
@@ -90,7 +90,7 @@ public class RecycleProductDetailAdapter extends RecyclerView.Adapter<RecyclePro
                 // update current
                 product.setCurrent(product.getCurrent() - 1);
                 holder.btnCurrent.setText(String.valueOf(product.getCurrent()));
-                holder.tvProductPrice.setText(String.format("%.1f", product.getPrice() * product.getCurrent()));
+                holder.tvProductPrice.setText(String.format("%.1f VND", product.getPrice() * product.getCurrent()));
                 updateTotal.update(products);
                 updateOrder.update(products, product, -1);
             }
@@ -100,7 +100,7 @@ public class RecycleProductDetailAdapter extends RecyclerView.Adapter<RecyclePro
             public void onClick(View view) {
                 product.setCurrent(product.getCurrent() + 1);
                 holder.btnCurrent.setText(String.valueOf(product.getCurrent()));
-                holder.tvProductPrice.setText(String.format("%.1f", product.getPrice() * product.getCurrent()));
+                holder.tvProductPrice.setText(String.format("%.1f VND", product.getPrice() * product.getCurrent()));
                 updateTotal.update(products);
                 updateOrder.update(products, product, 1);
             }

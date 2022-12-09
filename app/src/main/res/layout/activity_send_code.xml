@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/loading">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="20dp">
+
+        <LinearLayout
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/backNavigation"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/back_icon"
+                android:backgroundTint="#5F5F5F"/>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_marginTop="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Verify Email"
+                    android:textSize="24dp"
+                    style="@style/textWeight"
+                    android:textColor="#343434"/>
+
+                <LinearLayout
+                    android:layout_marginTop="24dp"
+                    android:orientation="vertical"
+                    android:gravity="center_vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Code"
+                            android:textColor="#5F5F5F"
+                            android:textSize="16dp"
+                            style="@style/textMedium"
+                            android:layout_marginBottom="8dp"/>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="56dp"
+                            android:background="@drawable/background_input"
+                            android:paddingHorizontal="20dp">
+
+                            <EditText
+                                android:id="@+id/edtCode"
+                                android:layout_width="match_parent"
+                                android:layout_height="56dp"
+                                android:textSize="16dp"
+                                style="@style/textWeight"
+                                android:inputType="number"
+                                android:hint="Enter code from email"
+                                android:background="@null"/>
+
+                            <ImageView
+                                android:id="@+id/checkNewPassword"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_alignParentEnd="true"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:layout_gravity="right"
+                                android:src="@drawable/check"/>
+
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnConfirm"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:backgroundTint="@null"
+            android:text="Confirm"
+            style="@style/textWeight"
+            android:textAllCaps="false"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/background_button"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:textSize="16dp"
+            android:textColor="@color/white"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

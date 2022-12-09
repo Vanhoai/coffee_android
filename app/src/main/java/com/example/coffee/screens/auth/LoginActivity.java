@@ -176,6 +176,10 @@ public class LoginActivity extends AppCompatActivity {
             }
 
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            boolean check = true;
+            Bundle bundle = new Bundle();
+            bundle.putBoolean("CHECK_REGISTER", check);
+            intent.putExtras(bundle);
             startActivity(intent);
             finish();
         }
