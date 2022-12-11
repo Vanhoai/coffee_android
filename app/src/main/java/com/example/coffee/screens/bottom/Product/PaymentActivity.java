@@ -13,12 +13,16 @@ import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 
 import com.example.coffee.R;
+import com.example.coffee.app.Constants;
 import com.example.coffee.callbacks.OrderCallback;
 import com.example.coffee.models.Order.Order;
 import com.example.coffee.models.Order.OrderResponse;
+import com.example.coffee.models.Product.Product;
 import com.example.coffee.screens.bottom.MainActivity;
 import com.example.coffee.services.OrderService;
 import com.example.coffee.utils.Logger;
+
+import java.util.ArrayList;
 
 public class PaymentActivity extends AppCompatActivity {
 
@@ -49,7 +53,15 @@ public class PaymentActivity extends AppCompatActivity {
         backNavigation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent1 = getIntent();
+                Bundle bundle1 = intent1.getExtras();
+                ArrayList<Product> products = (ArrayList<Product>) bundle1.getSerializable("PRODUCTS");
+
                 Intent intent = new Intent(PaymentActivity.this, CheckOutActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("OrderDetail", order);
+                bundle.putSerializable("products", products);
+                intent.putExtras(bundle);
                 startActivity(intent);
                 finish();
             }
@@ -61,7 +73,7 @@ public class PaymentActivity extends AppCompatActivity {
                 // show dialog success
                 if (checkWallet.isChecked()) {
                     Logger.log("ORDER", order);
-                    orderService.updateStatusOrder(order.getId(), 3, orderCallback);
+                    orderService.updateStatusOrder(order.getId(), Constants.DELIVERED_STATUS, orderCallback);
                     return;
                 }
 

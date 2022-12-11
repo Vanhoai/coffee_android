@@ -54,14 +54,19 @@ public class RecycleHistoryAdapter extends RecyclerView.Adapter<RecycleHistoryAd
         History history = list_history.get(position);
         Logger.log("status", history.getOrder().getStatus());
 
-        if (history.getOrder().getStatus() >= 2) {
-            holder.tvNameHistory.setText("Order Successfully");
-            holder.tvStatus.setText(String.valueOf(history.getPrice()));
-            holder.tvDerscriptionHistory.setText("Congratulation, you have successfully made a coffee purchase");
+        if (history.getOrder().getStatus() == 4) {
+            holder.tvNameHistory.setText("Đơn hàng đã hủy");
+            holder.tvDerscriptionHistory.setText("Bạn đã hủy đơn hàng này");
+            holder.tvStatus.setText("");
+            holder.btnCancel.setVisibility(View.GONE);
+        } else if (history.getOrder().getStatus() == 3) {
+            holder.tvNameHistory.setText("Đặt hàng thành công");
+            holder.tvStatus.setText(String.valueOf(history.getOrder().getTotal()));
+            holder.tvDerscriptionHistory.setText("Chúc mừng bạn đã đặt hàng thành công !!");
             holder.btnCancel.setVisibility(View.GONE);
         } else {
             holder.tvNameHistory.setText("Orders are pending");
-            holder.tvStatus.setText(String.valueOf(history.getPrice()));
+            holder.tvStatus.setText(String.valueOf(history.getOrder().getTotal()));
             holder.tvDerscriptionHistory.setVisibility(View.GONE);
             holder.btnCancel.setText("Cancel Order");
         }
@@ -127,7 +132,7 @@ public class RecycleHistoryAdapter extends RecyclerView.Adapter<RecycleHistoryAd
 
         @Override
         public void onFailed(Boolean value) {
-
+            Logger.log("RESPONSE", "ERROR");
         }
     };
 }

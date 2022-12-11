@@ -128,6 +128,7 @@ public class CheckOutActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(CheckOutActivity.this, DetailPlaceActivity.class);
                 Bundle bundle = new Bundle();
+                bundle.putInt("id", order.getShop().getId());
                 bundle.putSerializable("OrderDetail", order);
                 intent.putExtras(bundle);
                 startActivity(intent);
@@ -168,6 +169,7 @@ public class CheckOutActivity extends AppCompatActivity {
             Intent intent = new Intent(CheckOutActivity.this, PaymentActivity.class);
             Bundle bundle = new Bundle();
             bundle.putSerializable("ORDER", orderResponse.getOrder());
+            bundle.putSerializable("PRODUCTS", products);
             intent.putExtras(bundle);
             startActivity(intent);
             finish();
@@ -377,7 +379,7 @@ public class CheckOutActivity extends AppCompatActivity {
             }
         });
     }
-    private OrderCallback orderCallback = new OrderCallback() {
+    private final OrderCallback orderCallback = new OrderCallback() {
         @Override
         public void onSuccess(boolean value, OrderResponse orderResponse) {
             Logger.log("ORDER RESPONSE", orderResponse);

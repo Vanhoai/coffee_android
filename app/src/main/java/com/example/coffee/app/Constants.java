@@ -4,7 +4,7 @@ public class Constants {
 
     public static final boolean DEBUG = true;
     public static final String BASE_URL = "https://coffee-server.onrender.com";
-    public static final String BASE_URL_LOCAL = "http://10.22.209.207:8080";
+    public static final String BASE_URL_LOCAL = "http://192.168.1.108:8080";
     public static final String API_VERSION = "/api/v1";
     public static String CHANEL_ID = "CHAT";
     public static String NOTIFICATION_URL = "https://fcm.googleapis.com/fcm/send";
@@ -13,5 +13,6 @@ public class Constants {
     public static int PAID_STATUS = 1;
     public static int DELIVERING_STATUS = 2;
     public static int DELIVERED_STATUS = 3;
+    public static int CANCELED_STATUS = 4;
 
 }
