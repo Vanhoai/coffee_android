@@ -11,7 +11,7 @@ import retrofit2.http.POST;
 
 public interface CommentInterfaceAPI {
     String COMMENT_URL = String.format("%s/comment/", BASE_URL);
-
+    // http://192.168.1.108:8080/api/v1/comment/
     @POST("?")
     @FormUrlEncoded()
     Call<CommentResponse> getComment(
