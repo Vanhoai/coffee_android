@@ -182,12 +182,6 @@ public class ProductDetailActivity extends AppCompatActivity {
         btnCancel = view.findViewById(R.id.btnCancel);
 
         CommentService commentService = new CommentService();
-        //ratingComment.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
-        // @Override
-        // public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
-        // Logger.log("RATING", v);
-        // }
-        // });
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

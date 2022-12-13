@@ -15,6 +15,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.coffee.R;
+import com.example.coffee.app.Constants;
 import com.example.coffee.callbacks.HistoryCallback;
 import com.example.coffee.callbacks.OrderDetailCallback;
 import com.example.coffee.models.Order.Order;
@@ -30,6 +31,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class RecycleHistoryAdapter extends RecyclerView.Adapter<RecycleHistoryAdapter.HistoryViewHolder> {
+
     private final Context context;
     private final ArrayList<History> list_history;
     private final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd - MM - yyyy");
@@ -54,18 +56,18 @@ public class RecycleHistoryAdapter extends RecyclerView.Adapter<RecycleHistoryAd
         History history = list_history.get(position);
         Logger.log("status", history.getOrder().getStatus());
 
-        if (history.getOrder().getStatus() == 4) {
+        if (history.getOrder().getStatus() == Constants.CANCELED_STATUS) { // 4
             holder.tvNameHistory.setText("Đơn hàng đã hủy");
             holder.tvDerscriptionHistory.setText("Bạn đã hủy đơn hàng này");
             holder.tvStatus.setText("");
             holder.btnCancel.setVisibility(View.GONE);
-        } else if (history.getOrder().getStatus() == 3) {
+        } else if (history.getOrder().getStatus() == Constants.DELIVERED_STATUS) { // 3
             holder.tvNameHistory.setText("Đặt hàng thành công");
             holder.tvStatus.setText(String.valueOf(history.getOrder().getTotal()));
             holder.tvDerscriptionHistory.setText("Chúc mừng bạn đã đặt hàng thành công !!");
             holder.btnCancel.setVisibility(View.GONE);
         } else {
-            holder.tvNameHistory.setText("Orders are pending");
+            holder.tvNameHistory.setText("Đơn hàng chưa hoàn thành");
             holder.tvStatus.setText(String.valueOf(history.getOrder().getTotal()));
             holder.tvDerscriptionHistory.setVisibility(View.GONE);
             holder.btnCancel.setText("Cancel Order");
@@ -79,13 +81,12 @@ public class RecycleHistoryAdapter extends RecyclerView.Adapter<RecycleHistoryAd
         });
 
         holder.tvDateHistory.setText(String.valueOf(simpleDateFormat.format(history.getDate())));
-
-
         holder.cardHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (history.getOrder().getStatus() != 3) {
-                    Intent intent = new Intent(context, DetailPlaceActivity.class); Bundle bundle =new Bundle();
+                if (history.getOrder().getStatus() != Constants.DELIVERED_STATUS) { // 3
+                    Intent intent = new Intent(context, DetailPlaceActivity.class);
+                    Bundle bundle = new Bundle();
                     bundle.putInt("id", history.getOrder().getShop().getId());
                     bundle.putString("status", "HISTORY");
                     bundle.putSerializable("OrderDetail", history.getOrder());

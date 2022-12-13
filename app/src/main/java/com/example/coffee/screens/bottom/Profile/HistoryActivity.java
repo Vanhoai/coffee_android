@@ -55,10 +55,13 @@ public class HistoryActivity extends AppCompatActivity {
 
     private void initHistory() {
         User user = UserInformation.getUser(HistoryActivity.this);
-        historyService.getAllHistoryOfUser(user.getId(), new HistoryCallback() {
+        int id = user.getId();
+
+        historyService.getAllHistoryOfUser(id, new HistoryCallback() {
             @Override
             public void onSuccess(Boolean value, HistoryResponse historyResponse) {
                 Logger.log("RESPONSE", historyResponse);
+
                 histories.addAll(historyResponse.getHistories());
                 render(recyclerView, histories);
             }

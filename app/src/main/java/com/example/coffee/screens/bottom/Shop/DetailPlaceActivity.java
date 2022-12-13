@@ -72,7 +72,7 @@ public class DetailPlaceActivity extends AppCompatActivity {
         // handle click
         handleClick();
 
-        // set view
+        // call api
         detailPlace();
     }
 
