@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 
 import com.example.coffee.callbacks.GiftCallback;
 import com.example.coffee.callbacks.GiftOfUserCallback;
+import com.example.coffee.callbacks.GiftResponseRemove;
 import com.example.coffee.callbacks.MissionUseCallback;
 import com.example.coffee.callbacks.PromoCallback;
 import com.example.coffee.interfaces.GiftInterfaceAPI;
@@ -115,6 +116,30 @@ public class GiftService {
 
                 @Override
                 public void onFailure(@NonNull Call<MissionUserResponse> call, @NonNull Throwable t) {
+                    callback.onFailed(false);
+                    Logger.log("ERROR", t);
+                }
+            });
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+   }
+
+   public void removeGiftOfUser(int userId, int giftId, GiftResponseRemove callback) {
+        try {
+            getAPI().removeGiftOfUser(userId, giftId).enqueue(new Callback<com.example.coffee.models.Order.GiftResponseRemove>() {
+                @Override
+                public void onResponse(Call<com.example.coffee.models.Order.GiftResponseRemove> call, Response<com.example.coffee.models.Order.GiftResponseRemove> response) {
+                    if (response.code()  == 200) {
+                        callback.onSuccess(response.body());
+                        return;
+                    }
+
+                    callback.onFailed(false);
+                }
+
+                @Override
+                public void onFailure(Call<com.example.coffee.models.Order.GiftResponseRemove> call, Throwable t) {
                     callback.onFailed(false);
                     Logger.log("ERROR", t);
                 }

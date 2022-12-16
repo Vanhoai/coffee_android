@@ -56,17 +56,6 @@ public class RecycleCommentAdapter extends RecyclerView.Adapter<RecycleCommentAd
             holder.tvDescription.setText(comment.getContent());
         }
 
-        // abc cbd asd adc arg
-        // string[] desc = ["abc", "abd", "asd", "adc", "arg"]
-        // check length > 3
-        // 0 1 2
-        // check i < 2
-        // => string result = ""
-        // for 3 lần với mội lân lặp lấy ra kí tự tương ứng thêm vào chuỗi kết quả
-        // i = 0 result = "abc "
-        // i = 1 result ="abc abd ";
-        // i = 2 result ="abc abd asd";
-
         holder.tvRating.setText(String.valueOf(comment.getRating()));
         Glide.with(context).load(user.getImage()).into(holder.imageUser);
     }

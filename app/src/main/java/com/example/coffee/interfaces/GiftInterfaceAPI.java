@@ -2,6 +2,7 @@ package com.example.coffee.interfaces;
 
 import static com.example.coffee.interfaces.BaseAPI.BASE_URL;
 
+import com.example.coffee.models.Order.GiftResponseRemove;
 import com.example.coffee.models.Others.MissionUserResponse;
 import com.example.coffee.models.Others.UpdateMissionResponse;
 import com.example.coffee.models.Shop.GiftResponse;
@@ -33,6 +34,13 @@ public interface GiftInterfaceAPI {
     @GET("gift/user/{id}")
     Call<com.example.coffee.models.Order.GiftResponse> getGiftOfUser(
             @Path("id") int id
+    );
+
+    @POST("gift/user/remove")
+    @FormUrlEncoded()
+    Call<GiftResponseRemove> removeGiftOfUser(
+            @Field("userId") int userId,
+            @Field("giftId") int giftId
     );
 
     @POST("mission/register")

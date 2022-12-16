@@ -32,10 +32,13 @@ import android.widget.Toast;
 
 import com.example.coffee.R;
 import com.example.coffee.adapters.RecycleProductDetailAdapter;
+import com.example.coffee.callbacks.GiftCallback;
 import com.example.coffee.callbacks.GiftOfUserCallback;
+import com.example.coffee.callbacks.GiftResponseRemove;
 import com.example.coffee.callbacks.OrderCallback;
 import com.example.coffee.callbacks.OrderDetailCallback;
 import com.example.coffee.models.Order.Gift;
+import com.example.coffee.models.Order.GiftResponse;
 import com.example.coffee.models.Order.Order;
 import com.example.coffee.models.Order.OrderResponse;
 import com.example.coffee.models.Order.ProductOrder;
@@ -50,6 +53,7 @@ import com.example.coffee.services.OrderService;
 import com.example.coffee.utils.LayoutLoading;
 import com.example.coffee.utils.Logger;
 import com.example.coffee.utils.UserInformation;
+import com.google.firebase.auth.UserInfo;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -144,6 +148,7 @@ public class CheckOutActivity extends AppCompatActivity {
                 if (!balanceText.equals("-")) {
                     balance = Double.parseDouble(balanceText);
                 }
+                layoutLoading.setLoading();
                 orderService.updateBalanceOrder(order.getId(), 1, balance, orderCallback1);
             }
         });
@@ -166,18 +171,45 @@ public class CheckOutActivity extends AppCompatActivity {
     private final OrderCallback orderCallback1 = new OrderCallback() {
         @Override
         public void onSuccess(boolean value, OrderResponse orderResponse) {
-            Intent intent = new Intent(CheckOutActivity.this, PaymentActivity.class);
-            Bundle bundle = new Bundle();
-            bundle.putSerializable("ORDER", orderResponse.getOrder());
-            bundle.putSerializable("PRODUCTS", products);
-            intent.putExtras(bundle);
-            startActivity(intent);
-            finish();
+            HashMap<String, Object> selected = (HashMap<String, Object>) spinnerGift.getSelectedItem();
+            if (selected != null) {
+                User user = UserInformation.getUser(CheckOutActivity.this);
+                int userId = user.getId();
+                Gift gift = (Gift) selected.get("gift");
+                int giftId = gift.getId();
+                giftService.removeGiftOfUser(userId, giftId, new GiftResponseRemove() {
+                    @Override
+                    public void onSuccess(com.example.coffee.models.Order.GiftResponseRemove giftResponse) {
+                        layoutLoading.setGone();
+                        Intent intent = new Intent(CheckOutActivity.this, PaymentActivity.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("ORDER", orderResponse.getOrder());
+                        bundle.putSerializable("PRODUCTS", products);
+                        intent.putExtras(bundle);
+                        startActivity(intent);
+                        finish();
+                    }
+
+                    @Override
+                    public void onFailed(boolean value) {
+                        Logger.log("RESPONSE", "ERROR");
+                    }
+                });
+            } else {
+                Intent intent = new Intent(CheckOutActivity.this, PaymentActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("ORDER", orderResponse.getOrder());
+                bundle.putSerializable("PRODUCTS", products);
+                intent.putExtras(bundle);
+                startActivity(intent);
+                finish();
+            }
         }
 
         @Override
         public void onFailed(boolean value) {
-
+            Logger.log("RESPONSE", "ERROR");
+            layoutLoading.setGone();
         }
     };
 
@@ -346,7 +378,7 @@ public class CheckOutActivity extends AppCompatActivity {
         ArrayList<HashMap<String, Object>> result = new ArrayList<>();
         for (Gift gift : gifts) {
             HashMap<String , Object> hashMap = new HashMap<>();
-            hashMap.put("code", gift.getCode());
+            hashMap.put("code", gift.getType().getPercent() + " %");
             hashMap.put("gift", gift);
             result.add(hashMap);
         }
