@@ -24,7 +24,7 @@ public class Validation {
     }
 
     public static boolean verifyLogin(String email, String password) {
-        if (email.trim().length() <= 0 || password.trim().length() <= 0) {
+        if (email.trim().length() == 0 || password.trim().length() == 0) {
             return false;
         }
         return verifyEmail(email);

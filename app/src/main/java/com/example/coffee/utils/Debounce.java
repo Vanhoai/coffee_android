@@ -9,6 +9,4 @@ public class Debounce {
     CompositeDisposable disposable = new CompositeDisposable();
     BehaviorSubject<String> _textInput = BehaviorSubject.create();
     Flowable<String> textInput = _textInput.toFlowable(BackpressureStrategy.LATEST);
-
-
 }
